@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Audits Digitaux — D-Studio × P&M Executive Search</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #000000;
+    --fg: #ffffff;
+    --card-bg: rgba(11, 10, 12, 0.85);
+    --card-bg-2: rgba(18, 18, 20, 0.7);
+    --border: rgba(255, 255, 255, 0.07);
+    --border-strong: rgba(255, 255, 255, 0.12);
+    --muted: rgba(255, 255, 255, 0.35);
+    --muted-2: rgba(255, 255, 255, 0.55);
+    --radius: 12px;
+    --stroke-angle: 145deg;
+  }
+
+  /* ─── REVEAL RESET ──────────────────────────────── */
+  .reveal-viewport, .reveal, .reveal .slides {
+    background: #000 !important;
+    font-family: 'Inter', system-ui, sans-serif !important;
+    color: #fff !important;
+  }
+  .reveal .slides section {
+    text-align: left;
+    padding: 0 64px;
+    height: 100%;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .reveal h1, .reveal h2, .reveal h3 { color: #fff; text-transform: none; margin: 0; }
+  .reveal p, .reveal li { color: var(--muted-2); margin: 0; }
+  .reveal .progress { background: rgba(255,255,255,0.04); }
+  .reveal .progress span { background: rgba(255,255,255,0.3); }
+  .reveal .controls { color: rgba(255,255,255,0.25); }
+
+  /* ─── GLASS CARD ─────────────────────────────────── */
+  .glass {
+    position: relative;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+  }
+  /* stroke gradient border — white only, no color */
+  .glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      var(--stroke-angle),
+      rgba(255,255,255,0.18) 0%,
+      rgba(255,255,255,0.04) 40%,
+      rgba(255,255,255,0.14) 75%,
+      rgba(255,255,255,0.03) 100%
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .glass::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow:
+      0 12px 40px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(255,255,255,0.08);
+    pointer-events: none;
+  }
+
+  /* ─── TYPOGRAPHY ────────────────────────────────── */
+  .glass-title {
+    font-size: clamp(3rem, 9vw, 7.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    line-height: 0.88;
+    background: linear-gradient(170deg,
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,0.9) 25%,
+      rgba(200,200,200,0.75) 55%,
+      rgba(120,120,120,0.55) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+  }
+
+  .company-name {
+    font-size: clamp(2.4rem, 6.5vw, 5.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    line-height: 0.88;
+    background: linear-gradient(160deg,
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,0.85) 35%,
+      rgba(180,180,180,0.65) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+  }
+
+  .eyebrow {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .sector-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 4px 12px;
+    margin-top: 10px;
+  }
+
+  /* ─── SLIDE LAYOUT ──────────────────────────────── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 18px;
+    align-items: start;
+    margin-top: 18px;
+  }
+
+  /* ─── FICHE CARD ────────────────────────────────── */
+  .fiche {
+    padding: 20px 22px;
+  }
+  .fiche-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .fiche-row:last-of-type { border-bottom: none; }
+  .fiche-key {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .fiche-val {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: right;
+  }
+  .fiche-val.warn { color: rgba(255, 100, 80, 0.9); }
+  .fiche-val.good { color: rgba(160, 255, 160, 0.85); }
+
+  /* ─── URGENCY ───────────────────────────────────── */
+  .urgency {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 14px;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .urgency-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,90,80,0.9);
+    box-shadow: 0 0 7px rgba(255,90,80,0.45);
+    flex-shrink: 0;
+  }
+  .urgency-dot.med {
+    background: rgba(255,190,70,0.9);
+    box-shadow: 0 0 7px rgba(255,190,70,0.4);
+  }
+
+  /* ─── PROPOSALS ─────────────────────────────────── */
+  .proposals {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+  }
+  .prop {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .prop-icon { font-size: 0.95rem; flex-shrink: 0; margin-top: 1px; }
+  .prop-body {}
+  .prop-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 3px;
+  }
+  .prop-desc {
+    font-size: 0.62rem;
+    font-weight: 400;
+    color: var(--muted-2);
+    line-height: 1.45;
+  }
+
+  /* ─── PITCH LINE ────────────────────────────────── */
+  .pitch {
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--muted-2);
+    padding: 11px 16px;
+    margin-top: 12px;
+    background: rgba(255,255,255,0.025);
+    border-left: 2px solid rgba(255,255,255,0.15);
+    border-radius: 0 8px 8px 0;
+    line-height: 1.5;
+  }
+
+  /* ─── FOOTER ────────────────────────────────────── */
+  .slide-footer {
+    position: absolute;
+    bottom: 22px;
+    left: 64px;
+    right: 64px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.57rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.15);
+  }
+
+  /* ─── COVER ─────────────────────────────────────── */
+  .cover-divider {
+    width: 40px; height: 1px;
+    background: rgba(255,255,255,0.2);
+    margin: 22px 0;
+    border-radius: 1px;
+  }
+  .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
+  .pill {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 5px 14px;
+  }
+
+  /* ─── OUTRO CARDS ───────────────────────────────── */
+  .step-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .step-card {
+    padding: 20px 22px;
+  }
+  .step-num {
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .step-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .step-desc {
+    font-size: 0.65rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ══════════════════════════════════════ COVER ══ -->
+<section>
+  <div class="eyebrow">D-Studio × P&M Executive Search — Mars 2026</div>
+  <div class="glass-title">Audits<br>Digitaux</div>
+  <div class="cover-divider"></div>
+  <div style="font-size:0.8rem;color:var(--muted-2);line-height:1.6">
+    Analyse de la présence digitale &amp; opportunités<br>de croissance pour 4 entreprises françaises.
+  </div>
+  <div class="pill-row">
+    <span class="pill">Lightinderm</span>
+    <span class="pill">Prunier</span>
+    <span class="pill">La Compagnie</span>
+    <span class="pill">Ohlala Sellerie</span>
+  </div>
+  <div class="slide-footer">
+    <span>Confidentiel</span>
+    <span>dstudio.company</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ LIGHTINDERM ══ -->
+<section>
+  <div>
+    <div class="eyebrow">Audit 01 / 04</div>
+    <div class="company-name">Lightinderm</div>
+    <span class="sector-tag">Dermo-cosmétique · MedTech · Paris 17e</span>
+  </div>
+  <div class="two-col">
+    <div class="glass fiche">
+      <div class="fiche-row"><span class="fiche-key">DG</span><span class="fiche-val">Géraldine Decaux</span></div>
+      <div class="fiche-row"><span class="fiche-key">Effectif</span><span class="fiche-val">~10 employés</span></div>
+      <div class="fiche-row"><span class="fiche-key">CA</span><span class="fiche-val">~1 M€</span></div>
+      <div class="fiche-row"><span class="fiche-key">Instagram</span><span class="fiche-val">52k</span></div>
+      <div class="fiche-row"><span class="fiche-key">Distribution</span><span class="fiche-val">Sephora · Oh My Cream</span></div>
+      <div class="fiche-row"><span class="fiche-key">Site actuel</span><span class="fiche-val warn">Shopify template</span></div>
+      <div class="urgency"><div class="urgency-dot"></div>Urgence haute</div>
+    </div>
+    <div>
+      <div class="proposals">
+        <div class="prop"><div class="prop-icon">🔬</div><div class="prop-body"><div class="prop-title">Refonte MedTech Premium</div><div class="prop-desc">50 brevets + hôpital Cochin sont invisibles. Le site doit transmettre la rigueur scientifique avant l'achat.</div></div></div>
+        <div class="prop"><div class="prop-icon">🛒</div><div class="prop-body"><div class="prop-title">Tunnel e-commerce</div><div class="prop-desc">Produit à 495€ = réassurance max. Pages riches, vidéos, dermatos cités, consultation mise en avant.</div></div></div>
+        <div class="prop"><div class="prop-icon">🏪</div><div class="prop-body"><div class="prop-title">Espace Pro Revendeurs</div><div class="prop-desc">Portail dédié Sephora, Oh My Cream, dermatos partenaires — commandes, assets, formations.</div></div></div>
+        <div class="prop"><div class="prop-icon">🔍</div><div class="prop-body"><div class="prop-title">SEO Médical</div><div class="prop-desc">"Luminothérapie domicile", "LED anti-âge visage" — keywords à fort potentiel, peu de concurrence.</div></div></div>
+      </div>
+      <div class="pitch">"50 brevets, hôpital Cochin, Sephora — et un site Shopify template. Le décalage est là."</div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>Lightinderm · Audit Digital</span><span>D-Studio × P&M Executive Search</span></div>
+</section>
+
+<!-- ════════════════════════════════ PRUNIER ══ -->
+<section>
+  <div>
+    <div class="eyebrow">Audit 02 / 04</div>
+    <div class="company-name">Prunier</div>
+    <span class="sector-tag">Caviar · Gastronomie luxe · Maison depuis 1872</span>
+  </div>
+  <div class="two-col">
+    <div class="glass fiche">
+      <div class="fiche-row"><span class="fiche-key">CEO</span><span class="fiche-val">Olivier Cabarrot</span></div>
+      <div class="fiche-row"><span class="fiche-key">Points de vente</span><span class="fiche-val">40+ monde</span></div>
+      <div class="fiche-row"><span class="fiche-key">Instagram</span><span class="fiche-val warn">11k ⚠</span></div>
+      <div class="fiche-row"><span class="fiche-key">Fusion 2024</span><span class="fiche-val">Caviar de Neuvic</span></div>
+      <div class="fiche-row"><span class="fiche-key">Restaurant</span><span class="fiche-val">Guide Michelin</span></div>
+      <div class="fiche-row"><span class="fiche-key">Site actuel</span><span class="fiche-val warn">PrestaShop ⚠</span></div>
+      <div class="urgency"><div class="urgency-dot"></div>Urgence haute</div>
+    </div>
+    <div>
+      <div class="proposals">
+        <div class="prop"><div class="prop-icon">👑</div><div class="prop-body"><div class="prop-title">Refonte Luxe</div><div class="prop-desc">PrestaShop vieillissant ≠ maison centenaire. Expérience d'achat digne du caviar à 75€/30g.</div></div></div>
+        <div class="prop"><div class="prop-icon">🔗</div><div class="prop-body"><div class="prop-title">Unification post-fusion</div><div class="prop-desc">Cohérence Prunier × Caviar de Neuvic — identité digitale unifiée, même expérience.</div></div></div>
+        <div class="prop"><div class="prop-icon">🌍</div><div class="prop-body"><div class="prop-title">Portail B2B</div><div class="prop-desc">Gestion des 40 points de vente monde : commandes, brand assets, fiches multilingues.</div></div></div>
+        <div class="prop"><div class="prop-icon">🎁</div><div class="prop-body"><div class="prop-title">E-commerce Premium</div><div class="prop-desc">Coffrets, personnalisation, abonnement caviar, tunnel d'achat guidé par occasion.</div></div></div>
+      </div>
+      <div class="pitch">"Une maison de 150 ans avec 11k Instagram et un site PrestaShop. L'urgence digitale est évidente."</div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>Prunier · Audit Digital</span><span>D-Studio × P&M Executive Search</span></div>
+</section>
+
+<!-- ════════════════════════════ LA COMPAGNIE ══ -->
+<section>
+  <div>
+    <div class="eyebrow">Audit 03 / 04</div>
+    <div class="company-name">La Compagnie</div>
+    <span class="sector-tag">Transport aérien · 100% Business Class · Paris · NYC · Milan</span>
+  </div>
+  <div class="two-col">
+    <div class="glass fiche">
+      <div class="fiche-row"><span class="fiche-key">CEO</span><span class="fiche-val">Christian Vernet</span></div>
+      <div class="fiche-row"><span class="fiche-key">Routes</span><span class="fiche-val">Paris · NYC · Milan · Nice</span></div>
+      <div class="fiche-row"><span class="fiche-key">LinkedIn</span><span class="fiche-val">17.6k abonnés</span></div>
+      <div class="fiche-row"><span class="fiche-key">Partenariat</span><span class="fiche-val">Équipe de France ⚽</span></div>
+      <div class="fiche-row"><span class="fiche-key">App</span><span class="fiche-val">iOS + Android</span></div>
+      <div class="fiche-row"><span class="fiche-key">Problème</span><span class="fiche-val warn">2 domaines ⚠</span></div>
+      <div class="urgency"><div class="urgency-dot med"></div>Urgence moyenne</div>
+    </div>
+    <div>
+      <div class="proposals">
+        <div class="prop"><div class="prop-icon">🔀</div><div class="prop-body"><div class="prop-title">Unification 2 domaines</div><div class="prop-desc">lacompagnie.com + lacompagniejet.com — confusion & dilution SEO. Chaque friction = siège perdu.</div></div></div>
+        <div class="prop"><div class="prop-icon">✈️</div><div class="prop-body"><div class="prop-title">Tunnel de réservation</div><div class="prop-desc">Audit complet UX : réduction friction, réassurance premium, comparatif vs legacy carriers.</div></div></div>
+        <div class="prop"><div class="prop-icon">🏢</div><div class="prop-body"><div class="prop-title">Landing Corporate B2B</div><div class="prop-desc">Le CEO veut ce segment. Pages dédiées : tarifs groupe, facturation, contact sales.</div></div></div>
+        <div class="prop"><div class="prop-icon">🗺️</div><div class="prop-body"><div class="prop-title">Hub Éditorial Voyage</div><div class="prop-desc">Transformer les "adresses" en magazine digital premium — SEO fort, brand différenciante.</div></div></div>
+      </div>
+      <div class="pitch">"Partenaire officiel des Bleus, 10 ans Paris–New York — et 2 domaines qui se marchent dessus."</div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>La Compagnie · Audit Digital</span><span>D-Studio × P&M Executive Search</span></div>
+</section>
+
+<!-- ══════════════════════════ OHLALA SELLERIE ══ -->
+<section>
+  <div>
+    <div class="eyebrow">Audit 04 / 04</div>
+    <div class="company-name">Ohlala Sellerie</div>
+    <span class="sector-tag">E-commerce · Équitation · 45 000 références</span>
+  </div>
+  <div class="two-col">
+    <div class="glass fiche">
+      <div class="fiche-row"><span class="fiche-key">Fondateurs</span><span class="fiche-val">Bourrasse & Umer</span></div>
+      <div class="fiche-row"><span class="fiche-key">Instagram</span><span class="fiche-val good">175k 🔥</span></div>
+      <div class="fiche-row"><span class="fiche-key">Références</span><span class="fiche-val">45 000+</span></div>
+      <div class="fiche-row"><span class="fiche-key">App</span><span class="fiche-val">iOS ✓</span></div>
+      <div class="fiche-row"><span class="fiche-key">Marques</span><span class="fiche-val">Kentucky · Samshield · Ariat…</span></div>
+      <div class="fiche-row"><span class="fiche-key">Site actuel</span><span class="fiche-val warn">Shopify template</span></div>
+      <div class="urgency"><div class="urgency-dot"></div>Urgence haute</div>
+    </div>
+    <div>
+      <div class="proposals">
+        <div class="prop"><div class="prop-icon">⚡</div><div class="prop-body"><div class="prop-title">Migration Shopify → Next.js</div><div class="prop-desc">175k abonnés méritent un site à la hauteur. Ownership total, performance et SEO multipliés.</div></div></div>
+        <div class="prop"><div class="prop-icon">🎨</div><div class="prop-body"><div class="prop-title">Configurateur Personnalisables</div><div class="prop-desc">Tapis, licols, bonnets aux couleurs du club — configurateur visuel = panier moyen en hausse.</div></div></div>
+        <div class="prop"><div class="prop-icon">🏇</div><div class="prop-body"><div class="prop-title">Espace B2B Clubs</div><div class="prop-desc">Portail clubs FFE, centres équestres, écoles — nouveau canal de distribution inexploité.</div></div></div>
+        <div class="prop"><div class="prop-icon">📈</div><div class="prop-body"><div class="prop-title">SEO 45k Références</div><div class="prop-desc">Chaque fiche produit = une page SEO. Guides d'achat par discipline. Trafic organique massif.</div></div></div>
+      </div>
+      <div class="pitch">"175k abonnés Instagram, 45k références — et un Shopify template. La communauté existe, le digital doit suivre."</div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>Ohlala Sellerie · Audit Digital</span><span>D-Studio × P&M Executive Search</span></div>
+</section>
+
+<!-- ══════════════════════════════════ OUTRO ══ -->
+<section>
+  <div class="eyebrow">Synthèse</div>
+  <div class="glass-title" style="font-size:clamp(2.2rem,6vw,4.5rem)">Prochaines<br>étapes</div>
+  <div class="step-grid">
+    <div class="glass step-card">
+      <div class="step-num">01</div>
+      <div class="step-title">Intro DG par Patrycja</div>
+      <div class="step-desc">P&M Executive Search facilite le contact avec chaque directeur général ciblé.</div>
+    </div>
+    <div class="glass step-card">
+      <div class="step-num">02</div>
+      <div class="step-title">Audit approfondi</div>
+      <div class="step-desc">Analyse technique complète, benchmark concurrentiel et opportunités par boîte.</div>
+    </div>
+    <div class="glass step-card">
+      <div class="step-num">03</div>
+      <div class="step-title">Proposition commerciale</div>
+      <div class="step-desc">Offre sur-mesure D-Studio avec périmètre, timeline et ROI estimé pour chaque projet.</div>
+    </div>
+    <div class="glass step-card">
+      <div class="step-num">04</div>
+      <div class="step-title">Démarrage — 90 jours</div>
+      <div class="step-desc">Onboarding, kickoff et première livraison en moins de 90 jours ouvrés.</div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>dstudio.company</span><span>kevin@dstudio.company</span></div>
+</section>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  transition: 'fade',
+  transitionSpeed: 'default',
+  backgroundTransition: 'none',
+  controls: true,
+  progress: true,
+  center: false,
+  width: 1280,
+  height: 720,
+  margin: 0.04,
+});
+</script>
+</body>
+</html>
