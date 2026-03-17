@@ -299,13 +299,26 @@
    MOBILE
 ═══════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .reveal .slides section { padding: 16px 18px !important; justify-content:flex-start !important; padding-top:28px !important; }
-  .grid-2,.grid-3,.grid-4 { grid-template-columns:1fr !important; }
-  .title-xl { font-size:28px !important; }
-  .title-lg { font-size:22px !important; }
-  .stat-big { font-size:26px !important; }
-  .card { padding:12px 14px !important; }
-  .orb { display:none; }
+  .reveal-viewport { overflow-y: auto !important; }
+  .reveal .slides section {
+    padding: 24px 20px !important;
+    justify-content: flex-start !important;
+    padding-top: 32px !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    box-sizing: border-box !important;
+  }
+  .grid-2,.grid-3,.grid-4 { grid-template-columns: 1fr !important; gap: 8px !important; }
+  .title-xl { font-size: 30px !important; line-height: 1.1 !important; }
+  .title-lg { font-size: 24px !important; line-height: 1.15 !important; }
+  .stat-big { font-size: 28px !important; }
+  .body-md { font-size: 14px !important; }
+  .card { padding: 12px 14px !important; }
+  .orb { display: none !important; }
+  .scanline { display: none !important; }
+  .img-card { height: 100px !important; }
+  /* Force les flex row en colonne */
+  div[style*="display:flex"][style*="gap:8px"] { flex-wrap: wrap !important; }
 }
 @media (max-width:480px) {
   .grid-3 { grid-template-columns:1fr 1fr !important; }
@@ -841,16 +854,17 @@
 /* ═══════════════════════════════════════════
    REVEAL
 ═══════════════════════════════════════════ */
+const isMobile = window.innerWidth < 768;
 Reveal.initialize({
   hash: true,
   transition: 'fade',
   transitionSpeed: 'default',
   controls: true,
   progress: true,
-  center: false,
-  width: 1280,
-  height: 720,
-  margin: 0.04,
+  center: true,
+  width: isMobile ? window.innerWidth : 1280,
+  height: isMobile ? window.innerHeight : 720,
+  margin: isMobile ? 0 : 0.04,
   minScale: 0.1,
   maxScale: 2.0,
   touch: true,
