@@ -3,91 +3,138 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>D-Studio — Vision 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<title>D-Studio — Audits & Projets</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:#000;color:#fff;font-family:'Inter',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;}
+body{background:#000;color:#fff;font-family:'Inter',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;}
 canvas#bg{position:fixed;inset:0;z-index:0;opacity:0.35;pointer-events:none;}
-.wrap{position:relative;z-index:1;max-width:780px;width:100%;}
-.logo{font-size:18px;font-weight:900;letter-spacing:-0.04em;color:#fff;margin-bottom:48px;}
-.logo span{color:rgba(255,255,255,0.3);}
-h1{font-size:clamp(36px,6vw,72px);font-weight:800;letter-spacing:-0.035em;line-height:1.02;margin-bottom:16px;}
-.sub{font-size:16px;color:rgba(255,255,255,0.45);margin-bottom:48px;line-height:1.6;}
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-@media(max-width:600px){.cards{grid-template-columns:1fr;}}
-.card{
-  display:block;
-  text-decoration:none;
-  padding:28px 28px 24px;
-  border-radius:14px;
-  background:rgba(14,13,16,0.9);
-  border:1px solid rgba(255,255,255,0.08);
-  position:relative;
-  overflow:hidden;
-  transition:border-color 0.2s, transform 0.2s;
-  cursor:pointer;
+
+/* Nav */
+nav{position:relative;z-index:10;padding:24px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);}
+.logo{font-size:18px;font-weight:900;letter-spacing:-.04em;color:#fff;}
+.logo span{color:rgba(255,255,255,.3);}
+.nav-tag{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;font-weight:600;}
+
+/* Main */
+main{flex:1;position:relative;z-index:1;padding:60px 40px 80px;}
+.hero{max-width:700px;margin-bottom:64px;}
+.label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:16px;display:block;}
+h1{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-.035em;line-height:1.02;margin-bottom:16px;}
+.sub{font-size:16px;color:rgba(255,255,255,.45);line-height:1.65;max-width:540px;}
+
+/* Section headers */
+.section-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.06);}
+
+/* Audit grid */
+.audits{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:48px;}
+.card{display:block;text-decoration:none;padding:24px 24px 22px;border-radius:12px;background:rgba(14,13,16,.92);border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(145deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,.03) 50%,rgba(255,255,255,.1) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;pointer-events:none;}
+.card:hover{border-color:rgba(255,255,255,.2);transform:translateY(-2px);}
+.card-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.card-icon{font-size:26px;}
+.card-status{font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;}
+.status-live{background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);color:rgba(74,222,128,.85);}
+.status-internal{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);}
+.card-tag{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:8px;display:block;}
+.card h2{font-size:18px;font-weight:700;letter-spacing:-.025em;color:#fff;margin-bottom:6px;}
+.card p{font-size:12px;color:rgba(255,255,255,.4);line-height:1.55;}
+.card-footer{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;}
+.card-date{font-size:11px;color:rgba(255,255,255,.22);}
+.card-arrow{color:rgba(255,255,255,.2);font-size:16px;transition:color .2s,transform .2s;}
+.card:hover .card-arrow{color:rgba(255,255,255,.5);transform:translate(2px,-2px);}
+
+/* Add card (placeholder) */
+.card-add{border-style:dashed;background:transparent;cursor:default;}
+.card-add:hover{transform:none;border-color:rgba(255,255,255,.14);}
+.card-add-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px 0;gap:10px;}
+.add-icon{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.25);font-size:18px;}
+
+/* Footer */
+footer{position:relative;z-index:1;padding:24px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;}
+.footer-logo{font-size:14px;font-weight:700;letter-spacing:-.03em;}
+.footer-logo span{color:rgba(255,255,255,.3);}
+.footer-info{font-size:11px;color:rgba(255,255,255,.22);}
+
+@media(max-width:600px){
+  nav,main,footer{padding-left:20px;padding-right:20px;}
+  main{padding-top:40px;padding-bottom:60px;}
+  h1{font-size:32px;}
+  .audits{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:8px;text-align:center;}
 }
-.card::before{
-  content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
-  background:linear-gradient(145deg,rgba(255,255,255,0.14) 0%,rgba(255,255,255,0.03) 50%,rgba(255,255,255,0.1) 100%);
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;pointer-events:none;
-}
-.card:hover{border-color:rgba(255,255,255,0.18);transform:translateY(-2px);}
-.card-icon{font-size:32px;margin-bottom:16px;display:block;}
-.card-tag{display:inline-block;padding:3px 10px;border-radius:100px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;}
-.card h2{font-size:22px;font-weight:700;letter-spacing:-0.025em;color:#fff;margin-bottom:8px;}
-.card p{font-size:13px;color:rgba(255,255,255,0.42);line-height:1.55;}
-.card-arrow{position:absolute;bottom:20px;right:22px;color:rgba(255,255,255,0.2);font-size:18px;transition:color 0.2s, transform 0.2s;}
-.card:hover .card-arrow{color:rgba(255,255,255,0.5);transform:translate(2px,-2px);}
-.divider{width:36px;height:1px;background:rgba(255,255,255,0.12);margin:44px 0 28px;}
-.footer{font-size:12px;color:rgba(255,255,255,0.2);letter-spacing:.04em;}
 </style>
 </head>
 <body>
 <canvas id="bg"></canvas>
-<div class="wrap">
-  <div class="logo">D<span>.</span>STUDIO</div>
-  <h1>Vision 2026</h1>
-  <p class="sub">Deux projets. Un objectif commun.<br>Repenser comment l'IA s'intègre dans le monde réel.</p>
 
-  <div class="cards">
-    <a class="card" href="./rexos/">
-      <span class="card-icon">⚡</span>
-      <span class="card-tag">OS · Hardware · IA</span>
-      <h2>REX OS</h2>
-      <p>L'OS conçu pour des agents IA. Hardware dédié, couches dynamiques, réseau P2P. L'infrastructure du futur.</p>
-      <span class="card-arrow">↗</span>
-    </a>
-    <a class="card" href="./stellantis/">
-      <span class="card-icon">🚗</span>
-      <span class="card-tag">Peugeot · 25 mars 2026</span>
-      <h2>Stellantis × D-Studio</h2>
-      <p>Refonte MyPeugeot, interface embarquée, agent IA voiture. Rattraper Tesla sur l'expérience.</p>
-      <span class="card-arrow">↗</span>
-    </a>
+<nav>
+  <span class="logo">D<span>.</span>STUDIO</span>
+  <span class="nav-tag">Audits & Projets</span>
+</nav>
+
+<main>
+  <div class="hero">
+    <span class="label">Dashboard interne</span>
+    <h1>Nos audits.<br>Nos projets.</h1>
+    <p class="sub">Chaque deck est isolé dans son propre repo — les clients ne peuvent pas se voir entre eux. Accès direct aux présentations.</p>
   </div>
 
-  <div class="divider"></div>
-  <p class="footer">D-Studio · 7 rue Lauriston, 75016 Paris · contact@dstudio.company</p>
-</div>
+  <!-- Projets internes -->
+  <div class="section-label">Projets D-Studio</div>
+  <div class="audits">
+
+    <a class="card" href="https://keiy78120.github.io/dstudio-audit-rexos/" target="_blank">
+      <div class="card-meta">
+        <span class="card-icon">⚡</span>
+        <span class="card-status status-internal">Interne</span>
+      </div>
+      <span class="card-tag">OS · Hardware · Vision</span>
+      <h2>REX OS</h2>
+      <p>L'OS conçu pour les agents IA. Hardware dédié, couches LLM dynamiques, réseau P2P, Session Vault.</p>
+      <div class="card-footer">
+        <span class="card-date">17 mars 2026</span>
+        <span class="card-arrow">↗</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Audits clients -->
+  <div class="section-label" style="margin-top:12px;">Audits Clients</div>
+  <div class="audits">
+
+    <a class="card" href="https://keiy78120.github.io/dstudio-audit-stellantis/" target="_blank">
+      <div class="card-meta">
+        <span class="card-icon">🚗</span>
+        <span class="card-status status-live">Live</span>
+      </div>
+      <span class="card-tag">Automobile · IA embarquée</span>
+      <h2>Stellantis × Peugeot</h2>
+      <p>Audit MyPeugeot, interface embarquée, agent IA voiture, BTA WebSocket. RDV direction 25 mars 2026.</p>
+      <div class="card-footer">
+        <span class="card-date">25 mars 2026</span>
+        <span class="card-arrow">↗</span>
+      </div>
+    </a>
+
+    <div class="card card-add">
+      <div class="card-add-inner">
+        <div class="add-icon">+</div>
+        <p style="font-size:12px;color:rgba(255,255,255,.25);line-height:1.5;">Prochain audit client<br>demandez à Milo de créer un deck</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <span class="footer-logo">D<span>.</span>STUDIO</span>
+  <span class="footer-info">contact@dstudio.company · 7 rue Lauriston, 75016 Paris</span>
+</footer>
 
 <script>
-const c=document.getElementById('bg'),ctx=c.getContext('2d');
-let W,H,pts=[];
-function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
-function P(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.r=Math.random()*1.2+.3;this.a=Math.random()*.35+.08;}
-function init(){resize();pts=Array.from({length:70},()=>new P());}
-function draw(){
-  ctx.clearRect(0,0,W,H);
-  pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${p.a})`;ctx.fill();});
-  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<110){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(255,255,255,${.04*(1-d/110)})`;ctx.lineWidth=.5;ctx.stroke();}}
-  requestAnimationFrame(draw);
-}
-window.addEventListener('resize',resize);
-init();draw();
+(function(){const c=document.getElementById('bg'),ctx=c.getContext('2d');let W,H,pts=[];function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}function P(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.25;this.vy=(Math.random()-.5)*.25;this.r=Math.random()*1.2+.3;this.a=Math.random()*.25+.06;}function init(){resize();pts=Array.from({length:60},()=>new P());}function draw(){ctx.clearRect(0,0,W,H);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${p.a})`;ctx.fill();});for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<100){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(255,255,255,${.035*(1-d/100)})`;ctx.lineWidth=.5;ctx.stroke();}}requestAnimationFrame(draw);}window.addEventListener('resize',resize);init();draw();})();
 </script>
 </body>
 </html>
