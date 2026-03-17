@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Audits Digitaux — D-Studio × P&M Executive Search</title>
+<title>D-Studio — Vision 2026</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,7 +23,6 @@
     --stroke-angle: 145deg;
   }
 
-  /* ─── REVEAL RESET ──────────────────────────────── */
   .reveal-viewport, .reveal, .reveal .slides {
     background: #000 !important;
     font-family: 'Inter', system-ui, sans-serif !important;
@@ -43,7 +42,6 @@
   .reveal .progress span { background: rgba(255,255,255,0.3); }
   .reveal .controls { color: rgba(255,255,255,0.25); }
 
-  /* ─── GLASS CARD ─────────────────────────────────── */
   .glass {
     position: relative;
     background: var(--card-bg);
@@ -51,261 +49,192 @@
     backdrop-filter: blur(20px) saturate(150%);
     -webkit-backdrop-filter: blur(20px) saturate(150%);
   }
-  /* stroke gradient border — white only, no color */
   .glass::before {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(
-      var(--stroke-angle),
-      rgba(255,255,255,0.18) 0%,
-      rgba(255,255,255,0.04) 40%,
-      rgba(255,255,255,0.14) 75%,
-      rgba(255,255,255,0.03) 100%
-    );
+    background: linear-gradient(var(--stroke-angle), rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.04) 40%, rgba(255,255,255,0.14) 75%, rgba(255,255,255,0.03) 100%);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     mask-composite: exclude;
     pointer-events: none;
   }
-  .glass::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    box-shadow:
-      0 12px 40px rgba(0,0,0,0.5),
-      inset 0 1px 0 rgba(255,255,255,0.08);
-    pointer-events: none;
-  }
 
-  /* ─── TYPOGRAPHY ────────────────────────────────── */
-  .glass-title {
-    font-size: clamp(3rem, 9vw, 7.5rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -0.04em;
-    line-height: 0.88;
-    background: linear-gradient(170deg,
-      rgba(255,255,255,1) 0%,
-      rgba(255,255,255,0.9) 25%,
-      rgba(200,200,200,0.75) 55%,
-      rgba(120,120,120,0.55) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin: 0;
-  }
-
-  .company-name {
-    font-size: clamp(2.4rem, 6.5vw, 5.5rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -0.04em;
-    line-height: 0.88;
-    background: linear-gradient(160deg,
-      rgba(255,255,255,1) 0%,
-      rgba(255,255,255,0.85) 35%,
-      rgba(180,180,180,0.65) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin: 0;
-  }
-
-  .eyebrow {
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 14px;
-  }
-
-  .sector-tag {
-    display: inline-block;
-    font-size: 0.6rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: 100px;
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     padding: 4px 12px;
-    margin-top: 10px;
-  }
-
-  /* ─── SLIDE LAYOUT ──────────────────────────────── */
-  .two-col {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 18px;
-    align-items: start;
-    margin-top: 18px;
-  }
-
-  /* ─── FICHE CARD ────────────────────────────────── */
-  .fiche {
-    padding: 20px 22px;
-  }
-  .fiche-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 7px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .fiche-row:last-of-type { border-bottom: none; }
-  .fiche-key {
-    font-size: 0.6rem;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.5);
+    font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: .04em;
     text-transform: uppercase;
-    color: var(--muted);
   }
-  .fiche-val {
-    font-size: 0.68rem;
-    font-weight: 700;
-    color: #fff;
-    text-align: right;
-  }
-  .fiche-val.warn { color: rgba(255, 100, 80, 0.9); }
-  .fiche-val.good { color: rgba(160, 255, 160, 0.85); }
 
-  /* ─── URGENCY ───────────────────────────────────── */
-  .urgency {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    margin-top: 14px;
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
+  .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .08em;
     text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .title-xl {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
+
+  .title-lg {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: #fff;
+  }
+
+  .body-md {
+    font-size: clamp(14px, 1.5vw, 18px);
+    line-height: 1.6;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+
+  .card {
+    padding: 20px 22px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px !important;
+  }
+
+  .card-body {
+    font-size: 12px;
+    line-height: 1.55;
     color: rgba(255,255,255,0.45);
   }
-  .urgency-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: rgba(255,90,80,0.9);
-    box-shadow: 0 0 7px rgba(255,90,80,0.45);
-    flex-shrink: 0;
-  }
-  .urgency-dot.med {
-    background: rgba(255,190,70,0.9);
-    box-shadow: 0 0 7px rgba(255,190,70,0.4);
+
+  .stat-big {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #fff;
+    line-height: 1;
   }
 
-  /* ─── PROPOSALS ─────────────────────────────────── */
-  .proposals {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 9px;
+  .stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    margin-top: 4px;
   }
-  .prop {
-    background: rgba(255,255,255,0.025);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 14px;
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+    margin: 20px 0;
+  }
+
+  .tag-green {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 100px;
+    background: rgba(74,222,128,0.1);
+    border: 1px solid rgba(74,222,128,0.2);
+    color: rgba(74,222,128,0.8);
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .tag-red {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 100px;
+    background: rgba(248,113,113,0.1);
+    border: 1px solid rgba(248,113,113,0.2);
+    color: rgba(248,113,113,0.8);
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .tag-white {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.6);
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .logo-d {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    color: #fff;
+  }
+  .logo-d span { color: rgba(255,255,255,0.35); }
+
+  .chevron { color: rgba(255,255,255,0.25); margin: 0 4px; }
+
+  .row { display: flex; gap: 12px; align-items: flex-start; }
+  .col { display: flex; flex-direction: column; gap: 8px; }
+
+  .num-big {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.2);
+    min-width: 20px;
+  }
+
+  .list-item {
     display: flex;
     gap: 10px;
     align-items: flex-start;
-  }
-  .prop-icon { font-size: 0.95rem; flex-shrink: 0; margin-top: 1px; }
-  .prop-body {}
-  .prop-title {
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 3px;
-  }
-  .prop-desc {
-    font-size: 0.62rem;
-    font-weight: 400;
-    color: var(--muted-2);
-    line-height: 1.45;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
   }
 
-  /* ─── PITCH LINE ────────────────────────────────── */
-  .pitch {
-    font-size: 0.75rem;
-    font-style: italic;
-    color: var(--muted-2);
-    padding: 11px 16px;
-    margin-top: 12px;
-    background: rgba(255,255,255,0.025);
-    border-left: 2px solid rgba(255,255,255,0.15);
-    border-radius: 0 8px 8px 0;
-    line-height: 1.5;
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    margin-top: 6px;
+    flex-shrink: 0;
   }
 
-  /* ─── FOOTER ────────────────────────────────────── */
-  .slide-footer {
+  /* Section divider slides */
+  .section-hero {
+    position: relative;
+    overflow: hidden;
+  }
+  .section-hero::before {
+    content: "";
     position: absolute;
-    bottom: 22px;
-    left: 64px;
-    right: 64px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.57rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.15);
-  }
-
-  /* ─── COVER ─────────────────────────────────────── */
-  .cover-divider {
-    width: 40px; height: 1px;
-    background: rgba(255,255,255,0.2);
-    margin: 22px 0;
-    border-radius: 1px;
-  }
-  .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
-  .pill {
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 5px 14px;
-  }
-
-  /* ─── OUTRO CARDS ───────────────────────────────── */
-  .step-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 24px;
-  }
-  .step-card {
-    padding: 20px 22px;
-  }
-  .step-num {
-    font-size: 0.58rem;
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-  .step-title {
-    font-size: 0.9rem;
-    font-weight: 800;
-    color: #fff;
-    margin-bottom: 4px;
-  }
-  .step-desc {
-    font-size: 0.65rem;
-    color: var(--muted);
-    line-height: 1.5;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(255,255,255,0.04) 0%, transparent 70%);
+    pointer-events: none;
   }
 </style>
 </head>
@@ -313,191 +242,588 @@
 <div class="reveal">
 <div class="slides">
 
-<!-- ══════════════════════════════════════ COVER ══ -->
-<section>
-  <div class="eyebrow">D-Studio × P&M Executive Search — Mars 2026</div>
-  <div class="glass-title">Audits<br>Digitaux</div>
-  <div class="cover-divider"></div>
-  <div style="font-size:0.8rem;color:var(--muted-2);line-height:1.6">
-    Analyse de la présence digitale &amp; opportunités<br>de croissance pour 4 entreprises françaises.
-  </div>
-  <div class="pill-row">
-    <span class="pill">Lightinderm</span>
-    <span class="pill">Prunier</span>
-    <span class="pill">La Compagnie</span>
-    <span class="pill">Ohlala Sellerie</span>
-  </div>
-  <div class="slide-footer">
-    <span>Confidentiel</span>
-    <span>dstudio.company</span>
-  </div>
-</section>
+<!-- ══════════════════════════════════════════════
+     PART 1: REX OS
+══════════════════════════════════════════════ -->
 
-<!-- ══════════════════════════════ LIGHTINDERM ══ -->
+<!-- S1 — Hero REX OS -->
 <section>
-  <div>
-    <div class="eyebrow">Audit 01 / 04</div>
-    <div class="company-name">Lightinderm</div>
-    <span class="sector-tag">Dermo-cosmétique · MedTech · Paris 17e</span>
-  </div>
-  <div class="two-col">
-    <div class="glass fiche">
-      <div class="fiche-row"><span class="fiche-key">DG</span><span class="fiche-val">Géraldine Decaux</span></div>
-      <div class="fiche-row"><span class="fiche-key">Effectif</span><span class="fiche-val">~10 employés</span></div>
-      <div class="fiche-row"><span class="fiche-key">CA</span><span class="fiche-val">~1 M€</span></div>
-      <div class="fiche-row"><span class="fiche-key">Instagram</span><span class="fiche-val">52k</span></div>
-      <div class="fiche-row"><span class="fiche-key">Distribution</span><span class="fiche-val">Sephora · Oh My Cream</span></div>
-      <div class="fiche-row"><span class="fiche-key">Site actuel</span><span class="fiche-val warn">Shopify template</span></div>
-      <div class="urgency"><div class="urgency-dot"></div>Urgence haute</div>
+  <div style="display:flex;flex-direction:column;gap:28px;max-width:820px;">
+    <div style="display:flex;gap:10px;align-items:center;">
+      <div class="logo-d">D<span>.</span>STUDIO</div>
+      <div class="chevron">›</div>
+      <div class="pill">Vision 2026</div>
     </div>
+
     <div>
-      <div class="proposals">
-        <div class="prop"><div class="prop-icon">🔬</div><div class="prop-body"><div class="prop-title">Refonte MedTech Premium</div><div class="prop-desc">50 brevets + hôpital Cochin sont invisibles. Le site doit transmettre la rigueur scientifique avant l'achat.</div></div></div>
-        <div class="prop"><div class="prop-icon">🛒</div><div class="prop-body"><div class="prop-title">Tunnel e-commerce</div><div class="prop-desc">Produit à 495€ = réassurance max. Pages riches, vidéos, dermatos cités, consultation mise en avant.</div></div></div>
-        <div class="prop"><div class="prop-icon">🏪</div><div class="prop-body"><div class="prop-title">Espace Pro Revendeurs</div><div class="prop-desc">Portail dédié Sephora, Oh My Cream, dermatos partenaires — commandes, assets, formations.</div></div></div>
-        <div class="prop"><div class="prop-icon">🔍</div><div class="prop-body"><div class="prop-title">SEO Médical</div><div class="prop-desc">"Luminothérapie domicile", "LED anti-âge visage" — keywords à fort potentiel, peu de concurrence.</div></div></div>
-      </div>
-      <div class="pitch">"50 brevets, hôpital Cochin, Sephora — et un site Shopify template. Le décalage est là."</div>
+      <div class="label" style="margin-bottom:16px;">REX OS</div>
+      <div class="title-xl">L'OS conçu<br>pour l'IA.</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="body-md" style="max-width:560px;">
+      Les OS actuels ont été pensés pour des humains.<br>
+      REX OS est pensé pour des agents IA — et leurs humains.
+    </p>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <div class="tag-white">AI-Native</div>
+      <div class="tag-white">On-Premise</div>
+      <div class="tag-white">Open Source</div>
+      <div class="tag-white">NemoClaw Ready</div>
     </div>
   </div>
-  <div class="slide-footer"><span>Lightinderm · Audit Digital</span><span>D-Studio × P&M Executive Search</span></div>
 </section>
 
-<!-- ════════════════════════════════ PRUNIER ══ -->
+<!-- S2 — Le problème -->
 <section>
-  <div>
-    <div class="eyebrow">Audit 02 / 04</div>
-    <div class="company-name">Prunier</div>
-    <span class="sector-tag">Caviar · Gastronomie luxe · Maison depuis 1872</span>
-  </div>
-  <div class="two-col">
-    <div class="glass fiche">
-      <div class="fiche-row"><span class="fiche-key">CEO</span><span class="fiche-val">Olivier Cabarrot</span></div>
-      <div class="fiche-row"><span class="fiche-key">Points de vente</span><span class="fiche-val">40+ monde</span></div>
-      <div class="fiche-row"><span class="fiche-key">Instagram</span><span class="fiche-val warn">11k ⚠</span></div>
-      <div class="fiche-row"><span class="fiche-key">Fusion 2024</span><span class="fiche-val">Caviar de Neuvic</span></div>
-      <div class="fiche-row"><span class="fiche-key">Restaurant</span><span class="fiche-val">Guide Michelin</span></div>
-      <div class="fiche-row"><span class="fiche-key">Site actuel</span><span class="fiche-val warn">PrestaShop ⚠</span></div>
-      <div class="urgency"><div class="urgency-dot"></div>Urgence haute</div>
-    </div>
+  <div style="display:flex;flex-direction:column;gap:24px;">
     <div>
-      <div class="proposals">
-        <div class="prop"><div class="prop-icon">👑</div><div class="prop-body"><div class="prop-title">Refonte Luxe</div><div class="prop-desc">PrestaShop vieillissant ≠ maison centenaire. Expérience d'achat digne du caviar à 75€/30g.</div></div></div>
-        <div class="prop"><div class="prop-icon">🔗</div><div class="prop-body"><div class="prop-title">Unification post-fusion</div><div class="prop-desc">Cohérence Prunier × Caviar de Neuvic — identité digitale unifiée, même expérience.</div></div></div>
-        <div class="prop"><div class="prop-icon">🌍</div><div class="prop-body"><div class="prop-title">Portail B2B</div><div class="prop-desc">Gestion des 40 points de vente monde : commandes, brand assets, fiches multilingues.</div></div></div>
-        <div class="prop"><div class="prop-icon">🎁</div><div class="prop-body"><div class="prop-title">E-commerce Premium</div><div class="prop-desc">Coffrets, personnalisation, abonnement caviar, tunnel d'achat guidé par occasion.</div></div></div>
-      </div>
-      <div class="pitch">"Une maison de 150 ans avec 11k Instagram et un site PrestaShop. L'urgence digitale est évidente."</div>
+      <div class="label" style="margin-bottom:12px;">Le problème</div>
+      <div class="title-lg">Tous les OS ont été conçus<br>pour des humains.</div>
     </div>
+
+    <div class="grid-2" style="margin-top:8px;">
+      <div class="list-item">
+        <div class="dot" style="background:rgba(248,113,113,0.5);margin-top:5px;"></div>
+        <div>
+          <div class="card-title">Keychain GUI</div>
+          <div class="card-body">Bloque les secrets hors session GUI. L'agent ne peut pas s'authentifier de façon autonome.</div>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="dot" style="background:rgba(248,113,113,0.5);margin-top:5px;"></div>
+        <div>
+          <div class="card-title">Session timeout</div>
+          <div class="card-body">Interrompt les agents long-running. Impossible d'avoir une IA active 24/7.</div>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="dot" style="background:rgba(248,113,113,0.5);margin-top:5px;"></div>
+        <div>
+          <div class="card-title">Captcha / MFA</div>
+          <div class="card-body">Conçu pour bloquer les bots. Bloque aussi l'IA. Chaque service a son propre système.</div>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="dot" style="background:rgba(248,113,113,0.5);margin-top:5px;"></div>
+        <div>
+          <div class="card-title">50+ ECUs / Drivers</div>
+          <div class="card-body">X11, Wayland, audio, Bluetooth — 2GB de RAM et CPU pour rien. L'IA n'en a pas besoin.</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="body-md">Déployer une IA sur un Mac mini ou un VPS, c'est lutter contre l'OS toute la journée.</p>
   </div>
-  <div class="slide-footer"><span>Prunier · Audit Digital</span><span>D-Studio × P&M Executive Search</span></div>
 </section>
 
-<!-- ════════════════════════════ LA COMPAGNIE ══ -->
+<!-- S3 — La vision REX OS -->
 <section>
-  <div>
-    <div class="eyebrow">Audit 03 / 04</div>
-    <div class="company-name">La Compagnie</div>
-    <span class="sector-tag">Transport aérien · 100% Business Class · Paris · NYC · Milan</span>
-  </div>
-  <div class="two-col">
-    <div class="glass fiche">
-      <div class="fiche-row"><span class="fiche-key">CEO</span><span class="fiche-val">Christian Vernet</span></div>
-      <div class="fiche-row"><span class="fiche-key">Routes</span><span class="fiche-val">Paris · NYC · Milan · Nice</span></div>
-      <div class="fiche-row"><span class="fiche-key">LinkedIn</span><span class="fiche-val">17.6k abonnés</span></div>
-      <div class="fiche-row"><span class="fiche-key">Partenariat</span><span class="fiche-val">Équipe de France ⚽</span></div>
-      <div class="fiche-row"><span class="fiche-key">App</span><span class="fiche-val">iOS + Android</span></div>
-      <div class="fiche-row"><span class="fiche-key">Problème</span><span class="fiche-val warn">2 domaines ⚠</span></div>
-      <div class="urgency"><div class="urgency-dot med"></div>Urgence moyenne</div>
-    </div>
+  <div style="display:flex;flex-direction:column;gap:24px;">
     <div>
-      <div class="proposals">
-        <div class="prop"><div class="prop-icon">🔀</div><div class="prop-body"><div class="prop-title">Unification 2 domaines</div><div class="prop-desc">lacompagnie.com + lacompagniejet.com — confusion & dilution SEO. Chaque friction = siège perdu.</div></div></div>
-        <div class="prop"><div class="prop-icon">✈️</div><div class="prop-body"><div class="prop-title">Tunnel de réservation</div><div class="prop-desc">Audit complet UX : réduction friction, réassurance premium, comparatif vs legacy carriers.</div></div></div>
-        <div class="prop"><div class="prop-icon">🏢</div><div class="prop-body"><div class="prop-title">Landing Corporate B2B</div><div class="prop-desc">Le CEO veut ce segment. Pages dédiées : tarifs groupe, facturation, contact sales.</div></div></div>
-        <div class="prop"><div class="prop-icon">🗺️</div><div class="prop-body"><div class="prop-title">Hub Éditorial Voyage</div><div class="prop-desc">Transformer les "adresses" en magazine digital premium — SEO fort, brand différenciante.</div></div></div>
+      <div class="label" style="margin-bottom:12px;">REX OS — Architecture</div>
+      <div class="title-lg">5 couches.<br>Rien d'inutile.</div>
+    </div>
+
+    <div class="col" style="gap:8px;">
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="card-title">Layer 5 — Agent Surface</div>
+          <div class="card-body">Tool calls = system calls · Secrets chiffrés · Identités web multiples</div>
+        </div>
+        <div class="tag-white">Visible</div>
       </div>
-      <div class="pitch">"Partenaire officiel des Bleus, 10 ans Paris–New York — et 2 domaines qui se marchent dessus."</div>
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="card-title">Layer 4 — Fleet &amp; Identity</div>
+          <div class="card-body">Tailscale auto-auth · Node OpenClaw auto-pair · mDNS discovery</div>
+        </div>
+        <div class="tag-white">Réseau</div>
+      </div>
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="card-title">Layer 3 — Web &amp; Automation</div>
+          <div class="card-body">Chromium headless · Playwright · Proxy résidentiel · CAPTCHA bypass</div>
+        </div>
+        <div class="tag-white">Web</div>
+      </div>
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="card-title">Layer 2 — AI Runtime</div>
+          <div class="card-body">Ollama permanent · OpenClaw 0.0.0.0 · Memory Store SQLite+vec</div>
+        </div>
+        <div class="tag-white">IA</div>
+      </div>
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="card-title">Layer 1 — OS Core</div>
+          <div class="card-body">Linux stripped · Tailscale · SSH Ed25519 · systemd minimal</div>
+        </div>
+        <div class="tag-white">Base</div>
+      </div>
     </div>
   </div>
-  <div class="slide-footer"><span>La Compagnie · Audit Digital</span><span>D-Studio × P&M Executive Search</span></div>
 </section>
 
-<!-- ══════════════════════════ OHLALA SELLERIE ══ -->
+<!-- S4 — Hardware -->
 <section>
-  <div>
-    <div class="eyebrow">Audit 04 / 04</div>
-    <div class="company-name">Ohlala Sellerie</div>
-    <span class="sector-tag">E-commerce · Équitation · 45 000 références</span>
-  </div>
-  <div class="two-col">
-    <div class="glass fiche">
-      <div class="fiche-row"><span class="fiche-key">Fondateurs</span><span class="fiche-val">Bourrasse & Umer</span></div>
-      <div class="fiche-row"><span class="fiche-key">Instagram</span><span class="fiche-val good">175k 🔥</span></div>
-      <div class="fiche-row"><span class="fiche-key">Références</span><span class="fiche-val">45 000+</span></div>
-      <div class="fiche-row"><span class="fiche-key">App</span><span class="fiche-val">iOS ✓</span></div>
-      <div class="fiche-row"><span class="fiche-key">Marques</span><span class="fiche-val">Kentucky · Samshield · Ariat…</span></div>
-      <div class="fiche-row"><span class="fiche-key">Site actuel</span><span class="fiche-val warn">Shopify template</span></div>
-      <div class="urgency"><div class="urgency-dot"></div>Urgence haute</div>
-    </div>
+  <div style="display:flex;flex-direction:column;gap:24px;">
     <div>
-      <div class="proposals">
-        <div class="prop"><div class="prop-icon">⚡</div><div class="prop-body"><div class="prop-title">Migration Shopify → Next.js</div><div class="prop-desc">175k abonnés méritent un site à la hauteur. Ownership total, performance et SEO multipliés.</div></div></div>
-        <div class="prop"><div class="prop-icon">🎨</div><div class="prop-body"><div class="prop-title">Configurateur Personnalisables</div><div class="prop-desc">Tapis, licols, bonnets aux couleurs du club — configurateur visuel = panier moyen en hausse.</div></div></div>
-        <div class="prop"><div class="prop-icon">🏇</div><div class="prop-body"><div class="prop-title">Espace B2B Clubs</div><div class="prop-desc">Portail clubs FFE, centres équestres, écoles — nouveau canal de distribution inexploité.</div></div></div>
-        <div class="prop"><div class="prop-icon">📈</div><div class="prop-body"><div class="prop-title">SEO 45k Références</div><div class="prop-desc">Chaque fiche produit = une page SEO. Guides d'achat par discipline. Trafic organique massif.</div></div></div>
+      <div class="label" style="margin-bottom:12px;">REX Box — Hardware</div>
+      <div class="title-lg">3 processeurs.<br>3 rôles distincts.</div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card" style="text-align:center;padding:24px 16px;">
+        <div style="font-size:28px;margin-bottom:12px;">⚙️</div>
+        <div class="card-title" style="text-align:center;margin-bottom:8px;">ARM CPU</div>
+        <div class="card-body" style="text-align:center;font-size:11px;">OS · Réseau · Tailscale · Stream interface</div>
+        <div style="margin-top:12px;font-size:10px;color:rgba(255,255,255,0.2);">16W idle</div>
       </div>
-      <div class="pitch">"175k abonnés Instagram, 45k références — et un Shopify template. La communauté existe, le digital doit suivre."</div>
+      <div class="card" style="text-align:center;padding:24px 16px;">
+        <div style="font-size:28px;margin-bottom:12px;">🧠</div>
+        <div class="card-title" style="text-align:center;margin-bottom:8px;">AI CPU</div>
+        <div class="card-body" style="text-align:center;font-size:11px;">Mini modèles 24/7 · Router · ASR &lt;50ms · Embeddings</div>
+        <div style="margin-top:12px;font-size:10px;color:rgba(255,255,255,0.2);">15W · 40 TOPS</div>
+      </div>
+      <div class="card" style="text-align:center;padding:24px 16px;">
+        <div style="font-size:28px;margin-bottom:12px;">🚀</div>
+        <div class="card-title" style="text-align:center;margin-bottom:8px;">AI GPU</div>
+        <div class="card-body" style="text-align:center;font-size:11px;">Tenseurs purs · Image/3D/Vidéo · Couches LLM</div>
+        <div style="margin-top:12px;font-size:10px;color:rgba(255,255,255,0.2);">150W · 1000 TOPS</div>
+      </div>
+    </div>
+
+    <div class="grid-4" style="margin-top:4px;">
+      <div style="text-align:center;">
+        <div class="stat-big">800€</div>
+        <div class="stat-label">REX Box Lite</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="stat-big">2 500€</div>
+        <div class="stat-label">REX Box Standard</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="stat-big">5 000€</div>
+        <div class="stat-label">REX Box Pro</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="stat-big">69€</div>
+        <div class="stat-label">REX Stick</div>
+      </div>
     </div>
   </div>
-  <div class="slide-footer"><span>Ohlala Sellerie · Audit Digital</span><span>D-Studio × P&M Executive Search</span></div>
 </section>
 
-<!-- ══════════════════════════════════ OUTRO ══ -->
+<!-- S5 — LLM couches dynamiques -->
 <section>
-  <div class="eyebrow">Synthèse</div>
-  <div class="glass-title" style="font-size:clamp(2.2rem,6vw,4.5rem)">Prochaines<br>étapes</div>
-  <div class="step-grid">
-    <div class="glass step-card">
-      <div class="step-num">01</div>
-      <div class="step-title">Intro DG par Patrycja</div>
-      <div class="step-desc">P&M Executive Search facilite le contact avec chaque directeur général ciblé.</div>
+  <div style="display:flex;flex-direction:column;gap:24px;">
+    <div>
+      <div class="label" style="margin-bottom:12px;">Innovation LLM</div>
+      <div class="title-lg">Le modèle charge<br>seulement ce dont<br>il a besoin.</div>
     </div>
-    <div class="glass step-card">
-      <div class="step-num">02</div>
-      <div class="step-title">Audit approfondi</div>
-      <div class="step-desc">Analyse technique complète, benchmark concurrentiel et opportunités par boîte.</div>
-    </div>
-    <div class="glass step-card">
-      <div class="step-num">03</div>
-      <div class="step-title">Proposition commerciale</div>
-      <div class="step-desc">Offre sur-mesure D-Studio avec périmètre, timeline et ROI estimé pour chaque projet.</div>
-    </div>
-    <div class="glass step-card">
-      <div class="step-num">04</div>
-      <div class="step-title">Démarrage — 90 jours</div>
-      <div class="step-desc">Onboarding, kickoff et première livraison en moins de 90 jours ouvrés.</div>
+
+    <div class="grid-2">
+      <div>
+        <div class="card-title" style="margin-bottom:12px;font-size:12px;color:rgba(255,255,255,0.35);">COUCHES DISPONIBLES</div>
+        <div class="col" style="gap:6px;">
+          <div class="list-item">
+            <div class="dot"></div>
+            <div class="card-body"><strong style="color:#fff;">Core</strong> — toujours actif (raisonnement)</div>
+          </div>
+          <div class="list-item">
+            <div class="dot"></div>
+            <div class="card-body"><strong style="color:#fff;">Code</strong> — activé si tâche = code</div>
+          </div>
+          <div class="list-item">
+            <div class="dot"></div>
+            <div class="card-body"><strong style="color:#fff;">Vision</strong> — activé si image en input</div>
+          </div>
+          <div class="list-item">
+            <div class="dot"></div>
+            <div class="card-body"><strong style="color:#fff;">Creative</strong> — activé si génération</div>
+          </div>
+          <div class="list-item">
+            <div class="dot"></div>
+            <div class="card-body"><strong style="color:#fff;">Memory</strong> — toujours actif (RAG)</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card-title" style="margin-bottom:12px;font-size:12px;color:rgba(255,255,255,0.35);">RÉSULTAT</div>
+        <div class="col" style="gap:10px;">
+          <div class="card" style="padding:16px;">
+            <div class="stat-big" style="font-size:36px;">3-7B</div>
+            <div class="stat-label">Modèle effectif pour 90% des tâches</div>
+          </div>
+          <div class="card" style="padding:16px;">
+            <div class="stat-big" style="font-size:36px;">10×</div>
+            <div class="stat-label">Moins de VRAM vs chargement complet</div>
+          </div>
+          <div class="card" style="padding:16px;">
+            <div class="card-body" style="font-size:12px;">Router 50M params décide les couches actives en temps réel</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="slide-footer"><span>dstudio.company</span><span>kevin@dstudio.company</span></div>
+</section>
+
+<!-- S6 — P2P Mesh -->
+<section>
+  <div style="display:flex;flex-direction:column;gap:24px;">
+    <div>
+      <div class="label" style="margin-bottom:12px;">REX Mesh — P2P</div>
+      <div class="title-lg">Tu prêtes 5%.<br>Tu reçois 100%.</div>
+    </div>
+
+    <div class="grid-2">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="card">
+          <div class="card-title">Principe</div>
+          <div class="card-body">Chaque REX Box prête 5% de sa capacité au réseau. En retour, elle accède à la capacité totale de toutes les boîtes du réseau.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Use cases</div>
+          <div class="card-body">Modèle 70B distribué sur 20 boxes · Fallback si ta box crash · Surge capacity pour tâches lourdes · Fine-tuning fédéré sans partager les données</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card" style="text-align:center;padding:20px;">
+          <div class="stat-big">libp2p</div>
+          <div class="stat-label">Protocole (comme IPFS)</div>
+        </div>
+        <div class="card" style="text-align:center;padding:20px;">
+          <div class="stat-big">E2E</div>
+          <div class="stat-label">Données jamais partagées</div>
+        </div>
+        <div class="card" style="text-align:center;padding:20px;">
+          <div class="stat-big">REX ₢</div>
+          <div class="stat-label">Incentive — tu contribues, tu accèdes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S7 — Use Cases créatifs -->
+<section>
+  <div style="display:flex;flex-direction:column;gap:24px;">
+    <div>
+      <div class="label" style="margin-bottom:12px;">Ce que ça permet</div>
+      <div class="title-lg">N'importe quel domaine.<br>Juste la voix.</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">3D / Architecture</div>
+        <div class="card-body" style="margin-top:6px;">"Crée un immeuble haussmannien, façade 1900, lumière dorée"<br><br>→ TripoSG génère le mesh · Blender headless rend · Preview streamée en 60-90 secondes</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Motion Design</div>
+        <div class="card-body" style="margin-top:6px;">"Animation logo glassmorphism, 3 secondes, particules bleues"<br><br>→ AnimateDiff + FFmpeg · Résultat .mp4 en 2 minutes</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Jeu Vidéo</div>
+        <div class="card-body" style="margin-top:6px;">"Platformer 2D, pixel art robot, monde spatial, 5 niveaux"<br><br>→ Assets diffusion · Code Godot · Compilation headless · Prototype jouable en 15 min</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Photographie</div>
+        <div class="card-body" style="margin-top:6px;">"Enlève le fond, mets Paris la nuit, améliore le teint"<br><br>→ SAM2 segmentation · SDXL inpainting · Résultat en 15 secondes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S8 — Business Model REX -->
+<section>
+  <div style="display:flex;flex-direction:column;gap:24px;">
+    <div>
+      <div class="label" style="margin-bottom:12px;">Business Model</div>
+      <div class="title-lg">Open source.<br>Hardware premium.<br>Enterprise scale.</div>
+    </div>
+
+    <div class="grid-4">
+      <div class="card" style="text-align:center;padding:20px 14px;">
+        <div style="font-size:24px;margin-bottom:10px;">⚡</div>
+        <div class="card-title" style="text-align:center;">REX OS</div>
+        <div class="stat-big" style="font-size:28px;text-align:center;margin:8px 0;">Gratuit</div>
+        <div class="card-body" style="text-align:center;font-size:11px;">Open source · Communauté</div>
+      </div>
+      <div class="card" style="text-align:center;padding:20px 14px;">
+        <div style="font-size:24px;margin-bottom:10px;">📦</div>
+        <div class="card-title" style="text-align:center;">REX Box</div>
+        <div class="stat-big" style="font-size:28px;text-align:center;margin:8px 0;">800€+</div>
+        <div class="card-body" style="text-align:center;font-size:11px;">Hardware clé en main</div>
+      </div>
+      <div class="card" style="text-align:center;padding:20px 14px;">
+        <div style="font-size:24px;margin-bottom:10px;">☁️</div>
+        <div class="card-title" style="text-align:center;">REX Cloud</div>
+        <div class="stat-big" style="font-size:28px;text-align:center;margin:8px 0;">50€/m</div>
+        <div class="card-body" style="text-align:center;font-size:11px;">VM hébergée</div>
+      </div>
+      <div class="card" style="text-align:center;padding:20px 14px;">
+        <div style="font-size:24px;margin-bottom:10px;">🏢</div>
+        <div class="card-title" style="text-align:center;">Enterprise</div>
+        <div class="stat-big" style="font-size:28px;text-align:center;margin:8px 0;">Devis</div>
+        <div class="card-body" style="text-align:center;font-size:11px;">Fleet · SLA · Support</div>
+      </div>
+    </div>
+
+    <div class="card" style="padding:16px 20px;">
+      <p class="body-md" style="font-size:14px;">
+        "NVIDIA vient d'annoncer NemoClaw — l'OS enterprise pour OpenClaw. Personne n'a encore créé le hardware dédié. La fenêtre est ouverte."
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     PART 2: STELLANTIS × PEUGEOT
+══════════════════════════════════════════════ -->
+
+<!-- S9 — Hero Stellantis -->
+<section>
+  <div style="display:flex;flex-direction:column;gap:28px;max-width:820px;">
+    <div style="display:flex;gap:10px;align-items:center;">
+      <div class="logo-d">D<span>.</span>STUDIO</div>
+      <div class="chevron">›</div>
+      <div class="pill">25 mars 2026</div>
+    </div>
+
+    <div>
+      <div class="label" style="margin-bottom:16px;">Stellantis × Peugeot</div>
+      <div class="title-xl">L'expérience<br>qui manque.</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="body-md" style="max-width:560px;">
+      Tesla n'a pas une meilleure voiture.<br>
+      Il a une meilleure expérience.<br>
+      L'app, l'interface, la connexion — c'est du logiciel. On le résout.
+    </p>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <div class="tag-white">MyPeugeot Refonte</div>
+      <div class="tag-white">Interface Embarquée</div>
+      <div class="tag-white">Agent IA Voiture</div>
+      <div class="tag-white">OTA Intelligence</div>
+    </div>
+  </div>
+</section>
+
+<!-- S10 — Le gap Tesla vs Peugeot -->
+<section>
+  <div style="display:flex;flex-direction:column;gap:24px;">
+    <div>
+      <div class="label" style="margin-bottom:12px;">Le gap</div>
+      <div class="title-lg">Ce que vos clients<br>comparent.</div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <div class="card-title" style="margin-bottom:10px;font-size:11px;color:rgba(255,255,255,0.3);">TESLA</div>
+        <div class="col" style="gap:6px;">
+          <div class="list-item"><div class="dot" style="background:rgba(74,222,128,0.5);"></div><div class="card-body">App note App Store : <strong style="color:#fff;">4.5 / 5</strong></div></div>
+          <div class="list-item"><div class="dot" style="background:rgba(74,222,128,0.5);"></div><div class="card-body">Latence app → voiture : <strong style="color:#fff;">&lt; 1 seconde</strong></div></div>
+          <div class="list-item"><div class="dot" style="background:rgba(74,222,128,0.5);"></div><div class="card-body">OTA : <strong style="color:#fff;">hebdomadaire</strong>, transparent</div></div>
+          <div class="list-item"><div class="dot" style="background:rgba(74,222,128,0.5);"></div><div class="card-body">FSD v14 : <strong style="color:#fff;">meilleur ADAS 2026</strong> (MotorTrend)</div></div>
+          <div class="list-item"><div class="dot" style="background:rgba(74,222,128,0.5);"></div><div class="card-body">WebSocket persistant : <strong style="color:#fff;">jamais de réveil</strong></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="card-title" style="margin-bottom:10px;font-size:11px;color:rgba(255,255,255,0.3);">MYPEUGEOT AUJOURD'HUI</div>
+        <div class="col" style="gap:6px;">
+          <div class="list-item"><div class="dot" style="background:rgba(248,113,113,0.5);"></div><div class="card-body">App note : <strong style="color:#fff;">~2.5 / 5</strong></div></div>
+          <div class="list-item"><div class="dot" style="background:rgba(248,113,113,0.5);"></div><div class="card-body">Latence : <strong style="color:#fff;">10-30 secondes</strong> (réveil BTA)</div></div>
+          <div class="list-item"><div class="dot" style="background:rgba(248,113,113,0.5);"></div><div class="card-body">OTA : déployé en concession ou lent</div></div>
+          <div class="list-item"><div class="dot" style="background:rgba(248,113,113,0.5);"></div><div class="card-body">e-208 Style 2024 : <strong style="color:#fff;">BTA incompatible</strong> à la livraison</div></div>
+          <div class="list-item"><div class="dot" style="background:rgba(248,113,113,0.5);"></div><div class="card-body">"<em>J'aurais dû acheter une Tesla</em>" — utilisateur réel</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S11 — Comment marche le BTA -->
+<section>
+  <div style="display:flex;flex-direction:column;gap:24px;">
+    <div>
+      <div class="label" style="margin-bottom:12px;">Architecture technique</div>
+      <div class="title-lg">Voiture → Cloud → Téléphone.<br>Jamais direct.</div>
+    </div>
+
+    <div class="col" style="gap:10px;">
+      <div class="card">
+        <div class="card-title">Boîtier Télématique (BTA)</div>
+        <div class="card-body">Module 4G/LTE embarqué · eSIM · GPS · Connecté au CAN bus · Toujours alimenté (veille 50mA) · Reçoit et émet toutes les données véhicule</div>
+      </div>
+
+      <div style="display:flex;gap:8px;align-items:center;padding:0 4px;">
+        <div class="card" style="flex:1;padding:12px 14px;text-align:center;">
+          <div class="card-title" style="text-align:center;">Voiture</div>
+          <div class="card-body" style="text-align:center;font-size:11px;">BTA en veille / actif</div>
+        </div>
+        <div style="color:rgba(255,255,255,0.2);font-size:18px;">→</div>
+        <div class="card" style="flex:1;padding:12px 14px;text-align:center;">
+          <div class="card-title" style="text-align:center;">Cloud Stellantis</div>
+          <div class="card-body" style="text-align:center;font-size:11px;">4G/LTE · AWS/Azure</div>
+        </div>
+        <div style="color:rgba(255,255,255,0.2);font-size:18px;">→</div>
+        <div class="card" style="flex:1;padding:12px 14px;text-align:center;">
+          <div class="card-title" style="text-align:center;">App MyPeugeot</div>
+          <div class="card-body" style="text-align:center;font-size:11px;">HTTPS/REST</div>
+        </div>
+      </div>
+
+      <div class="card" style="background:rgba(248,113,113,0.05);border-color:rgba(248,113,113,0.15);">
+        <div class="card-title" style="color:rgba(248,113,113,0.8);">Le vrai problème de latence</div>
+        <div class="card-body">BTA en veille profonde → délai réveil 10-30s. Tesla = WebSocket persistant → jamais de réveil → &lt;1 seconde. C'est une décision d'architecture, pas de hardware.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S12 — Ce qu'on propose -->
+<section>
+  <div style="display:flex;flex-direction:column;gap:24px;">
+    <div>
+      <div class="label" style="margin-bottom:12px;">Notre proposition</div>
+      <div class="title-lg">5 chantiers.<br>ROI mesurable.</div>
+    </div>
+
+    <div class="col" style="gap:8px;">
+      <div class="list-item">
+        <div class="num-big">01</div>
+        <div>
+          <div class="card-title">Refonte MyPeugeot App</div>
+          <div class="card-body">Connexion stable · &lt;2s · Design system iOS+Android · Zéro déconnexion</div>
+        </div>
+        <div class="tag-white" style="margin-left:auto;white-space:nowrap;">3-6 sem</div>
+      </div>
+      <div class="list-item">
+        <div class="num-big">02</div>
+        <div>
+          <div class="card-title">Interface Embarquée Next-Gen</div>
+          <div class="card-body">Contextuelle · Voix naturelle · Mistral AI approfondi · 1 tap = 1 action</div>
+        </div>
+        <div class="tag-white" style="margin-left:auto;white-space:nowrap;">8-12 sem</div>
+      </div>
+      <div class="list-item">
+        <div class="num-big">03</div>
+        <div>
+          <div class="card-title">Agent IA Embarqué (REX for Cars)</div>
+          <div class="card-body">Mémoire long terme · Anticipe vos trajets · Zéro données cloud · Self-improving</div>
+        </div>
+        <div class="tag-white" style="margin-left:auto;white-space:nowrap;">12-20 sem</div>
+      </div>
+      <div class="list-item">
+        <div class="num-big">04</div>
+        <div>
+          <div class="card-title">BTA WebSocket Persistant</div>
+          <div class="card-body">Latence app → voiture &lt;500ms · Edge computing sur boîtier · Fonctionne hors réseau</div>
+        </div>
+        <div class="tag-white" style="margin-left:auto;white-space:nowrap;">6-10 sem</div>
+      </div>
+      <div class="list-item">
+        <div class="num-big">05</div>
+        <div>
+          <div class="card-title">OTA Intelligence</div>
+          <div class="card-body">Rollout progressif · A/B testing · Rollback auto · Dashboard temps réel</div>
+        </div>
+        <div class="tag-white" style="margin-left:auto;white-space:nowrap;">4-6 sem</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S13 — Argument souveraineté -->
+<section>
+  <div style="display:flex;flex-direction:column;gap:24px;">
+    <div>
+      <div class="label" style="margin-bottom:12px;">L'argument décisif</div>
+      <div class="title-lg">Vos données clients<br>restent en Europe.</div>
+    </div>
+
+    <div class="grid-2">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="card" style="background:rgba(248,113,113,0.05);border-color:rgba(248,113,113,0.15);">
+          <div class="card-title" style="color:rgba(248,113,113,0.8);">Situation actuelle</div>
+          <div class="card-body">Tesla utilise AWS us-east · OpenAI (partenaire DS Automobiles) = serveurs texans · 80% des dépenses logiciels Europe vont aux sociétés US (Cigref 2025)</div>
+        </div>
+        <div class="card" style="background:rgba(74,222,128,0.04);border-color:rgba(74,222,128,0.12);">
+          <div class="card-title" style="color:rgba(74,222,128,0.7);">Notre proposition</div>
+          <div class="card-body">Architecture 100% souveraine · Mistral AI (déjà votre partenaire) · RGPD by design · Données véhicule = actif Peugeot, pas Google/Amazon</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card" style="text-align:center;padding:20px;">
+          <div class="stat-big">€20Mds</div>
+          <div class="stat-label">Revenus software cibles STLA Brain 2030</div>
+        </div>
+        <div class="card" style="padding:16px;">
+          <div class="card-body" style="font-size:13px;line-height:1.6;">
+            "Ces revenus viennent des services connectés. Si l'app ne marche pas, personne ne paye ces abonnements. Notre travail vous ouvre ce marché."
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S14 — Premier pas -->
+<section>
+  <div style="display:flex;flex-direction:column;gap:28px;max-width:820px;">
+    <div>
+      <div class="label" style="margin-bottom:16px;">Pour démarrer</div>
+      <div class="title-xl">Un audit.<br>3 semaines.<br>Sans engagement.</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="grid-2" style="gap:14px;">
+      <div class="card" style="padding:22px;">
+        <div class="card-title" style="margin-bottom:10px;">Audit UX MyPeugeot</div>
+        <div class="stat-big" style="font-size:36px;">5-8k€</div>
+        <div class="card-body" style="margin-top:10px;font-size:12px;">3 semaines · Rapport complet · 20 recommandations prioritisées · ROI estimé par feature</div>
+      </div>
+      <div class="card" style="padding:22px;">
+        <div class="card-title" style="margin-bottom:10px;">Proof of Concept Interface</div>
+        <div class="stat-big" style="font-size:36px;">15-25k€</div>
+        <div class="card-body" style="margin-top:10px;font-size:12px;">8 semaines · Prototype interactif · Intégration Mistral AI · Présentation direction</div>
+      </div>
+    </div>
+
+    <div class="card" style="padding:18px 22px;">
+      <p class="body-md" style="font-size:14px;">
+        📧 contact@dstudio.company &nbsp;·&nbsp; D-Studio, 7 rue Lauriston, 75016 Paris
+      </p>
+    </div>
+  </div>
 </section>
 
 </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
 <script>
-Reveal.initialize({
-  hash: true,
-  transition: 'fade',
-  transitionSpeed: 'default',
-  backgroundTransition: 'none',
-  controls: true,
-  progress: true,
-  center: false,
-  width: 1280,
-  height: 720,
-  margin: 0.04,
-});
+  Reveal.initialize({
+    hash: true,
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    controls: true,
+    progress: true,
+    center: false,
+    width: 1280,
+    height: 720,
+    margin: 0.04,
+    minScale: 0.2,
+    maxScale: 2.0,
+  });
 </script>
 </body>
 </html>
