@@ -11,7 +11,7 @@
       "type": "hero",
       "label": "Be On Board",
       "title": "Audit digital<br>Be On Board.",
-      "body": "Club d'élite pour dirigeants et administrateurs. 17+ dîners organisés, réseau corporate et entrepreneurial d'exception. Un site WordPress qui ne reflète pas le positionnement premium du club.",
+      "body": "Club privé fondé en 2023 par Patrycja Mothon (Grant Alexander). 25+ dîners organisés en 2,5 ans, marraine Anne Lange (4 mandats CAC 40). Un site WordPress qui ne reflète pas le positionnement premium du club.",
       "tags": ["WordPress", "Événementiel", "Networking premium", "Executive Search"]
     },
     {
@@ -20,8 +20,8 @@
       "title": "L'état des lieux.",
       "grid": "grid-4",
       "stats": [
-        { "value": "17+", "label": "Dîners organisés" },
-        { "value": "100+", "label": "Invités d'exception" },
+        { "value": "25+", "label": "Dîners organisés" },
+        { "value": "507", "label": "Abonnés LinkedIn" },
         { "value": "26", "label": "Mises à jour en attente" },
         { "value": "85", "label": "Pages WordPress" },
         { "value": "18", "label": "Plugins installés" },
@@ -39,11 +39,12 @@
           "title": "LE CLUB BE ON BOARD",
           "type": "good",
           "items": [
-            "Club <strong style='color:#fff;'>exclusif</strong> de dirigeants C-Level et administrateurs",
-            "Dîners dans des lieux <strong style='color:#fff;'>prestigieux</strong> (Maison Baccarat)",
-            "Réseau <strong style='color:#fff;'>100+ personnalités</strong> d'exception (CEO, Comex, Board members)",
+            "Club <strong style='color:#fff;'>exclusif</strong> fondé en 2023, dîners de 12 personnes max",
+            "Marraine : <strong style='color:#fff;'>Anne Lange</strong> — 4 mandats CAC 40 (Pernod Ricard, Inditex, Orange)",
+            "Lieux <strong style='color:#fff;'>prestigieux</strong> : Maison Baccarat, Armani Ristorante (étoilé Michelin), Hôtel Vernet",
             "Couverture Paris, Lyon, Lille — <strong style='color:#fff;'>expansion nationale</strong>",
-            "4 formats d'événements : Dîners, Cocktails, Visites, Recrutement"
+            "Presse : e-marketing.fr, Les Clés du Digital, The Media Leader",
+            "Fondatrice crédible : Grant Alexander + administratrice <strong style='color:#fff;'>Reworld Media</strong>"
           ]
         },
         {
@@ -73,7 +74,7 @@
         },
         {
           "title": "SEO & visibilité",
-          "body": "Aucun plugin SEO installé (ni Yoast, ni Rank Math). URLs non optimisées (?page_id=). Pas de sitemap XML. Pas de favicon (erreur 404). Titre de page générique : « Be on Board – Be on Board ». Meta descriptions absentes.",
+          "body": "Aucun plugin SEO installé (ni Yoast, ni Rank Math). URLs non optimisées (?page_id=). Pas de sitemap XML. Pas de favicon (erreur 404). Seulement 2 pages indexées par Google. Titre de page générique : « Be on Board – Be on Board ». Meta descriptions absentes.",
           "highlight": "red"
         },
         {
@@ -101,7 +102,7 @@
         },
         {
           "title": "Espace membres exclusif",
-          "body": "Créer un espace privé pour les 100+ membres du club : annuaire avec profils LinkedIn, historique de participation, recommandations croisées. Accès sur invitation uniquement.",
+          "body": "Créer un espace privé pour les membres du club : annuaire avec profils LinkedIn, historique de participation, recommandations croisées. Accès sur invitation uniquement. Inspiré du modèle BMBC (740 membres avec parrainage).",
           "highlight": "green"
         },
         {
@@ -112,6 +113,34 @@
         {
           "title": "Image de marque digitale",
           "body": "Site vitrine premium type landing page avec galerie photo des événements passés, témoignages vidéo, calendrier des prochains dîners. Design cohérent avec le positionnement « Réseau | Networking | Influence ».",
+          "highlight": "green"
+        }
+      ]
+    },
+    {
+      "type": "cards",
+      "label": "Benchmark",
+      "title": "Concurrence & positionnement.",
+      "grid": "grid-2",
+      "cards": [
+        {
+          "title": "BMBC — Board Member Business Club",
+          "body": "Fondé en 2024. 740 membres (numerus clausus 1 000). 10 afterworks/an. Adhésion : 450€ + 800€/an HT. Parrainage par 2 membres requis. Positionnement ETI/grandes entreprises.",
+          "highlight": "red"
+        },
+        {
+          "title": "IFA — Institut Français des Administrateurs",
+          "body": "Référence historique. Milliers de membres. Formations certifiantes IFA-Sciences Po (18 500€). Adhésion dès 400€/an. Comités thématiques, annuaire. Institution incontournable.",
+          "highlight": "red"
+        },
+        {
+          "title": "Be On Board — avantage compétitif",
+          "body": "Format intimiste unique (12 pers. max vs 740+ ailleurs). Lieux étoilés Michelin. Mixité : administrateurs en poste + aspirants + fonds. Pas de cotisation affichée = exclusivité perçue. Networking pur, pas de formation.",
+          "highlight": "green"
+        },
+        {
+          "title": "Marché sous-exploité",
+          "body": "Seulement 10% des 40 000 entreprises françaises (CA 3-10M€) ont un administrateur indépendant. La loi Copé-Zimmermann (40% de femmes en CA) professionnalise le recrutement. L'IA en gouvernance est le thème montant 2026.",
           "highlight": "green"
         }
       ]
