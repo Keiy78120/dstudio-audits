@@ -11,7 +11,12 @@
       "label": "Stellantis × Peugeot",
       "title": "L'expérience<br>qui manque.",
       "body": "Tesla n'a pas une meilleure voiture.<br>Il a une meilleure expérience.<br>L'app, l'interface, la connexion — c'est du logiciel. On le résout.",
-      "tags": ["MyPeugeot Refonte", "Interface Embarquée", "Agent IA Voiture", "OTA Intelligence"]
+      "tags": [
+        "MyPeugeot Refonte",
+        "Interface Embarquée",
+        "Agent IA Voiture",
+        "OTA Intelligence"
+      ]
     },
     {
       "type": "gap",
@@ -54,10 +59,24 @@
       "title": "Vos données restent en Europe.",
       "grid": "grid-2",
       "cards": [
-        { "title": "Situation actuelle", "body": "Tesla = AWS us-east. DS Automobiles = OpenAI (serveurs texans). 80% des dépenses logiciels Europe vont aux sociétés US.", "highlight": "red" },
-        { "title": "Notre proposition", "body": "Architecture 100% souveraine. Mistral AI (votre partenaire). RGPD by design. Données véhicule = actif Peugeot, pas Amazon.", "highlight": "green" },
-        { "title": "€20Mds", "body": "Revenus software cibles STLA Brain 2030. Ces revenus viennent des services connectés. Si l'app ne marche pas, personne ne paye." },
-        { "title": "L'argument décisif", "body": "Stellantis peut devenir le seul constructeur européen avec une stack logicielle 100% souveraine. Avantage concurrentiel durable." }
+        {
+          "title": "Situation actuelle",
+          "body": "Tesla = AWS us-east. DS Automobiles = OpenAI (serveurs texans). 80% des dépenses logiciels Europe vont aux sociétés US.",
+          "highlight": "red"
+        },
+        {
+          "title": "Notre proposition",
+          "body": "Architecture 100% souveraine. Mistral AI (votre partenaire). RGPD by design. Données véhicule = actif Peugeot, pas Amazon.",
+          "highlight": "green"
+        },
+        {
+          "title": "€20Mds",
+          "body": "Revenus software cibles STLA Brain 2030. Ces revenus viennent des services connectés. Si l'app ne marche pas, personne ne paye."
+        },
+        {
+          "title": "L'argument décisif",
+          "body": "Stellantis peut devenir le seul constructeur européen avec une stack logicielle 100% souveraine. Avantage concurrentiel durable."
+        }
       ]
     },
     {
@@ -65,11 +84,31 @@
       "label": "Notre proposition",
       "title": "5 chantiers. ROI mesurable.",
       "items": [
-        { "title": "Refonte MyPeugeot App", "body": "Connexion stable · <2s · Design system · Zéro déconnexion", "duration": "3–6 sem" },
-        { "title": "Interface Embarquée Next-Gen", "body": "Contextuelle · Voix naturelle · Mistral AI · 1 tap = 1 action", "duration": "8–12 sem" },
-        { "title": "Agent IA Embarqué", "body": "Mémoire long terme · Anticipe vos trajets · Zéro données cloud · Self-improving", "duration": "12–20 sem" },
-        { "title": "BTA WebSocket Persistant", "body": "Latence <500ms · Edge computing · Fonctionne hors réseau", "duration": "6–10 sem" },
-        { "title": "OTA Intelligence", "body": "Rollout progressif · A/B testing · Rollback auto · Dashboard temps réel", "duration": "4–6 sem" }
+        {
+          "title": "Refonte MyPeugeot App",
+          "body": "Connexion stable · <2s · Design system · Zéro déconnexion",
+          "duration": "3–6 sem"
+        },
+        {
+          "title": "Interface Embarquée Next-Gen",
+          "body": "Contextuelle · Voix naturelle · Mistral AI · 1 tap = 1 action",
+          "duration": "8–12 sem"
+        },
+        {
+          "title": "Agent IA Embarqué",
+          "body": "Mémoire long terme · Anticipe vos trajets · Zéro données cloud · Self-improving",
+          "duration": "12–20 sem"
+        },
+        {
+          "title": "BTA WebSocket Persistant",
+          "body": "Latence <500ms · Edge computing · Fonctionne hors réseau",
+          "duration": "6–10 sem"
+        },
+        {
+          "title": "OTA Intelligence",
+          "body": "Rollout progressif · A/B testing · Rollback auto · Dashboard temps réel",
+          "duration": "4–6 sem"
+        }
       ]
     },
     {
@@ -77,9 +116,18 @@
       "label": "Pour démarrer",
       "title": "Un audit.<br>3 semaines.<br>Sans engagement.",
       "offers": [
-        { "title": "Audit UX MyPeugeot", "price": "5–8k€", "details": "3 semaines · 20 recommandations prioritisées · ROI estimé par feature" },
-        { "title": "Proof of Concept Interface", "price": "15–25k€", "details": "8 semaines · Prototype interactif · Mistral AI intégré · Présentation direction" }
+        {
+          "title": "Audit UX MyPeugeot",
+          "price": "5–8k€",
+          "details": "3 semaines · 20 recommandations prioritisées · ROI estimé par feature"
+        },
+        {
+          "title": "Proof of Concept Interface",
+          "price": "15–25k€",
+          "details": "8 semaines · Prototype interactif · Mistral AI intégré · Présentation direction"
+        }
       ]
     }
-  ]
+  ],
+  "heroImage": "https://images.unsplash.com/photo-1549317661-bd32c8ce0484?w=600&q=80&auto=format"
 }

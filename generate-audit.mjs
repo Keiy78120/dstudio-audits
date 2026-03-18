@@ -36,27 +36,34 @@ const outPath = outIdx !== -1 ? args[outIdx + 1] : join(slug, "index.html");
 function slideHero(s) {
   const tags = (s.tags || []).map((t) => `<span class="tag-w">${t}</span>`).join("\n      ");
   const clientLogoHtml = config.clientLogo
-    ? `<img src="${config.clientLogo}" alt="${config.client}" style="filter:grayscale(1) brightness(2);height:28px;opacity:0.6;" />`
+    ? `<img src="${config.clientLogo}" alt="${config.client}" style="filter:grayscale(1) brightness(2);height:28px;opacity:0.6;border-radius:6px;" onerror="this.style.display='none'" />`
+    : "";
+  const heroImg = config.heroImage || s.image;
+  const heroImgHtml = heroImg
+    ? `<div class="hero-img anim d5"><img src="${heroImg}" alt="${config.client}" /></div>`
     : "";
   return `
-<section>
+<section class="hero-section">
   <div class="orb orb-1" style="opacity:0.4;"></div>
   <div class="orb orb-2"></div>
   <div class="scanline"></div>
-  <div style="display:flex;flex-direction:column;gap:24px;max-width:800px;position:relative;z-index:1;">
-    <div class="flex-c anim">
-      <span style="height:20px;display:inline-flex;align-items:center;">${DSTUDIO_SVG.replace('width="103" height="33"', 'height="20"')}</span>
-      <span class="chev">›</span>
-      <span class="pill">${config.date || ""}</span>
-      ${clientLogoHtml}
+  <div style="display:flex;align-items:center;gap:48px;position:relative;z-index:1;width:100%;">
+    <div style="display:flex;flex-direction:column;gap:24px;max-width:${heroImg ? '600px' : '800px'};flex:1;min-width:0;">
+      <div class="flex-c anim">
+        <span style="height:20px;display:inline-flex;align-items:center;">${DSTUDIO_SVG.replace('width="103" height="33"', 'height="20"')}</span>
+        <span class="chev">›</span>
+        <span class="pill">${config.date || ""}</span>
+        ${clientLogoHtml}
+      </div>
+      <div>
+        <div class="label anim d1" style="margin-bottom:14px;">${s.label || config.client}</div>
+        <div class="title-xl anim d2">${s.title}</div>
+      </div>
+      <div class="divider anim d3"></div>
+      <p class="body-md anim d4" style="max-width:540px;">${s.body || ""}</p>
+      ${tags ? `<div class="flex-c anim d5" style="flex-wrap:wrap;gap:8px;">${tags}</div>` : ""}
     </div>
-    <div>
-      <div class="label anim d1" style="margin-bottom:14px;">${s.label || config.client}</div>
-      <div class="title-xl anim d2">${s.title}</div>
-    </div>
-    <div class="divider anim d3"></div>
-    <p class="body-md anim d4" style="max-width:540px;">${s.body || ""}</p>
-    ${tags ? `<div class="flex-c anim d5" style="flex-wrap:wrap;gap:8px;">${tags}</div>` : ""}
+    ${heroImgHtml}
   </div>
 </section>`;
 }
@@ -254,15 +261,18 @@ const html = `<!DOCTYPE html>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{--bg:#000;--card:rgba(8,8,8,0.95);--border:rgba(255,255,255,0.08);--border-strong:rgba(255,255,255,0.14);--muted:rgba(255,255,255,0.35);--muted2:rgba(255,255,255,0.55);--r:16px;--accent:${accentColor};--ease-spring:cubic-bezier(0.22,1,0.36,1);--ease-out:cubic-bezier(0,0,0.2,1);--dur-base:200ms;--dur-moderate:300ms;--dur-slow:500ms;--shadow-glass:0 8px 32px rgba(0,0,0,0.15),inset 0 0 0 1px rgba(255,255,255,0.05);--shadow-glass-glow:0 0 40px rgba(180,140,255,0.08),0 8px 32px rgba(0,0,0,0.3);}
-html{background:#000;color:#fff;font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;scroll-snap-type:y proximity;scroll-behavior:smooth;}
-body{background:#000;}
+:root{--bg:#060608;--card:rgba(12,11,14,0.92);--border:rgba(255,255,255,0.07);--border-strong:rgba(255,255,255,0.14);--muted:rgba(255,255,255,0.35);--muted2:rgba(255,255,255,0.55);--r:16px;--accent:${accentColor};--ease-spring:cubic-bezier(0.22,1,0.36,1);--ease-out:cubic-bezier(0,0,0.2,1);--dur-base:200ms;--dur-moderate:300ms;--dur-slow:500ms;--shadow-glass:0 8px 32px rgba(0,0,0,0.2),inset 0 0 0 1px rgba(255,255,255,0.04),inset 0 1px 0 0 rgba(255,255,255,0.06);--shadow-glass-glow:0 0 40px rgba(180,140,255,0.08),0 8px 32px rgba(0,0,0,0.3);}
+html{background:var(--bg);color:#fff;font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;scroll-snap-type:y proximity;scroll-behavior:smooth;}
+body{background:var(--bg);}
+.scroll-progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:10000;background:transparent;pointer-events:none;}
+.scroll-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,rgba(255,255,255,0.05),var(--accent),rgba(255,255,255,0.15));transition:width 80ms linear;}
 .deck{max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1;}
 section{text-align:left;padding:80px 60px;min-height:80vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:visible;scroll-snap-align:start;scroll-snap-stop:normal;}
 section:first-child{min-height:100dvh;}
 h1,h2,h3{color:#fff;text-transform:none;margin:0;}
 p,li{color:var(--muted2);margin:0;}
-#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.35;}
+#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.3;}
+section:first-child::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 60% 50% at 30% 40%,rgba(120,80,200,0.06) 0%,transparent 70%);pointer-events:none;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
 @keyframes glow{0%,100%{opacity:0.3;}50%{opacity:0.6;}}
 @keyframes scanline{0%{transform:translateY(-100%);}100%{transform:translateY(100vh);}}
@@ -290,7 +300,7 @@ p,li{color:var(--muted2);margin:0;}
 .tag-g{display:inline-block;padding:3px 12px;border-radius:9999px;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.18);color:rgba(74,222,128,0.85);font-size:11px;font-weight:600;}
 .tag-r{display:inline-block;padding:3px 12px;border-radius:9999px;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.18);color:rgba(248,113,113,0.85);font-size:11px;font-weight:600;}
 .chev{color:rgba(255,255,255,0.15);margin:0 6px;}
-.divider{width:36px;height:1px;background:rgba(255,255,255,0.12);margin:18px 0;}
+.divider{width:120px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent);margin:20px 0;}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
 .grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;}
@@ -309,9 +319,19 @@ p,li{color:var(--muted2);margin:0;}
 .progress-fill{height:100%;border-radius:9999px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--ease-spring);}
 .visible .progress-fill{transform:scaleX(1);}
 .scanline{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.03),transparent);animation:scanline 8s linear infinite;pointer-events:none;}
+.hero-img{flex-shrink:0;width:340px;height:380px;border-radius:20px;overflow:hidden;position:relative;}
+.hero-img img{width:100%;height:100%;object-fit:cover;filter:brightness(0.7) saturate(0.8);transition:filter var(--dur-slow) var(--ease-out);}
+.hero-img::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 60px rgba(0,0,0,0.6);pointer-events:none;}
+.hero-section:hover .hero-img img{filter:brightness(0.85) saturate(1);}
+.nav-dots{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:9998;}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.12);transition:all var(--dur-moderate) var(--ease-spring);}
+.nav-dot.active{background:rgba(255,255,255,0.6);height:20px;border-radius:3px;}
 .dstudio-cta-btn{display:inline-flex;align-items:center;gap:8px;padding:19px 28px;border-radius:40px;background:rgba(32,32,32,0.2);border:0.4px solid transparent;color:rgba(229,229,229,1);font-size:15px;font-weight:600;text-decoration:none;box-shadow:inset -1px -1px 2px rgba(255,255,255,0.1),inset 1px 1px 2px rgba(255,255,255,0.38),inset 0 0 14px rgba(255,255,255,0.25),0 0 24px rgba(231,221,217,0.2);transition:all var(--dur-moderate) var(--ease-out);background-image:linear-gradient(156.52deg,rgba(255,255,255,0.15) 0%,rgba(255,255,255,0.02) 40%,rgba(255,255,255,0.08) 100%);}
 .dstudio-cta-btn:hover{color:#fff;transform:scale(1.02);box-shadow:inset -1px -1px 2px rgba(255,255,255,0.15),inset 1px 1px 2px rgba(255,255,255,0.45),inset 0 0 18px rgba(255,255,255,0.3),0 0 32px rgba(231,221,217,0.3);}
 .dstudio-cta-btn:active{transform:scale(0.98);}
+.dstudio-cta-btn{position:relative;overflow:hidden;}
+.dstudio-cta-btn::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.1) 50%,transparent 60%);transform:translateX(-100%);transition:transform 0.7s ease;}
+.dstudio-cta-btn:hover::after{transform:translateX(100%);}
 @media(max-width:768px){
   html{scroll-snap-type:none;}
   section{padding:48px 20px!important;min-height:auto!important;justify-content:flex-start!important;}
@@ -322,6 +342,9 @@ p,li{color:var(--muted2);margin:0;}
   .stat-big{font-size:24px!important;}
   .card{padding:14px 16px!important;border-radius:12px!important;}
   .orb{display:none;}
+  .hero-img{display:none;}
+  .hero-section>div>div:first-child{max-width:100%!important;}
+  .nav-dots{display:none;}
 }
 @media(max-width:480px){
   section{padding:36px 16px!important;}
@@ -336,7 +359,9 @@ p,li{color:var(--muted2);margin:0;}
 </head>
 <body>
 
+<div class="scroll-progress"><div class="scroll-progress-fill"></div></div>
 <canvas id="bg-canvas"></canvas>
+<div class="nav-dots" id="nav-dots"></div>
 <a href="../" style="position:fixed;top:14px;left:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;background:rgba(11,10,12,0.55);backdrop-filter:blur(16px) saturate(150%) brightness(1.1);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.55);font-size:11px;font-weight:600;text-decoration:none;letter-spacing:.04em;transition:all 0.2s;">&#8592; Accueil</a>
 <div class="deck">
 
@@ -347,8 +372,19 @@ ${slides}
 <script>
 (function(){const c=document.getElementById('bg-canvas'),x=c.getContext('2d');let W,H,p=[];function r(){W=c.width=innerWidth;H=c.height=innerHeight;}function P(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.r=Math.random()*1.5+.3;this.a=Math.random()*.4+.1;}function init(){r();p=Array.from({length:80},()=>new P);}function draw(){x.clearRect(0,0,W,H);for(let i=0;i<p.length;i++){let a=p[i];a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1;x.beginPath();x.arc(a.x,a.y,a.r,0,Math.PI*2);x.fillStyle='rgba(255,255,255,'+a.a+')';x.fill();for(let j=i+1;j<p.length;j++){let b=p[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);if(d<120){x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.strokeStyle='rgba(255,255,255,'+(0.06*(1-d/120))+')';x.stroke();}}}requestAnimationFrame(draw);}addEventListener('resize',r);init();draw();})();
 /* IntersectionObserver for scroll animations */
-const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.15,rootMargin:'0px 0px -40px 0px'});
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
 document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+/* Scroll progress bar */
+const spf=document.querySelector('.scroll-progress-fill');
+window.addEventListener('scroll',()=>{const h=document.documentElement;const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;spf.style.width=pct+'%';},{passive:true});
+/* Nav dots */
+const sections=document.querySelectorAll('section');const dotsC=document.getElementById('nav-dots');
+sections.forEach((_,i)=>{const d=document.createElement('div');d.className='nav-dot';d.addEventListener('click',()=>{sections[i].scrollIntoView({behavior:'smooth'});});dotsC.appendChild(d);});
+const dotObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){const idx=[...sections].indexOf(e.target);dotsC.querySelectorAll('.nav-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));}});},{threshold:0.4});
+sections.forEach(s=>dotObs.observe(s));
+/* Animated number counters */
+const cObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){const el=e.target;const raw=el.textContent;const num=parseFloat(raw.replace(/[^0-9.]/g,''));if(!isNaN(num)&&num>0&&num<100000){const suffix=raw.replace(/[0-9.,]/g,'');const dur=800;const start=performance.now();const step=(t)=>{const p=Math.min((t-start)/dur,1);const eased=1-Math.pow(1-p,3);el.textContent=Math.round(num*eased)+(suffix||'');if(p<1)requestAnimationFrame(step);else el.textContent=raw;};requestAnimationFrame(step);}cObs.unobserve(el);}});},{threshold:0.5});
+document.querySelectorAll('.stat-big').forEach(el=>cObs.observe(el));
 <\/script>
 </body>
 </html>`;

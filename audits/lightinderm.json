@@ -5,6 +5,7 @@
   "lang": "fr",
   "clientLogo": "https://www.google.com/s2/favicons?domain=lightinderm.com&sz=128",
   "clientColor": "rgba(74,222,128,0.6)",
+  "heroImage": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&q=80&auto=format",
   "slides": [
     {
       "type": "hero",

@@ -11,7 +11,12 @@
       "label": "La Compagnie",
       "title": "Business class only.<br>Site web : economy.",
       "body": "La seule compagnie 100% business class.<br>Paris-NYC chaque jour. Mais le digital ne suit pas.",
-      "tags": ["Unification Domaines", "Refonte App", "Landing Corporate", "SEO Aérien"]
+      "tags": [
+        "Unification Domaines",
+        "Refonte App",
+        "Landing Corporate",
+        "SEO Aérien"
+      ]
     },
     {
       "type": "stats",
@@ -19,10 +24,22 @@
       "title": "L'anti low-cost.",
       "grid": "grid-4",
       "stats": [
-        { "value": "100%", "label": "Business class" },
-        { "value": "A321neo", "label": "Flotte dernier cri" },
-        { "value": "2", "label": "Domaines non unifiés" },
-        { "value": "-30%", "label": "vs business traditionnelle" }
+        {
+          "value": "100%",
+          "label": "Business class"
+        },
+        {
+          "value": "A321neo",
+          "label": "Flotte dernier cri"
+        },
+        {
+          "value": "2",
+          "label": "Domaines non unifiés"
+        },
+        {
+          "value": "-30%",
+          "label": "vs business traditionnelle"
+        }
       ]
     },
     {
@@ -60,10 +77,24 @@
       "title": "Au-delà du billet d'avion.",
       "grid": "grid-2",
       "cards": [
-        { "title": "SEO : dilution entre 2 domaines", "body": "Le trafic organique est fragmenté entre deux sites. L'unification sous un domaine unique multiplierait l'autorité SEO par 2x minimum.", "highlight": "red" },
-        { "title": "Corporate B2B", "body": "Les entreprises réservent en volume mais n'ont pas de portail dédié. Landing corporate avec contrats, facturation groupée, gestion voyages.", "highlight": "green" },
-        { "title": "App mobile 2015", "body": "L'app de réservation date de 2015. UX obsolète, pas de boarding pass digital, pas de programme fidélité intégré. Refonte urgente." },
-        { "title": "Programme fidélité", "body": "Les voyageurs fréquents n'ont aucune incentive à rester fidèles. Un programme à points avec upgrades, lounge, partenaires premium." }
+        {
+          "title": "SEO : dilution entre 2 domaines",
+          "body": "Le trafic organique est fragmenté entre deux sites. L'unification sous un domaine unique multiplierait l'autorité SEO par 2x minimum.",
+          "highlight": "red"
+        },
+        {
+          "title": "Corporate B2B",
+          "body": "Les entreprises réservent en volume mais n'ont pas de portail dédié. Landing corporate avec contrats, facturation groupée, gestion voyages.",
+          "highlight": "green"
+        },
+        {
+          "title": "App mobile 2015",
+          "body": "L'app de réservation date de 2015. UX obsolète, pas de boarding pass digital, pas de programme fidélité intégré. Refonte urgente."
+        },
+        {
+          "title": "Programme fidélité",
+          "body": "Les voyageurs fréquents n'ont aucune incentive à rester fidèles. Un programme à points avec upgrades, lounge, partenaires premium."
+        }
       ]
     },
     {
@@ -71,10 +102,26 @@
       "label": "Notre proposition",
       "title": "4 chantiers. Expérience bout en bout.",
       "items": [
-        { "title": "Unification des domaines", "body": "Un seul site, une seule marque, une seule expérience. Migration SEO sans perte.", "duration": "3-4 sem" },
-        { "title": "Refonte app de réservation", "body": "Interface moderne, tunnel de réservation fluide, boarding pass digital, programme fidélité.", "duration": "8-12 sem" },
-        { "title": "Landing corporate B2B", "body": "Page dédiée entreprises, contrats corporate, gestion voyages d'affaires.", "duration": "2-3 sem" },
-        { "title": "SEO & contenu premium", "body": "Stratégie content marketing : destinations, lifestyle business class, GEO optimisation.", "duration": "Continu" }
+        {
+          "title": "Unification des domaines",
+          "body": "Un seul site, une seule marque, une seule expérience. Migration SEO sans perte.",
+          "duration": "3-4 sem"
+        },
+        {
+          "title": "Refonte app de réservation",
+          "body": "Interface moderne, tunnel de réservation fluide, boarding pass digital, programme fidélité.",
+          "duration": "8-12 sem"
+        },
+        {
+          "title": "Landing corporate B2B",
+          "body": "Page dédiée entreprises, contrats corporate, gestion voyages d'affaires.",
+          "duration": "2-3 sem"
+        },
+        {
+          "title": "SEO & contenu premium",
+          "body": "Stratégie content marketing : destinations, lifestyle business class, GEO optimisation.",
+          "duration": "Continu"
+        }
       ]
     },
     {
@@ -82,9 +129,18 @@
       "label": "Pour démarrer",
       "title": "Un vol premium<br>mérite un digital<br>premium.",
       "offers": [
-        { "title": "Audit UX & technique", "price": "5-8k€", "details": "3 semaines · Audit app + sites · Benchmark aérien · Recommandations prioritisées" },
-        { "title": "Refonte digitale complète", "price": "30-50k€", "details": "12-16 semaines · Site unifié + App + Corporate · D-Studio.Office inclus" }
+        {
+          "title": "Audit UX & technique",
+          "price": "5-8k€",
+          "details": "3 semaines · Audit app + sites · Benchmark aérien · Recommandations prioritisées"
+        },
+        {
+          "title": "Refonte digitale complète",
+          "price": "30-50k€",
+          "details": "12-16 semaines · Site unifié + App + Corporate · D-Studio.Office inclus"
+        }
       ]
     }
-  ]
+  ],
+  "heroImage": "https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=600&q=80&auto=format"
 }

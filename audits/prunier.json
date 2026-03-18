@@ -11,7 +11,12 @@
       "label": "Prunier × Caviar de Neuvic",
       "title": "Le luxe se vit<br>aussi en ligne.",
       "body": "Maison fondée en 1872. Fusion avec Caviar de Neuvic.<br>Deux marques, une seule plateforme à créer.",
-      "tags": ["Unification Marques", "Plateforme B2B", "E-commerce Luxe", "Brand Identity"]
+      "tags": [
+        "Unification Marques",
+        "Plateforme B2B",
+        "E-commerce Luxe",
+        "Brand Identity"
+      ]
     },
     {
       "type": "stats",
@@ -19,10 +24,22 @@
       "title": "Un héritage centenaire.",
       "grid": "grid-4",
       "stats": [
-        { "value": "1872", "label": "Année de fondation" },
-        { "value": "40", "label": "Points de vente premium" },
-        { "value": "11k", "label": "Followers Instagram" },
-        { "value": "200€+", "label": "Panier moyen caviar" }
+        {
+          "value": "1872",
+          "label": "Année de fondation"
+        },
+        {
+          "value": "40",
+          "label": "Points de vente premium"
+        },
+        {
+          "value": "11k",
+          "label": "Followers Instagram"
+        },
+        {
+          "value": "200€+",
+          "label": "Panier moyen caviar"
+        }
       ]
     },
     {
@@ -60,10 +77,24 @@
       "title": "PrestaShop vs positionnement luxe.",
       "grid": "grid-2",
       "cards": [
-        { "title": "PrestaShop — Pas adapté au luxe", "body": "Template générique, performance médiocre, pas de storytelling intégré. Un caviar à 200€ ne se vend pas sur une plateforme discount.", "highlight": "red" },
-        { "title": "Benchmark : Petrossian", "body": "Leader caviar online. Site immersif, storytelling terroir, e-commerce premium, expérience unboxing digitale. Le standard à atteindre.", "highlight": "green" },
-        { "title": "Fusion Caviar de Neuvic", "body": "Deux marques, deux histoires, un seul site à construire. L'identité Prunier (1872) enrichie par le savoir-faire Neuvic (production française)." },
-        { "title": "B2B : 40 points de vente", "body": "Les revendeurs passent commande par email/téléphone. Un portail B2B dédié = moins de friction, plus de volume, meilleure traçabilité." }
+        {
+          "title": "PrestaShop — Pas adapté au luxe",
+          "body": "Template générique, performance médiocre, pas de storytelling intégré. Un caviar à 200€ ne se vend pas sur une plateforme discount.",
+          "highlight": "red"
+        },
+        {
+          "title": "Benchmark : Petrossian",
+          "body": "Leader caviar online. Site immersif, storytelling terroir, e-commerce premium, expérience unboxing digitale. Le standard à atteindre.",
+          "highlight": "green"
+        },
+        {
+          "title": "Fusion Caviar de Neuvic",
+          "body": "Deux marques, deux histoires, un seul site à construire. L'identité Prunier (1872) enrichie par le savoir-faire Neuvic (production française)."
+        },
+        {
+          "title": "B2B : 40 points de vente",
+          "body": "Les revendeurs passent commande par email/téléphone. Un portail B2B dédié = moins de friction, plus de volume, meilleure traçabilité."
+        }
       ]
     },
     {
@@ -71,10 +102,26 @@
       "label": "Notre proposition",
       "title": "4 chantiers. Unification totale.",
       "items": [
-        { "title": "Plateforme e-commerce unifiée", "body": "Prunier + Caviar de Neuvic sous une identité premium cohérente. Next.js, animations luxe.", "duration": "8-12 sem" },
-        { "title": "Portail B2B revendeurs", "body": "Interface commande pour les 40 points de vente. Catalogues, prix, stock temps réel.", "duration": "4-6 sem" },
-        { "title": "Storytelling centenaire", "body": "Page histoire immersive, timeline 1920-2026, savoir-faire, terroir.", "duration": "2-3 sem" },
-        { "title": "D-Studio.Office", "body": "Gestion autonome : produits, commandes B2B, analytics, Google Business.", "duration": "Inclus" }
+        {
+          "title": "Plateforme e-commerce unifiée",
+          "body": "Prunier + Caviar de Neuvic sous une identité premium cohérente. Next.js, animations luxe.",
+          "duration": "8-12 sem"
+        },
+        {
+          "title": "Portail B2B revendeurs",
+          "body": "Interface commande pour les 40 points de vente. Catalogues, prix, stock temps réel.",
+          "duration": "4-6 sem"
+        },
+        {
+          "title": "Storytelling centenaire",
+          "body": "Page histoire immersive, timeline 1920-2026, savoir-faire, terroir.",
+          "duration": "2-3 sem"
+        },
+        {
+          "title": "D-Studio.Office",
+          "body": "Gestion autonome : produits, commandes B2B, analytics, Google Business.",
+          "duration": "Inclus"
+        }
       ]
     },
     {
@@ -82,9 +129,18 @@
       "label": "Pour démarrer",
       "title": "Un siècle de<br>savoir-faire.<br>Un site à la hauteur.",
       "offers": [
-        { "title": "Audit e-commerce luxe", "price": "4-6k€", "details": "2 semaines · Benchmark luxe · Stratégie unification · Recommandations UX" },
-        { "title": "Plateforme complète", "price": "25-40k€", "details": "12-16 semaines · E-commerce + B2B + Brand · D-Studio.Office inclus" }
+        {
+          "title": "Audit e-commerce luxe",
+          "price": "4-6k€",
+          "details": "2 semaines · Benchmark luxe · Stratégie unification · Recommandations UX"
+        },
+        {
+          "title": "Plateforme complète",
+          "price": "25-40k€",
+          "details": "12-16 semaines · E-commerce + B2B + Brand · D-Studio.Office inclus"
+        }
       ]
     }
-  ]
+  ],
+  "heroImage": "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80&auto=format"
 }

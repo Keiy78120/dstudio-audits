@@ -11,7 +11,12 @@
       "label": "Ohlala Sellerie",
       "title": "45 000 références.<br>Un site à dompter.",
       "body": "Leader e-commerce équitation en France.<br>175k Instagram. Mais Shopify ne suffit plus.",
-      "tags": ["Migration Shopify", "Configurateur", "SEO E-commerce", "Performance"]
+      "tags": [
+        "Migration Shopify",
+        "Configurateur",
+        "SEO E-commerce",
+        "Performance"
+      ]
     },
     {
       "type": "stats",
@@ -19,10 +24,22 @@
       "title": "Le leader qui doit évoluer.",
       "grid": "grid-4",
       "stats": [
-        { "value": "45k", "label": "Références produit" },
-        { "value": "175k", "label": "Followers Instagram" },
-        { "value": "Shopify", "label": "Plateforme actuelle" },
-        { "value": "#1", "label": "E-commerce équitation FR" }
+        {
+          "value": "45k",
+          "label": "Références produit"
+        },
+        {
+          "value": "175k",
+          "label": "Followers Instagram"
+        },
+        {
+          "value": "Shopify",
+          "label": "Plateforme actuelle"
+        },
+        {
+          "value": "#1",
+          "label": "E-commerce équitation FR"
+        }
       ]
     },
     {
@@ -60,10 +77,24 @@
       "title": "Ce que Next.js débloque.",
       "grid": "grid-2",
       "cards": [
-        { "title": "Performance x10", "body": "ISR + Edge caching. Chaque page produit pré-rendue. Temps de chargement < 1s même avec 45k pages.", "highlight": "green" },
-        { "title": "Configurateur 3D", "body": "Personnalisation selles, bridons, accessoires. Visualisation en temps réel. Commande custom directe.", "highlight": "green" },
-        { "title": "SEO E-commerce", "body": "45 000 pages produit = 45 000 opportunités Google. Schema.org, catégories optimisées, URLs propres." },
-        { "title": "Search & Filtrage", "body": "Recherche instantanée full-text, filtres multicritères (sport, taille, marque, prix), suggestions IA." }
+        {
+          "title": "Performance x10",
+          "body": "ISR + Edge caching. Chaque page produit pré-rendue. Temps de chargement < 1s même avec 45k pages.",
+          "highlight": "green"
+        },
+        {
+          "title": "Configurateur 3D",
+          "body": "Personnalisation selles, bridons, accessoires. Visualisation en temps réel. Commande custom directe.",
+          "highlight": "green"
+        },
+        {
+          "title": "SEO E-commerce",
+          "body": "45 000 pages produit = 45 000 opportunités Google. Schema.org, catégories optimisées, URLs propres."
+        },
+        {
+          "title": "Search & Filtrage",
+          "body": "Recherche instantanée full-text, filtres multicritères (sport, taille, marque, prix), suggestions IA."
+        }
       ]
     },
     {
@@ -72,10 +103,24 @@
       "title": "Ce que Shopify ne peut pas faire.",
       "grid": "grid-2",
       "cards": [
-        { "title": "Configurateur selles", "body": "Les cavaliers veulent personnaliser : couleur, cuir, taille, gravure. Un configurateur 3D interactif = panier moyen x3 sur le custom.", "highlight": "green" },
-        { "title": "B2B Clubs & Centres", "body": "Les clubs équestres et centres de formation commandent en volume. Portail B2B avec tarifs dégressifs, commandes récurrentes, facturation pro." },
-        { "title": "App iOS compagnon", "body": "Suivi de commande, scanner produit en boutique, wishlist partagée, notifications promos. Fidélisation mobile de la communauté 175k.", "highlight": "green" },
-        { "title": "SEO : 45k pages à exploiter", "body": "Chaque fiche produit est une landing page potentielle. Schema.org, meta optimisées, vitesse de chargement = trafic organique massif." }
+        {
+          "title": "Configurateur selles",
+          "body": "Les cavaliers veulent personnaliser : couleur, cuir, taille, gravure. Un configurateur 3D interactif = panier moyen x3 sur le custom.",
+          "highlight": "green"
+        },
+        {
+          "title": "B2B Clubs & Centres",
+          "body": "Les clubs équestres et centres de formation commandent en volume. Portail B2B avec tarifs dégressifs, commandes récurrentes, facturation pro."
+        },
+        {
+          "title": "App iOS compagnon",
+          "body": "Suivi de commande, scanner produit en boutique, wishlist partagée, notifications promos. Fidélisation mobile de la communauté 175k.",
+          "highlight": "green"
+        },
+        {
+          "title": "SEO : 45k pages à exploiter",
+          "body": "Chaque fiche produit est une landing page potentielle. Schema.org, meta optimisées, vitesse de chargement = trafic organique massif."
+        }
       ]
     },
     {
@@ -83,10 +128,26 @@
       "label": "Notre proposition",
       "title": "4 chantiers. Migration progressive.",
       "items": [
-        { "title": "Migration Next.js headless", "body": "Shopify comme CMS produit, Next.js en frontend. Migration progressive sans interruption.", "duration": "10-14 sem" },
-        { "title": "Configurateur personnalisation", "body": "Selles, bridons, accessoires : couleurs, gravures, matières. Visualisation temps réel.", "duration": "6-8 sem" },
-        { "title": "SEO & performance", "body": "45k pages optimisées, ISR, schema.org, sitemap dynamique, Core Web Vitals vert.", "duration": "Continu" },
-        { "title": "D-Studio.Office", "body": "Dashboard : analytics ventes, SEO, commandes custom, Google Business.", "duration": "Inclus" }
+        {
+          "title": "Migration Next.js headless",
+          "body": "Shopify comme CMS produit, Next.js en frontend. Migration progressive sans interruption.",
+          "duration": "10-14 sem"
+        },
+        {
+          "title": "Configurateur personnalisation",
+          "body": "Selles, bridons, accessoires : couleurs, gravures, matières. Visualisation temps réel.",
+          "duration": "6-8 sem"
+        },
+        {
+          "title": "SEO & performance",
+          "body": "45k pages optimisées, ISR, schema.org, sitemap dynamique, Core Web Vitals vert.",
+          "duration": "Continu"
+        },
+        {
+          "title": "D-Studio.Office",
+          "body": "Dashboard : analytics ventes, SEO, commandes custom, Google Business.",
+          "duration": "Inclus"
+        }
       ]
     },
     {
@@ -94,9 +155,18 @@
       "label": "Pour démarrer",
       "title": "45 000 produits.<br>Un site taillé<br>pour la course.",
       "offers": [
-        { "title": "Audit technique e-commerce", "price": "4-6k€", "details": "2 semaines · Benchmark Shopify vs headless · Performance · SEO gaps" },
-        { "title": "Migration + configurateur", "price": "35-55k€", "details": "14-18 semaines · Headless Next.js + Configurateur + SEO · D-Studio.Office inclus" }
+        {
+          "title": "Audit technique e-commerce",
+          "price": "4-6k€",
+          "details": "2 semaines · Benchmark Shopify vs headless · Performance · SEO gaps"
+        },
+        {
+          "title": "Migration + configurateur",
+          "price": "35-55k€",
+          "details": "14-18 semaines · Headless Next.js + Configurateur + SEO · D-Studio.Office inclus"
+        }
       ]
     }
-  ]
+  ],
+  "heroImage": "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=600&q=80&auto=format"
 }
