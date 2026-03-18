@@ -3,708 +3,251 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>D-Studio — Vision 2026</title>
+<title>D-Studio — REX OS</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900&display=swap" rel="stylesheet" />
 
 <style>
-/* ═══════════════════════════════════════════
-   TOKENS
-═══════════════════════════════════════════ */
-:root {
-  --bg: #000;
-  --card: rgba(14,13,16,0.9);
-  --border: rgba(255,255,255,0.08);
-  --border-strong: rgba(255,255,255,0.14);
-  --muted: rgba(255,255,255,0.35);
-  --muted2: rgba(255,255,255,0.55);
-  --r: 12px;
+:root{--bg:#000;--card:rgba(14,13,16,0.9);--border:rgba(255,255,255,0.08);--border-strong:rgba(255,255,255,0.14);--muted:rgba(255,255,255,0.35);--muted2:rgba(255,255,255,0.55);--r:12px;--accent:rgba(147,197,253,0.6);}
+.reveal-viewport,.reveal,.reveal .slides{background:#000!important;font-family:'Inter',system-ui,sans-serif!important;color:#fff!important;}
+.reveal .slides{max-width:1100px;margin:0 auto!important;width:100%;}
+.reveal .slides section{text-align:left;padding:60px 60px;min-height:100vh;display:flex!important;flex-direction:column;justify-content:center;overflow:visible;width:100%;box-sizing:border-box;}
+.reveal h1,.reveal h2,.reveal h3{color:#fff;text-transform:none;margin:0;}
+.reveal p,.reveal li{color:var(--muted2);margin:0;}
+.reveal .progress{background:rgba(255,255,255,0.04);}
+.reveal .progress span{background:rgba(255,255,255,0.25);}
+.reveal .controls button{color:rgba(255,255,255,0.2);}
+.reveal .controls, .reveal .progress { display:none !important; }
+#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.4;}
+.reveal .slides{position:relative;z-index:1;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes glow{0%,100%{opacity:0.3;}50%{opacity:0.7;}}
+@keyframes scanline{0%{transform:translateY(-100%);}100%{transform:translateY(100vh);}}
+@keyframes pulseRing{0%{transform:scale(1);opacity:0.6;}100%{transform:scale(2.5);opacity:0;}}
+@keyframes countUp{from{opacity:0;transform:scale(0.8);}to{opacity:1;transform:scale(1);}}
+@keyframes borderPulse{0%,100%{border-color:rgba(255,255,255,0.08);}50%{border-color:rgba(255,255,255,0.22);}}
+.anim-fadeup{animation:fadeUp 0.7s ease both;}
+.anim-fadein{animation:fadeIn 0.5s ease both;}
+.d1{animation-delay:0.1s;}.d2{animation-delay:0.2s;}.d3{animation-delay:0.3s;}.d4{animation-delay:0.4s;}.d5{animation-delay:0.5s;}.d6{animation-delay:0.6s;}
+.glass,.card{position:relative;background:var(--card);border-radius:var(--r);border:1px solid var(--border);animation:borderPulse 4s ease infinite;}
+.glass::before,.card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(145deg,rgba(255,255,255,0.16) 0%,rgba(255,255,255,0.03) 50%,rgba(255,255,255,0.12) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;pointer-events:none;}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;animation:glow 5s ease-in-out infinite;}
+.orb-1{width:400px;height:400px;background:rgba(255,255,255,0.025);top:-100px;right:-100px;}
+.orb-2{width:300px;height:300px;background:rgba(255,255,255,0.015);bottom:-50px;left:-80px;animation-delay:2s;}
+.label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);}
+.title-xl{font-size:clamp(38px,5.5vw,72px);font-weight:800;line-height:1.02;letter-spacing:-0.035em;color:#fff;}
+.title-lg{font-size:clamp(26px,3.8vw,50px);font-weight:700;line-height:1.1;letter-spacing:-0.028em;color:#fff;}
+.body-md{font-size:clamp(13px,1.4vw,17px);line-height:1.65;color:var(--muted2);}
+.stat-big{font-size:clamp(30px,4vw,56px);font-weight:800;letter-spacing:-0.03em;color:#fff;line-height:1;}
+.stat-label{font-size:11px;color:rgba(255,255,255,0.3);margin-top:4px;}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.5);font-size:11px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;}
+.tag-w{display:inline-block;padding:2px 10px;border-radius:100px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);font-size:11px;font-weight:600;}
+.tag-g{display:inline-block;padding:2px 10px;border-radius:100px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.2);color:rgba(74,222,128,0.85);font-size:11px;font-weight:600;}
+.tag-r{display:inline-block;padding:2px 10px;border-radius:100px;background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.2);color:rgba(248,113,113,0.85);font-size:11px;font-weight:600;}
+.logo{font-size:20px;font-weight:900;letter-spacing:-0.04em;color:#fff;}
+.logo span{color:rgba(255,255,255,0.3);}
+.chev{color:rgba(255,255,255,0.2);margin:0 6px;}
+.divider{width:36px;height:1px;background:rgba(255,255,255,0.14);margin:18px 0;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;}
+.col{display:flex;flex-direction:column;gap:8px;}
+.row{display:flex;gap:10px;align-items:flex-start;}
+.flex-c{display:flex;align-items:center;gap:8px;}
+.card{padding:18px 20px;}
+.card-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:12px!important;}
+.card-body{font-size:12px;line-height:1.55;color:rgba(255,255,255,0.42);margin-top:10px;}
+.list-item{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);transition:background 0.2s,border-color 0.2s;}
+.list-item:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.12);}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.25);margin-top:6px;flex-shrink:0;}
+.dot-g{background:rgba(74,222,128,0.6);}
+.dot-r{background:rgba(248,113,113,0.6);}
+.num{font-size:11px;font-weight:700;color:rgba(255,255,255,0.18);min-width:20px;}
+.progress-bar{height:3px;border-radius:100px;background:rgba(255,255,255,0.06);margin-top:8px;overflow:hidden;}
+.progress-fill{height:100%;border-radius:100px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 1s ease 0.5s;}
+.reveal .present .progress-fill{transform:scaleX(1);}
+.reveal .fragment{transition:all 0.4s ease;}
+.reveal .fragment.fade-up{transform:translateY(16px);opacity:0;}
+.reveal .fragment.fade-up.visible{transform:translateY(0);opacity:1;}
+.reveal[data-scroll-activated] .fragment,.reveal .slides section .fragment{opacity:1!important;transform:none!important;visibility:visible!important;}
+.counter{display:inline-block;animation:countUp 0.6s ease both;}
+.scanline{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent);animation:scanline 8s linear infinite;pointer-events:none;}
+.pulse-ring{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,0.15);animation:pulseRing 2.5s ease-out infinite;}
+.dstudio-cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:100px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.16);color:#fff;font-size:14px;font-weight:600;text-decoration:none;backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.12), 0 0 20px rgba(255,255,255,0.04);transition:all 0.3s;}
+.dstudio-cta-btn:hover{background:rgba(255,255,255,0.14);box-shadow:inset 0 1px 0 rgba(255,255,255,0.2), 0 0 30px rgba(255,255,255,0.08);}
+@media(max-width:768px){
+  .reveal .slides section{padding:40px 20px!important;min-height:auto!important;justify-content:flex-start!important;}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr!important;}
+  .title-xl{font-size:28px!important;}
+  .title-lg{font-size:22px!important;}
+  .stat-big{font-size:26px!important;}
+  .card{padding:12px 14px!important;}
+  .orb{display:none;}
 }
-
-/* ═══════════════════════════════════════════
-   REVEAL BASE
-═══════════════════════════════════════════ */
-.reveal-viewport, .reveal, .reveal .slides {
-  background: #000 !important;
-  font-family: 'Inter', system-ui, sans-serif !important;
-  color: #fff !important;
+@media(max-width:480px){
+  .grid-3{grid-template-columns:1fr 1fr!important;}
+  .grid-4{grid-template-columns:1fr 1fr!important;}
 }
-.reveal .slides section {
-  text-align: left;
-  padding: 0 60px;
-  height: 100%;
-  display: flex !important;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-}
-.reveal h1,.reveal h2,.reveal h3 { color:#fff; text-transform:none; margin:0; }
-.reveal p,.reveal li { color:var(--muted2); margin:0; }
-.reveal .progress { background:rgba(255,255,255,0.04); }
-.reveal .progress span { background:rgba(255,255,255,0.25); }
-.reveal .controls button { color:rgba(255,255,255,0.2); }
-
-/* ═══════════════════════════════════════════
-   CANVAS BACKGROUND (particles)
-═══════════════════════════════════════════ */
-#bg-canvas {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.4;
-}
-.reveal .slides { position: relative; z-index: 1; }
-
-/* ═══════════════════════════════════════════
-   ANIMATIONS
-═══════════════════════════════════════════ */
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(20px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-@keyframes fadeIn {
-  from { opacity:0; }
-  to   { opacity:1; }
-}
-@keyframes glow {
-  0%,100% { opacity:0.3; }
-  50% { opacity:0.7; }
-}
-@keyframes scanline {
-  0%   { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
-}
-@keyframes pulseRing {
-  0%   { transform:scale(1); opacity:0.6; }
-  100% { transform:scale(2.5); opacity:0; }
-}
-@keyframes countUp {
-  from { opacity:0; transform:scale(0.8); }
-  to   { opacity:1; transform:scale(1); }
-}
-@keyframes borderPulse {
-  0%,100% { border-color: rgba(255,255,255,0.08); }
-  50%      { border-color: rgba(255,255,255,0.22); }
-}
-
-.anim-fadeup  { animation: fadeUp 0.7s ease both; }
-.anim-fadein  { animation: fadeIn 0.5s ease both; }
-
-/* Staggered delays */
-.d1  { animation-delay: 0.1s; }
-.d2  { animation-delay: 0.2s; }
-.d3  { animation-delay: 0.3s; }
-.d4  { animation-delay: 0.4s; }
-.d5  { animation-delay: 0.5s; }
-.d6  { animation-delay: 0.6s; }
-
-/* ═══════════════════════════════════════════
-   GLASS CARD
-═══════════════════════════════════════════ */
-.glass, .card {
-  position: relative;
-  background: var(--card);
-  border-radius: var(--r);
-  border: 1px solid var(--border);
-  animation: borderPulse 4s ease infinite;
-}
-.glass::before, .card::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  padding:1px;
-  background: linear-gradient(145deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0.12) 100%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  pointer-events:none;
-}
-
-/* ═══════════════════════════════════════════
-   GLOW ORBS (background decoration)
-═══════════════════════════════════════════ */
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-  z-index: 0;
-  animation: glow 5s ease-in-out infinite;
-}
-.orb-1 { width:400px; height:400px; background:rgba(255,255,255,0.025); top:-100px; right:-100px; }
-.orb-2 { width:300px; height:300px; background:rgba(255,255,255,0.015); bottom:-50px; left:-80px; animation-delay:2s; }
-
-/* ═══════════════════════════════════════════
-   TYPOGRAPHY
-═══════════════════════════════════════════ */
-.label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.28);
-}
-.title-xl {
-  font-size: clamp(38px, 5.5vw, 72px);
-  font-weight: 800;
-  line-height: 1.02;
-  letter-spacing: -0.035em;
-  color: #fff;
-}
-.title-lg {
-  font-size: clamp(26px, 3.8vw, 50px);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.028em;
-  color: #fff;
-}
-.body-md {
-  font-size: clamp(13px, 1.4vw, 17px);
-  line-height: 1.65;
-  color: var(--muted2);
-}
-.stat-big {
-  font-size: clamp(30px, 4vw, 56px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: #fff;
-  line-height: 1;
-}
-.stat-label {
-  font-size: 11px;
-  color: rgba(255,255,255,0.3);
-  margin-top: 4px;
-}
-
-/* ═══════════════════════════════════════════
-   COMPONENTS
-═══════════════════════════════════════════ */
-.pill {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 4px 12px; border-radius: 100px;
-  border: 1px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.5);
-  font-size: 11px; font-weight: 500; letter-spacing:.04em; text-transform:uppercase;
-}
-.tag-w { display:inline-block; padding:2px 10px; border-radius:100px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:rgba(255,255,255,0.6); font-size:11px; font-weight:600; }
-.tag-g { display:inline-block; padding:2px 10px; border-radius:100px; background:rgba(74,222,128,0.1); border:1px solid rgba(74,222,128,0.2); color:rgba(74,222,128,0.85); font-size:11px; font-weight:600; }
-.tag-r { display:inline-block; padding:2px 10px; border-radius:100px; background:rgba(248,113,113,0.1); border:1px solid rgba(248,113,113,0.2); color:rgba(248,113,113,0.85); font-size:11px; font-weight:600; }
-
-.logo { font-size:20px; font-weight:900; letter-spacing:-0.04em; color:#fff; }
-.logo span { color:rgba(255,255,255,0.3); }
-.chev { color:rgba(255,255,255,0.2); margin:0 6px; }
-.divider { width:36px; height:1px; background:rgba(255,255,255,0.14); margin:18px 0; }
-
-.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-.grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
-.grid-4 { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:10px; }
-.col    { display:flex; flex-direction:column; gap:8px; }
-.row    { display:flex; gap:10px; align-items:flex-start; }
-.flex-c { display:flex; align-items:center; gap:8px; }
-
-.card { padding:18px 20px; }
-.card-title { font-size:13px; font-weight:600; color:#fff; margin-bottom:5px !important; }
-.card-body  { font-size:12px; line-height:1.55; color:rgba(255,255,255,0.42); }
-
-.list-item {
-  display:flex; gap:10px; align-items:flex-start;
-  padding:10px 14px; border-radius:8px;
-  background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06);
-  transition: background 0.2s, border-color 0.2s;
-}
-.list-item:hover { background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12); }
-.dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.25); margin-top:6px; flex-shrink:0; }
-.dot-g { background:rgba(74,222,128,0.6); }
-.dot-r { background:rgba(248,113,113,0.6); }
-.num { font-size:11px; font-weight:700; color:rgba(255,255,255,0.18); min-width:20px; }
-
-/* Progress bar */
-.progress-bar {
-  height: 3px;
-  border-radius: 100px;
-  background: rgba(255,255,255,0.06);
-  margin-top: 8px;
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  border-radius: 100px;
-  background: linear-gradient(90deg, rgba(255,255,255,0.5), rgba(255,255,255,0.15));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 1s ease 0.5s;
-}
-.reveal .present .progress-fill { transform: scaleX(1); }
-
-/* Reveal fragments */
-.reveal .fragment { transition: all 0.4s ease; }
-.reveal .fragment.fade-up { transform: translateY(16px); opacity:0; }
-.reveal .fragment.fade-up.visible { transform:translateY(0); opacity:1; }
-
-/* Counter animation */
-.counter {
-  display: inline-block;
-  animation: countUp 0.6s ease both;
-}
-
-/* Scanline effect on hero */
-.scanline {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
-  animation: scanline 8s linear infinite;
-  pointer-events: none;
-}
-
-/* Pulse ring */
-.pulse-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.15);
-  animation: pulseRing 2.5s ease-out infinite;
-}
-
-/* Image overlays */
-.img-card {
-  width: 100%;
-  height: 140px;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--border);
-}
-.img-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.6;
-  filter: grayscale(30%);
-}
-.img-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.8));
-}
-
-/* ═══════════════════════════════════════════
-   MOBILE
-═══════════════════════════════════════════ */
-@media (max-width: 768px) {
-  .reveal .slides section { padding: 16px 18px !important; justify-content:flex-start !important; padding-top:28px !important; }
-  .grid-2,.grid-3,.grid-4 { grid-template-columns:1fr !important; }
-  .title-xl { font-size:28px !important; }
-  .title-lg { font-size:22px !important; }
-  .stat-big { font-size:26px !important; }
-  .card { padding:12px 14px !important; }
-  .orb { display:none; }
-}
-@media (max-width:480px) {
-  .grid-3 { grid-template-columns:1fr 1fr !important; }
-  .grid-4 { grid-template-columns:1fr 1fr !important; }
+@media print {
+  #bg-canvas, .orb, .scanline, .reveal .controls, .reveal .progress, a[href="../"] { display:none !important; }
+  .reveal .slides section { page-break-after: always; }
+  * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 }
 </style>
 </head>
 <body>
 
-<!-- Particles background -->
 <canvas id="bg-canvas"></canvas>
-
-<a href="../" style="position:fixed;top:14px;left:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;background:rgba(0,0,0,0.7);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.55);font-size:11px;font-weight:600;text-decoration:none;backdrop-filter:blur(12px);letter-spacing:.04em;transition:all 0.2s;">← Accueil</a>
-<div class="reveal">
-<div class="slides">
+<a href="../" style="position:fixed;top:14px;left:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;background:rgba(11,10,12,0.55);backdrop-filter:blur(16px) saturate(150%) brightness(1.1);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.55);font-size:11px;font-weight:600;text-decoration:none;letter-spacing:.04em;transition:all 0.2s;">&#8592; Accueil</a>
 <div class="reveal">
 <div class="slides">
 
-<!-- ══════════════════════════════════════════
-     REX OS
-══════════════════════════════════════════ -->
-
-<!-- 01 · Hero REX OS -->
+<!-- Slide 1 · hero -->
 <section>
-  <div class="orb orb-1"></div>
+  <div class="orb orb-1" style="opacity:0.4;"></div>
   <div class="orb orb-2"></div>
   <div class="scanline"></div>
   <div style="display:flex;flex-direction:column;gap:24px;max-width:800px;position:relative;z-index:1;">
     <div class="flex-c anim-fadeup">
-      <span class="logo">D<span>.</span>STUDIO</span>
+      <span style="height:20px;display:inline-flex;align-items:center;"><svg height="20" viewBox="0 0 103 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M37.399 19.3917C37.8443 19.7141 38.3853 19.8752 38.9335 19.8439C39.3716 19.8656 39.8073 19.7598 40.1903 19.5433C40.4991 19.358 40.681 19.0213 40.6666 18.6605C40.6762 18.4344 40.5781 18.2155 40.4009 18.076C40.1544 17.9004 39.8743 17.7777 39.5798 17.7103C39.204 17.6117 38.6008 17.4698 37.7533 17.2942C37.0519 17.1547 36.3649 16.943 35.7066 16.664C35.1752 16.4306 34.7203 16.0482 34.3996 15.5623C34.0429 14.973 33.8705 14.2898 33.904 13.6019C33.8968 12.8899 34.1171 12.1923 34.5312 11.615C34.9741 11.004 35.5701 10.5229 36.262 10.2198C37.0376 9.87586 37.8778 9.70267 38.7252 9.7147C39.5894 9.70267 40.4464 9.87827 41.2364 10.2319C41.9402 10.5398 42.5506 11.0329 43.0006 11.6583C43.4244 12.25 43.6518 12.962 43.647 13.6885H40.4847C40.4656 13.2819 40.2788 12.8995 39.9748 12.6349C39.6205 12.351 39.1729 12.2091 38.7181 12.2356C38.3255 12.2187 37.9353 12.3174 37.5977 12.5218C37.3153 12.6998 37.1477 13.0198 37.1645 13.3565C37.1525 13.5778 37.2458 13.7919 37.4158 13.9338C37.6576 14.1022 37.9305 14.2225 38.2201 14.2898C38.5864 14.3884 39.1801 14.5255 40.0036 14.6891C40.7169 14.819 41.4135 15.0211 42.0862 15.2929C42.6224 15.5142 43.0844 15.8846 43.4196 16.3585C43.7786 16.9214 43.9558 17.5828 43.9223 18.2516C43.9295 18.9996 43.6996 19.7333 43.2688 20.3443C42.8091 20.9913 42.1843 21.5013 41.459 21.8164C40.6451 22.182 39.7642 22.3624 38.8737 22.3504C37.9496 22.3648 37.0352 22.1772 36.1902 21.7996C35.4409 21.47 34.7921 20.948 34.3062 20.2865C33.8538 19.6659 33.612 18.913 33.6168 18.1409L36.779 18.2107C36.803 18.6749 37.028 19.1079 37.3967 19.3917" fill="white"/><path d="M54.005 9.82068V12.5893H50.668V22.2423H47.4195V12.5893H44.0825V9.82068H54.005Z" fill="white"/><path d="M58.4937 17.0225C58.4458 17.6984 58.6134 18.3743 58.9701 18.9492C59.8271 19.8104 61.2179 19.8128 62.0749 18.9492C62.4316 18.3743 62.5992 17.6984 62.5513 17.0225V9.81824H65.795V16.8469C65.8955 18.3334 65.4095 19.7983 64.4448 20.9265C62.1635 22.8196 58.8672 22.8196 56.5882 20.9265C55.6235 19.7959 55.1376 18.331 55.2381 16.8469V9.81824H58.4865L58.4913 17.0225H58.4937Z" fill="white"/><path d="M72.311 9.81832C73.4505 9.79427 74.5756 10.0709 75.5762 10.6169C76.505 11.1293 77.2687 11.8966 77.7833 12.8251C78.8318 14.8312 78.8318 17.2246 77.7833 19.2283C77.2687 20.1592 76.505 20.9242 75.5762 21.4365C74.5756 21.9826 73.4505 22.2592 72.311 22.2351H67.6646V9.81592H72.311V9.81832ZM74.475 18.6005C75.4996 17.0394 75.4996 15.0164 74.475 13.4553C73.9532 12.7986 73.1465 12.4354 72.311 12.4787H70.9154V19.5771H72.311C73.1465 19.6204 73.9508 19.2572 74.475 18.6005Z" fill="white"/><path d="M83.2485 9.81824H80V22.2399H83.2485V9.81824Z" fill="white"/><path d="M94.1907 21.5229C92.1559 22.6222 89.7094 22.6222 87.6747 21.5229C86.7435 20.9889 85.9798 20.2072 85.4675 19.2618C84.419 17.2365 84.419 14.8262 85.4675 12.8009C85.9798 11.8555 86.7435 11.0714 87.6747 10.5398C89.7094 9.43808 92.1583 9.43808 94.1907 10.5398C95.1219 11.0714 95.8855 11.8555 96.3978 12.8009C97.4463 14.8262 97.4463 17.2365 96.3978 19.2618C95.8855 20.2072 95.1219 20.9913 94.1907 21.5229ZM90.9327 19.6515C91.7633 19.6756 92.5557 19.2955 93.0608 18.6316C94.1309 17.0657 94.1309 14.9994 93.0608 13.4311C92.1081 12.25 90.3845 12.0672 89.2091 13.0246C89.0607 13.1448 88.9242 13.2819 88.8046 13.4311C87.7321 14.997 87.7321 17.0657 88.8046 18.6316C89.3097 19.2979 90.102 19.678 90.9327 19.6515Z" fill="white"/><path d="M101.011 18.4297C101.54 18.4128 102.054 18.6149 102.433 18.9877C103.189 19.7671 103.189 21.0083 102.433 21.7877C101.631 22.5357 100.391 22.5357 99.5864 21.7877C98.8299 21.0083 98.8299 19.7671 99.5864 18.9877C99.9646 18.6149 100.479 18.4128 101.008 18.4297" fill="white"/><path d="M24.525 22.2638C25.2838 21.5229 25.8966 20.6449 26.3275 19.6731C26.0953 21.3642 25.6213 23.0143 24.9247 24.5706C23.9169 26.875 22.2364 28.8162 20.1011 30.1343C17.7958 31.4693 15.1674 32.1332 12.5078 32.0539H7.63397C7.92842 31.2865 8.07683 30.4687 8.06726 29.646C8.11035 27.9743 7.45683 26.3626 6.26469 25.196C5.06059 24.0101 3.42799 23.3703 1.74511 23.4184C1.15623 23.4136 0.569735 23.4833 0 23.6228V0.00638118H12.5054C15.1483 -0.0705924 17.7671 0.550007 20.0963 1.80323C22.2149 3.02278 23.9025 4.87977 24.9199 7.11201C25.7171 8.84872 26.2222 10.7057 26.4185 12.606C25.9852 11.5452 25.3389 10.5878 24.5226 9.78925C22.8349 8.1271 20.5488 7.22987 18.186 7.30204C15.8233 7.22987 13.5348 8.1295 11.8495 9.79165C10.1786 11.4273 9.26418 13.6884 9.32403 16.0313C9.26179 18.3742 10.1786 20.6353 11.8495 22.2686C13.5348 23.9331 15.8233 24.8328 18.186 24.763C20.5488 24.8328 22.8349 23.9331 24.5226 22.2686" fill="white"/></svg></span>
       <span class="chev">›</span>
       <span class="pill">Vision 2026</span>
+      
     </div>
     <div>
       <div class="label anim-fadeup d1" style="margin-bottom:14px;">REX OS</div>
       <div class="title-xl anim-fadeup d2">L'OS conçu<br>pour l'IA.</div>
     </div>
     <div class="divider anim-fadeup d3"></div>
-    <p class="body-md anim-fadeup d4" style="max-width:520px;">
-      Les OS actuels ont été pensés pour des humains.<br>
-      REX OS est pensé pour des agents IA — et leurs humains.
-    </p>
-    <div class="flex-c anim-fadeup d5" style="flex-wrap:wrap;gap:8px;">
-      <span class="tag-w">AI-Native</span>
+    <p class="body-md anim-fadeup d4" style="max-width:540px;">Les OS actuels ont été pensés pour des humains.<br>REX OS est pensé pour des agents IA — et leurs humains.</p>
+    <div class="flex-c anim-fadeup d5" style="flex-wrap:wrap;gap:8px;"><span class="tag-w">AI-Native</span>
       <span class="tag-w">On-Premise</span>
       <span class="tag-w">Open Source</span>
-      <span class="tag-w">NemoClaw Ready</span>
-    </div>
-    <!-- Pulse ring decoration -->
-    <div class="pulse-ring" style="width:80px;height:80px;right:60px;top:50%;transform:translateY(-50%);opacity:0.3;"></div>
+      <span class="tag-w">NemoClaw Ready</span></div>
   </div>
 </section>
 
-<!-- 02 · Problème -->
+<!-- Slide 2 · cards -->
 <section>
-  <div class="orb orb-1" style="opacity:0.5;"></div>
-  <div style="display:flex;flex-direction:column;gap:20px;position:relative;z-index:1;">
+  <div style="display:flex;flex-direction:column;gap:18px;position:relative;z-index:1;">
     <div>
       <div class="label anim-fadeup" style="margin-bottom:10px;">Le problème</div>
-      <div class="title-lg anim-fadeup d1">Tous les OS ont été conçus<br>pour des humains.</div>
+      <div class="title-lg anim-fadeup d1">Tous les OS ont été conçus pour des humains.</div>
     </div>
-    <div class="grid-2" style="margin-top:4px;">
-      <div class="list-item fragment fade-up"><div class="dot dot-r"></div><div><div class="card-title">Keychain GUI</div><div class="card-body">Bloque les secrets hors session GUI. L'agent ne peut pas s'authentifier seul.</div></div></div>
-      <div class="list-item fragment fade-up"><div class="dot dot-r"></div><div><div class="card-title">Session timeout</div><div class="card-body">Impossible d'avoir une IA active 24/7. Chaque redémarrage = reset d'état.</div></div></div>
-      <div class="list-item fragment fade-up"><div class="dot dot-r"></div><div><div class="card-title">Captcha / MFA</div><div class="card-body">Conçu pour bloquer les bots. Bloque aussi l'IA.</div></div></div>
-      <div class="list-item fragment fade-up"><div class="dot dot-r"></div><div><div class="card-title">50+ Drivers inutiles</div><div class="card-body">X11, Wayland, audio, Bluetooth — 2GB RAM pour rien. L'IA n'en a pas besoin.</div></div></div>
+    <div class="grid-2 anim-fadeup d2" style="gap:10px;">
+      <div class="card fragment fade-up" style="background:rgba(248,113,113,0.04);border-color:rgba(248,113,113,0.12);"><div class="card-title" style="color:rgba(248,113,113,0.8);">Keychain GUI</div><div class="card-body" style="margin-top:10px;">Bloque les secrets hors session GUI. L'agent ne peut pas s'authentifier seul.</div></div>
+      <div class="card fragment fade-up" style="background:rgba(248,113,113,0.04);border-color:rgba(248,113,113,0.12);"><div class="card-title" style="color:rgba(248,113,113,0.8);">Session timeout</div><div class="card-body" style="margin-top:10px;">Impossible d'avoir une IA active 24/7. Chaque redémarrage = reset d'état.</div></div>
+      <div class="card fragment fade-up" style="background:rgba(248,113,113,0.04);border-color:rgba(248,113,113,0.12);"><div class="card-title" style="color:rgba(248,113,113,0.8);">Captcha / MFA</div><div class="card-body" style="margin-top:10px;">Conçu pour bloquer les bots. Bloque aussi l'IA.</div></div>
+      <div class="card fragment fade-up" style="background:rgba(248,113,113,0.04);border-color:rgba(248,113,113,0.12);"><div class="card-title" style="color:rgba(248,113,113,0.8);">50+ Drivers inutiles</div><div class="card-body" style="margin-top:10px;">X11, Wayland, audio, Bluetooth — 2GB RAM pour rien. L'IA n'en a pas besoin.</div></div>
     </div>
-    <p class="body-md fragment fade-up" style="font-size:13px;margin-top:4px;">Déployer une IA sur un Mac ou un VPS, c'est lutter contre l'OS toute la journée.</p>
   </div>
 </section>
 
-<!-- 03 · Architecture 5 layers -->
+<!-- Slide 3 · custom -->
 <section>
   <div style="display:flex;flex-direction:column;gap:18px;position:relative;z-index:1;">
     <div>
       <div class="label anim-fadeup" style="margin-bottom:10px;">Architecture</div>
-      <div class="title-lg anim-fadeup d1">5 couches.<br>Rien d'inutile.</div>
+      <div class="title-lg anim-fadeup d1">5 couches. Rien d'inutile.</div>
     </div>
-    <div class="col" style="gap:7px;">
-      <div class="list-item fragment fade-up" style="justify-content:space-between;align-items:center;">
-        <div><div class="card-title">Layer 5 — Agent Surface</div><div class="card-body">Tool calls = system calls · Secrets chiffrés · Identités web multiples</div></div>
-        <span class="tag-w">User</span>
-      </div>
-      <div class="list-item fragment fade-up" style="justify-content:space-between;align-items:center;">
-        <div><div class="card-title">Layer 4 — Fleet & Identity</div><div class="card-body">Tailscale auto-auth · Node OpenClaw auto-pair · mDNS discovery</div></div>
-        <span class="tag-w">Réseau</span>
-      </div>
-      <div class="list-item fragment fade-up" style="justify-content:space-between;align-items:center;">
-        <div><div class="card-title">Layer 3 — Web & Automation</div><div class="card-body">Chromium headless permanent · Playwright · Proxy résidentiel · CAPTCHA bypass</div></div>
-        <span class="tag-w">Web</span>
-      </div>
-      <div class="list-item fragment fade-up" style="justify-content:space-between;align-items:center;">
-        <div><div class="card-title">Layer 2 — AI Runtime</div><div class="card-body">Ollama permanent · OpenClaw 0.0.0.0 · Memory Store SQLite + vec</div></div>
-        <span class="tag-w">IA</span>
-      </div>
-      <div class="list-item fragment fade-up" style="justify-content:space-between;align-items:center;">
-        <div><div class="card-title">Layer 1 — OS Core</div><div class="card-body">Linux stripped · Tailscale · SSH Ed25519 · systemd minimal</div></div>
-        <span class="tag-w">Base</span>
-      </div>
+    <div class="anim-fadeup d2">
+      <div class='col' style='gap:8px;'><div class='card fragment fade-up' style='padding:14px 20px;border-color:rgba(147,197,253,0.2);'><div class='flex-c' style='justify-content:space-between;'><div><div class='card-title'>Agent Surface</div><div class='card-body' style='margin-top:4px;'>Tool calls = system calls · Secrets chiffrés · Identités web multiples</div></div><span class='tag-w'>User</span></div></div><div class='card fragment fade-up' style='padding:14px 20px;'><div class='flex-c' style='justify-content:space-between;'><div><div class='card-title'>Fleet &amp; Identity</div><div class='card-body' style='margin-top:4px;'>Tailscale auto-auth · Node OpenClaw auto-pair · mDNS discovery</div></div><span class='tag-w'>Réseau</span></div></div><div class='card fragment fade-up' style='padding:14px 20px;'><div class='flex-c' style='justify-content:space-between;'><div><div class='card-title'>Web &amp; Automation</div><div class='card-body' style='margin-top:4px;'>Chromium headless permanent · Playwright · Proxy résidentiel · CAPTCHA bypass</div></div><span class='tag-w'>Web</span></div></div><div class='card fragment fade-up' style='padding:14px 20px;'><div class='flex-c' style='justify-content:space-between;'><div><div class='card-title'>AI Runtime</div><div class='card-body' style='margin-top:4px;'>Ollama permanent · OpenClaw 0.0.0.0 · Memory Store SQLite + vec</div></div><span class='tag-w'>IA</span></div></div><div class='card fragment fade-up' style='padding:14px 20px;'><div class='flex-c' style='justify-content:space-between;'><div><div class='card-title'>OS Core</div><div class='card-body' style='margin-top:4px;'>Linux stripped · Tailscale · SSH Ed25519 · systemd minimal</div></div><span class='tag-w'>Base</span></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- 04 · Hardware -->
+<!-- Slide 4 · stats -->
 <section>
   <div style="display:flex;flex-direction:column;gap:18px;position:relative;z-index:1;">
+    <div class="orb orb-1" style="opacity:0.3;"></div>
     <div>
       <div class="label anim-fadeup" style="margin-bottom:10px;">REX Box — Hardware</div>
-      <div class="title-lg anim-fadeup d1">3 processeurs.<br>3 rôles distincts.</div>
+      <div class="title-lg anim-fadeup d1">3 processeurs. 3 rôles.</div>
     </div>
     <div class="grid-3 anim-fadeup d2">
-      <div class="card" style="text-align:center;padding:20px 12px;">
-        <div style="font-size:30px;margin-bottom:10px;">⚙️</div>
-        <div class="card-title" style="text-align:center;margin-bottom:6px;">ARM CPU</div>
-        <div class="card-body" style="text-align:center;font-size:11px;">OS · Réseau · Tailscale · Stream interface</div>
-        <div class="progress-bar" style="margin-top:12px;"><div class="progress-fill" style="width:20%;"></div></div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.2);margin-top:6px;">16W idle</div>
-      </div>
-      <div class="card" style="text-align:center;padding:20px 12px;border-color:rgba(255,255,255,0.14);">
-        <div style="font-size:30px;margin-bottom:10px;">🧠</div>
-        <div class="card-title" style="text-align:center;margin-bottom:6px;">AI CPU</div>
-        <div class="card-body" style="text-align:center;font-size:11px;">Mini modèles 24/7 · Router · ASR &lt;50ms</div>
-        <div class="progress-bar" style="margin-top:12px;"><div class="progress-fill" style="width:50%;"></div></div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.2);margin-top:6px;">15W · 40 TOPS</div>
-      </div>
-      <div class="card" style="text-align:center;padding:20px 12px;">
-        <div style="font-size:30px;margin-bottom:10px;">🚀</div>
-        <div class="card-title" style="text-align:center;margin-bottom:6px;">AI GPU</div>
-        <div class="card-body" style="text-align:center;font-size:11px;">Tenseurs · Image/3D/Vidéo · Couches LLM</div>
-        <div class="progress-bar" style="margin-top:12px;"><div class="progress-fill"></div></div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.2);margin-top:6px;">150W · 1000 TOPS</div>
-      </div>
-    </div>
-    <div class="grid-4 anim-fadeup d3">
-      <div class="card" style="text-align:center;padding:14px 10px;"><div class="stat-big" style="font-size:26px;">800€</div><div class="stat-label">Lite</div></div>
-      <div class="card" style="text-align:center;padding:14px 10px;"><div class="stat-big" style="font-size:26px;">2.5k€</div><div class="stat-label">Standard</div></div>
-      <div class="card" style="text-align:center;padding:14px 10px;"><div class="stat-big" style="font-size:26px;">5k€</div><div class="stat-label">Pro</div></div>
-      <div class="card" style="text-align:center;padding:14px 10px;"><div class="stat-big" style="font-size:26px;">69€</div><div class="stat-label">REX Stick</div></div>
+      <div class="card fragment fade-up" style="text-align:center;padding:22px;"><div class="stat-big" style="font-size:34px;">ARM</div><div class="stat-label">CPU · OS · Réseau · 16W idle</div><div class="progress-bar" style="margin-top:14px;"><div class="progress-fill"></div></div></div>
+      <div class="card fragment fade-up" style="text-align:center;padding:22px;"><div class="stat-big" style="font-size:34px;">40 TOPS</div><div class="stat-label">AI CPU · Mini modèles 24/7 · 15W</div><div class="progress-bar" style="margin-top:14px;"><div class="progress-fill"></div></div></div>
+      <div class="card fragment fade-up" style="text-align:center;padding:22px;"><div class="stat-big" style="font-size:34px;">1000 TOPS</div><div class="stat-label">AI GPU · Tenseurs · LLM · 150W</div><div class="progress-bar" style="margin-top:14px;"><div class="progress-fill"></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- 05 · LLM couches dynamiques -->
+<!-- Slide 5 · cards -->
 <section>
   <div style="display:flex;flex-direction:column;gap:18px;position:relative;z-index:1;">
     <div>
       <div class="label anim-fadeup" style="margin-bottom:10px;">Innovation LLM</div>
-      <div class="title-lg anim-fadeup d1">Le modèle charge<br>seulement ce dont<br>il a besoin.</div>
+      <div class="title-lg anim-fadeup d1">Couches dynamiques.</div>
     </div>
-    <div class="grid-2 anim-fadeup d2">
-      <div class="col" style="gap:6px;">
-        <div class="card-title" style="font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:4px;">COUCHES DISPONIBLES</div>
-        <div class="list-item fragment fade-up"><div class="dot"></div><div class="card-body"><strong style="color:#fff;">Core</strong> — toujours actif</div></div>
-        <div class="list-item fragment fade-up"><div class="dot"></div><div class="card-body"><strong style="color:#fff;">Code</strong> — activé si tâche code</div></div>
-        <div class="list-item fragment fade-up"><div class="dot"></div><div class="card-body"><strong style="color:#fff;">Vision</strong> — activé si image/vidéo</div></div>
-        <div class="list-item fragment fade-up"><div class="dot"></div><div class="card-body"><strong style="color:#fff;">Creative</strong> — activé si génération</div></div>
-        <div class="list-item fragment fade-up"><div class="dot"></div><div class="card-body"><strong style="color:#fff;">Memory</strong> — toujours actif (RAG)</div></div>
-      </div>
-      <div class="col" style="gap:10px;">
-        <div class="card" style="text-align:center;padding:20px;">
-          <div class="stat-big">3–7B</div>
-          <div class="stat-label">Modèle effectif pour 90% des tâches</div>
-          <div class="progress-bar" style="margin-top:12px;"><div class="progress-fill" style="width:30%;"></div></div>
-        </div>
-        <div class="card" style="text-align:center;padding:20px;">
-          <div class="stat-big">10×</div>
-          <div class="stat-label">Moins de VRAM vs chargement complet</div>
-        </div>
-        <div class="card" style="padding:14px;"><div class="card-body" style="font-size:12px;">Router 50M params décide les couches en temps réel. Pruning automatique des couches inutilisées.</div></div>
-      </div>
+    <div class="grid-2 anim-fadeup d2" style="gap:10px;">
+      <div class="card fragment fade-up" style="background:rgba(74,222,128,0.04);border-color:rgba(74,222,128,0.12);"><div class="card-title" style="color:rgba(74,222,128,0.7);">3–7B effectif</div><div class="card-body" style="margin-top:10px;">Le modèle charge seulement ce dont il a besoin. Router 50M params décide les couches en temps réel. 90% des tâches tournent sur un modèle compact.</div></div>
+      <div class="card fragment fade-up" style="background:rgba(74,222,128,0.04);border-color:rgba(74,222,128,0.12);"><div class="card-title" style="color:rgba(74,222,128,0.7);">10× moins de VRAM</div><div class="card-body" style="margin-top:10px;">Core + Memory toujours actifs. Code, Vision, Creative activés à la demande. Pruning automatique des couches inutilisées.</div></div>
+      <div class="card fragment fade-up" ><div class="card-title" >REX Mesh — P2P</div><div class="card-body" style="margin-top:10px;">Tu prêtes 5% de ta capacité. Tu reçois 100% du réseau. libp2p + chiffrement E2E. Jamais de données partagées — seulement les activations.</div></div>
+      <div class="card fragment fade-up" ><div class="card-title" >REX ₢ Credits</div><div class="card-body" style="margin-top:10px;">Tu contribues → tu accèdes davantage. Modèle 70B sur 20 boxes. Fallback si crash. Surge capacity. Fine-tuning fédéré.</div></div>
     </div>
   </div>
 </section>
 
-<!-- 06 · P2P Mesh -->
-<section>
-  <div style="display:flex;flex-direction:column;gap:18px;position:relative;z-index:1;">
-    <div class="orb orb-1" style="right:-50px;top:-80px;"></div>
-    <div>
-      <div class="label anim-fadeup" style="margin-bottom:10px;">REX Mesh — P2P</div>
-      <div class="title-lg anim-fadeup d1">Tu prêtes 5%.<br>Tu reçois 100%.</div>
-    </div>
-    <div class="grid-2 anim-fadeup d2">
-      <div class="col">
-        <div class="card">
-          <div class="card-title">Principe</div>
-          <div class="card-body" style="margin-top:6px;">Chaque REX Box prête 5% de sa capacité. En retour, elle accède à la capacité totale du réseau.</div>
-          <div class="progress-bar" style="margin-top:12px;"><div class="progress-fill" style="width:5%;background:rgba(255,255,255,0.3);"></div></div>
-          <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:4px;">5% donné → accès illimité</div>
-        </div>
-        <div class="card">
-          <div class="card-title">Use cases</div>
-          <div class="card-body" style="margin-top:6px;">Modèle 70B sur 20 boxes · Fallback si crash · Surge capacity · Fine-tuning fédéré sans partager les données</div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="text-align:center;padding:22px;">
-          <div class="stat-big">libp2p</div>
-          <div class="stat-label">Protocole (comme IPFS) + chiffrement E2E</div>
-        </div>
-        <div class="card" style="text-align:center;padding:22px;">
-          <div class="stat-big">0 data</div>
-          <div class="stat-label">Jamais partagée — seulement les activations</div>
-        </div>
-        <div class="card" style="text-align:center;padding:22px;">
-          <div class="stat-big">REX ₢</div>
-          <div class="stat-label">Tu contribues → tu accèdes davantage</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 07 · Use cases -->
+<!-- Slide 6 · cards -->
 <section>
   <div style="display:flex;flex-direction:column;gap:18px;position:relative;z-index:1;">
     <div>
       <div class="label anim-fadeup" style="margin-bottom:10px;">Use Cases</div>
-      <div class="title-lg anim-fadeup d1">N'importe quel domaine.<br>Juste la voix.</div>
+      <div class="title-lg anim-fadeup d1">N'importe quel domaine.</div>
     </div>
-    <div class="grid-2 anim-fadeup d2">
-      <div class="card fragment fade-up">
-        <div class="img-card" style="margin-bottom:12px;">
-          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=70&auto=format" alt="Architecture 3D" />
-        </div>
-        <div class="card-title">3D / Architecture</div>
-        <div class="card-body" style="margin-top:4px;font-size:11px;">"Crée un immeuble haussmannien, façade 1900" → TripoSG + Blender headless → <strong style="color:rgba(255,255,255,0.7);">60-90 secondes</strong></div>
-      </div>
-      <div class="card fragment fade-up">
-        <div class="img-card" style="margin-bottom:12px;">
-          <img src="https://images.unsplash.com/photo-1536240478700-b869ad10925d?w=600&q=70&auto=format" alt="Motion Design" />
-        </div>
-        <div class="card-title">Motion Design</div>
-        <div class="card-body" style="margin-top:4px;font-size:11px;">"Animation logo glassmorphism, 3 secondes" → AnimateDiff + FFmpeg → <strong style="color:rgba(255,255,255,0.7);">2 minutes</strong></div>
-      </div>
-      <div class="card fragment fade-up">
-        <div class="img-card" style="margin-bottom:12px;">
-          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&q=70&auto=format" alt="Jeu vidéo" />
-        </div>
-        <div class="card-title">Jeu Vidéo</div>
-        <div class="card-body" style="margin-top:4px;font-size:11px;">"Platformer 2D, pixel art robot, 5 niveaux" → Assets + Code Godot + Compilation → <strong style="color:rgba(255,255,255,0.7);">15 minutes</strong></div>
-      </div>
-      <div class="card fragment fade-up">
-        <div class="img-card" style="margin-bottom:12px;">
-          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=70&auto=format" alt="Photographie" />
-        </div>
-        <div class="card-title">Photographie</div>
-        <div class="card-body" style="margin-top:4px;font-size:11px;">"Enlève le fond, mets Paris la nuit" → SAM2 + SDXL inpainting → <strong style="color:rgba(255,255,255,0.7);">15 secondes</strong></div>
-      </div>
+    <div class="grid-2 anim-fadeup d2" style="gap:10px;">
+      <div class="card fragment fade-up" ><div class="card-title" >3D / Architecture</div><div class="card-body" style="margin-top:10px;">"Crée un immeuble haussmannien" → TripoSG + Blender headless → 60-90 secondes</div></div>
+      <div class="card fragment fade-up" ><div class="card-title" >Motion Design</div><div class="card-body" style="margin-top:10px;">"Animation logo glassmorphism" → AnimateDiff + FFmpeg → 2 minutes</div></div>
+      <div class="card fragment fade-up" ><div class="card-title" >Jeu Vidéo</div><div class="card-body" style="margin-top:10px;">"Platformer 2D pixel art" → Assets + Code Godot + Compilation → 15 minutes</div></div>
+      <div class="card fragment fade-up" ><div class="card-title" >Photographie</div><div class="card-body" style="margin-top:10px;">"Enlève le fond, mets Paris la nuit" → SAM2 + SDXL inpainting → 15 secondes</div></div>
     </div>
   </div>
 </section>
 
-<!-- 08 · Business Model REX -->
+<!-- Slide 7 · cta -->
 <section>
-  <div style="display:flex;flex-direction:column;gap:18px;position:relative;z-index:1;">
-    <div class="orb orb-2"></div>
+  <div class="orb orb-1" style="opacity:0.4;"></div>
+  <div class="orb orb-2"></div>
+  <div class="scanline"></div>
+  <div style="display:flex;flex-direction:column;gap:24px;max-width:800px;position:relative;z-index:1;">
     <div>
-      <div class="label anim-fadeup" style="margin-bottom:10px;">Business Model</div>
-      <div class="title-lg anim-fadeup d1">Open source.<br>Hardware premium.<br>Enterprise scale.</div>
+      <div class="label anim-fadeup" style="margin-bottom:14px;">Business Model</div>
+      <div class="title-xl anim-fadeup d1">Open source.<br>Hardware premium.<br>Enterprise scale.</div>
     </div>
-    <div class="grid-4 anim-fadeup d2">
-      <div class="card" style="text-align:center;padding:18px 10px;">
-        <div style="font-size:24px;margin-bottom:8px;">⚡</div>
-        <div class="card-title" style="text-align:center;font-size:12px;">REX OS</div>
-        <div class="stat-big" style="font-size:26px;margin:8px 0;">Free</div>
-        <div class="card-body" style="text-align:center;font-size:10px;">Open source</div>
-      </div>
-      <div class="card" style="text-align:center;padding:18px 10px;border-color:rgba(255,255,255,0.16);">
-        <div style="font-size:24px;margin-bottom:8px;">📦</div>
-        <div class="card-title" style="text-align:center;font-size:12px;">REX Box</div>
-        <div class="stat-big" style="font-size:26px;margin:8px 0;">800€+</div>
-        <div class="card-body" style="text-align:center;font-size:10px;">Hardware clé en main</div>
-      </div>
-      <div class="card" style="text-align:center;padding:18px 10px;">
-        <div style="font-size:24px;margin-bottom:8px;">☁️</div>
-        <div class="card-title" style="text-align:center;font-size:12px;">REX Cloud</div>
-        <div class="stat-big" style="font-size:26px;margin:8px 0;">50€/m</div>
-        <div class="card-body" style="text-align:center;font-size:10px;">VM hébergée</div>
-      </div>
-      <div class="card" style="text-align:center;padding:18px 10px;">
-        <div style="font-size:24px;margin-bottom:8px;">🏢</div>
-        <div class="card-title" style="text-align:center;font-size:12px;">Enterprise</div>
-        <div class="stat-big" style="font-size:26px;margin:8px 0;">Devis</div>
-        <div class="card-body" style="text-align:center;font-size:10px;">Fleet · SLA · Support</div>
-      </div>
+    <div class="divider anim-fadeup d2"></div>
+    <div class="grid-2 anim-fadeup d3">
+      <div class="card" style="padding:22px;"><div class="card-title" style="margin-bottom:8px;">REX OS</div><div class="stat-big" style="font-size:34px;">Free</div><div class="card-body" style="margin-top:8px;font-size:12px;">Open source · Installable sur tout hardware</div><div class="progress-bar" style="margin-top:14px;"><div class="progress-fill"></div></div></div>
+      <div class="card" style="padding:22px;"><div class="card-title" style="margin-bottom:8px;">REX Box</div><div class="stat-big" style="font-size:34px;">800€+</div><div class="card-body" style="margin-top:8px;font-size:12px;">Hardware clé en main · 3 tiers : Lite, Standard, Pro</div><div class="progress-bar" style="margin-top:14px;"><div class="progress-fill"></div></div></div>
+      <div class="card" style="padding:22px;"><div class="card-title" style="margin-bottom:8px;">REX Cloud</div><div class="stat-big" style="font-size:34px;">50€/m</div><div class="card-body" style="margin-top:8px;font-size:12px;">VM hébergée · Zero config</div><div class="progress-bar" style="margin-top:14px;"><div class="progress-fill"></div></div></div>
+      <div class="card" style="padding:22px;"><div class="card-title" style="margin-bottom:8px;">Enterprise</div><div class="stat-big" style="font-size:34px;">Devis</div><div class="card-body" style="margin-top:8px;font-size:12px;">Fleet · SLA · Support dédié</div><div class="progress-bar" style="margin-top:14px;"><div class="progress-fill"></div></div></div>
     </div>
-    <div class="card anim-fadeup d3" style="padding:14px 18px;background:rgba(255,255,255,0.03);">
-      <p class="body-md" style="font-size:13px;">NVIDIA vient d'annoncer NemoClaw à GTC 2026. Personne n'a encore créé le hardware dédié. <strong style="color:#fff;">La fenêtre est ouverte.</strong></p>
+    <div class="card anim-fadeup d4" style="padding:16px 20px;">
+      <p class="body-md" style="font-size:13px;">contact@dstudio.company &middot; D-Studio, 7 rue Lauriston, 75016 Paris</p>
     </div>
   </div>
 </section>
 
+<!-- D-Studio CTA -->
+<section>
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;position:relative;z-index:1;text-align:center;">
+    <div class="orb orb-1" style="opacity:0.3;"></div>
+    <div class="orb orb-2"></div>
+    <div class="anim-fadeup" style="width:150px;"><svg width="103" height="33" viewBox="0 0 103 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M37.399 19.3917C37.8443 19.7141 38.3853 19.8752 38.9335 19.8439C39.3716 19.8656 39.8073 19.7598 40.1903 19.5433C40.4991 19.358 40.681 19.0213 40.6666 18.6605C40.6762 18.4344 40.5781 18.2155 40.4009 18.076C40.1544 17.9004 39.8743 17.7777 39.5798 17.7103C39.204 17.6117 38.6008 17.4698 37.7533 17.2942C37.0519 17.1547 36.3649 16.943 35.7066 16.664C35.1752 16.4306 34.7203 16.0482 34.3996 15.5623C34.0429 14.973 33.8705 14.2898 33.904 13.6019C33.8968 12.8899 34.1171 12.1923 34.5312 11.615C34.9741 11.004 35.5701 10.5229 36.262 10.2198C37.0376 9.87586 37.8778 9.70267 38.7252 9.7147C39.5894 9.70267 40.4464 9.87827 41.2364 10.2319C41.9402 10.5398 42.5506 11.0329 43.0006 11.6583C43.4244 12.25 43.6518 12.962 43.647 13.6885H40.4847C40.4656 13.2819 40.2788 12.8995 39.9748 12.6349C39.6205 12.351 39.1729 12.2091 38.7181 12.2356C38.3255 12.2187 37.9353 12.3174 37.5977 12.5218C37.3153 12.6998 37.1477 13.0198 37.1645 13.3565C37.1525 13.5778 37.2458 13.7919 37.4158 13.9338C37.6576 14.1022 37.9305 14.2225 38.2201 14.2898C38.5864 14.3884 39.1801 14.5255 40.0036 14.6891C40.7169 14.819 41.4135 15.0211 42.0862 15.2929C42.6224 15.5142 43.0844 15.8846 43.4196 16.3585C43.7786 16.9214 43.9558 17.5828 43.9223 18.2516C43.9295 18.9996 43.6996 19.7333 43.2688 20.3443C42.8091 20.9913 42.1843 21.5013 41.459 21.8164C40.6451 22.182 39.7642 22.3624 38.8737 22.3504C37.9496 22.3648 37.0352 22.1772 36.1902 21.7996C35.4409 21.47 34.7921 20.948 34.3062 20.2865C33.8538 19.6659 33.612 18.913 33.6168 18.1409L36.779 18.2107C36.803 18.6749 37.028 19.1079 37.3967 19.3917" fill="white"/><path d="M54.005 9.82068V12.5893H50.668V22.2423H47.4195V12.5893H44.0825V9.82068H54.005Z" fill="white"/><path d="M58.4937 17.0225C58.4458 17.6984 58.6134 18.3743 58.9701 18.9492C59.8271 19.8104 61.2179 19.8128 62.0749 18.9492C62.4316 18.3743 62.5992 17.6984 62.5513 17.0225V9.81824H65.795V16.8469C65.8955 18.3334 65.4095 19.7983 64.4448 20.9265C62.1635 22.8196 58.8672 22.8196 56.5882 20.9265C55.6235 19.7959 55.1376 18.331 55.2381 16.8469V9.81824H58.4865L58.4913 17.0225H58.4937Z" fill="white"/><path d="M72.311 9.81832C73.4505 9.79427 74.5756 10.0709 75.5762 10.6169C76.505 11.1293 77.2687 11.8966 77.7833 12.8251C78.8318 14.8312 78.8318 17.2246 77.7833 19.2283C77.2687 20.1592 76.505 20.9242 75.5762 21.4365C74.5756 21.9826 73.4505 22.2592 72.311 22.2351H67.6646V9.81592H72.311V9.81832ZM74.475 18.6005C75.4996 17.0394 75.4996 15.0164 74.475 13.4553C73.9532 12.7986 73.1465 12.4354 72.311 12.4787H70.9154V19.5771H72.311C73.1465 19.6204 73.9508 19.2572 74.475 18.6005Z" fill="white"/><path d="M83.2485 9.81824H80V22.2399H83.2485V9.81824Z" fill="white"/><path d="M94.1907 21.5229C92.1559 22.6222 89.7094 22.6222 87.6747 21.5229C86.7435 20.9889 85.9798 20.2072 85.4675 19.2618C84.419 17.2365 84.419 14.8262 85.4675 12.8009C85.9798 11.8555 86.7435 11.0714 87.6747 10.5398C89.7094 9.43808 92.1583 9.43808 94.1907 10.5398C95.1219 11.0714 95.8855 11.8555 96.3978 12.8009C97.4463 14.8262 97.4463 17.2365 96.3978 19.2618C95.8855 20.2072 95.1219 20.9913 94.1907 21.5229ZM90.9327 19.6515C91.7633 19.6756 92.5557 19.2955 93.0608 18.6316C94.1309 17.0657 94.1309 14.9994 93.0608 13.4311C92.1081 12.25 90.3845 12.0672 89.2091 13.0246C89.0607 13.1448 88.9242 13.2819 88.8046 13.4311C87.7321 14.997 87.7321 17.0657 88.8046 18.6316C89.3097 19.2979 90.102 19.678 90.9327 19.6515Z" fill="white"/><path d="M101.011 18.4297C101.54 18.4128 102.054 18.6149 102.433 18.9877C103.189 19.7671 103.189 21.0083 102.433 21.7877C101.631 22.5357 100.391 22.5357 99.5864 21.7877C98.8299 21.0083 98.8299 19.7671 99.5864 18.9877C99.9646 18.6149 100.479 18.4128 101.008 18.4297" fill="white"/><path d="M24.525 22.2638C25.2838 21.5229 25.8966 20.6449 26.3275 19.6731C26.0953 21.3642 25.6213 23.0143 24.9247 24.5706C23.9169 26.875 22.2364 28.8162 20.1011 30.1343C17.7958 31.4693 15.1674 32.1332 12.5078 32.0539H7.63397C7.92842 31.2865 8.07683 30.4687 8.06726 29.646C8.11035 27.9743 7.45683 26.3626 6.26469 25.196C5.06059 24.0101 3.42799 23.3703 1.74511 23.4184C1.15623 23.4136 0.569735 23.4833 0 23.6228V0.00638118H12.5054C15.1483 -0.0705924 17.7671 0.550007 20.0963 1.80323C22.2149 3.02278 23.9025 4.87977 24.9199 7.11201C25.7171 8.84872 26.2222 10.7057 26.4185 12.606C25.9852 11.5452 25.3389 10.5878 24.5226 9.78925C22.8349 8.1271 20.5488 7.22987 18.186 7.30204C15.8233 7.22987 13.5348 8.1295 11.8495 9.79165C10.1786 11.4273 9.26418 13.6884 9.32403 16.0313C9.26179 18.3742 10.1786 20.6353 11.8495 22.2686C13.5348 23.9331 15.8233 24.8328 18.186 24.763C20.5488 24.8328 22.8349 23.9331 24.5226 22.2686" fill="white"/></svg></div>
+    <div class="divider anim-fadeup d1" style="margin:0 auto;"></div>
+    <a href="https://dstudio.company" target="_blank" class="dstudio-cta-btn anim-fadeup d2">Discuter avec D-Studio</a>
+  </div>
+</section>
 
-
-</div></div>
+</div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
 <script>
-/* ═══════════════════════════════════════════
-   PARTICLES
-═══════════════════════════════════════════ */
-(function() {
-  const canvas = document.getElementById('bg-canvas');
-  const ctx = canvas.getContext('2d');
-  let W, H, particles = [];
-
-  function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-
-  function Particle() {
-    this.x = Math.random() * W;
-    this.y = Math.random() * H;
-    this.vx = (Math.random() - 0.5) * 0.3;
-    this.vy = (Math.random() - 0.5) * 0.3;
-    this.r = Math.random() * 1.5 + 0.3;
-    this.a = Math.random() * 0.4 + 0.1;
-  }
-
-  function init() {
-    resize();
-    particles = Array.from({length: 80}, () => new Particle());
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    particles.forEach(p => {
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0) p.x = W;
-      if (p.x > W) p.x = 0;
-      if (p.y < 0) p.y = H;
-      if (p.y > H) p.y = 0;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${p.a})`;
-      ctx.fill();
-    });
-
-    // Draw connections
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const d = Math.sqrt(dx*dx + dy*dy);
-        if (d < 120) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(255,255,255,${0.04 * (1 - d/120)})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
-    }
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', resize);
-  init();
-  draw();
-})();
-
-/* ═══════════════════════════════════════════
-   REVEAL
-═══════════════════════════════════════════ */
-Reveal.initialize({
-  hash: true,
-  transition: 'fade',
-  transitionSpeed: 'default',
-  controls: true,
-  progress: true,
-  center: false,
-  width: 1280,
-  height: 720,
-  margin: 0.04,
-  minScale: 0.1,
-  maxScale: 2.0,
-  touch: true,
-  fragments: true,
-  autoAnimateEasing: 'ease',
-});
-
-/* Re-trigger CSS animations on slide enter */
-Reveal.on('slidechanged', () => {
-  const slide = Reveal.getCurrentSlide();
-  slide.querySelectorAll('.anim-fadeup, .anim-fadein').forEach(el => {
-    el.style.animation = 'none';
-    void el.offsetWidth;
-    el.style.animation = '';
-  });
-  /* Animate progress bars */
-  slide.querySelectorAll('.progress-fill').forEach(el => {
-    el.style.transform = 'scaleX(0)';
-    void el.offsetWidth;
-    el.style.transform = '';
-  });
-});
+(function(){const c=document.getElementById('bg-canvas'),x=c.getContext('2d');let W,H,p=[];function r(){W=c.width=innerWidth;H=c.height=innerHeight;}function P(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.r=Math.random()*1.5+.3;this.a=Math.random()*.4+.1;}function init(){r();p=Array.from({length:80},()=>new P);}function draw(){x.clearRect(0,0,W,H);for(let i=0;i<p.length;i++){let a=p[i];a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1;x.beginPath();x.arc(a.x,a.y,a.r,0,Math.PI*2);x.fillStyle='rgba(255,255,255,'+a.a+')';x.fill();for(let j=i+1;j<p.length;j++){let b=p[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);if(d<120){x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.strokeStyle='rgba(255,255,255,'+(0.06*(1-d/120))+')';x.stroke();}}}requestAnimationFrame(draw);}addEventListener('resize',r);init();draw();})();
+Reveal.initialize({hash:true,controls:false,progress:false,center:false,transition:'fade',transitionSpeed:'slow',width:'100%',height:'100%',margin:0,minScale:1,maxScale:1,view:'scroll',scrollProgress:false});
 </script>
 </body>
 </html>

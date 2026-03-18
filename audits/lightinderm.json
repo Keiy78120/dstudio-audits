@@ -3,6 +3,8 @@
   "client": "Lightinderm",
   "date": "Mars 2026",
   "lang": "fr",
+  "clientLogo": "https://logo.clearbit.com/lightinderm.com",
+  "clientColor": "rgba(74,222,128,0.6)",
   "slides": [
     {
       "type": "hero",
@@ -10,6 +12,18 @@
       "title": "La science mérite<br>un meilleur écrin.",
       "body": "50 brevets. 52k followers Instagram.<br>Un site qui ne reflète pas l'innovation.<br>Il est temps de corriger ça.",
       "tags": ["Refonte Site", "Espace Pro", "SEO Médical", "E-commerce"]
+    },
+    {
+      "type": "stats",
+      "label": "Lightinderm en chiffres",
+      "title": "Le potentiel est là.",
+      "grid": "grid-4",
+      "stats": [
+        { "value": "50", "label": "Brevets déposés" },
+        { "value": "52k", "label": "Followers Instagram" },
+        { "value": "495€+", "label": "Panier moyen device" },
+        { "value": "Sephora", "label": "Distribution premium" }
+      ]
     },
     {
       "type": "gap",
@@ -49,6 +63,16 @@
         { "title": "Refonte Premium", "body": "Nouveau design aligné avec le positionnement MedTech. Animations, storytelling scientifique, preuves cliniques mises en avant. Score PageSpeed 90+.", "highlight": "green" },
         { "title": "Espace Pro Revendeurs", "body": "Portail dédié aux pharmacies et dermatologues. Commandes, formations, assets marketing. Gestion autonome via D-Studio.Office.", "highlight": "green" },
         { "title": "SEO & GEO Médical", "body": "Stratégie de contenu ciblée : dermatologie LED, anti-âge, soins visage. Optimisation pour Google ET pour les moteurs IA (ChatGPT, Perplexity)." }
+      ]
+    },
+    {
+      "type": "cards",
+      "label": "Benchmark & GEO",
+      "title": "Où se positionner.",
+      "grid": "grid-2",
+      "cards": [
+        { "title": "GEO — Generative Engine Optimization", "body": "ChatGPT, Perplexity, Gemini citent vos concurrents mais pas Lightinderm. Le SEO classique ne suffit plus — il faut être dans les réponses IA.", "highlight": "red" },
+        { "title": "Benchmark : Foreo", "body": "Device beauté tech similaire. Site premium, storytelling scientifique, UX mobile-first, espace revendeurs intégré. Lightinderm doit viser ce standard.", "highlight": "green" }
       ]
     },
     {

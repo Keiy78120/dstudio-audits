@@ -3,6 +3,8 @@
   "client": "La Compagnie",
   "date": "Mars 2026",
   "lang": "fr",
+  "clientLogo": "https://logo.clearbit.com/lacompagnie.com",
+  "clientColor": "rgba(147,197,253,0.6)",
   "slides": [
     {
       "type": "hero",
@@ -10,6 +12,18 @@
       "title": "Business class only.<br>Site web : economy.",
       "body": "La seule compagnie 100% business class.<br>Paris-NYC chaque jour. Mais le digital ne suit pas.",
       "tags": ["Unification Domaines", "Refonte App", "Landing Corporate", "SEO Aérien"]
+    },
+    {
+      "type": "stats",
+      "label": "La Compagnie en chiffres",
+      "title": "L'anti low-cost.",
+      "grid": "grid-4",
+      "stats": [
+        { "value": "100%", "label": "Business class" },
+        { "value": "A321neo", "label": "Flotte dernier cri" },
+        { "value": "2", "label": "Domaines non unifiés" },
+        { "value": "-30%", "label": "vs business traditionnelle" }
+      ]
     },
     {
       "type": "gap",
@@ -38,6 +52,18 @@
             "<em style='color:rgba(248,113,113,0.7);'>Un vol à 2000€ mérite une expérience digitale premium</em>"
           ]
         }
+      ]
+    },
+    {
+      "type": "cards",
+      "label": "Opportunités digitales",
+      "title": "Au-delà du billet d'avion.",
+      "grid": "grid-2",
+      "cards": [
+        { "title": "SEO : dilution entre 2 domaines", "body": "Le trafic organique est fragmenté entre deux sites. L'unification sous un domaine unique multiplierait l'autorité SEO par 2x minimum.", "highlight": "red" },
+        { "title": "Corporate B2B", "body": "Les entreprises réservent en volume mais n'ont pas de portail dédié. Landing corporate avec contrats, facturation groupée, gestion voyages.", "highlight": "green" },
+        { "title": "App mobile 2015", "body": "L'app de réservation date de 2015. UX obsolète, pas de boarding pass digital, pas de programme fidélité intégré. Refonte urgente." },
+        { "title": "Programme fidélité", "body": "Les voyageurs fréquents n'ont aucune incentive à rester fidèles. Un programme à points avec upgrades, lounge, partenaires premium." }
       ]
     },
     {

@@ -3,6 +3,8 @@
   "client": "Ohlala Sellerie",
   "date": "Mars 2026",
   "lang": "fr",
+  "clientLogo": "https://logo.clearbit.com/ohlala-sellerie.com",
+  "clientColor": "rgba(251,191,36,0.6)",
   "slides": [
     {
       "type": "hero",
@@ -10,6 +12,18 @@
       "title": "45 000 références.<br>Un site à dompter.",
       "body": "Leader e-commerce équitation en France.<br>175k Instagram. Mais Shopify ne suffit plus.",
       "tags": ["Migration Shopify", "Configurateur", "SEO E-commerce", "Performance"]
+    },
+    {
+      "type": "stats",
+      "label": "Ohlala en chiffres",
+      "title": "Le leader qui doit évoluer.",
+      "grid": "grid-4",
+      "stats": [
+        { "value": "45k", "label": "Références produit" },
+        { "value": "175k", "label": "Followers Instagram" },
+        { "value": "Shopify", "label": "Plateforme actuelle" },
+        { "value": "#1", "label": "E-commerce équitation FR" }
+      ]
     },
     {
       "type": "gap",
@@ -50,6 +64,18 @@
         { "title": "Configurateur 3D", "body": "Personnalisation selles, bridons, accessoires. Visualisation en temps réel. Commande custom directe.", "highlight": "green" },
         { "title": "SEO E-commerce", "body": "45 000 pages produit = 45 000 opportunités Google. Schema.org, catégories optimisées, URLs propres." },
         { "title": "Search & Filtrage", "body": "Recherche instantanée full-text, filtres multicritères (sport, taille, marque, prix), suggestions IA." }
+      ]
+    },
+    {
+      "type": "cards",
+      "label": "Axes de croissance",
+      "title": "Ce que Shopify ne peut pas faire.",
+      "grid": "grid-2",
+      "cards": [
+        { "title": "Configurateur selles", "body": "Les cavaliers veulent personnaliser : couleur, cuir, taille, gravure. Un configurateur 3D interactif = panier moyen x3 sur le custom.", "highlight": "green" },
+        { "title": "B2B Clubs & Centres", "body": "Les clubs équestres et centres de formation commandent en volume. Portail B2B avec tarifs dégressifs, commandes récurrentes, facturation pro." },
+        { "title": "App iOS compagnon", "body": "Suivi de commande, scanner produit en boutique, wishlist partagée, notifications promos. Fidélisation mobile de la communauté 175k.", "highlight": "green" },
+        { "title": "SEO : 45k pages à exploiter", "body": "Chaque fiche produit est une landing page potentielle. Schema.org, meta optimisées, vitesse de chargement = trafic organique massif." }
       ]
     },
     {

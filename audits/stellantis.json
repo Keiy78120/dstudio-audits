@@ -1,0 +1,85 @@
+{
+  "slug": "stellantis",
+  "client": "Stellantis × Peugeot",
+  "date": "25 mars 2026",
+  "lang": "fr",
+  "clientLogo": "https://logo.clearbit.com/stellantis.com",
+  "clientColor": "rgba(147,197,253,0.6)",
+  "slides": [
+    {
+      "type": "hero",
+      "label": "Stellantis × Peugeot",
+      "title": "L'expérience<br>qui manque.",
+      "body": "Tesla n'a pas une meilleure voiture.<br>Il a une meilleure expérience.<br>L'app, l'interface, la connexion — c'est du logiciel. On le résout.",
+      "tags": ["MyPeugeot Refonte", "Interface Embarquée", "Agent IA Voiture", "OTA Intelligence"]
+    },
+    {
+      "type": "gap",
+      "label": "Le gap",
+      "title": "Ce que vos clients comparent.",
+      "columns": [
+        {
+          "title": "TESLA",
+          "type": "good",
+          "items": [
+            "App note : <strong style='color:#fff;'>4.5 / 5</strong>",
+            "Latence app → voiture : <strong style='color:#fff;'>< 1 seconde</strong>",
+            "OTA : <strong style='color:#fff;'>hebdomadaire, transparent</strong>",
+            "FSD v14 : <strong style='color:#fff;'>meilleur ADAS 2026</strong>",
+            "WebSocket persistant : <strong style='color:#fff;'>jamais de réveil</strong>"
+          ]
+        },
+        {
+          "title": "MYPEUGEOT AUJOURD'HUI",
+          "type": "bad",
+          "items": [
+            "App note : <strong style='color:#fff;'>~2.5 / 5</strong>",
+            "Latence : <strong style='color:#fff;'>10–30 secondes</strong>",
+            "OTA : <strong style='color:#fff;'>lent ou en concession</strong>",
+            "e-208 2024 : <strong style='color:#fff;'>BTA incompatible à la livraison</strong>",
+            "<em style='color:rgba(248,113,113,0.7);'>\"J'aurais dû acheter une Tesla\"</em>"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "custom",
+      "label": "Architecture technique",
+      "title": "Voiture → Cloud → Téléphone.",
+      "html": "<div class='grid-2' style='gap:14px;'><div class='card' style='padding:18px 20px;'><div class='card-title'>Boîtier Télématique (BTA)</div><div class='card-body' style='margin-top:10px;'>Module 4G/LTE embarqué · eSIM · GPS · Connecté au CAN bus · Alimenté en veille · Lit et envoie toutes les données véhicule</div></div><div class='card' style='padding:18px 20px;border-color:rgba(248,113,113,0.2);background:rgba(248,113,113,0.04);'><div class='card-title' style='color:rgba(248,113,113,0.8);'>Le problème de latence</div><div class='card-body' style='margin-top:10px;'>BTA en veille profonde → 10–30s de réveil. Tesla = WebSocket persistant → jamais de réveil → &lt;1s. C'est une décision d'architecture, pas de hardware.</div></div></div>"
+    },
+    {
+      "type": "cards",
+      "label": "Souveraineté",
+      "title": "Vos données restent en Europe.",
+      "grid": "grid-2",
+      "cards": [
+        { "title": "Situation actuelle", "body": "Tesla = AWS us-east. DS Automobiles = OpenAI (serveurs texans). 80% des dépenses logiciels Europe vont aux sociétés US.", "highlight": "red" },
+        { "title": "Notre proposition", "body": "Architecture 100% souveraine. Mistral AI (votre partenaire). RGPD by design. Données véhicule = actif Peugeot, pas Amazon.", "highlight": "green" },
+        { "title": "€20Mds", "body": "Revenus software cibles STLA Brain 2030. Ces revenus viennent des services connectés. Si l'app ne marche pas, personne ne paye." },
+        { "title": "L'argument décisif", "body": "Stellantis peut devenir le seul constructeur européen avec une stack logicielle 100% souveraine. Avantage concurrentiel durable." }
+      ]
+    },
+    {
+      "type": "proposition",
+      "label": "Notre proposition",
+      "title": "5 chantiers. ROI mesurable.",
+      "items": [
+        { "title": "Refonte MyPeugeot App", "body": "Connexion stable · <2s · Design system · Zéro déconnexion", "duration": "3–6 sem" },
+        { "title": "Interface Embarquée Next-Gen", "body": "Contextuelle · Voix naturelle · Mistral AI · 1 tap = 1 action", "duration": "8–12 sem" },
+        { "title": "Agent IA Embarqué", "body": "Mémoire long terme · Anticipe vos trajets · Zéro données cloud · Self-improving", "duration": "12–20 sem" },
+        { "title": "BTA WebSocket Persistant", "body": "Latence <500ms · Edge computing · Fonctionne hors réseau", "duration": "6–10 sem" },
+        { "title": "OTA Intelligence", "body": "Rollout progressif · A/B testing · Rollback auto · Dashboard temps réel", "duration": "4–6 sem" }
+      ]
+    },
+    {
+      "type": "cta",
+      "label": "Pour démarrer",
+      "title": "Un audit.<br>3 semaines.<br>Sans engagement.",
+      "offers": [
+        { "title": "Audit UX MyPeugeot", "price": "5–8k€", "details": "3 semaines · 20 recommandations prioritisées · ROI estimé par feature" },
+        { "title": "Proof of Concept Interface", "price": "15–25k€", "details": "8 semaines · Prototype interactif · Mistral AI intégré · Présentation direction" }
+      ]
+    }
+  ]
+}

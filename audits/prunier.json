@@ -3,13 +3,27 @@
   "client": "Prunier",
   "date": "Mars 2026",
   "lang": "fr",
+  "clientLogo": "https://logo.clearbit.com/prunier.com",
+  "clientColor": "rgba(212,175,55,0.6)",
   "slides": [
     {
       "type": "hero",
       "label": "Prunier × Caviar de Neuvic",
       "title": "Le luxe se vit<br>aussi en ligne.",
-      "body": "Maison fondée en 1920. Fusion avec Caviar de Neuvic.<br>Deux marques, une seule plateforme à créer.",
+      "body": "Maison fondée en 1872. Fusion avec Caviar de Neuvic.<br>Deux marques, une seule plateforme à créer.",
       "tags": ["Unification Marques", "Plateforme B2B", "E-commerce Luxe", "Brand Identity"]
+    },
+    {
+      "type": "stats",
+      "label": "Prunier en chiffres",
+      "title": "Un héritage centenaire.",
+      "grid": "grid-4",
+      "stats": [
+        { "value": "1872", "label": "Année de fondation" },
+        { "value": "40", "label": "Points de vente premium" },
+        { "value": "11k", "label": "Followers Instagram" },
+        { "value": "200€+", "label": "Panier moyen caviar" }
+      ]
     },
     {
       "type": "gap",
@@ -20,7 +34,7 @@
           "title": "L'HÉRITAGE",
           "type": "good",
           "items": [
-            "Maison centenaire — <strong style='color:#fff;'>depuis 1920</strong>",
+            "Maison centenaire — <strong style='color:#fff;'>depuis 1872</strong>",
             "Fusion Caviar de Neuvic — <strong style='color:#fff;'>production française</strong>",
             "<strong style='color:#fff;'>40 points de vente</strong> premium",
             "Restaurant étoilé <strong style='color:#fff;'>Paris</strong>",
@@ -38,6 +52,18 @@
             "<em style='color:rgba(248,113,113,0.7);'>Un caviar à 200€ mérite mieux qu'un Shopify template</em>"
           ]
         }
+      ]
+    },
+    {
+      "type": "cards",
+      "label": "Analyse technique",
+      "title": "PrestaShop vs positionnement luxe.",
+      "grid": "grid-2",
+      "cards": [
+        { "title": "PrestaShop — Pas adapté au luxe", "body": "Template générique, performance médiocre, pas de storytelling intégré. Un caviar à 200€ ne se vend pas sur une plateforme discount.", "highlight": "red" },
+        { "title": "Benchmark : Petrossian", "body": "Leader caviar online. Site immersif, storytelling terroir, e-commerce premium, expérience unboxing digitale. Le standard à atteindre.", "highlight": "green" },
+        { "title": "Fusion Caviar de Neuvic", "body": "Deux marques, deux histoires, un seul site à construire. L'identité Prunier (1872) enrichie par le savoir-faire Neuvic (production française)." },
+        { "title": "B2B : 40 points de vente", "body": "Les revendeurs passent commande par email/téléphone. Un portail B2B dédié = moins de friction, plus de volume, meilleure traçabilité." }
       ]
     },
     {

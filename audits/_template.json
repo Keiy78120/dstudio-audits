@@ -3,6 +3,8 @@
   "client": "Nom du Client",
   "date": "Mars 2026",
   "lang": "fr",
+  "clientLogo": "",
+  "clientColor": "",
   "slides": [
     {
       "type": "hero",

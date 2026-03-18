@@ -1,0 +1,80 @@
+{
+  "slug": "rexos",
+  "client": "REX OS",
+  "date": "Vision 2026",
+  "lang": "fr",
+  "clientColor": "rgba(147,197,253,0.6)",
+  "slides": [
+    {
+      "type": "hero",
+      "label": "REX OS",
+      "title": "L'OS conçu<br>pour l'IA.",
+      "body": "Les OS actuels ont été pensés pour des humains.<br>REX OS est pensé pour des agents IA — et leurs humains.",
+      "tags": ["AI-Native", "On-Premise", "Open Source", "NemoClaw Ready"]
+    },
+    {
+      "type": "cards",
+      "label": "Le problème",
+      "title": "Tous les OS ont été conçus pour des humains.",
+      "grid": "grid-2",
+      "cards": [
+        { "title": "Keychain GUI", "body": "Bloque les secrets hors session GUI. L'agent ne peut pas s'authentifier seul.", "highlight": "red" },
+        { "title": "Session timeout", "body": "Impossible d'avoir une IA active 24/7. Chaque redémarrage = reset d'état.", "highlight": "red" },
+        { "title": "Captcha / MFA", "body": "Conçu pour bloquer les bots. Bloque aussi l'IA.", "highlight": "red" },
+        { "title": "50+ Drivers inutiles", "body": "X11, Wayland, audio, Bluetooth — 2GB RAM pour rien. L'IA n'en a pas besoin.", "highlight": "red" }
+      ]
+    },
+    {
+      "type": "custom",
+      "label": "Architecture",
+      "title": "5 couches. Rien d'inutile.",
+      "html": "<div class='col' style='gap:8px;'><div class='card fragment fade-up' style='padding:14px 20px;border-color:rgba(147,197,253,0.2);'><div class='flex-c' style='justify-content:space-between;'><div><div class='card-title'>Agent Surface</div><div class='card-body' style='margin-top:4px;'>Tool calls = system calls · Secrets chiffrés · Identités web multiples</div></div><span class='tag-w'>User</span></div></div><div class='card fragment fade-up' style='padding:14px 20px;'><div class='flex-c' style='justify-content:space-between;'><div><div class='card-title'>Fleet &amp; Identity</div><div class='card-body' style='margin-top:4px;'>Tailscale auto-auth · Node OpenClaw auto-pair · mDNS discovery</div></div><span class='tag-w'>Réseau</span></div></div><div class='card fragment fade-up' style='padding:14px 20px;'><div class='flex-c' style='justify-content:space-between;'><div><div class='card-title'>Web &amp; Automation</div><div class='card-body' style='margin-top:4px;'>Chromium headless permanent · Playwright · Proxy résidentiel · CAPTCHA bypass</div></div><span class='tag-w'>Web</span></div></div><div class='card fragment fade-up' style='padding:14px 20px;'><div class='flex-c' style='justify-content:space-between;'><div><div class='card-title'>AI Runtime</div><div class='card-body' style='margin-top:4px;'>Ollama permanent · OpenClaw 0.0.0.0 · Memory Store SQLite + vec</div></div><span class='tag-w'>IA</span></div></div><div class='card fragment fade-up' style='padding:14px 20px;'><div class='flex-c' style='justify-content:space-between;'><div><div class='card-title'>OS Core</div><div class='card-body' style='margin-top:4px;'>Linux stripped · Tailscale · SSH Ed25519 · systemd minimal</div></div><span class='tag-w'>Base</span></div></div></div>"
+    },
+    {
+      "type": "stats",
+      "label": "REX Box — Hardware",
+      "title": "3 processeurs. 3 rôles.",
+      "grid": "grid-3",
+      "stats": [
+        { "value": "ARM", "label": "CPU · OS · Réseau · 16W idle" },
+        { "value": "40 TOPS", "label": "AI CPU · Mini modèles 24/7 · 15W" },
+        { "value": "1000 TOPS", "label": "AI GPU · Tenseurs · LLM · 150W" }
+      ]
+    },
+    {
+      "type": "cards",
+      "label": "Innovation LLM",
+      "title": "Couches dynamiques.",
+      "grid": "grid-2",
+      "cards": [
+        { "title": "3–7B effectif", "body": "Le modèle charge seulement ce dont il a besoin. Router 50M params décide les couches en temps réel. 90% des tâches tournent sur un modèle compact.", "highlight": "green" },
+        { "title": "10× moins de VRAM", "body": "Core + Memory toujours actifs. Code, Vision, Creative activés à la demande. Pruning automatique des couches inutilisées.", "highlight": "green" },
+        { "title": "REX Mesh — P2P", "body": "Tu prêtes 5% de ta capacité. Tu reçois 100% du réseau. libp2p + chiffrement E2E. Jamais de données partagées — seulement les activations." },
+        { "title": "REX ₢ Credits", "body": "Tu contribues → tu accèdes davantage. Modèle 70B sur 20 boxes. Fallback si crash. Surge capacity. Fine-tuning fédéré." }
+      ]
+    },
+    {
+      "type": "cards",
+      "label": "Use Cases",
+      "title": "N'importe quel domaine.",
+      "grid": "grid-2",
+      "cards": [
+        { "title": "3D / Architecture", "body": "\"Crée un immeuble haussmannien\" → TripoSG + Blender headless → 60-90 secondes" },
+        { "title": "Motion Design", "body": "\"Animation logo glassmorphism\" → AnimateDiff + FFmpeg → 2 minutes" },
+        { "title": "Jeu Vidéo", "body": "\"Platformer 2D pixel art\" → Assets + Code Godot + Compilation → 15 minutes" },
+        { "title": "Photographie", "body": "\"Enlève le fond, mets Paris la nuit\" → SAM2 + SDXL inpainting → 15 secondes" }
+      ]
+    },
+    {
+      "type": "cta",
+      "label": "Business Model",
+      "title": "Open source.<br>Hardware premium.<br>Enterprise scale.",
+      "offers": [
+        { "title": "REX OS", "price": "Free", "details": "Open source · Installable sur tout hardware" },
+        { "title": "REX Box", "price": "800€+", "details": "Hardware clé en main · 3 tiers : Lite, Standard, Pro" },
+        { "title": "REX Cloud", "price": "50€/m", "details": "VM hébergée · Zero config" },
+        { "title": "Enterprise", "price": "Devis", "details": "Fleet · SLA · Support dédié" }
+      ]
+    }
+  ]
+}
