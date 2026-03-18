@@ -5,14 +5,19 @@
   "lang": "fr",
   "clientLogo": "https://www.google.com/s2/favicons?domain=lightinderm.com&sz=128",
   "clientColor": "rgba(74,222,128,0.6)",
-  "heroImage": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&q=80&auto=format",
+  "heroImage": "../assets/heroes/lightinderm.jpg",
   "slides": [
     {
       "type": "hero",
       "label": "Lightinderm",
       "title": "La science mérite<br>un meilleur écrin.",
       "body": "50 brevets. 52k followers Instagram.<br>Un site qui ne reflète pas l'innovation.<br>Il est temps de corriger ça.",
-      "tags": ["Refonte Site", "Espace Pro", "SEO Médical", "E-commerce"]
+      "tags": [
+        "Refonte Site",
+        "Espace Pro",
+        "SEO Médical",
+        "E-commerce"
+      ]
     },
     {
       "type": "stats",
@@ -20,10 +25,22 @@
       "title": "Le potentiel est là.",
       "grid": "grid-4",
       "stats": [
-        { "value": "50", "label": "Brevets déposés" },
-        { "value": "52k", "label": "Followers Instagram" },
-        { "value": "495€+", "label": "Panier moyen device" },
-        { "value": "Sephora", "label": "Distribution premium" }
+        {
+          "value": "50",
+          "label": "Brevets déposés"
+        },
+        {
+          "value": "52k",
+          "label": "Followers Instagram"
+        },
+        {
+          "value": "495€+",
+          "label": "Panier moyen device"
+        },
+        {
+          "value": "Sephora",
+          "label": "Distribution premium"
+        }
       ]
     },
     {
@@ -61,9 +78,20 @@
       "title": "3 axes de transformation.",
       "grid": "col",
       "cards": [
-        { "title": "Refonte Premium", "body": "Nouveau design aligné avec le positionnement MedTech. Animations, storytelling scientifique, preuves cliniques mises en avant. Score PageSpeed 90+.", "highlight": "green" },
-        { "title": "Espace Pro Revendeurs", "body": "Portail dédié aux pharmacies et dermatologues. Commandes, formations, assets marketing. Gestion autonome via D-Studio.Office.", "highlight": "green" },
-        { "title": "SEO & GEO Médical", "body": "Stratégie de contenu ciblée : dermatologie LED, anti-âge, soins visage. Optimisation pour Google ET pour les moteurs IA (ChatGPT, Perplexity)." }
+        {
+          "title": "Refonte Premium",
+          "body": "Nouveau design aligné avec le positionnement MedTech. Animations, storytelling scientifique, preuves cliniques mises en avant. Score PageSpeed 90+.",
+          "highlight": "green"
+        },
+        {
+          "title": "Espace Pro Revendeurs",
+          "body": "Portail dédié aux pharmacies et dermatologues. Commandes, formations, assets marketing. Gestion autonome via D-Studio.Office.",
+          "highlight": "green"
+        },
+        {
+          "title": "SEO & GEO Médical",
+          "body": "Stratégie de contenu ciblée : dermatologie LED, anti-âge, soins visage. Optimisation pour Google ET pour les moteurs IA (ChatGPT, Perplexity)."
+        }
       ]
     },
     {
@@ -72,8 +100,16 @@
       "title": "Où se positionner.",
       "grid": "grid-2",
       "cards": [
-        { "title": "GEO — Generative Engine Optimization", "body": "ChatGPT, Perplexity, Gemini citent vos concurrents mais pas Lightinderm. Le SEO classique ne suffit plus — il faut être dans les réponses IA.", "highlight": "red" },
-        { "title": "Benchmark : Foreo", "body": "Device beauté tech similaire. Site premium, storytelling scientifique, UX mobile-first, espace revendeurs intégré. Lightinderm doit viser ce standard.", "highlight": "green" }
+        {
+          "title": "GEO — Generative Engine Optimization",
+          "body": "ChatGPT, Perplexity, Gemini citent vos concurrents mais pas Lightinderm. Le SEO classique ne suffit plus — il faut être dans les réponses IA.",
+          "highlight": "red"
+        },
+        {
+          "title": "Benchmark : Foreo",
+          "body": "Device beauté tech similaire. Site premium, storytelling scientifique, UX mobile-first, espace revendeurs intégré. Lightinderm doit viser ce standard.",
+          "highlight": "green"
+        }
       ]
     },
     {
@@ -81,10 +117,26 @@
       "label": "Notre proposition",
       "title": "4 chantiers. Impact immédiat.",
       "items": [
-        { "title": "Refonte site vitrine premium", "body": "Design MedTech, animations, storytelling clinique, mobile-first", "duration": "6-8 sem" },
-        { "title": "Espace Pro revendeurs", "body": "Portail B2B, commandes, formations, assets marketing", "duration": "4-6 sem" },
-        { "title": "SEO & GEO médical", "body": "Stratégie de contenu, schema.org, optimisation moteurs IA", "duration": "Continu" },
-        { "title": "D-Studio.Office", "body": "Tableau de bord gestion : analytics, contenus, Google Business", "duration": "Inclus" }
+        {
+          "title": "Refonte site vitrine premium",
+          "body": "Design MedTech, animations, storytelling clinique, mobile-first",
+          "duration": "6-8 sem"
+        },
+        {
+          "title": "Espace Pro revendeurs",
+          "body": "Portail B2B, commandes, formations, assets marketing",
+          "duration": "4-6 sem"
+        },
+        {
+          "title": "SEO & GEO médical",
+          "body": "Stratégie de contenu, schema.org, optimisation moteurs IA",
+          "duration": "Continu"
+        },
+        {
+          "title": "D-Studio.Office",
+          "body": "Tableau de bord gestion : analytics, contenus, Google Business",
+          "duration": "Inclus"
+        }
       ]
     },
     {
@@ -92,8 +144,16 @@
       "label": "Pour démarrer",
       "title": "Un site à la hauteur<br>de l'innovation.",
       "offers": [
-        { "title": "Audit UX complet", "price": "3-5k€", "details": "2 semaines · Analyse concurrence · 15 recommandations prioritisées" },
-        { "title": "Refonte complète", "price": "15-25k€", "details": "8-10 semaines · Site + Espace Pro + SEO · D-Studio.Office inclus" }
+        {
+          "title": "Audit UX complet",
+          "price": "3-5k€",
+          "details": "2 semaines · Analyse concurrence · 15 recommandations prioritisées"
+        },
+        {
+          "title": "Refonte complète",
+          "price": "15-25k€",
+          "details": "8-10 semaines · Site + Espace Pro + SEO · D-Studio.Office inclus"
+        }
       ]
     }
   ]
