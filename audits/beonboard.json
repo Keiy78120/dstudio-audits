@@ -148,22 +148,32 @@
     {
       "type": "proposition",
       "label": "Notre proposition",
-      "title": "3 chantiers prioritaires.",
+      "title": "5 chantiers D-Studio.",
       "items": [
         {
-          "title": "Chantier 1 — Urgence technique",
-          "body": "Mise à jour WordPress, PHP 8.3+, suppression des plugins/thèmes inutiles, activation des permaliens propres, installation SEO (Rank Math), correction du formulaire newsletter, suppression du mode maintenance, favicon, HTTPS audit.",
+          "title": "Chantier 1 — Identité visuelle & Brandbook",
+          "body": "Création de l'identité visuelle complète Be On Board : logo premium, palette or/noir, typographie, guidelines d'utilisation. Livrable : brandbook PDF + kit assets (print, digital, réseaux sociaux). Cohérence sur tous les supports.",
+          "duration": "2-3 semaines"
+        },
+        {
+          "title": "Chantier 2 — Landing page premium",
+          "body": "Site vitrine sur-mesure Next.js : landing page immersive avec galerie événements, section « Qui sommes-nous », témoignages vidéo des membres, calendrier des prochains dîners dans des lieux d'exception. SEO optimisé, responsive, animations premium.",
+          "duration": "3-4 semaines"
+        },
+        {
+          "title": "Chantier 3 — ERP AI-first (CLI/MCP)",
+          "body": "Plateforme de gestion intelligente pilotée par IA : gestion des membres et profils, planification des événements et tables, invitations automatisées, relances J-7/J-1, QR codes vCard. Interface CLI + MCP pour automatiser les tâches récurrentes via agents IA.",
+          "duration": "4-6 semaines"
+        },
+        {
+          "title": "Chantier 4 — CRM & automatisations",
+          "body": "Système de relances et communications : emails personnalisés (Resend), segmentation par profil (CEO, Board member, investisseur, aspirant), newsletters événementielles, suivi des participations. Intégration avec l'ERP pour un pipeline de bout en bout.",
+          "duration": "2-3 semaines"
+        },
+        {
+          "title": "Chantier 5 — Urgence technique WordPress",
+          "body": "Quick fix du site actuel : mise à jour WordPress + PHP 8.3+, suppression des 7 plugins inutiles et 13 thèmes inactifs, correction du formulaire Mailchimp, activation des permaliens propres, installation Rank Math SEO, favicon, HTTPS audit.",
           "duration": "1 semaine"
-        },
-        {
-          "title": "Chantier 2 — Refonte site vitrine",
-          "body": "Nouveau site premium sur Next.js ou WordPress headless. Landing page immersive, galerie événements, page « Qui sommes-nous » avec profils des intervenants, formulaire d'inscription par invitation, calendrier des prochains dîners avec lieux premium.",
-          "duration": "4-6 semaines"
-        },
-        {
-          "title": "Chantier 3 — Dashboard & CRM membres",
-          "body": "Application de gestion pour Patrycja : annuaire membres avec profils, gestion des événements et tables, invitations automatisées par email (Resend), relances J-7/J-1, QR codes vCard, suivi des participations et statistiques du club.",
-          "duration": "4-6 semaines"
         }
       ]
     },
@@ -173,19 +183,19 @@
       "title": "Nos offres.",
       "offers": [
         {
-          "title": "Quick Fix",
-          "price": "1-2k€",
-          "details": "1 semaine · Mise à jour + sécurité + SEO de base + correction newsletter"
+          "title": "Essentiel",
+          "price": "5-8k€",
+          "details": "4-5 sem · Brandbook + Landing page + Quick fix WordPress"
         },
         {
-          "title": "Refonte Premium",
-          "price": "8-12k€",
-          "details": "6-8 semaines · Site vitrine premium + CRM membres + automatisations"
+          "title": "Premium",
+          "price": "12-18k€",
+          "details": "8-10 sem · Identité visuelle + Landing page + CRM + automatisations"
         },
         {
-          "title": "Solution complète",
-          "price": "15-20k€",
-          "details": "10-12 semaines · Refonte + Dashboard + App membres + Branding digital"
+          "title": "Full D-Studio",
+          "price": "20-30k€",
+          "details": "12-14 sem · Les 5 chantiers · Brandbook + Landing + ERP AI-first + CRM + Fix WP"
         }
       ]
     }
