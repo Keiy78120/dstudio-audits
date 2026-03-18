@@ -1,0 +1,164 @@
+{
+  "slug": "beonboard",
+  "client": "Be On Board",
+  "date": "Mars 2026",
+  "lang": "fr",
+  "clientLogo": "https://www.google.com/s2/favicons?domain=beonboard.fr&sz=128",
+  "clientColor": "rgba(180,140,80,0.6)",
+  "heroImage": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80&auto=format",
+  "slides": [
+    {
+      "type": "hero",
+      "label": "Be On Board",
+      "title": "Audit digital<br>Be On Board.",
+      "body": "Club d'élite pour dirigeants et administrateurs. 17+ dîners organisés, réseau corporate et entrepreneurial d'exception. Un site WordPress qui ne reflète pas le positionnement premium du club.",
+      "tags": ["WordPress", "Événementiel", "Networking premium", "Executive Search"]
+    },
+    {
+      "type": "stats",
+      "label": "En chiffres",
+      "title": "L'état des lieux.",
+      "grid": "grid-4",
+      "stats": [
+        { "value": "17+", "label": "Dîners organisés" },
+        { "value": "100+", "label": "Invités d'exception" },
+        { "value": "26", "label": "Mises à jour en attente" },
+        { "value": "85", "label": "Pages WordPress" },
+        { "value": "18", "label": "Plugins installés" },
+        { "value": "14", "label": "Thèmes installés" },
+        { "value": "0", "label": "Plugin SEO" },
+        { "value": "PHP 8.1", "label": "Version dépréciée" }
+      ]
+    },
+    {
+      "type": "gap",
+      "label": "Le gap",
+      "title": "Positionnement vs. réalité digitale.",
+      "columns": [
+        {
+          "title": "LE CLUB BE ON BOARD",
+          "type": "good",
+          "items": [
+            "Club <strong style='color:#fff;'>exclusif</strong> de dirigeants C-Level et administrateurs",
+            "Dîners dans des lieux <strong style='color:#fff;'>prestigieux</strong> (Maison Baccarat)",
+            "Réseau <strong style='color:#fff;'>100+ personnalités</strong> d'exception (CEO, Comex, Board members)",
+            "Couverture Paris, Lyon, Lille — <strong style='color:#fff;'>expansion nationale</strong>",
+            "4 formats d'événements : Dîners, Cocktails, Visites, Recrutement"
+          ]
+        },
+        {
+          "title": "LE SITE BEONBOARD.FR",
+          "type": "bad",
+          "items": [
+            "<em style='color:rgba(248,113,113,0.7);'>26 mises à jour en attente</em> — failles de sécurité potentielles",
+            "URLs en query strings <em style='color:rgba(248,113,113,0.7);'>(?page_id=991)</em> au lieu de permaliens propres",
+            "<em style='color:rgba(248,113,113,0.7);'>Formulaire Mailchimp cassé</em> — newsletter inaccessible",
+            "Aucun plugin SEO — <em style='color:rgba(248,113,113,0.7);'>invisible sur Google</em>",
+            "Mode maintenance activé, <em style='color:rgba(248,113,113,0.7);'>WPBakery non activé</em>, Hello Dolly actif",
+            "85 pages dont la majorité sont des <em style='color:rgba(248,113,113,0.7);'>doublons de template</em>"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "cards",
+      "label": "Analyse technique",
+      "title": "Constats critiques.",
+      "grid": "grid-2",
+      "cards": [
+        {
+          "title": "Sécurité & maintenance",
+          "body": "WordPress 6.9.4 avec 26 mises à jour en attente. PHP 8.1.33 déprécié (fin de support). 7 plugins désactivés non supprimés = surface d'attaque. WPBakery Page Builder sans licence activée. Pas de cache objet persistant.",
+          "highlight": "red"
+        },
+        {
+          "title": "SEO & visibilité",
+          "body": "Aucun plugin SEO installé (ni Yoast, ni Rank Math). URLs non optimisées (?page_id=). Pas de sitemap XML. Pas de favicon (erreur 404). Titre de page générique : « Be on Board – Be on Board ». Meta descriptions absentes.",
+          "highlight": "red"
+        },
+        {
+          "title": "UX & contenu",
+          "body": "Formulaire newsletter Mailchimp cassé (ID 306 introuvable). Tous les événements affichés comme « Expiré ». Pas de hiérarchie claire entre événements passés et à venir. Fautes d'orthographe : « évenements », « differents », « Asvisory Board ».",
+          "highlight": "red"
+        },
+        {
+          "title": "Performance",
+          "body": "18 plugins dont Hello Dolly (inutile), Slider Revolution (lourd), WPBakery (non activé). 14 thèmes installés (1 seul utilisé). Pas de cache objet (Redis/Memcached). Images non optimisées. Cookie consent basique sans conformité RGPD.",
+          "highlight": "red"
+        }
+      ]
+    },
+    {
+      "type": "cards",
+      "label": "Opportunités",
+      "title": "Le potentiel inexploité.",
+      "grid": "grid-2",
+      "cards": [
+        {
+          "title": "Plateforme événementielle premium",
+          "body": "Remplacer le thème Eventchamp par une solution sur-mesure reflétant le positionnement haut de gamme. Système d'inscription par invitation, gestion des listes d'attente, paiement intégré pour les dîners.",
+          "highlight": "green"
+        },
+        {
+          "title": "Espace membres exclusif",
+          "body": "Créer un espace privé pour les 100+ membres du club : annuaire avec profils LinkedIn, historique de participation, recommandations croisées. Accès sur invitation uniquement.",
+          "highlight": "green"
+        },
+        {
+          "title": "CRM & automatisation",
+          "body": "Remplacer WooCommerce + Mailchimp cassé par un CRM adapté : relances automatiques J-7/J-1, invitations personnalisées, segmentation par profil (CEO, Board member, investisseur).",
+          "highlight": "green"
+        },
+        {
+          "title": "Image de marque digitale",
+          "body": "Site vitrine premium type landing page avec galerie photo des événements passés, témoignages vidéo, calendrier des prochains dîners. Design cohérent avec le positionnement « Réseau | Networking | Influence ».",
+          "highlight": "green"
+        }
+      ]
+    },
+    {
+      "type": "proposition",
+      "label": "Notre proposition",
+      "title": "3 chantiers prioritaires.",
+      "items": [
+        {
+          "title": "Chantier 1 — Urgence technique",
+          "body": "Mise à jour WordPress, PHP 8.3+, suppression des plugins/thèmes inutiles, activation des permaliens propres, installation SEO (Rank Math), correction du formulaire newsletter, suppression du mode maintenance, favicon, HTTPS audit.",
+          "duration": "1 semaine"
+        },
+        {
+          "title": "Chantier 2 — Refonte site vitrine",
+          "body": "Nouveau site premium sur Next.js ou WordPress headless. Landing page immersive, galerie événements, page « Qui sommes-nous » avec profils des intervenants, formulaire d'inscription par invitation, calendrier des prochains dîners avec lieux premium.",
+          "duration": "4-6 semaines"
+        },
+        {
+          "title": "Chantier 3 — Dashboard & CRM membres",
+          "body": "Application de gestion pour Patrycja : annuaire membres avec profils, gestion des événements et tables, invitations automatisées par email (Resend), relances J-7/J-1, QR codes vCard, suivi des participations et statistiques du club.",
+          "duration": "4-6 semaines"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "label": "Pour démarrer",
+      "title": "Nos offres.",
+      "offers": [
+        {
+          "title": "Quick Fix",
+          "price": "1-2k€",
+          "details": "1 semaine · Mise à jour + sécurité + SEO de base + correction newsletter"
+        },
+        {
+          "title": "Refonte Premium",
+          "price": "8-12k€",
+          "details": "6-8 semaines · Site vitrine premium + CRM membres + automatisations"
+        },
+        {
+          "title": "Solution complète",
+          "price": "15-20k€",
+          "details": "10-12 semaines · Refonte + Dashboard + App membres + Branding digital"
+        }
+      ]
+    }
+  ]
+}
