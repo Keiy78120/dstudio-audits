@@ -332,9 +332,10 @@ section:first-child::after{content:"";position:absolute;inset:0;z-index:-1;backg
 .dstudio-cta-btn{position:relative;overflow:hidden;}
 .dstudio-cta-btn::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.1) 50%,transparent 60%);transform:translateX(-100%);transition:transform 0.7s ease;}
 .dstudio-cta-btn:hover::after{transform:translateX(100%);}
+section+section{border-top:1px solid rgba(255,255,255,0.04);}
 @media(max-width:768px){
   html{scroll-snap-type:none;}
-  section{padding:48px 20px!important;min-height:auto!important;justify-content:flex-start!important;}
+  section{padding:64px 20px!important;min-height:auto!important;justify-content:flex-start!important;}
   .grid-2{grid-template-columns:1fr 1fr!important;}
   .grid-3,.grid-4{grid-template-columns:1fr 1fr!important;}
   .title-xl{font-size:28px!important;}
@@ -347,7 +348,7 @@ section:first-child::after{content:"";position:absolute;inset:0;z-index:-1;backg
   .nav-dots{display:none;}
 }
 @media(max-width:480px){
-  section{padding:36px 16px!important;}
+  section{padding:56px 16px!important;}
   .grid-2,.grid-3,.grid-4{grid-template-columns:1fr!important;}
 }
 @media print{
