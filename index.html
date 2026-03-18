@@ -3,193 +3,276 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>D-Studio — Dashboard Audits</title>
+<title>D-Studio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{--bg:#000;--card:rgba(14,13,16,0.92);--border:rgba(255,255,255,0.08);--muted:rgba(255,255,255,0.35);--r:12px;}
-html,body{width:100%;height:100%;background:#000;color:#fff;font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;}
-.wrapper{min-height:100vh;display:flex;flex-direction:column;background:#000;}
-nav{display:flex;align-items:center;gap:16px;padding:18px 40px;border-bottom:1px solid rgba(255,255,255,0.06);position:relative;z-index:10;}
-.logo{font-size:18px;font-weight:900;letter-spacing:-0.04em;color:#fff;}
-.logo span{color:rgba(255,255,255,0.3);}
-.nav-label{font-size:13px;font-weight:600;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.08em;}
-main{flex:1;padding:40px;max-width:1400px;margin:0 auto;width:100%;}
-.section-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:8px;}
-.section-title{font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-0.035em;margin-bottom:24px;color:#fff;}
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-bottom:60px;}
-.card{position:relative;background:var(--card);border-radius:var(--r);border:1px solid var(--border);padding:24px;transition:all 0.3s;cursor:pointer;overflow:hidden;display:flex;flex-direction:column;gap:12px;}
-.card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(145deg,rgba(255,255,255,0.14) 0%,rgba(255,255,255,0.03) 50%,rgba(255,255,255,0.1) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;pointer-events:none;}
-.card:hover{border-color:rgba(255,255,255,0.16);background:rgba(14,13,16,0.98);}
-.card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;position:relative;z-index:1;}
-.card-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.04);border-radius:8px;flex-shrink:0;}
-.card-icon i{stroke:rgba(255,255,255,0.5);filter:drop-shadow(0 0 6px rgba(255,255,255,0.15));}
-.card-meta{display:flex;gap:8px;flex-wrap:wrap;}
-.card-tag{display:inline-block;padding:2px 10px;border-radius:100px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);font-size:10px;font-weight:600;}
-.card-tag.live{background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.2);color:rgba(74,222,128,0.85);}
-.card-tag.internal{background:rgba(147,197,253,0.1);border-color:rgba(147,197,253,0.2);color:rgba(147,197,253,0.85);}
-.card-title{font-size:18px;font-weight:700;color:#fff;position:relative;z-index:1;}
-.card-desc{font-size:13px;line-height:1.5;color:rgba(255,255,255,0.42);position:relative;z-index:1;}
-.card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;position:relative;z-index:1;font-size:11px;color:rgba(255,255,255,0.28);}
-.card-add{display:flex;align-items:center;justify-content:center;min-height:200px;background:linear-gradient(135deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:2px dashed rgba(255,255,255,0.08);}
-.card-add i{stroke:rgba(255,255,255,0.25);width:40px;height:40px;}
-footer{border-top:1px solid rgba(255,255,255,0.06);padding:24px 40px;text-align:center;font-size:12px;color:rgba(255,255,255,0.35);position:relative;z-index:1;}
-a{color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s;}
-a:hover{color:#fff;}
+:root{--card:rgba(12,11,14,0.95);--border:rgba(255,255,255,0.07);--r:14px;}
+html,body{width:100%;min-height:100%;background:#000;color:#fff;font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;}
+
+/* Stars background */
+canvas#stars{position:fixed;inset:0;z-index:0;pointer-events:none;}
+
+/* Nav */
+nav{position:relative;z-index:10;display:flex;align-items:center;padding:20px 40px;border-bottom:1px solid rgba(255,255,255,0.05);}
+.logo{font-size:17px;font-weight:900;letter-spacing:-0.04em;color:#fff;}
+.logo span{color:rgba(255,255,255,0.28);}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:rgba(74,222,128,0.7);box-shadow:0 0 8px rgba(74,222,128,0.4);}
+.nav-status{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:.04em;}
+
+/* Main */
+main{position:relative;z-index:1;padding:48px 40px 80px;max-width:1440px;margin:0 auto;width:100%;}
+
+/* Section */
+.section{margin-bottom:56px;}
+.section-header{margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.05);}
+.section-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.22);}
+
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
+
+/* Card */
+.card{
+  position:relative;display:flex;flex-direction:column;gap:14px;
+  padding:22px;border-radius:var(--r);
+  background:var(--card);border:1px solid var(--border);
+  text-decoration:none;color:inherit;
+  transition:border-color .2s, transform .2s, background .2s;
+  overflow:hidden;
+}
+.card::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
+  background:linear-gradient(145deg,rgba(255,255,255,0.12) 0%,rgba(255,255,255,0.02) 50%,rgba(255,255,255,0.08) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask-composite:exclude;pointer-events:none;
+}
+a.card:hover{border-color:rgba(255,255,255,0.16);transform:translateY(-2px);background:rgba(16,15,18,0.98);}
+
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.card-logo-wrap{display:flex;align-items:center;gap:10px;}
+.brand-logo{height:22px;width:auto;opacity:0.65;filter:grayscale(1) brightness(2);object-fit:contain;}
+.card-icon-box{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.04);border-radius:8px;flex-shrink:0;}
+.card-icon-box i{width:16px;height:16px;stroke:rgba(255,255,255,0.45);filter:drop-shadow(0 0 5px rgba(255,255,255,0.12));}
+
+.badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:100px;font-size:10px;font-weight:600;white-space:nowrap;}
+.badge-live{background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);color:rgba(74,222,128,0.85);}
+.badge-int{background:rgba(147,197,253,0.08);border:1px solid rgba(147,197,253,0.18);color:rgba(147,197,253,0.75);}
+.badge-sec{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.45);}
+
+.card-sector{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,0.25);}
+.card-name{font-size:17px;font-weight:700;letter-spacing:-.02em;color:#fff;line-height:1.2;}
+.card-desc{font-size:12px;line-height:1.55;color:rgba(255,255,255,0.38);}
+.card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05);}
+.card-date{font-size:10px;color:rgba(255,255,255,0.22);}
+.card-arrow{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);}
+.card-arrow i{width:12px;height:12px;stroke:rgba(255,255,255,0.3);}
+a.card:hover .card-arrow{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.16);}
+a.card:hover .card-arrow i{stroke:rgba(255,255,255,0.7);}
+
+/* Add card */
+.card-add{border-style:dashed;background:transparent;min-height:180px;display:flex;align-items:center;justify-content:center;cursor:default;}
+.card-add:hover{transform:none;background:rgba(255,255,255,0.01);}
+
+/* Footer */
+footer{position:relative;z-index:1;padding:20px 40px;border-top:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-logo{font-size:14px;font-weight:900;letter-spacing:-.04em;}
+.footer-logo span{color:rgba(255,255,255,0.28);}
+.footer-contact{font-size:11px;color:rgba(255,255,255,0.25);display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.footer-contact a{color:rgba(255,255,255,0.35);text-decoration:none;}
+.footer-contact a:hover{color:#fff;}
+
 @media(max-width:768px){
-  nav,main,footer{padding:16px 20px;}
-  .section-title{font-size:24px;margin-bottom:18px;}
-  .cards-grid{grid-template-columns:1fr;gap:12px;margin-bottom:40px;}
+  nav{padding:16px 18px;}
+  main{padding:32px 18px 60px;}
+  footer{padding:16px 18px;flex-direction:column;align-items:flex-start;gap:8px;}
+  .grid{grid-template-columns:1fr;gap:10px;}
   .card{padding:18px;}
+  .card-add{min-height:120px;}
 }
 </style>
 </head>
 <body>
-<div class="wrapper">
+
+<canvas id="stars"></canvas>
+
 <nav>
   <span class="logo">D<span>.</span>STUDIO</span>
-  <span style="flex:1;"></span>
-  <span class="nav-label">Dashboard interne</span>
+  <div class="nav-right">
+    <span class="nav-dot"></span>
+    <span class="nav-status">6 audits actifs</span>
+  </div>
 </nav>
 
 <main>
+
   <!-- Projets internes -->
-  <div style="margin-bottom:60px;">
-    <p class="section-label">Projets internes</p>
-    <h2 class="section-title">REX & Portfolio</h2>
-    <div class="cards-grid">
-      <a href="https://keiy78120.github.io/dstudio-audit-rexos/" style="text-decoration:none;">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-icon">
-              <i data-lucide="server" style="width:20px;height:20px;"></i>
-            </div>
-            <div class="card-meta">
-              <span class="card-tag internal">Interne</span>
-            </div>
-          </div>
-          <h3 class="card-title">REX OS</h3>
-          <p class="card-desc">Retour d'expérience infrastructure cloud.</p>
-          <div class="card-footer">
-            <span>14 mars 2026</span>
-          </div>
+  <div class="section">
+    <div class="section-header">
+      <span class="section-label">Projets internes</span>
+    </div>
+    <div class="grid">
+
+      <a class="card" href="https://keiy78120.github.io/dstudio-audit-rexos/" target="_blank">
+        <div class="card-top">
+          <div class="card-icon-box"><i data-lucide="cpu"></i></div>
+          <span class="badge badge-int">Interne</span>
+        </div>
+        <div>
+          <div class="card-sector">OS · Hardware · IA</div>
+          <div class="card-name">REX OS</div>
+        </div>
+        <div class="card-desc">OS natif pour agents IA. Hardware dédié, couches LLM dynamiques, réseau P2P, Session Vault.</div>
+        <div class="card-foot">
+          <span class="card-date">17 mars 2026</span>
+          <div class="card-arrow"><i data-lucide="arrow-up-right"></i></div>
         </div>
       </a>
 
-      <a href="https://keiy78120.github.io/dstudio-audit-stellantis/" style="text-decoration:none;">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-icon">
-              <i data-lucide="car" style="width:20px;height:20px;"></i>
-            </div>
-            <div class="card-meta">
-              <span class="card-tag live">Live</span>
-            </div>
+      <a class="card" href="https://keiy78120.github.io/dstudio-audit-stellantis/" target="_blank">
+        <div class="card-top">
+          <div class="card-logo-wrap">
+            <img class="brand-logo" src="https://logo.clearbit.com/stellantis.com" alt="Stellantis" onerror="this.style.display='none'"/>
           </div>
-          <h3 class="card-title">Stellantis Peugeot</h3>
-          <p class="card-desc">Audit et refonte identité digital.</p>
-          <div class="card-footer">
-            <span>25 mars 2026</span>
-          </div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <div>
+          <div class="card-sector">Automobile · IA embarquée</div>
+          <div class="card-name">Stellantis × Peugeot</div>
+        </div>
+        <div class="card-desc">Refonte MyPeugeot, interface embarquée, agent IA voiture, BTA WebSocket persistant.</div>
+        <div class="card-foot">
+          <span class="card-date">RDV 25 mars 2026</span>
+          <div class="card-arrow"><i data-lucide="arrow-up-right"></i></div>
         </div>
       </a>
+
     </div>
   </div>
 
-  <!-- Audits clients -->
-  <div>
-    <p class="section-label">Audits clients en cours</p>
-    <h2 class="section-title">P&M Executive Search</h2>
-    <div class="cards-grid">
-      <a href="https://keiy78120.github.io/dstudio-audit-lightinderm/" style="text-decoration:none;">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-icon">
-              <i data-lucide="droplet" style="width:20px;height:20px;"></i>
-            </div>
-            <div class="card-meta">
-              <span class="card-tag">Dermo-cosmétique</span>
-            </div>
+  <!-- Audits clients P&M -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-label">P&M Executive Search — Mars 2026</span>
+    </div>
+    <div class="grid">
+
+      <a class="card" href="https://keiy78120.github.io/dstudio-audit-lightinderm/" target="_blank">
+        <div class="card-top">
+          <div class="card-logo-wrap">
+            <img class="brand-logo" src="https://logo.clearbit.com/lightinderm.com" alt="Lightinderm" onerror="this.style.display='none'"/>
+            <div class="card-icon-box" style="display:none;"><i data-lucide="zap"></i></div>
           </div>
-          <h3 class="card-title">Lightinderm</h3>
-          <p class="card-desc">Refonte site MedTech premium + espace Pro.</p>
-          <div class="card-footer">
-            <span>Mars 2026</span>
-          </div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <div>
+          <div class="card-sector">Dermo-cosmétique · MedTech</div>
+          <div class="card-name">Lightinderm</div>
+        </div>
+        <div class="card-desc">Refonte site MedTech premium, espace Pro revendeurs, SEO médical. 50 brevets, 52k Instagram.</div>
+        <div class="card-foot">
+          <span class="card-date">Mars 2026</span>
+          <div class="card-arrow"><i data-lucide="arrow-up-right"></i></div>
         </div>
       </a>
 
-      <a href="https://keiy78120.github.io/dstudio-audit-prunier/" style="text-decoration:none;">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-icon">
-              <i data-lucide="wine" style="width:20px;height:20px;"></i>
-            </div>
-            <div class="card-meta">
-              <span class="card-tag">Gastronomie luxe</span>
-            </div>
+      <a class="card" href="https://keiy78120.github.io/dstudio-audit-prunier/" target="_blank">
+        <div class="card-top">
+          <div class="card-logo-wrap">
+            <img class="brand-logo" src="https://logo.clearbit.com/prunier.com" alt="Prunier" onerror="this.style.display='none'"/>
           </div>
-          <h3 class="card-title">Prunier</h3>
-          <p class="card-desc">Unification post-fusion + plateforme B2B.</p>
-          <div class="card-footer">
-            <span>Mars 2026</span>
-          </div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <div>
+          <div class="card-sector">Caviar · Gastronomie luxe</div>
+          <div class="card-name">Prunier</div>
+        </div>
+        <div class="card-desc">Unification post-fusion Caviar de Neuvic, plateforme B2B 40 points de vente, refonte luxe.</div>
+        <div class="card-foot">
+          <span class="card-date">Mars 2026</span>
+          <div class="card-arrow"><i data-lucide="arrow-up-right"></i></div>
         </div>
       </a>
 
-      <a href="https://keiy78120.github.io/dstudio-audit-lacompagnie/" style="text-decoration:none;">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-icon">
-              <i data-lucide="plane" style="width:20px;height:20px;"></i>
-            </div>
-            <div class="card-meta">
-              <span class="card-tag">Transport aérien</span>
-            </div>
+      <a class="card" href="https://keiy78120.github.io/dstudio-audit-lacompagnie/" target="_blank">
+        <div class="card-top">
+          <div class="card-logo-wrap">
+            <img class="brand-logo" src="https://logo.clearbit.com/lacompagnie.com" alt="La Compagnie" onerror="this.style.display='none'"/>
           </div>
-          <h3 class="card-title">La Compagnie</h3>
-          <p class="card-desc">Unification domaines + refonte app.</p>
-          <div class="card-footer">
-            <span>Mars 2026</span>
-          </div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <div>
+          <div class="card-sector">Transport aérien · Business Class</div>
+          <div class="card-name">La Compagnie</div>
+        </div>
+        <div class="card-desc">Unification 2 domaines, refonte app 2015, landing corporate B2B. Paris–NYC daily.</div>
+        <div class="card-foot">
+          <span class="card-date">Mars 2026</span>
+          <div class="card-arrow"><i data-lucide="arrow-up-right"></i></div>
         </div>
       </a>
 
-      <a href="https://keiy78120.github.io/dstudio-audit-ohlala/" style="text-decoration:none;">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-icon">
-              <i data-lucide="shopping-bag" style="width:20px;height:20px;"></i>
-            </div>
-            <div class="card-meta">
-              <span class="card-tag">E-commerce</span>
-            </div>
+      <a class="card" href="https://keiy78120.github.io/dstudio-audit-ohlala/" target="_blank">
+        <div class="card-top">
+          <div class="card-logo-wrap">
+            <img class="brand-logo" src="https://logo.clearbit.com/ohlala-sellerie.com" alt="Ohlala Sellerie" onerror="this.style.display='none'"/>
           </div>
-          <h3 class="card-title">Ohlala Sellerie</h3>
-          <p class="card-desc">Migration Shopify → Next.js + configurateur.</p>
-          <div class="card-footer">
-            <span>Mars 2026</span>
-          </div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <div>
+          <div class="card-sector">E-commerce · Équitation</div>
+          <div class="card-name">Ohlala Sellerie</div>
+        </div>
+        <div class="card-desc">Migration Shopify → Next.js, configurateur personnalisation, SEO. 175k Instagram, 45k références.</div>
+        <div class="card-foot">
+          <span class="card-date">Mars 2026</span>
+          <div class="card-arrow"><i data-lucide="arrow-up-right"></i></div>
         </div>
       </a>
 
       <div class="card card-add">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
-          <i data-lucide="plus" style="width:32px;height:32px;stroke:rgba(255,255,255,0.2);"></i>
-          <span style="font-size:13px;color:rgba(255,255,255,0.3);font-weight:500;">Audit à venir</span>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0.4;">
+          <i data-lucide="plus" style="width:28px;height:28px;stroke:rgba(255,255,255,0.4);"></i>
+          <span style="font-size:12px;color:rgba(255,255,255,0.4);font-weight:500;">Prochain audit</span>
         </div>
       </div>
+
     </div>
   </div>
+
 </main>
 
 <footer>
-  contact@dstudio.company · +33 6 64 27 77 51 · 7 rue Lauriston 75016 Paris
+  <span class="footer-logo">D<span>.</span>STUDIO</span>
+  <div class="footer-contact">
+    <a href="mailto:contact@dstudio.company">contact@dstudio.company</a>
+    <a href="tel:+33664277751">+33 6 64 27 77 51</a>
+    <span>7 rue Lauriston, 75016 Paris</span>
+  </div>
 </footer>
-</div>
 
 <script>
+/* Stars */
+(function(){
+  var c=document.getElementById('stars'),ctx=c.getContext('2d');
+  var W,H,stars=[];
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
+  function Star(){this.x=Math.random()*W;this.y=Math.random()*H;this.r=Math.random()*.8+.2;this.a=Math.random()*.5+.1;this.speed=Math.random()*.015+.003;}
+  function init(){resize();stars=Array.from({length:180},function(){return new Star();});}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    stars.forEach(function(s){
+      s.a+=s.speed;if(s.a>0.7||s.a<0.1)s.speed*=-1;
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(255,255,255,'+s.a+')';ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);init();draw();
+})();
+
 lucide.createIcons();
 </script>
 </body>
