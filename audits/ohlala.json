@@ -1,0 +1,76 @@
+{
+  "slug": "ohlala",
+  "client": "Ohlala Sellerie",
+  "date": "Mars 2026",
+  "lang": "fr",
+  "slides": [
+    {
+      "type": "hero",
+      "label": "Ohlala Sellerie",
+      "title": "45 000 références.<br>Un site à dompter.",
+      "body": "Leader e-commerce équitation en France.<br>175k Instagram. Mais Shopify ne suffit plus.",
+      "tags": ["Migration Shopify", "Configurateur", "SEO E-commerce", "Performance"]
+    },
+    {
+      "type": "gap",
+      "label": "Le gap",
+      "title": "Leader marché, plateforme limitée.",
+      "columns": [
+        {
+          "title": "LA MARQUE",
+          "type": "good",
+          "items": [
+            "<strong style='color:#fff;'>175k Instagram</strong> — communauté massive",
+            "<strong style='color:#fff;'>45 000 références</strong> produit",
+            "Leader <strong style='color:#fff;'>e-commerce équitation</strong> France",
+            "Forte <strong style='color:#fff;'>identité de marque</strong>",
+            "Clientèle <strong style='color:#fff;'>passionnée et fidèle</strong>"
+          ]
+        },
+        {
+          "title": "SHOPIFY AUJOURD'HUI",
+          "type": "bad",
+          "items": [
+            "Shopify <strong style='color:#fff;'>ne scale plus</strong> à 45k références",
+            "Pas de <strong style='color:#fff;'>configurateur personnalisation</strong>",
+            "Performance <strong style='color:#fff;'>dégradée</strong> — temps de chargement lent",
+            "SEO e-commerce <strong style='color:#fff;'>sous-optimisé</strong>",
+            "<em style='color:rgba(248,113,113,0.7);'>Un catalogue de cette taille mérite du sur-mesure</em>"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "cards",
+      "label": "Opportunités",
+      "title": "Ce que Next.js débloque.",
+      "grid": "grid-2",
+      "cards": [
+        { "title": "Performance x10", "body": "ISR + Edge caching. Chaque page produit pré-rendue. Temps de chargement < 1s même avec 45k pages.", "highlight": "green" },
+        { "title": "Configurateur 3D", "body": "Personnalisation selles, bridons, accessoires. Visualisation en temps réel. Commande custom directe.", "highlight": "green" },
+        { "title": "SEO E-commerce", "body": "45 000 pages produit = 45 000 opportunités Google. Schema.org, catégories optimisées, URLs propres." },
+        { "title": "Search & Filtrage", "body": "Recherche instantanée full-text, filtres multicritères (sport, taille, marque, prix), suggestions IA." }
+      ]
+    },
+    {
+      "type": "proposition",
+      "label": "Notre proposition",
+      "title": "4 chantiers. Migration progressive.",
+      "items": [
+        { "title": "Migration Next.js headless", "body": "Shopify comme CMS produit, Next.js en frontend. Migration progressive sans interruption.", "duration": "10-14 sem" },
+        { "title": "Configurateur personnalisation", "body": "Selles, bridons, accessoires : couleurs, gravures, matières. Visualisation temps réel.", "duration": "6-8 sem" },
+        { "title": "SEO & performance", "body": "45k pages optimisées, ISR, schema.org, sitemap dynamique, Core Web Vitals vert.", "duration": "Continu" },
+        { "title": "D-Studio.Office", "body": "Dashboard : analytics ventes, SEO, commandes custom, Google Business.", "duration": "Inclus" }
+      ]
+    },
+    {
+      "type": "cta",
+      "label": "Pour démarrer",
+      "title": "45 000 produits.<br>Un site taillé<br>pour la course.",
+      "offers": [
+        { "title": "Audit technique e-commerce", "price": "4-6k€", "details": "2 semaines · Benchmark Shopify vs headless · Performance · SEO gaps" },
+        { "title": "Migration + configurateur", "price": "35-55k€", "details": "14-18 semaines · Headless Next.js + Configurateur + SEO · D-Studio.Office inclus" }
+      ]
+    }
+  ]
+}

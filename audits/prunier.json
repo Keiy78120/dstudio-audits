@@ -1,0 +1,64 @@
+{
+  "slug": "prunier",
+  "client": "Prunier",
+  "date": "Mars 2026",
+  "lang": "fr",
+  "slides": [
+    {
+      "type": "hero",
+      "label": "Prunier × Caviar de Neuvic",
+      "title": "Le luxe se vit<br>aussi en ligne.",
+      "body": "Maison fondée en 1920. Fusion avec Caviar de Neuvic.<br>Deux marques, une seule plateforme à créer.",
+      "tags": ["Unification Marques", "Plateforme B2B", "E-commerce Luxe", "Brand Identity"]
+    },
+    {
+      "type": "gap",
+      "label": "Le gap",
+      "title": "Patrimoine exceptionnel, digital fragmenté.",
+      "columns": [
+        {
+          "title": "L'HÉRITAGE",
+          "type": "good",
+          "items": [
+            "Maison centenaire — <strong style='color:#fff;'>depuis 1920</strong>",
+            "Fusion Caviar de Neuvic — <strong style='color:#fff;'>production française</strong>",
+            "<strong style='color:#fff;'>40 points de vente</strong> premium",
+            "Restaurant étoilé <strong style='color:#fff;'>Paris</strong>",
+            "Positionnement ultra-premium <strong style='color:#fff;'>gastronomie</strong>"
+          ]
+        },
+        {
+          "title": "LE DIGITAL ACTUEL",
+          "type": "bad",
+          "items": [
+            "<strong style='color:#fff;'>2 sites séparés</strong> — confusion de marque",
+            "E-commerce basique — <strong style='color:#fff;'>pas à la hauteur du luxe</strong>",
+            "Aucun portail B2B pour les <strong style='color:#fff;'>40 points de vente</strong>",
+            "Pas de storytelling — <strong style='color:#fff;'>100 ans d'histoire invisibles</strong>",
+            "<em style='color:rgba(248,113,113,0.7);'>Un caviar à 200€ mérite mieux qu'un Shopify template</em>"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "proposition",
+      "label": "Notre proposition",
+      "title": "4 chantiers. Unification totale.",
+      "items": [
+        { "title": "Plateforme e-commerce unifiée", "body": "Prunier + Caviar de Neuvic sous une identité premium cohérente. Next.js, animations luxe.", "duration": "8-12 sem" },
+        { "title": "Portail B2B revendeurs", "body": "Interface commande pour les 40 points de vente. Catalogues, prix, stock temps réel.", "duration": "4-6 sem" },
+        { "title": "Storytelling centenaire", "body": "Page histoire immersive, timeline 1920-2026, savoir-faire, terroir.", "duration": "2-3 sem" },
+        { "title": "D-Studio.Office", "body": "Gestion autonome : produits, commandes B2B, analytics, Google Business.", "duration": "Inclus" }
+      ]
+    },
+    {
+      "type": "cta",
+      "label": "Pour démarrer",
+      "title": "Un siècle de<br>savoir-faire.<br>Un site à la hauteur.",
+      "offers": [
+        { "title": "Audit e-commerce luxe", "price": "4-6k€", "details": "2 semaines · Benchmark luxe · Stratégie unification · Recommandations UX" },
+        { "title": "Plateforme complète", "price": "25-40k€", "details": "12-16 semaines · E-commerce + B2B + Brand · D-Studio.Office inclus" }
+      ]
+    }
+  ]
+}

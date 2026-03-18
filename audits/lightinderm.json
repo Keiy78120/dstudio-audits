@@ -1,0 +1,75 @@
+{
+  "slug": "lightinderm",
+  "client": "Lightinderm",
+  "date": "Mars 2026",
+  "lang": "fr",
+  "slides": [
+    {
+      "type": "hero",
+      "label": "Lightinderm",
+      "title": "La science mérite<br>un meilleur écrin.",
+      "body": "50 brevets. 52k followers Instagram.<br>Un site qui ne reflète pas l'innovation.<br>Il est temps de corriger ça.",
+      "tags": ["Refonte Site", "Espace Pro", "SEO Médical", "E-commerce"]
+    },
+    {
+      "type": "gap",
+      "label": "Le gap",
+      "title": "Innovation produit vs présence digitale.",
+      "columns": [
+        {
+          "title": "LE PRODUIT",
+          "type": "good",
+          "items": [
+            "<strong style='color:#fff;'>50 brevets</strong> déposés — technologie LED unique",
+            "<strong style='color:#fff;'>52k Instagram</strong> — communauté engagée",
+            "Distribution en <strong style='color:#fff;'>pharmacies et cliniques</strong>",
+            "Résultats cliniques <strong style='color:#fff;'>prouvés</strong>",
+            "Positionnement <strong style='color:#fff;'>MedTech premium</strong>"
+          ]
+        },
+        {
+          "title": "LE SITE ACTUEL",
+          "type": "bad",
+          "items": [
+            "Design daté — ne reflète <strong style='color:#fff;'>pas le positionnement premium</strong>",
+            "Pas d'espace Pro pour les <strong style='color:#fff;'>revendeurs/dermatologues</strong>",
+            "SEO médical <strong style='color:#fff;'>inexistant</strong> — invisible sur Google",
+            "Mobile : expérience <strong style='color:#fff;'>non optimisée</strong>",
+            "<em style='color:rgba(248,113,113,0.7);'>Un produit à 300€ mérite un site premium</em>"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "cards",
+      "label": "Opportunités",
+      "title": "3 axes de transformation.",
+      "grid": "col",
+      "cards": [
+        { "title": "Refonte Premium", "body": "Nouveau design aligné avec le positionnement MedTech. Animations, storytelling scientifique, preuves cliniques mises en avant. Score PageSpeed 90+.", "highlight": "green" },
+        { "title": "Espace Pro Revendeurs", "body": "Portail dédié aux pharmacies et dermatologues. Commandes, formations, assets marketing. Gestion autonome via D-Studio.Office.", "highlight": "green" },
+        { "title": "SEO & GEO Médical", "body": "Stratégie de contenu ciblée : dermatologie LED, anti-âge, soins visage. Optimisation pour Google ET pour les moteurs IA (ChatGPT, Perplexity)." }
+      ]
+    },
+    {
+      "type": "proposition",
+      "label": "Notre proposition",
+      "title": "4 chantiers. Impact immédiat.",
+      "items": [
+        { "title": "Refonte site vitrine premium", "body": "Design MedTech, animations, storytelling clinique, mobile-first", "duration": "6-8 sem" },
+        { "title": "Espace Pro revendeurs", "body": "Portail B2B, commandes, formations, assets marketing", "duration": "4-6 sem" },
+        { "title": "SEO & GEO médical", "body": "Stratégie de contenu, schema.org, optimisation moteurs IA", "duration": "Continu" },
+        { "title": "D-Studio.Office", "body": "Tableau de bord gestion : analytics, contenus, Google Business", "duration": "Inclus" }
+      ]
+    },
+    {
+      "type": "cta",
+      "label": "Pour démarrer",
+      "title": "Un site à la hauteur<br>de l'innovation.",
+      "offers": [
+        { "title": "Audit UX complet", "price": "3-5k€", "details": "2 semaines · Analyse concurrence · 15 recommandations prioritisées" },
+        { "title": "Refonte complète", "price": "15-25k€", "details": "8-10 semaines · Site + Espace Pro + SEO · D-Studio.Office inclus" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "lacompagnie",
+  "client": "La Compagnie",
+  "date": "Mars 2026",
+  "lang": "fr",
+  "slides": [
+    {
+      "type": "hero",
+      "label": "La Compagnie",
+      "title": "Business class only.<br>Site web : economy.",
+      "body": "La seule compagnie 100% business class.<br>Paris-NYC chaque jour. Mais le digital ne suit pas.",
+      "tags": ["Unification Domaines", "Refonte App", "Landing Corporate", "SEO Aérien"]
+    },
+    {
+      "type": "gap",
+      "label": "Le gap",
+      "title": "Service premium, expérience digitale standard.",
+      "columns": [
+        {
+          "title": "L'OFFRE",
+          "type": "good",
+          "items": [
+            "<strong style='color:#fff;'>100% business class</strong> — unique au monde",
+            "Paris-NYC <strong style='color:#fff;'>quotidien</strong>",
+            "Tarifs <strong style='color:#fff;'>-30%</strong> vs business class traditionnelle",
+            "Clientèle <strong style='color:#fff;'>premium fidèle</strong>",
+            "Positionnement <strong style='color:#fff;'>boutique airline</strong>"
+          ]
+        },
+        {
+          "title": "LE DIGITAL ACTUEL",
+          "type": "bad",
+          "items": [
+            "<strong style='color:#fff;'>2 domaines</strong> non unifiés — confusion",
+            "App datant de <strong style='color:#fff;'>2015</strong> — UX obsolète",
+            "Pas de landing <strong style='color:#fff;'>corporate B2B</strong>",
+            "SEO aérien <strong style='color:#fff;'>sous-exploité</strong>",
+            "<em style='color:rgba(248,113,113,0.7);'>Un vol à 2000€ mérite une expérience digitale premium</em>"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "proposition",
+      "label": "Notre proposition",
+      "title": "4 chantiers. Expérience bout en bout.",
+      "items": [
+        { "title": "Unification des domaines", "body": "Un seul site, une seule marque, une seule expérience. Migration SEO sans perte.", "duration": "3-4 sem" },
+        { "title": "Refonte app de réservation", "body": "Interface moderne, tunnel de réservation fluide, boarding pass digital, programme fidélité.", "duration": "8-12 sem" },
+        { "title": "Landing corporate B2B", "body": "Page dédiée entreprises, contrats corporate, gestion voyages d'affaires.", "duration": "2-3 sem" },
+        { "title": "SEO & contenu premium", "body": "Stratégie content marketing : destinations, lifestyle business class, GEO optimisation.", "duration": "Continu" }
+      ]
+    },
+    {
+      "type": "cta",
+      "label": "Pour démarrer",
+      "title": "Un vol premium<br>mérite un digital<br>premium.",
+      "offers": [
+        { "title": "Audit UX & technique", "price": "5-8k€", "details": "3 semaines · Audit app + sites · Benchmark aérien · Recommandations prioritisées" },
+        { "title": "Refonte digitale complète", "price": "30-50k€", "details": "12-16 semaines · Site unifié + App + Corporate · D-Studio.Office inclus" }
+      ]
+    }
+  ]
+}

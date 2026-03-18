@@ -1,0 +1,66 @@
+{
+  "slug": "nom-client",
+  "client": "Nom du Client",
+  "date": "Mars 2026",
+  "lang": "fr",
+  "slides": [
+    {
+      "type": "hero",
+      "label": "Nom du Client",
+      "title": "Titre principal<br>sur deux lignes.",
+      "body": "Accroche percutante qui résume<br>le problème et la solution.",
+      "tags": ["Tag 1", "Tag 2", "Tag 3"]
+    },
+    {
+      "type": "gap",
+      "label": "Le gap",
+      "title": "Ce qui existe vs ce qui devrait exister.",
+      "columns": [
+        {
+          "title": "BENCHMARK (leader)",
+          "type": "good",
+          "items": [
+            "Point fort <strong style='color:#fff;'>avec mise en valeur</strong>",
+            "Autre point fort"
+          ]
+        },
+        {
+          "title": "CLIENT AUJOURD'HUI",
+          "type": "bad",
+          "items": [
+            "Point faible <strong style='color:#fff;'>avec données</strong>",
+            "Autre point faible"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "cards",
+      "label": "Analyse",
+      "title": "Constat détaillé.",
+      "grid": "grid-2",
+      "cards": [
+        { "title": "Point 1", "body": "Description détaillée du constat.", "highlight": "red" },
+        { "title": "Point 2", "body": "Description détaillée du constat.", "highlight": "green" }
+      ]
+    },
+    {
+      "type": "proposition",
+      "label": "Notre proposition",
+      "title": "X chantiers. ROI mesurable.",
+      "items": [
+        { "title": "Chantier 1", "body": "Description courte", "duration": "3-6 sem" },
+        { "title": "Chantier 2", "body": "Description courte", "duration": "4-8 sem" }
+      ]
+    },
+    {
+      "type": "cta",
+      "label": "Pour démarrer",
+      "title": "Un audit.<br>X semaines.<br>Sans engagement.",
+      "offers": [
+        { "title": "Audit complet", "price": "X-Yk€", "details": "Durée · Livrables · ROI estimé" },
+        { "title": "Proof of Concept", "price": "X-Yk€", "details": "Durée · Prototype · Présentation" }
+      ]
+    }
+  ]
+}
