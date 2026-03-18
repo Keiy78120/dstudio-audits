@@ -3,139 +3,194 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>D-Studio — Audits & Projets</title>
+<title>D-Studio — Dashboard Audits</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:#000;color:#fff;font-family:'Inter',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;}
-canvas#bg{position:fixed;inset:0;z-index:0;opacity:0.35;pointer-events:none;}
-
-/* Nav */
-nav{position:relative;z-index:10;padding:24px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);}
-.logo{font-size:18px;font-weight:900;letter-spacing:-.04em;color:#fff;}
-.logo span{color:rgba(255,255,255,.3);}
-.nav-tag{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;font-weight:600;}
-
-/* Main */
-main{flex:1;position:relative;z-index:1;padding:60px 40px 80px;}
-.hero{max-width:700px;margin-bottom:64px;}
-.label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:16px;display:block;}
-h1{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-.035em;line-height:1.02;margin-bottom:16px;}
-.sub{font-size:16px;color:rgba(255,255,255,.45);line-height:1.65;max-width:540px;}
-
-/* Section headers */
-.section-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.06);}
-
-/* Audit grid */
-.audits{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:48px;}
-.card{display:block;text-decoration:none;padding:24px 24px 22px;border-radius:12px;background:rgba(14,13,16,.92);border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
-.card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(145deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,.03) 50%,rgba(255,255,255,.1) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;pointer-events:none;}
-.card:hover{border-color:rgba(255,255,255,.2);transform:translateY(-2px);}
-.card-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
-.card-icon{font-size:26px;}
-.card-status{font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;}
-.status-live{background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);color:rgba(74,222,128,.85);}
-.status-internal{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);}
-.card-tag{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:8px;display:block;}
-.card h2{font-size:18px;font-weight:700;letter-spacing:-.025em;color:#fff;margin-bottom:6px;}
-.card p{font-size:12px;color:rgba(255,255,255,.4);line-height:1.55;}
-.card-footer{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;}
-.card-date{font-size:11px;color:rgba(255,255,255,.22);}
-.card-arrow{color:rgba(255,255,255,.2);font-size:16px;transition:color .2s,transform .2s;}
-.card:hover .card-arrow{color:rgba(255,255,255,.5);transform:translate(2px,-2px);}
-
-/* Add card (placeholder) */
-.card-add{border-style:dashed;background:transparent;cursor:default;}
-.card-add:hover{transform:none;border-color:rgba(255,255,255,.14);}
-.card-add-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px 0;gap:10px;}
-.add-icon{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.25);font-size:18px;}
-
-/* Footer */
-footer{position:relative;z-index:1;padding:24px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;}
-.footer-logo{font-size:14px;font-weight:700;letter-spacing:-.03em;}
-.footer-logo span{color:rgba(255,255,255,.3);}
-.footer-info{font-size:11px;color:rgba(255,255,255,.22);}
-
-@media(max-width:600px){
-  nav,main,footer{padding-left:16px;padding-right:16px;}
-  body{width:100%;overflow-x:hidden;}
-  main{padding-top:40px;padding-bottom:60px;}
-  h1{font-size:32px;}
-  .audits{grid-template-columns:1fr;}
-  footer{flex-direction:column;gap:8px;text-align:center;}
+:root{--bg:#000;--card:rgba(14,13,16,0.92);--border:rgba(255,255,255,0.08);--muted:rgba(255,255,255,0.35);--r:12px;}
+html,body{width:100%;height:100%;background:#000;color:#fff;font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;}
+.wrapper{min-height:100vh;display:flex;flex-direction:column;background:#000;}
+nav{display:flex;align-items:center;gap:16px;padding:18px 40px;border-bottom:1px solid rgba(255,255,255,0.06);position:relative;z-index:10;}
+.logo{font-size:18px;font-weight:900;letter-spacing:-0.04em;color:#fff;}
+.logo span{color:rgba(255,255,255,0.3);}
+.nav-label{font-size:13px;font-weight:600;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.08em;}
+main{flex:1;padding:40px;max-width:1400px;margin:0 auto;width:100%;}
+.section-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:8px;}
+.section-title{font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-0.035em;margin-bottom:24px;color:#fff;}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-bottom:60px;}
+.card{position:relative;background:var(--card);border-radius:var(--r);border:1px solid var(--border);padding:24px;transition:all 0.3s;cursor:pointer;overflow:hidden;display:flex;flex-direction:column;gap:12px;}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(145deg,rgba(255,255,255,0.14) 0%,rgba(255,255,255,0.03) 50%,rgba(255,255,255,0.1) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;pointer-events:none;}
+.card:hover{border-color:rgba(255,255,255,0.16);background:rgba(14,13,16,0.98);}
+.card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;position:relative;z-index:1;}
+.card-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.04);border-radius:8px;flex-shrink:0;}
+.card-icon i{stroke:rgba(255,255,255,0.5);filter:drop-shadow(0 0 6px rgba(255,255,255,0.15));}
+.card-meta{display:flex;gap:8px;flex-wrap:wrap;}
+.card-tag{display:inline-block;padding:2px 10px;border-radius:100px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);font-size:10px;font-weight:600;}
+.card-tag.live{background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.2);color:rgba(74,222,128,0.85);}
+.card-tag.internal{background:rgba(147,197,253,0.1);border-color:rgba(147,197,253,0.2);color:rgba(147,197,253,0.85);}
+.card-title{font-size:18px;font-weight:700;color:#fff;position:relative;z-index:1;}
+.card-desc{font-size:13px;line-height:1.5;color:rgba(255,255,255,0.42);position:relative;z-index:1;}
+.card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;position:relative;z-index:1;font-size:11px;color:rgba(255,255,255,0.28);}
+.card-add{display:flex;align-items:center;justify-content:center;min-height:200px;background:linear-gradient(135deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:2px dashed rgba(255,255,255,0.08);}
+.card-add i{stroke:rgba(255,255,255,0.25);width:40px;height:40px;}
+footer{border-top:1px solid rgba(255,255,255,0.06);padding:24px 40px;text-align:center;font-size:12px;color:rgba(255,255,255,0.35);position:relative;z-index:1;}
+a{color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s;}
+a:hover{color:#fff;}
+@media(max-width:768px){
+  nav,main,footer{padding:16px 20px;}
+  .section-title{font-size:24px;margin-bottom:18px;}
+  .cards-grid{grid-template-columns:1fr;gap:12px;margin-bottom:40px;}
+  .card{padding:18px;}
 }
 </style>
 </head>
 <body>
-<canvas id="bg"></canvas>
-
+<div class="wrapper">
 <nav>
   <span class="logo">D<span>.</span>STUDIO</span>
-  <span class="nav-tag">Audits & Projets</span>
+  <span style="flex:1;"></span>
+  <span class="nav-label">Dashboard interne</span>
 </nav>
 
 <main>
-  <div class="hero">
-    <span class="label">Dashboard interne</span>
-    <h1>Nos audits.<br>Nos projets.</h1>
-    <p class="sub">Chaque deck est isolé dans son propre repo — les clients ne peuvent pas se voir entre eux. Accès direct aux présentations.</p>
-  </div>
-
   <!-- Projets internes -->
-  <div class="section-label">Projets D-Studio</div>
-  <div class="audits">
+  <div style="margin-bottom:60px;">
+    <p class="section-label">Projets internes</p>
+    <h2 class="section-title">REX & Portfolio</h2>
+    <div class="cards-grid">
+      <a href="https://keiy78120.github.io/dstudio-audit-rexos/" style="text-decoration:none;">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">
+              <i data-lucide="server" style="width:20px;height:20px;"></i>
+            </div>
+            <div class="card-meta">
+              <span class="card-tag internal">Interne</span>
+            </div>
+          </div>
+          <h3 class="card-title">REX OS</h3>
+          <p class="card-desc">Retour d'expérience infrastructure cloud.</p>
+          <div class="card-footer">
+            <span>14 mars 2026</span>
+          </div>
+        </div>
+      </a>
 
-    <a class="card" href="https://keiy78120.github.io/dstudio-audit-rexos/" target="_blank">
-      <div class="card-meta">
-        <span class="card-icon">⚡</span>
-        <span class="card-status status-internal">Interne</span>
-      </div>
-      <span class="card-tag">OS · Hardware · Vision</span>
-      <h2>REX OS</h2>
-      <p>L'OS conçu pour les agents IA. Hardware dédié, couches LLM dynamiques, réseau P2P, Session Vault.</p>
-      <div class="card-footer">
-        <span class="card-date">17 mars 2026</span>
-        <span class="card-arrow">↗</span>
-      </div>
-    </a>
-
+      <a href="https://keiy78120.github.io/dstudio-audit-stellantis/" style="text-decoration:none;">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">
+              <i data-lucide="car" style="width:20px;height:20px;"></i>
+            </div>
+            <div class="card-meta">
+              <span class="card-tag live">Live</span>
+            </div>
+          </div>
+          <h3 class="card-title">Stellantis Peugeot</h3>
+          <p class="card-desc">Audit et refonte identité digital.</p>
+          <div class="card-footer">
+            <span>25 mars 2026</span>
+          </div>
+        </div>
+      </a>
+    </div>
   </div>
 
   <!-- Audits clients -->
-  <div class="section-label" style="margin-top:12px;">Audits Clients</div>
-  <div class="audits">
+  <div>
+    <p class="section-label">Audits clients en cours</p>
+    <h2 class="section-title">P&M Executive Search</h2>
+    <div class="cards-grid">
+      <a href="https://keiy78120.github.io/dstudio-audit-lightinderm/" style="text-decoration:none;">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">
+              <i data-lucide="droplet" style="width:20px;height:20px;"></i>
+            </div>
+            <div class="card-meta">
+              <span class="card-tag">Dermo-cosmétique</span>
+            </div>
+          </div>
+          <h3 class="card-title">Lightinderm</h3>
+          <p class="card-desc">Refonte site MedTech premium + espace Pro.</p>
+          <div class="card-footer">
+            <span>Mars 2026</span>
+          </div>
+        </div>
+      </a>
 
-    <a class="card" href="https://keiy78120.github.io/dstudio-audit-stellantis/" target="_blank">
-      <div class="card-meta">
-        <span class="card-icon">🚗</span>
-        <span class="card-status status-live">Live</span>
-      </div>
-      <span class="card-tag">Automobile · IA embarquée</span>
-      <h2>Stellantis × Peugeot</h2>
-      <p>Audit MyPeugeot, interface embarquée, agent IA voiture, BTA WebSocket. RDV direction 25 mars 2026.</p>
-      <div class="card-footer">
-        <span class="card-date">25 mars 2026</span>
-        <span class="card-arrow">↗</span>
-      </div>
-    </a>
+      <a href="https://keiy78120.github.io/dstudio-audit-prunier/" style="text-decoration:none;">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">
+              <i data-lucide="wine" style="width:20px;height:20px;"></i>
+            </div>
+            <div class="card-meta">
+              <span class="card-tag">Gastronomie luxe</span>
+            </div>
+          </div>
+          <h3 class="card-title">Prunier</h3>
+          <p class="card-desc">Unification post-fusion + plateforme B2B.</p>
+          <div class="card-footer">
+            <span>Mars 2026</span>
+          </div>
+        </div>
+      </a>
 
-    <div class="card card-add">
-      <div class="card-add-inner">
-        <div class="add-icon">+</div>
-        <p style="font-size:12px;color:rgba(255,255,255,.25);line-height:1.5;">Prochain audit client<br>demandez à Milo de créer un deck</p>
+      <a href="https://keiy78120.github.io/dstudio-audit-lacompagnie/" style="text-decoration:none;">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">
+              <i data-lucide="plane" style="width:20px;height:20px;"></i>
+            </div>
+            <div class="card-meta">
+              <span class="card-tag">Transport aérien</span>
+            </div>
+          </div>
+          <h3 class="card-title">La Compagnie</h3>
+          <p class="card-desc">Unification domaines + refonte app.</p>
+          <div class="card-footer">
+            <span>Mars 2026</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://keiy78120.github.io/dstudio-audit-ohlala/" style="text-decoration:none;">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">
+              <i data-lucide="shopping-bag" style="width:20px;height:20px;"></i>
+            </div>
+            <div class="card-meta">
+              <span class="card-tag">E-commerce</span>
+            </div>
+          </div>
+          <h3 class="card-title">Ohlala Sellerie</h3>
+          <p class="card-desc">Migration Shopify → Next.js + configurateur.</p>
+          <div class="card-footer">
+            <span>Mars 2026</span>
+          </div>
+        </div>
+      </a>
+
+      <div class="card card-add">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+          <i data-lucide="plus" style="width:32px;height:32px;stroke:rgba(255,255,255,0.2);"></i>
+          <span style="font-size:13px;color:rgba(255,255,255,0.3);font-weight:500;">Audit à venir</span>
+        </div>
       </div>
     </div>
-
   </div>
 </main>
 
 <footer>
-  <span class="footer-logo">D<span>.</span>STUDIO</span>
-  <span class="footer-info">contact@dstudio.company · 7 rue Lauriston, 75016 Paris</span>
+  contact@dstudio.company · +33 6 64 27 77 51 · 7 rue Lauriston 75016 Paris
 </footer>
+</div>
 
 <script>
-(function(){const c=document.getElementById('bg'),ctx=c.getContext('2d');let W,H,pts=[];function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}function P(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.25;this.vy=(Math.random()-.5)*.25;this.r=Math.random()*1.2+.3;this.a=Math.random()*.25+.06;}function init(){resize();pts=Array.from({length:60},()=>new P());}function draw(){ctx.clearRect(0,0,W,H);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${p.a})`;ctx.fill();});for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<100){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(255,255,255,${.035*(1-d/100)})`;ctx.lineWidth=.5;ctx.stroke();}}requestAnimationFrame(draw);}window.addEventListener('resize',resize);init();draw();})();
+lucide.createIcons();
 </script>
 </body>
 </html>
