@@ -80,24 +80,98 @@
       ]
     },
     {
+      "type": "gap",
+      "label": "Infrastructure",
+      "title": "100 calculateurs.<br>Tesla en a 25.",
+      "columns": [
+        {
+          "title": "TESLA / RIVIAN",
+          "type": "good",
+          "items": [
+            "ECUs : <strong style='color:#fff;'>25 (Tesla) · 7 (Rivian R2)</strong>",
+            "Câblage : <strong style='color:#fff;'>–50% (Model 3)</strong>",
+            "Assemblage : <strong style='color:#fff;'>10 heures</strong>",
+            "Rappels software : <strong style='color:#fff;'>99% résolus par OTA</strong>",
+            "VW a payé <strong style='color:#fff;'>$5.8Mds à Rivian</strong> pour accéder à cette architecture"
+          ]
+        },
+        {
+          "title": "STELLANTIS AUJOURD'HUI",
+          "type": "bad",
+          "items": [
+            "ECUs : <strong style='color:#fff;'>100+</strong> par véhicule",
+            "SmartCockpit Amazon : <strong style='color:#fff;'>terminé mai 2025</strong>",
+            "AutoDrive Level 3 : <strong style='color:#fff;'>abandonné août 2025</strong>",
+            "Rappels : <strong style='color:#fff;'>0% OTA — 100% concession</strong>",
+            "Garantie : <strong style='color:#fff;'>€14.1 milliards de provisions</strong>"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "cards",
+      "label": "Le coût de l'inaction",
+      "title": "Les chiffres parlent.",
+      "grid": "grid-2",
+      "cards": [
+        {
+          "title": "$700M+/an",
+          "body": "Économie potentielle si les rappels software étaient résolus par OTA au lieu de passages en concession. 1.5M véhicules rappelés en 2024 pour bugs software.",
+          "highlight": "red"
+        },
+        {
+          "title": "€22 milliards",
+          "body": "Dépréciation annoncée fév 2026. Produits annulés, chaîne EV restructurée, provisions garantie. Le software est au cœur du problème.",
+          "highlight": "red"
+        },
+        {
+          "title": "VW : $7.5Mds perdus",
+          "body": "Cariad (filiale software VW) a perdu $7.5Mds en 3 ans en essayant de construire en interne. Puis VW a payé $5.8Mds à Rivian. L'interne ne marche pas seul.",
+          "highlight": "red"
+        },
+        {
+          "title": "$1.6 trillion",
+          "body": "Marché SDV d'ici 2030. Stellantis cible €20Mds. Mais sans infrastructure logicielle, ces revenus iront à Tesla, BYD, Xiaomi.",
+          "highlight": "green"
+        }
+      ]
+    },
+    {
+      "type": "custom",
+      "label": "La solution technique",
+      "title": "Rust + Flutter + Mistral.<br>Stack souveraine.",
+      "html": "<div class='grid-2' style='gap:14px;'><div class='card' style='padding:18px 20px;border-color:rgba(52,211,153,0.2);background:rgba(52,211,153,0.04);'><div class='card-title' style='color:rgba(52,211,153,0.9);'>🦀 Rust — Middleware véhicule</div><div class='card-body' style='margin-top:10px;font-size:13px;'>Élimine 70% des bugs mémoire à la compilation (Microsoft, Google). Certifié ISO 26262 via Ferrocene. <strong>Volvo</strong> l'utilise en production (Polestar 3). <strong>Toyota</strong> l'utilise dans le RAV4 2026. White House + CISA recommandent officiellement d'abandonner C/C++ pour Rust.</div></div><div class='card' style='padding:18px 20px;border-color:rgba(96,165,250,0.2);background:rgba(96,165,250,0.04);'><div class='card-title' style='color:rgba(96,165,250,0.9);'>💎 Flutter — Cockpit & Apps</div><div class='card-body' style='margin-top:10px;font-size:13px;'><strong>Toyota RAV4 2026</strong> : infotainment Flutter. <strong>BMW</strong> : app My BMW en Flutter (30+ marchés). <strong>Xiaomi SU7</strong> : app Flutter (–60% temps dev). Moteur Fluorite : rendu console-grade pour cockpits auto. AOT compile → ARM natif, pas de bridge JS.</div></div><div class='card' style='padding:18px 20px;border-color:rgba(251,191,36,0.2);background:rgba(251,191,36,0.04);'><div class='card-title' style='color:rgba(251,191,36,0.9);'>🧠 Mistral AI — Votre partenaire</div><div class='card-body' style='margin-top:10px;font-size:13px;'>Vous avez déjà le partenariat (fév + oct 2025). Innovation Lab, assistant vocal, quality control. <strong>Ce qui manque</strong> : le middleware qui connecte Mistral aux données ECU/capteurs en temps réel. C'est notre spécialité.</div></div><div class='card' style='padding:18px 20px;'><div class='card-title'>🇪🇺 100% Souverain</div><div class='card-body' style='margin-top:10px;font-size:13px;'>Rust (open source, Mozilla → communauté). Flutter (Google, développé en Europe). Mistral (Paris). Aucune dépendance Amazon, aucune dépendance US critique. RGPD by design.</div></div></div>"
+    },
+    {
+      "type": "custom",
+      "label": "Approche",
+      "title": "Migration progressive.<br>Pas big bang.",
+      "html": "<div style='display:flex;flex-direction:column;gap:16px;'><div class='card' style='padding:18px 20px;border-left:3px solid rgba(52,211,153,0.6);'><div class='card-title' style='font-size:14px;'>Phase 1 — Couche visible (3-6 mois)</div><div class='card-body' style='margin-top:8px;font-size:13px;'>Refonte MyPeugeot (Flutter) · POC cockpit Flutter · Bridge Mistral ↔ données véhicule · OTA manager</div></div><div class='card' style='padding:18px 20px;border-left:3px solid rgba(96,165,250,0.6);'><div class='card-title' style='font-size:14px;'>Phase 2 — Middleware Rust (6-12 mois)</div><div class='card-body' style='margin-top:8px;font-size:13px;'>Passerelle CAN → IP · Telemetry pipeline · Diagnostic protocol (UDS/OBD-II) · Dual write sur véhicule test</div></div><div class='card' style='padding:18px 20px;border-left:3px solid rgba(251,191,36,0.6);'><div class='card-title' style='font-size:14px;'>Phase 3 — Avec partenaires certifiés (12-24 mois)</div><div class='card-body' style='margin-top:8px;font-size:13px;'>Migration ECU secondaires (thermique, éclairage, confort) avec Ferrous Systems · Architecture zonale avec Elektrobit/dSPACE · Central compute avec NVIDIA DRIVE</div></div></div>"
+    },
+    {
       "type": "proposition",
       "label": "Notre proposition",
-      "title": "5 chantiers. ROI mesurable.",
+      "title": "7 chantiers. ROI mesurable.",
       "items": [
         {
-          "title": "Refonte MyPeugeot App",
-          "body": "Connexion stable · <2s · Design system · Zéro déconnexion",
+          "title": "Refonte MyPeugeot App (Flutter)",
+          "body": "Connexion stable · <2s · Design system · Zéro déconnexion · 1 codebase iOS+Android",
           "duration": "3–6 sem"
         },
         {
-          "title": "Interface Embarquée Next-Gen",
-          "body": "Contextuelle · Voix naturelle · Mistral AI · 1 tap = 1 action",
+          "title": "Cockpit Flutter Next-Gen",
+          "body": "Remplace React Native/Amazon · Voix naturelle Mistral · AOT natif ARM · 60fps garanti",
           "duration": "8–12 sem"
         },
         {
-          "title": "Agent IA Embarqué",
-          "body": "Mémoire long terme · Anticipe vos trajets · Zéro données cloud · Self-improving",
-          "duration": "12–20 sem"
+          "title": "Bridge Mistral ↔ Véhicule",
+          "body": "Connecter vos modèles Mistral aux données ECU/capteurs · Diagnostic prédictif · Edge IA",
+          "duration": "8–12 sem"
+        },
+        {
+          "title": "Middleware Rust (Telemetry + OTA)",
+          "body": "Passerelle CAN→IP · OTA rollout progressif · Rollback auto · –70% bugs mémoire",
+          "duration": "10–16 sem"
         },
         {
           "title": "BTA WebSocket Persistant",
@@ -105,9 +179,14 @@
           "duration": "6–10 sem"
         },
         {
-          "title": "OTA Intelligence",
-          "body": "Rollout progressif · A/B testing · Rollback auto · Dashboard temps réel",
-          "duration": "4–6 sem"
+          "title": "Audit Architecture ECU",
+          "body": "Cartographie 100+ ECUs · Roadmap consolidation zonale · Benchmark Tesla/Rivian/BYD",
+          "duration": "3–4 sem"
+        },
+        {
+          "title": "Simulation CARLA (POC)",
+          "body": "Démo visuelle architecture zonale · GPU RTX 3090 · Véhicule centralisé temps-réel",
+          "duration": "2–3 sem"
         }
       ]
     },
@@ -117,14 +196,19 @@
       "title": "Un audit.<br>3 semaines.<br>Sans engagement.",
       "offers": [
         {
-          "title": "Audit UX MyPeugeot",
-          "price": "5–8k€",
-          "details": "3 semaines · 20 recommandations prioritisées · ROI estimé par feature"
+          "title": "Audit UX + Architecture",
+          "price": "12–18k€",
+          "details": "4 semaines · Audit MyPeugeot + cartographie ECU · 30 recommandations · Roadmap migration · Benchmark concurrence"
         },
         {
-          "title": "Proof of Concept Interface",
-          "price": "15–25k€",
-          "details": "8 semaines · Prototype interactif · Mistral AI intégré · Présentation direction"
+          "title": "POC Cockpit Flutter + Mistral Bridge",
+          "price": "25–40k€",
+          "details": "10 semaines · Prototype cockpit Flutter · Mistral connecté aux données véhicule · Simulation CARLA · Présentation direction"
+        },
+        {
+          "title": "Middleware Rust (Telemetry + OTA)",
+          "price": "40–60k€",
+          "details": "16 semaines · Passerelle CAN→IP · OTA manager · Dual write véhicule test · Tests Ferrocene"
         }
       ]
     }
