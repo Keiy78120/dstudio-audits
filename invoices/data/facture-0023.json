@@ -1,0 +1,41 @@
+{
+  "number": "0023",
+  "date": "25 Avril 2026",
+  "items": [
+    {
+      "title": "Corrections backend API",
+      "subtitle": "Proxy Brevo/Sendinblue, pagination users, emails hardening, mayors null-checks, 500 cleanup prod",
+      "taux": 37.50,
+      "heures": 5,
+      "montant": 187.50
+    },
+    {
+      "title": "Stabilisation frontend Angular",
+      "subtitle": "6 fixes E2E, messagerie citoyen/maire, responsive mobile, isolation envs beta/prod",
+      "taux": 37.50,
+      "heures": 4,
+      "montant": 150.00
+    },
+    {
+      "title": "Corrections Flutter",
+      "subtitle": "Firebase platform options, null safety pass, bindings optimisation, video upload",
+      "taux": 37.50,
+      "heures": 3,
+      "montant": 112.50
+    },
+    {
+      "title": "Deploiements & validation beta+prod",
+      "subtitle": "Deploy GAE API+APP, smoke tests, cleanup versions, whitelist IP Brevo",
+      "taux": 37.50,
+      "heures": 2.5,
+      "montant": 93.75
+    },
+    {
+      "title": "Tests E2E & documentation",
+      "subtitle": "Playwright multi-role desktop+mobile, Flutter web, rapports stabilisation",
+      "taux": 37.50,
+      "heures": 2.5,
+      "montant": 93.75
+    }
+  ]
+}
