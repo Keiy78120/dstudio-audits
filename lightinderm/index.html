@@ -523,11 +523,12 @@ body {
 /* ═══ HERO GRADIENT OVERLAY ═══ */
 .hero-gradient-overlay {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 60%;
-  background: linear-gradient(to top, #000 0%, #000 20%, transparent 100%);
+  bottom: -20px;
+  left: -10%;
+  right: -10%;
+  height: 150px;
+  background: radial-gradient(50% 50% at 50% 50%, #000 0%, rgba(0,0,0,0.8) 60%, transparent 100%);
+  filter: blur(27px);
   pointer-events: none;
 }
 
