@@ -825,12 +825,15 @@ body {
   <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center px-6 h-full">
     <!-- Outer container: x=168, w=1104 → prop-container with badge+title on top -->
     <div class="fade-up w-full max-w-[1104px]">
-      <!-- Proposition container wraps everything -->
-      <div class="prop-container p-[40px]">
-        <!-- Badge + Title inside container -->
-        <div class="flex flex-col items-center gap-[30px] mb-[32px]">
-          <div class="badge">NOTRE PROPOSITION</div>
-          <h2 class="font-bold text-[36px] text-[#e6e6f1] text-center leading-normal">
+      <!-- Badge overlapping container top border -->
+      <div class="flex justify-center" style="position:relative; z-index:2; margin-bottom:-20px;">
+        <div class="badge">NOTRE PROPOSITION</div>
+      </div>
+      <!-- Proposition container -->
+      <div class="prop-container" style="padding: 60px 40px 20px;">
+        <!-- Title inside container -->
+        <div class="flex flex-col items-center mb-[40px]">
+          <h2 class="font-bold text-[48px] text-[#e6e6f1] text-center leading-[1.1]">
             4 chantiers. Impact immédiat.
           </h2>
         </div>
