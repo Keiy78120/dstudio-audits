@@ -789,9 +789,10 @@ body {
     <div class="fade-up flex flex-col md:flex-row items-center w-full" style="transition-delay:0.1s">
       <!-- Image: square-ish like Figma -->
       <div class="benchmark-image flex-shrink-0 relative" style="margin-right:-80px; z-index:1;">
-        <img src="assets/product-usage.png" alt="Site actuel Lightinderm"
-             class="w-[420px] h-[420px] object-cover rounded-[28px]"
-             style="border:8px solid #cfcfcf; box-shadow: 0 0 0 2px rgba(255,255,255,0.25);" />
+        <div class="relative w-[420px] h-[420px] rounded-[32px]" style="padding:11px; box-shadow: 0 0 0 2px rgba(255,255,255,0.25);">
+          <div style="position:absolute; inset:0; border-radius:32px; padding:11px; background:linear-gradient(180deg, rgba(207,207,207,0.59) 0%, rgba(105,105,105,0.30) 50%, rgba(105,105,105,0.41) 100%); -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite:exclude; pointer-events:none; z-index:1;"></div>
+          <img src="assets/product-usage.png" alt="Site actuel Lightinderm" class="w-full h-full object-cover rounded-[21px]" />
+        </div>
       </div>
 
       <!-- Text section: w=618 -->
