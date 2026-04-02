@@ -24,264 +24,579 @@ tailwind.config = {
 }
 </script>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* ═══ DESIGN TOKENS (from Figma DS page 297:553) ═══ */
+:root {
+  --bg-primary: #000000;
+  --bg-card: #141415;
+  --bg-card-glass: rgba(24,24,26,0.58);
+  --bg-card-muted: rgba(28,28,30,0.43);
+  --bg-elevated: #202020;
+  --text-primary: #FFFFFF;
+  --text-heading: #EFEFEF;
+  --text-heading-alt: #E6E6F1;
+  --text-secondary: #C7C7CC;
+  --text-muted: #A3A3AE;
+  --text-nav: #E5E5E5;
+  --border-primary: rgba(255,255,255,0.4);
+  --border-subtle: rgba(54,54,54,0.8);
+  --border-muted: rgba(54,52,59,0.2);
+  --border-card-accent: rgba(255,255,255,0.24);
+  --radius-pill: 40px;
+  --radius-card: 33px;
+  --radius-inner: 21px;
+  --radius-badge: 16px;
+  --radius-tag: 14px;
+}
 
-  html {
-    background: #000;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    scroll-behavior: smooth;
-  }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-  body {
-    overflow-x: hidden;
-    scroll-snap-type: y mandatory;
-    height: 100vh;
-    overflow-y: auto;
-  }
+/* ═══ GRADIENT BORDER UTILS (DS tokens) ═══ */
+/* Variant 1: pills — 157deg, subtle corners */
+.gb-pill { position: relative; border: none; }
+.gb-pill::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: linear-gradient(157deg, rgba(255,255,255,0.40) 2.12%, rgba(255,255,255,0) 39%, rgba(255,255,255,0) 54.33%, rgba(255,255,255,0.10) 93.02%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none;
+}
+/* Variant 2: cards — 159deg, bright mid-stroke */
+.gb-card { position: relative; border: none; }
+.gb-card::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: linear-gradient(159deg, rgba(255,255,255,0.05) 1.69%, rgba(255,255,255,0.50) 37.46%, rgba(255,255,255,0.01) 88.2%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none;
+}
+/* Variant 3: accent — 152deg, strong top-left */
+.gb-accent { position: relative; border: none; }
+.gb-accent::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: linear-gradient(152deg, rgba(255,255,255,0.65) 32.68%, rgba(255,255,255,0) 98.12%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none;
+}
 
+html {
+  background: var(--bg-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  scroll-snap-type: y proximity;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.slide {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ═══ PROGRESS BAR ═══ */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2));
+  z-index: 100;
+  transition: width 0.3s ease;
+}
+
+/* ═══ NAV DOTS ═══ */
+.nav-dots {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 90;
+}
+.nav-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.nav-dot.active {
+  background: rgba(255,255,255,0.8);
+  transform: scale(1.4);
+}
+
+/* ═══ BADGE (DS / Badge — 315:7, 186:24) ═══ */
+.badge {
+  background: #141415;
+  border: none;
+  border-radius: 40px;
+  padding: 9px 18px;
+  font-size: 15px;
+  color: rgba(255,255,255,0.84);
+  text-transform: uppercase;
+  font-weight: 500;
+  white-space: nowrap;
+  line-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 40px;
+  padding: 1px;
+  background: linear-gradient(157deg, rgba(255,255,255,0.40) 2.12%, rgba(255,255,255,0) 39%, rgba(255,255,255,0) 54.33%, rgba(255,255,255,0.10) 93.02%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ═══ NAV TAB (DS / Nav Tab — 315:20, 186:171) ═══ */
+.tab-pill {
+  background: #141415;
+  border: none;
+  border-radius: 40px;
+  padding: 9px 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.tab-pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 40px;
+  padding: 1px;
+  background: linear-gradient(157deg, rgba(255,255,255,0.40) 2.12%, rgba(255,255,255,0) 39%, rgba(255,255,255,0) 54.33%, rgba(255,255,255,0.10) 93.02%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.tab-pill span {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: #e5e5e5;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* ═══ STAT CARD (DS / Stat Card — 318:14) — double-frame ═══ */
+.stat-card-outer {
+  border: none;
+  border-radius: var(--radius-card);
+  padding: 12px;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-card-glass);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+}
+/* Gradient border on outer frame */
+.stat-card-outer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-card);
+  padding: 1px;
+  background: linear-gradient(157deg, rgba(255,255,255,0.20) 2.12%, rgba(255,255,255,0) 39%, rgba(255,255,255,0) 54.33%, rgba(255,255,255,0.08) 93.02%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+/* Inner glow */
+.stat-card-outer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-card);
+  box-shadow: inset 0 0 14px 0 rgba(111,111,129,0.25);
+  pointer-events: none;
+}
+.stat-card-inner {
+  position: relative;
+  background: linear-gradient(to top, rgba(6,6,6,0.6) 0%, rgba(17,17,19,0.3) 83.56%, rgba(27,27,30,0.2) 110%);
+  border: none;
+  border-radius: var(--radius-inner);
+  padding: 21px 25px;
+  text-align: center;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+}
+.stat-card-outer.pricing .stat-card-inner {
+  padding: 21px 65px;
+}
+
+/* ═══ OPPORTUNITY CARD (DS / Opportunity Card — 318:18) ═══ */
+.opp-card {
+  border-radius: var(--radius-card);
+  padding: 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  box-shadow:
+    0 0 44px 0 rgba(76,131,83,0.03),
+    0 0 64px 0 rgba(217,228,231,0.2);
+}
+.opp-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--bg-card-muted);
+  border-radius: var(--radius-card);
+  pointer-events: none;
+}
+.opp-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset -1px -1px 14px 0 rgba(255,255,255,0.07),
+    inset 1px 1px 3px 0 rgba(255,255,255,0.12);
+  pointer-events: none;
+}
+.opp-card > * { position: relative; }
+
+/* ═══ BENCHMARK CARD (variant: bg 74% opacity) ═══ */
+.bench-card {
+  border-radius: var(--radius-card);
+  padding: 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 140px;
+  justify-content: center;
+  box-shadow:
+    0 0 44px 0 rgba(76,131,83,0.03),
+    0 0 64px 0 rgba(217,228,231,0.2);
+}
+.bench-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(21,21,23,0.74);
+  border-radius: var(--radius-card);
+  pointer-events: none;
+}
+.bench-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset -1px -1px 14px 0 rgba(255,255,255,0.07),
+    inset 1px 1px 3px 0 rgba(255,255,255,0.12);
+  pointer-events: none;
+}
+.bench-card > * { position: relative; }
+
+/* ═══ GAP COLUMNS (from Figma 76:128) ═══ */
+.gap-card-green,
+.gap-card-red {
+  border: none;
+  border-radius: var(--radius-card);
+  position: relative;
+  overflow: hidden;
+}
+.gap-card-green {
+  background:
+    linear-gradient(180deg, rgba(27,37,29,0.2) 0%, rgba(103,139,111,0) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0) 100%);
+}
+.gap-card-red {
+  background:
+    linear-gradient(180deg, rgba(37,27,27,0.2) 0%, rgba(0,0,0,0) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0) 100%);
+}
+.gap-card-green::before,
+.gap-card-red::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-card);
+  padding: 1px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+/* Gap column badge: pill-shaped with glass bg + inner glass shadow */
+.gap-badge {
+  background: #141415;
+  border: none;
+  border-radius: 40px;
+  padding: 9px 18px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+}
+.gap-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 40px;
+  padding: 1px;
+  background: linear-gradient(157deg, rgba(255,255,255,0.40) 2.12%, rgba(255,255,255,0) 39%, rgba(255,255,255,0) 54.33%, rgba(255,255,255,0.10) 93.02%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.gap-badge span { position: relative; z-index: 1; }
+/* Gap item: glass + outer glow */
+.gap-item {
+  border: none;
+  border-radius: var(--radius-tag);
+  padding: 14px 16px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 0 84px 0 rgba(227,221,186,0.1);
+}
+.gap-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(28,28,30,0.53);
+  mix-blend-mode: plus-lighter;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* ═══ PROPOSITION CONTAINER ═══ */
+.prop-container {
+  background: linear-gradient(180deg, #000000 0%, rgba(0,0,0,0.81) 53.39%, transparent 100%);
+  border-radius: var(--radius-card);
+  border: none;
+  overflow: hidden;
+  position: relative;
+}
+/* FRAME-GRA: top-fade border 180deg */
+.prop-container::before {
+  content: ''; position: absolute; inset: 0; border-radius: var(--radius-card); padding: 1px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none; z-index: 1;
+}
+
+/* ═══ PROPOSITION ITEM (DS / Proposition Item — 318:21) ═══ */
+.prop-item {
+  border-radius: var(--radius-card);
+  padding: 23px;
+  border: none;
+  background: linear-gradient(180deg, rgba(65,36,28,0.09) 11.28%, rgba(13,12,14,0.4) 128.43%);
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  position: relative;
+}
+.prop-item::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: linear-gradient(159deg, rgba(255,255,255,0.05) 1.69%, rgba(255,255,255,0.50) 37.46%, rgba(255,255,255,0.01) 88.2%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none;
+}
+
+/* ═══ ICON CONTAINER (proposition numbers) ═══ */
+.prop-icon {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(86,79,77,0.24);
+  box-shadow: inset 1px 2px 2px rgba(255,255,255,0.67), inset 0 -3px 2px rgba(0,0,0,0.23), inset -2px -2px 2px rgba(229,229,229,0.25);
+  overflow: hidden;
+}
+
+/* ═══ NUMBER GRADIENT ═══ */
+.number-gradient {
+  background-image: linear-gradient(155.68deg, rgba(255,255,255,0.65) 32.68%, rgba(255,255,255,0) 98.12%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+/* ═══ DURATION TAG (DS / Duration Tag — 315:44) ═══ */
+.duration-badge {
+  position: absolute;
+  top: 13px;
+  right: 14px;
+  background: rgba(60,60,67,0.44);
+  border: none;
+  border-radius: var(--radius-tag);
+  padding: 5px 13px;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 400;
+  box-shadow: 0 1px 6px 0 rgba(0,0,0,0.25);
+}
+.duration-badge::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: linear-gradient(157deg, rgba(255,255,255,0.40) 2.12%, rgba(255,255,255,0) 39%, rgba(255,255,255,0) 54.33%, rgba(255,255,255,0.10) 93.02%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none;
+}
+
+/* ═══ CTA BUTTON (DS / CTA Button — 315:35) ═══ */
+.cta-button {
+  border-radius: var(--radius-pill);
+  padding: 21px 30px;
+  border: none;
+  background: #141415;
+  box-shadow:
+    0 0 15px 0 rgba(32,16,98,0.35),
+    0 0 14px 0 rgba(203,186,227,0.1),
+    0 0 24px 0 rgba(223,217,231,0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.cta-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset -1px -1px 2px 0 rgba(255,255,255,0.1),
+    inset 1px 1px 2px 0 rgba(255,255,255,0.38),
+    inset 0 0 14px 0 rgba(255,255,255,0.25);
+  pointer-events: none;
+}
+.cta-button:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 20px 0 rgba(32,16,98,0.45),
+    0 0 18px 0 rgba(203,186,227,0.15),
+    0 0 32px 0 rgba(223,217,231,0.3);
+}
+
+/* ═══ HERO GRADIENT OVERLAY ═══ */
+.hero-gradient-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to top, #000 0%, #000 20%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ═══ FADE-UP ANIMATION ═══ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══ PARTICLES ═══ */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
+}
+.slide-content {
+  position: relative;
+  z-index: 10;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
   .slide {
-    scroll-snap-align: start;
     min-height: 100vh;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
+    height: auto;
+    scroll-snap-align: start;
+    padding: 40px 0;
   }
-
-  /* Progress bar */
-  #progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 2px;
-    background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2));
-    z-index: 100;
-    transition: width 0.3s ease;
-  }
-
-  /* Nav dots */
-  .nav-dots {
-    position: fixed;
-    right: 24px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    z-index: 90;
-  }
-  .nav-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .nav-dot.active {
-    background: rgba(255,255,255,0.8);
-    transform: scale(1.4);
-  }
-
-  /* Tab pill gradient */
-  .tab-pill {
-    background:
-      linear-gradient(90deg, rgba(32,32,32,0.4) 0%, rgba(32,32,32,0.4) 100%),
-      linear-gradient(90deg, rgba(11,7,17,0.69) 0%, rgba(11,7,17,0.69) 100%);
-  }
-
-  /* Stat card outer */
-  .stat-card-outer {
-    border: 7px solid rgba(54,52,59,0.2);
-    border-radius: 33px;
-    padding: 10px;
-    overflow: hidden;
-    backdrop-filter: blur(4.5px);
-    -webkit-backdrop-filter: blur(4.5px);
-    background: rgba(24,24,26,0.58);
-    box-shadow:
-      inset 0px 0px 14px 0px rgba(111,111,129,0.51),
-      0px 0px 20px 0px rgba(45,41,53,0.25);
-  }
-
-  /* Stat card inner */
-  .stat-card-inner {
-    background: linear-gradient(to top, rgba(6,6,6,0.6) 0%, rgba(17,17,19,0.3) 83.56%, rgba(27,27,30,0.2) 110%);
-    border: 0.45px solid rgba(54,54,54,0.8);
-    border-radius: 21px;
-    padding: 21px 25px;
-  }
-
-  /* Gap card green */
-  .gap-card-green {
-    background: linear-gradient(180deg, rgba(27,37,29,0.2) 0%, rgba(103,139,111,0) 100%);
-    border: 0.45px solid rgba(54,54,54,0.8);
-    border-radius: 21px;
-  }
-
-  /* Gap card red */
-  .gap-card-red {
-    background: linear-gradient(180deg, rgba(37,27,27,0.2) 0%, rgba(0,0,0,0) 100%);
-    border: 0.45px solid rgba(54,54,54,0.8);
-    border-radius: 21px;
-  }
-
-  /* Gap item */
-  .gap-item {
-    border: 0.45px solid rgba(189,189,189,0.55);
-    border-radius: 14px;
-    padding: 18px 19px;
-    background: rgba(28,28,30,0.53);
-    mix-blend-mode: plus-lighter;
-  }
-
-  /* Opportunity card */
-  .opp-card {
-    border-radius: 33px;
-    padding: 28px;
-    background: rgba(28,28,30,0.43);
-    box-shadow:
-      0px 0px 44px 0px rgba(76,131,83,0.03),
-      0px 0px 64px 0px rgba(217,228,231,0.2),
-      inset -1px -1px 14px 0px rgba(255,255,255,0.07),
-      inset 1px 1px 3px 0px rgba(255,255,255,0.12);
-  }
-
-  /* Benchmark card */
-  .bench-card {
-    border-radius: 33px;
-    padding: 28px;
-    background: rgba(21,21,23,0.74);
-    box-shadow:
-      0px 0px 44px 0px rgba(76,131,83,0.03),
-      0px 0px 64px 0px rgba(217,228,231,0.2),
-      inset -1px -1px 14px 0px rgba(255,255,255,0.07),
-      inset 1px 1px 3px 0px rgba(255,255,255,0.12);
-  }
-
-  /* Proposition container */
-  .prop-container {
-    background: linear-gradient(180deg, #000000 0%, rgba(0,0,0,0.81) 53.39%, transparent 100%);
-    border-radius: 33px;
-    border: 1px solid rgba(255,255,255,0.24);
-    overflow: hidden;
-  }
-
-  /* Proposition item */
-  .prop-item {
-    border-radius: 33px;
-    padding: 23px;
-    border: 1px solid rgba(255,255,255,0.4);
-    background: linear-gradient(180deg, rgba(65,36,28,0.09) 11.28%, rgba(13,12,14,0.4) 128.43%);
-  }
-
-  /* Number gradient text */
-  .number-gradient {
-    background-image: linear-gradient(155.68deg, rgba(255,255,255,0.65) 32.68%, rgba(255,255,255,0) 98.12%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-size: 27px;
-    font-weight: 700;
-  }
-
-  /* Duration badge */
-  .duration-badge {
-    background: rgba(60,60,67,0.44);
-    border: 0.45px solid rgba(255,255,255,0.4);
-    border-radius: 14px;
-    padding: 5px 13px;
-    font-size: 14px;
-    color: #fff;
-  }
-
-  /* CTA button */
-  .cta-button {
-    border-radius: 40px;
-    padding: 21px 30px;
-    border: 0.45px solid rgba(255,255,255,0.4);
-    background:
-      linear-gradient(90deg, rgba(32,32,32,0.4) 0%, rgba(32,32,32,0.4) 100%),
-      linear-gradient(90deg, rgba(11,7,17,0.69) 0%, rgba(11,7,17,0.69) 100%);
-    box-shadow:
-      inset -1px -1px 2px 0px rgba(255,255,255,0.1),
-      inset 1px 1px 2px 0px rgba(255,255,255,0.38),
-      inset 0px 0px 14px 0px rgba(255,255,255,0.25),
-      0px 0px 24px 0px rgba(223,217,231,0.2);
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .cta-button:hover {
-    transform: scale(1.03);
-    box-shadow:
-      inset -1px -1px 2px 0px rgba(255,255,255,0.15),
-      inset 1px 1px 2px 0px rgba(255,255,255,0.45),
-      inset 0px 0px 18px 0px rgba(255,255,255,0.3),
-      0px 0px 32px 0px rgba(223,217,231,0.3);
-  }
-
-  /* Hero gradient overlay */
-  .hero-gradient-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60%;
-    background: linear-gradient(to top, #000 0%, #000 20%, transparent 100%);
-    pointer-events: none;
-  }
-
-  /* Fade-up animation */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
-  }
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Particle canvas */
-  #particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.3;
-  }
-
-  /* Ensure content is above particles */
-  .slide-content {
-    position: relative;
-    z-index: 10;
-  }
-
-  /* Badge style */
-  .badge {
-    background: #141415;
-    border: 1px solid rgba(255,255,255,0.4);
-    border-radius: 16px;
-    padding: 14px 17px;
-    font-size: 18px;
-    color: rgba(255,255,255,0.84);
-    text-transform: uppercase;
-    font-weight: 500;
-    display: inline-block;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .slide {
-      min-height: 100vh;
-      height: auto;
-    }
-    .nav-dots { display: none; }
-  }
+  body { scroll-snap-type: none; }
+  .nav-dots { display: none; }
+  .badge, .tab-pill, .gap-badge { font-size: 13px; padding: 7px 14px; }
+  .gap-item { padding: 10px 12px; font-size: 13px; }
+  .stat-card-outer { border-radius: 24px; padding: 8px; }
+  .stat-card-outer::before { border-radius: 24px; }
+  .stat-card-outer::after { border-radius: 24px; }
+  .stat-card-inner { padding: 16px 12px; gap: 10px; border-radius: 18px; }
+  .stat-card-inner .text-\[38px\] { font-size: 26px !important; }
+  .stat-card-inner .text-\[16px\] { font-size: 11px !important; }
+  .prop-item { flex-direction: column; gap: 16px; text-align: center; }
+  .prop-icon { align-self: center; }
+  .duration-badge { position: static; align-self: center; margin-top: 8px; }
+  /* Benchmark: hide image on mobile, stack text */
+  .benchmark-image { display: none !important; }
+  .benchmark-text { width: 100% !important; }
+  .benchmark-text .flex.flex-col.gap-\[34px\] { width: 100% !important; }
+  .benchmark-text .flex.flex-col.gap-\[19px\] { width: 100% !important; }
+  .bench-card { height: auto !important; }
+  .bench-card h3 { font-size: 18px !important; }
+  .bench-card p { font-size: 14px !important; }
+  /* Gap cards mobile */
+  .gap-card-green, .gap-card-red { border-radius: 20px; }
+  .gap-card-green::before, .gap-card-red::before { border-radius: 20px; }
+  /* Opp cards mobile */
+  .opp-card { padding: 20px; border-radius: 20px; }
+  .opp-card h3 { font-size: 17px !important; }
+  .opp-card p { font-size: 14px !important; }
+  /* Pricing mobile */
+  .stat-card-outer.pricing .stat-card-inner { padding: 16px 20px; }
+}
 </style>
 </head>
 <body>
@@ -304,365 +619,344 @@ tailwind.config = {
   <div class="nav-dot" data-slide="7"></div>
 </nav>
 
-<!-- ========== SLIDE 1: HERO ========== -->
+<!-- ══════════ SLIDE 1: HERO (76:57) ══════════ -->
 <section class="slide bg-black flex flex-col items-center" id="slide-0">
-  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center px-6 h-full relative pt-12">
-    <!-- Logo -->
-    <div class="fade-up mb-6">
-      <img src="assets/lightinderm-logo.svg" alt="Lightinderm" class="w-[243px] h-[60px] object-contain" />
+  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center h-full relative">
+    <!-- Header block: centered at x=349, w=742 → centered in 1440 -->
+    <div class="flex flex-col items-center gap-[25px] pt-[56px] w-[742px] max-w-full px-4">
+      <!-- Logo: 243x60 -->
+      <div class="fade-up">
+        <img src="assets/lightinderm-logo.svg" alt="Lightinderm" class="w-[243px] h-[60px] object-contain" />
+      </div>
+
+      <!-- Nav Tabs: gap-8px -->
+      <div class="fade-up flex flex-wrap justify-center gap-[8px]" style="transition-delay:0.1s">
+        <div class="tab-pill"><span>Refonte Site</span></div>
+        <div class="tab-pill"><span>Espace Pro</span></div>
+        <div class="tab-pill"><span>SEO Médical</span></div>
+        <div class="tab-pill"><span>E-commerce</span></div>
+      </div>
+
+      <!-- Text block: gap-30px between title and subtitle -->
+      <div class="fade-up flex flex-col items-center gap-[30px] w-full" style="transition-delay:0.2s">
+        <!-- Title: 55px/58px Bold -->
+        <h1 class="font-bold text-[36px] leading-[46px] text-white text-center w-full">
+          La science mérite un meilleur écrin.
+        </h1>
+        <p class="text-[17px] text-[#a3a3ae] text-center w-full leading-normal">
+          50 brevets. 52k followers Instagram. Un site qui ne reflète pas l'innovation.<br>Il est temps de corriger ça.
+        </p>
+      </div>
     </div>
 
-    <!-- Nav Tabs -->
-    <div class="fade-up flex flex-wrap justify-center gap-3 mb-8" style="transition-delay:0.1s">
-      <div class="tab-pill border-[0.45px] border-[rgba(255,255,255,0.4)] rounded-[40px] px-[24px] py-[13px]">
-        <span class="font-medium text-[15px] text-[#e5e5e5]">Refonte Site</span>
-      </div>
-      <div class="tab-pill border-[0.45px] border-[rgba(255,255,255,0.4)] rounded-[40px] px-[24px] py-[13px]">
-        <span class="font-medium text-[15px] text-[#e5e5e5]">Espace Pro</span>
-      </div>
-      <div class="tab-pill border-[0.45px] border-[rgba(255,255,255,0.4)] rounded-[40px] px-[24px] py-[13px]">
-        <span class="font-medium text-[15px] text-[#e5e5e5]">SEO Médical</span>
-      </div>
-      <div class="tab-pill border-[0.45px] border-[rgba(255,255,255,0.4)] rounded-[40px] px-[24px] py-[13px]">
-        <span class="font-medium text-[15px] text-[#e5e5e5]">E-commerce</span>
-      </div>
-    </div>
-
-    <!-- Title -->
-    <h1 class="fade-up font-bold text-[55px] leading-[58px] text-white text-center max-w-[733px] mb-5" style="transition-delay:0.2s">
-      La science mérite un meilleur écrin.
-    </h1>
-
-    <!-- Subtitle -->
-    <p class="fade-up text-[19px] text-[#a3a3ae] text-center max-w-[787px] mb-6" style="transition-delay:0.3s">
-      50 brevets. 52k followers Instagram. Un site qui ne reflète pas l'innovation.<br>Il est temps de corriger ça.
-    </p>
-
-    <!-- Spacer to push image down -->
+    <!-- Spacer -->
     <div class="flex-1"></div>
 
-    <!-- Hero Product Image -->
-    <div class="fade-up relative w-[93%] max-w-[1340px]" style="transition-delay:0.4s">
+    <!-- Hero Image: x=84, w=1272 in 1440 frame -->
+    <div class="fade-up relative w-[88.3%] max-w-[1272px]" style="transition-delay:0.4s">
       <img src="assets/hero-product.png" alt="Lightinderm product" class="w-full object-contain" />
       <div class="hero-gradient-overlay"></div>
     </div>
   </div>
 </section>
 
-<!-- ========== SLIDE 2: STATS ========== -->
+<!-- ══════════ SLIDE 2: STATS (76:61) ══════════ -->
 <section class="slide bg-black flex flex-col items-center justify-center" id="slide-1">
-  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center px-6 h-full gap-8">
-    <!-- Badge -->
-    <div class="fade-up badge">LIGHTINDERM EN CHIFFRES</div>
-
-    <!-- Title -->
-    <h2 class="fade-up font-bold text-[48px] text-[#efefef] text-center" style="transition-delay:0.1s">
-      Le potentiel est là.
-    </h2>
-
-    <!-- Stat Cards -->
-    <div class="fade-up flex flex-wrap justify-center gap-5 mt-4 w-full max-w-[1200px]" style="transition-delay:0.2s">
-      <!-- Stat 1 -->
-      <div class="stat-card-outer flex-1 min-w-[220px] max-w-[280px]">
-        <div class="stat-card-inner">
-          <div class="font-bold text-[45px] text-white text-center">50</div>
-          <div class="font-medium text-[19px] text-[rgba(255,255,255,0.84)] uppercase mt-1 text-center">Brevets déposés</div>
-        </div>
-      </div>
-      <!-- Stat 2 -->
-      <div class="stat-card-outer flex-1 min-w-[220px] max-w-[290px]">
-        <div class="stat-card-inner">
-          <div class="font-bold text-[45px] text-white text-center">52k</div>
-          <div class="font-medium text-[19px] text-[rgba(255,255,255,0.84)] uppercase mt-1 text-center">Followers Instagram</div>
-        </div>
-      </div>
-      <!-- Stat 3 -->
-      <div class="stat-card-outer flex-1 min-w-[220px] max-w-[280px]">
-        <div class="stat-card-inner">
-          <div class="font-bold text-[45px] text-white text-center">495€+</div>
-          <div class="font-medium text-[19px] text-[rgba(255,255,255,0.84)] uppercase mt-1 text-center">Panier moyen device</div>
-        </div>
-      </div>
-      <!-- Stat 4 -->
-      <div class="stat-card-outer flex-1 min-w-[220px] max-w-[290px]">
-        <div class="stat-card-inner">
-          <div class="font-bold text-[45px] text-white text-center">Sephora</div>
-          <div class="font-medium text-[19px] text-[rgba(255,255,255,0.84)] uppercase mt-1 text-center">Distribution premium</div>
-        </div>
-      </div>
+  <div class="slide-content w-full max-w-[1209px] mx-auto flex flex-col items-center justify-center px-6 h-full">
+    <!-- Header: gap-34px between badge and title, gap-66px between header and grid -->
+    <div class="flex flex-col items-center gap-[34px]">
+      <div class="fade-up badge">LIGHTINDERM EN CHIFFRES</div>
+      <h2 class="fade-up font-bold text-[38px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">
+        Le potentiel est là.
+      </h2>
     </div>
-  </div>
-</section>
 
-<!-- ========== SLIDE 3: GAP ANALYSIS ========== -->
-<section class="slide bg-black flex flex-col items-center justify-center" id="slide-2">
-  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center px-6 h-full gap-6">
-    <!-- Badge -->
-    <div class="fade-up badge">LE GAP</div>
-
-    <!-- Title -->
-    <h2 class="fade-up font-bold text-[48px] text-[#efefef] text-center" style="transition-delay:0.1s">
-      Innovation produit vs présence digitale.
-    </h2>
-
-    <!-- Two Columns -->
-    <div class="fade-up flex flex-col md:flex-row gap-6 w-full max-w-[1100px] mt-2" style="transition-delay:0.2s">
-      <!-- Left: LE PRODUIT (green) -->
-      <div class="flex-1 flex flex-col gap-4">
-        <div class="gap-card-green p-6">
-          <div class="badge mb-4" style="color:rgba(77,127,74,0.7); border-color:rgba(77,127,74,0.4); background:#141415;">LE PRODUIT</div>
-          <div class="flex flex-col gap-3">
-            <div class="gap-item">
-              <span class="font-bold text-[18px] text-[#c7c7cc]">50 brevets</span>
-              <span class="text-[17px] text-[#c7c7cc]"> déposés — technologie LED unique</span>
-            </div>
-            <div class="gap-item">
-              <span class="font-bold text-[18px] text-[#c7c7cc]">52k Instagram</span>
-              <span class="text-[17px] text-[#c7c7cc]"> — communauté engagée</span>
-            </div>
-            <div class="gap-item">
-              <span class="text-[17px] text-[#c7c7cc]">Distribution en </span>
-              <span class="font-bold text-[18px] text-[#c7c7cc]">pharmacies et cliniques</span>
-            </div>
-            <div class="gap-item">
-              <span class="text-[17px] text-[#c7c7cc]">Résultats cliniques </span>
-              <span class="font-bold text-[18px] text-[#c7c7cc]">prouvés</span>
-            </div>
-            <div class="gap-item">
-              <span class="text-[17px] text-[#c7c7cc]">Positionnement </span>
-              <span class="font-bold text-[18px] text-[#c7c7cc]">MedTech premium</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: LE SITE ACTUEL (red) -->
-      <div class="flex-1 flex flex-col gap-4">
-        <div class="gap-card-red p-6">
-          <div class="badge mb-4" style="color:rgba(171,92,92,0.7); border-color:rgba(171,92,92,0.4); background:#141415;">LE SITE ACTUEL</div>
-          <div class="flex flex-col gap-3">
-            <div class="gap-item">
-              <span class="text-[17px] text-[#7c7c80]">Design daté — ne reflète </span>
-              <span class="font-bold text-[18px] text-[#7c7c80]">pas le positionnement premium</span>
-            </div>
-            <div class="gap-item">
-              <span class="text-[17px] text-[#7c7c80]">Pas d'espace Pro pour les </span>
-              <span class="font-bold text-[18px] text-[#7c7c80]">revendeurs/dermatologues</span>
-            </div>
-            <div class="gap-item">
-              <span class="text-[17px] text-[#7c7c80]">SEO médical </span>
-              <span class="font-bold text-[18px] text-[#7c7c80]">inexistant</span>
-              <span class="text-[17px] text-[#7c7c80]"> — invisible sur Google</span>
-            </div>
-            <div class="gap-item">
-              <span class="text-[17px] text-[#7c7c80]">Mobile : expérience </span>
-              <span class="font-bold text-[18px] text-[#7c7c80]">non optimisée</span>
-            </div>
-            <div class="gap-item">
-              <span class="font-medium text-[18px] text-[#ab5c5c]">Un produit à 300€ mérite un site premium</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== SLIDE 4: OPPORTUNITIES ========== -->
-<section class="slide bg-black flex flex-col items-center justify-center" id="slide-3">
-  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center px-6 h-full gap-6">
-    <!-- Badge -->
-    <div class="fade-up badge">OPPORTUNITÉS</div>
-
-    <!-- Title -->
-    <h2 class="fade-up font-bold text-[48px] text-[#efefef] text-center" style="transition-delay:0.1s">
-      3 axes de transformation.
-    </h2>
-
-    <!-- Cards -->
-    <div class="fade-up flex flex-col gap-5 w-full max-w-[900px] mt-2" style="transition-delay:0.2s">
-      <div class="opp-card">
-        <h3 class="font-bold text-[21px] text-[#c7c7cc] text-center mb-3">Refonte Premium</h3>
-        <p class="text-[17px] text-[#a3a3ae] text-center">Nouveau design aligné avec le positionnement MedTech. Animations, storytelling scientifique, preuves cliniques mises en avant. Score PageSpeed 90+.</p>
-      </div>
-      <div class="opp-card">
-        <h3 class="font-bold text-[21px] text-[#c7c7cc] text-center mb-3">Espace Pro Revendeurs</h3>
-        <p class="text-[17px] text-[#a3a3ae] text-center">Portail dédié aux pharmacies et dermatologues. Commandes, formations, assets marketing. Gestion autonome via D-Studio.Office.</p>
-      </div>
-      <div class="opp-card">
-        <h3 class="font-bold text-[21px] text-[#c7c7cc] text-center mb-3">SEO &amp; GEO Médical</h3>
-        <p class="text-[17px] text-[#a3a3ae] text-center">Stratégie de contenu ciblée : dermatologie LED, anti-âge, soins visage. Optimisation pour Google ET pour les moteurs IA (ChatGPT, Perplexity).</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== SLIDE 5: BENCHMARK ========== -->
-<section class="slide bg-black flex flex-col items-center justify-center" id="slide-4">
-  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center px-6 h-full gap-6">
-    <!-- Badge -->
-    <div class="fade-up badge">BENCHMARK &amp; GEO</div>
-
-    <!-- Title -->
-    <h2 class="fade-up font-bold text-[48px] text-[#efefef] text-center" style="transition-delay:0.1s">
-      Où se positionner.
-    </h2>
-
-    <!-- Content: Image + Cards -->
-    <div class="fade-up flex flex-col md:flex-row gap-8 items-center w-full max-w-[1100px] mt-2" style="transition-delay:0.2s">
-      <!-- Image -->
-      <div class="flex-shrink-0">
-        <img src="assets/product-usage.png" alt="Benchmark" class="rounded-[55px] w-[536px] h-[502px] object-cover" />
-      </div>
-      <!-- Cards -->
-      <div class="flex-1 flex flex-col gap-5">
-        <div class="bench-card">
-          <h3 class="font-bold text-[21px] text-[#c7c7cc] mb-3">GEO — Generative Engine Optimization</h3>
-          <p class="text-[17px] text-[#a3a3ae]">ChatGPT, Perplexity, Gemini citent vos concurrents mais pas Lightinderm. Le SEO classique ne suffit plus — il faut être dans les réponses IA.</p>
-        </div>
-        <div class="bench-card">
-          <h3 class="font-bold text-[21px] text-[#c7c7cc] mb-3">Benchmark : Foreo</h3>
-          <p class="text-[17px] text-[#a3a3ae]">Device beauté tech similaire. Site premium, storytelling scientifique, UX mobile-first, espace revendeurs intégré. Lightinderm doit viser ce standard.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== SLIDE 6: PROPOSITION ========== -->
-<section class="slide bg-black flex flex-col items-center justify-center" id="slide-5">
-  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center px-6 h-full gap-6">
-    <!-- Badge -->
-    <div class="fade-up badge">NOTRE PROPOSITION</div>
-
-    <!-- Title -->
-    <h2 class="fade-up font-bold text-[48px] text-[#efefef] text-center" style="transition-delay:0.1s">
-      4 chantiers. Impact immédiat.
-    </h2>
-
-    <!-- Container -->
-    <div class="fade-up prop-container p-8 w-full max-w-[1000px]" style="transition-delay:0.2s">
-      <div class="flex flex-col gap-5">
-        <!-- Item 1 -->
-        <div class="prop-item flex items-center gap-5">
-          <div class="flex-shrink-0 w-[56px] h-[56px] flex items-center justify-center rounded-[16px]" style="background:rgba(86,79,77,0.24); box-shadow: 0px 4px 14px rgba(93,51,39,0.05);">
-            <span class="number-gradient">1</span>
-          </div>
-          <div class="flex-1">
-            <div class="flex items-center gap-3 mb-1">
-              <h3 class="font-bold text-[19px] text-[#c7c7cc]">Refonte site vitrine premium</h3>
-              <span class="duration-badge">6-8 sem</span>
-            </div>
-            <p class="text-[17px] text-[#a3a3ae]">Design MedTech, animations, storytelling clinique, mobile-first</p>
-          </div>
-        </div>
-
-        <!-- Item 2 -->
-        <div class="prop-item flex items-center gap-5">
-          <div class="flex-shrink-0 w-[56px] h-[56px] flex items-center justify-center rounded-[16px]" style="background:rgba(86,79,77,0.24); box-shadow: 0px 4px 14px rgba(93,51,39,0.05);">
-            <span class="number-gradient">2</span>
-          </div>
-          <div class="flex-1">
-            <div class="flex items-center gap-3 mb-1">
-              <h3 class="font-bold text-[19px] text-[#c7c7cc]">Espace Pro revendeurs</h3>
-              <span class="duration-badge">4-6 sem</span>
-            </div>
-            <p class="text-[17px] text-[#a3a3ae]">Portail B2B, commandes, formations, assets marketing</p>
-          </div>
-        </div>
-
-        <!-- Item 3 -->
-        <div class="prop-item flex items-center gap-5">
-          <div class="flex-shrink-0 w-[56px] h-[56px] flex items-center justify-center rounded-[16px]" style="background:rgba(86,79,77,0.24); box-shadow: 0px 4px 14px rgba(93,51,39,0.05);">
-            <span class="number-gradient">3</span>
-          </div>
-          <div class="flex-1">
-            <div class="flex items-center gap-3 mb-1">
-              <h3 class="font-bold text-[19px] text-[#c7c7cc]">SEO &amp; GEO médical</h3>
-              <span class="duration-badge">Continu</span>
-            </div>
-            <p class="text-[17px] text-[#a3a3ae]">Stratégie de contenu, schema.org, optimisation moteurs IA</p>
-          </div>
-        </div>
-
-        <!-- Item 4 -->
-        <div class="prop-item flex items-center gap-5">
-          <div class="flex-shrink-0 w-[56px] h-[56px] flex items-center justify-center rounded-[16px]" style="background:rgba(86,79,77,0.24); box-shadow: 0px 4px 14px rgba(93,51,39,0.05);">
-            <span class="number-gradient">4</span>
-          </div>
-          <div class="flex-1">
-            <div class="flex items-center gap-3 mb-1">
-              <h3 class="font-bold text-[19px] text-[#c7c7cc]">D-Studio.Office</h3>
-              <span class="duration-badge">Inclus</span>
-            </div>
-            <p class="text-[17px] text-[#a3a3ae]">Tableau de bord gestion : analytics, contenus, Google Business</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== SLIDE 7: PRICING ========== -->
-<section class="slide bg-black flex flex-col items-center justify-center" id="slide-6">
-  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center px-6 h-full gap-8">
-    <!-- Badge -->
-    <div class="fade-up badge">POUR DÉMARRER</div>
-
-    <!-- Title -->
-    <h2 class="fade-up font-bold text-[48px] text-[#efefef] text-center" style="transition-delay:0.1s">
-      Un site à la hauteur de l'innovation.
-    </h2>
-
-    <!-- Pricing Cards -->
-    <div class="fade-up flex flex-col md:flex-row gap-6 w-full max-w-[900px] mt-2" style="transition-delay:0.2s">
+    <!-- Stat Cards: gap-31px, mt-66px — all 4 in ONE row -->
+    <div class="fade-up grid grid-cols-2 md:grid-cols-4 gap-[20px] md:gap-[31px] mt-[50px] md:mt-[66px] w-full" style="transition-delay:0.2s">
       <!-- Card 1 -->
-      <div class="stat-card-outer flex-1">
-        <div class="stat-card-inner flex flex-col items-center text-center">
-          <div class="font-medium text-[19px] text-[rgba(255,255,255,0.84)] uppercase mb-3">Audit UX complet</div>
-          <div class="font-bold text-[45px] text-white uppercase mb-3">3-5k€</div>
-          <p class="text-[17px] text-[#a3a3ae]">2 semaines · Analyse concurrence · 15 recommandations prioritisées</p>
+      <div class="stat-card-outer">
+        <div class="stat-card-inner">
+          <div class="font-bold text-[38px] text-white leading-normal w-full">50</div>
+          <div class="font-medium text-[16px] text-[rgba(255,255,255,0.84)] w-full">BREVETS DÉPOSÉS</div>
         </div>
       </div>
       <!-- Card 2 -->
-      <div class="stat-card-outer flex-1">
-        <div class="stat-card-inner flex flex-col items-center text-center">
-          <div class="font-medium text-[19px] text-[rgba(255,255,255,0.84)] uppercase mb-3">Refonte complète</div>
-          <div class="font-bold text-[45px] text-white uppercase mb-3">15-25k€</div>
-          <p class="text-[17px] text-[#a3a3ae]">8-10 semaines · Site + Espace Pro + SEO · D-Studio.Office inclus</p>
+      <div class="stat-card-outer">
+        <div class="stat-card-inner">
+          <div class="font-bold text-[38px] text-white leading-normal w-full">52K</div>
+          <div class="font-medium text-[16px] text-[rgba(255,255,255,0.84)] w-full">FOLLOWERS INSTAGRAM</div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="stat-card-outer">
+        <div class="stat-card-inner">
+          <div class="font-bold text-[38px] text-white leading-normal w-full">495€+</div>
+          <div class="font-medium text-[16px] text-[rgba(255,255,255,0.84)] w-full">PANIER MOYEN DEVICE</div>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="stat-card-outer">
+        <div class="stat-card-inner">
+          <div class="font-bold text-[38px] text-white leading-normal w-full">Sephora</div>
+          <div class="font-medium text-[16px] text-[rgba(255,255,255,0.84)] w-full">DISTRIBUTION PREMIUM</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== SLIDE 8: CLOSING ========== -->
+<!-- ══════════ SLIDE 3: GAP ANALYSIS (76:128) ══════════ -->
+<section class="slide bg-black flex flex-col items-center justify-center" id="slide-2">
+  <div class="slide-content w-full max-w-[1209px] mx-auto flex flex-col items-center px-6 h-full justify-center">
+    <!-- Header: gap-34px -->
+    <div class="flex flex-col items-center gap-[34px] mb-[66px]">
+      <div class="fade-up badge">LE GAP</div>
+      <h2 class="fade-up font-bold text-[36px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">
+        Innovation produit vs présence digitale.
+      </h2>
+    </div>
+
+    <!-- Two Columns: gap-36px (from Figma 76:183) -->
+    <div class="fade-up flex flex-col md:flex-row gap-[36px] items-stretch justify-center w-full max-w-[1100px]" style="transition-delay:0.2s">
+      <!-- Left: LE PRODUIT -->
+      <div class="flex flex-col items-center flex-1 min-w-0">
+        <div class="gap-badge mb-[-16px] relative z-10">
+          <span class="text-[rgba(77,127,74,0.7)]">LE PRODUIT</span>
+        </div>
+        <div class="gap-card-green pt-[40px] pb-[20px] px-[24px] w-full flex-1">
+          <div class="flex flex-col gap-[12px] w-full">
+            <div class="gap-item gb-card"><span class="text-[#c7c7cc] text-[15px]"><strong class="font-bold">50 brevets</strong> déposés — technologie LED unique</span></div>
+            <div class="gap-item gb-card"><span class="text-[#c7c7cc] text-[15px]"><strong class="font-bold">52k Instagram</strong> — communauté engagée</span></div>
+            <div class="gap-item gb-card"><span class="text-[#c7c7cc] text-[15px]">Distribution en <strong class="font-bold">pharmacies et cliniques</strong></span></div>
+            <div class="gap-item gb-card"><span class="text-[#c7c7cc] text-[15px]">Résultats cliniques <strong class="font-bold">prouvés</strong></span></div>
+            <div class="gap-item gb-card"><span class="text-[#c7c7cc] text-[15px]">Positionnement <strong class="font-bold">MedTech premium</strong></span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: LE SITE ACTUEL -->
+      <div class="flex flex-col items-center flex-1 min-w-0">
+        <div class="gap-badge mb-[-16px] relative z-10">
+          <span class="text-[rgba(171,92,92,0.7)]">LE SITE ACTUEL</span>
+        </div>
+        <div class="gap-card-red pt-[40px] pb-[20px] px-[24px] w-full flex-1">
+          <div class="flex flex-col gap-[12px] w-full">
+            <div class="gap-item gb-card"><span class="text-[#7c7c80] text-[15px]">Design daté — ne reflète <strong class="font-bold">pas le positionnement premium</strong></span></div>
+            <div class="gap-item gb-card"><span class="text-[#7c7c80] text-[15px]">Pas d'espace Pro pour les <strong class="font-bold">revendeurs/dermatologues</strong></span></div>
+            <div class="gap-item gb-card"><span class="text-[#7c7c80] text-[15px]">SEO médical <strong class="font-bold">inexistant</strong> — invisible sur Google</span></div>
+            <div class="gap-item gb-card"><span class="text-[#7c7c80] text-[15px]">Mobile : expérience <strong class="font-bold">non optimisée</strong></span></div>
+            <div class="gap-item gb-card"><span class="font-medium text-[15px] text-[#ab5c5c]">Un produit à 300€ mérite un site premium</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SLIDE 4: OPPORTUNITIES (78:187) ══════════ -->
+<section class="slide bg-black flex flex-col items-center justify-center" id="slide-3">
+  <div class="slide-content w-full max-w-[1209px] mx-auto flex flex-col items-center justify-center px-6 h-full">
+    <!-- Header -->
+    <div class="flex flex-col items-center gap-[34px] mb-[66px]">
+      <div class="fade-up badge">OPPORTUNITÉS</div>
+      <h2 class="fade-up font-bold text-[36px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">
+        3 axes de transformation.
+      </h2>
+    </div>
+
+    <!-- Opportunity Cards: w=819 in Figma, gap=19px -->
+    <div class="fade-up flex flex-col gap-[19px] w-full max-w-[819px]" style="transition-delay:0.2s">
+      <div class="opp-card">
+        <h3 class="font-bold text-[21px] text-[#c7c7cc] text-center w-full">Refonte Premium</h3>
+        <p class="text-[17px] text-[#a3a3ae] text-center w-full">Nouveau design aligné avec le positionnement MedTech. Animations, storytelling scientifique, preuves cliniques mises en avant. Score PageSpeed 90+.</p>
+      </div>
+      <div class="opp-card">
+        <h3 class="font-bold text-[21px] text-[#c7c7cc] text-center w-full">Espace Pro Revendeurs</h3>
+        <p class="text-[17px] text-[#a3a3ae] text-center w-full">Portail dédié aux pharmacies et dermatologues. Commandes, formations, assets marketing. Gestion autonome via D-Studio.Office.</p>
+      </div>
+      <div class="opp-card">
+        <h3 class="font-bold text-[21px] text-[#c7c7cc] text-center w-full">SEO &amp; GEO Médical</h3>
+        <p class="text-[17px] text-[#a3a3ae] text-center w-full">Stratégie de contenu ciblée : dermatologie LED, anti-âge, soins visage. Optimisation pour Google ET pour les moteurs IA (ChatGPT, Perplexity).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SLIDE 5: BENCHMARK & GEO (78:236) ══════════ -->
+<section class="slide bg-black flex flex-col items-center justify-center" id="slide-4">
+  <div class="slide-content w-full max-w-[1187px] mx-auto flex flex-col items-center justify-center px-6 h-full">
+    <!-- Layout: image left (644px, overlapping), text right (618px) -->
+    <div class="fade-up flex flex-col md:flex-row items-center w-full" style="transition-delay:0.1s">
+      <!-- Image: square-ish like Figma -->
+      <div class="benchmark-image flex-shrink-0 relative" style="margin-right:-80px; z-index:1;">
+        <img src="assets/product-usage.png" alt="Site actuel Lightinderm"
+             class="w-[420px] h-[420px] object-cover rounded-[28px]"
+             style="border:8px solid #cfcfcf; box-shadow: 0 0 0 2px rgba(255,255,255,0.25);" />
+      </div>
+
+      <!-- Text section: w=618 -->
+      <div class="benchmark-text flex flex-col gap-[49px] items-end w-[618px] max-w-full relative z-[2]">
+        <!-- Badge + Title -->
+        <div class="flex flex-col gap-[34px] items-start w-[475px]">
+          <div class="badge">BENCHMARK &amp; GEO</div>
+          <h2 class="font-bold text-[36px] text-[#efefef] leading-normal">
+            Où se positionner.
+          </h2>
+        </div>
+
+        <!-- Cards: w=576, gap=19px -->
+        <div class="flex flex-col gap-[19px] w-[576px] max-w-full">
+          <div class="bench-card">
+            <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">GEO — Generative Engine Optimization</h3>
+            <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">ChatGPT, Perplexity, Gemini citent vos concurrents mais pas Lightinderm. Le SEO classique ne suffit plus — il faut être dans les réponses IA.</p>
+          </div>
+          <div class="bench-card">
+            <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">Benchmark : Foreo</h3>
+            <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">Device beauté tech similaire. Site premium, storytelling scientifique, UX mobile-first, espace revendeurs intégré. Lightinderm doit viser ce standard.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SLIDE 6: PROPOSITION (78:269) ══════════ -->
+<section class="slide bg-black flex flex-col items-center justify-center" id="slide-5">
+  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center px-6 h-full">
+    <!-- Outer container: x=168, w=1104 → prop-container with badge+title on top -->
+    <div class="fade-up w-full max-w-[1104px]">
+      <!-- Proposition container wraps everything -->
+      <div class="prop-container p-[40px]">
+        <!-- Badge + Title inside container -->
+        <div class="flex flex-col items-center gap-[30px] mb-[32px]">
+          <div class="badge">NOTRE PROPOSITION</div>
+          <h2 class="font-bold text-[36px] text-[#e6e6f1] text-center leading-normal">
+            4 chantiers. Impact immédiat.
+          </h2>
+        </div>
+
+        <div class="flex flex-col gap-[19px] max-w-[838px] mx-auto">
+          <!-- Item 1 -->
+          <div class="prop-item">
+            <div class="prop-icon">
+              <span class="number-gradient">01</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-bold text-[21px] text-[#c7c7cc] leading-normal">Refonte site vitrine premium</h3>
+              <p class="text-[17px] text-[#a3a3ae] leading-normal mt-[10px]">Design MedTech, animations, storytelling clinique, mobile-first</p>
+            </div>
+            <span class="duration-badge">6-8 sem</span>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="prop-item">
+            <div class="prop-icon">
+              <span class="number-gradient">02</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-bold text-[21px] text-[#c7c7cc] leading-normal">Espace Pro revendeurs</h3>
+              <p class="text-[17px] text-[#a3a3ae] leading-normal mt-[10px]">Portail B2B, commandes, formations, assets marketing</p>
+            </div>
+            <span class="duration-badge">4-6 sem</span>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="prop-item">
+            <div class="prop-icon">
+              <span class="number-gradient">03</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-bold text-[21px] text-[#c7c7cc] leading-normal">SEO &amp; GEO médical</h3>
+              <p class="text-[17px] text-[#a3a3ae] leading-normal mt-[10px]">Stratégie de contenu, schema.org, optimisation moteurs IA</p>
+            </div>
+            <span class="duration-badge">Continu</span>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="prop-item">
+            <div class="prop-icon">
+              <span class="number-gradient">04</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-bold text-[21px] text-[#c7c7cc] leading-normal">D-Studio.Office</h3>
+              <p class="text-[17px] text-[#a3a3ae] leading-normal mt-[10px]">Tableau de bord gestion : analytics, contenus, Google Business</p>
+            </div>
+            <span class="duration-badge">Inclus</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Product Render (between proposition and pricing) -->
+<div class="flex justify-center items-center bg-black" style="margin-top:-100px; position:relative; z-index:2;">
+  <div class="relative w-[700px] max-w-[80%]">
+    <img src="assets/product-render.png" alt="Lightinderm device" class="w-full object-contain" />
+    <div style="position:absolute; bottom:0; left:0; right:0; height:40%; background:linear-gradient(to top, #000 0%, transparent 100%); pointer-events:none;"></div>
+  </div>
+</div>
+
+<!-- ══════════ SLIDE 7: PRICING (78:348) ══════════ -->
+<section class="slide bg-black flex flex-col items-center justify-center" id="slide-6">
+  <div class="slide-content w-full max-w-[1135px] mx-auto flex flex-col items-center justify-center px-6 h-full">
+    <!-- Header: gap-30px -->
+    <div class="flex flex-col items-center gap-[30px]">
+      <div class="fade-up badge">POUR DÉMARRER</div>
+      <h2 class="fade-up font-bold text-[36px] leading-[46px] text-white text-center" style="transition-delay:0.1s">
+        Un site à la hauteur<br>de l'innovation.
+      </h2>
+    </div>
+
+    <!-- Pricing Cards: w=552 each, gap-31px, mt-60px -->
+    <div class="fade-up flex flex-col md:flex-row gap-[31px] w-full mt-[60px]" style="transition-delay:0.2s">
+      <!-- Card 1: w=552 -->
+      <div class="stat-card-outer pricing flex-1" style="padding:12px">
+        <div class="stat-card-inner">
+          <div class="font-medium text-[16px] text-[rgba(255,255,255,0.84)] uppercase w-full">AUDIT UX COMPLET</div>
+          <div class="font-bold text-[38px] text-white uppercase leading-normal w-full">3-5K€</div>
+          <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">2 semaines · Analyse concurrence · 15 recommandations prioritisées</p>
+        </div>
+      </div>
+      <!-- Card 2: w=552 -->
+      <div class="stat-card-outer pricing flex-1" style="padding:12px">
+        <div class="stat-card-inner">
+          <div class="font-medium text-[16px] text-[rgba(255,255,255,0.84)] uppercase w-full">REFONTE COMPLÈTE</div>
+          <div class="font-bold text-[38px] text-white uppercase leading-normal w-full">15-25K€</div>
+          <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">8-10 semaines · Site + Espace Pro + SEO · D-Studio.Office inclus</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SLIDE 8: CLOSING (78:422) ══════════ -->
 <section class="slide bg-black flex flex-col items-center justify-center" id="slide-7">
-  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center px-6 h-full gap-8">
-    <!-- D-Studio Logo -->
+  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center px-6 h-full gap-[40px]">
+    <!-- D-Studio Logo: 232x282 -->
     <div class="fade-up">
       <img src="assets/dstudio-logo.svg" alt="D-Studio" class="w-[232px] h-[282px] object-contain" />
     </div>
 
-    <!-- Contact Info -->
-    <div class="fade-up flex flex-col items-center gap-3" style="transition-delay:0.1s">
-      <span class="font-medium text-[18px] text-[rgba(255,255,255,0.84)] uppercase text-center">D-Studio</span>
-      <a href="mailto:contact@dstudio.company" class="font-medium text-[18px] text-[rgba(255,255,255,0.84)] uppercase text-center underline hover:text-white transition-colors">contact@dstudio.company</a>
-      <span class="font-medium text-[18px] text-[rgba(255,255,255,0.84)] uppercase text-center">7 rue Lauriston, 75016 Paris</span>
+    <!-- Contact Info: w=292 -->
+    <div class="fade-up flex flex-col items-center gap-[16px] w-[292px]" style="transition-delay:0.1s">
+      <span class="font-medium text-[18px] text-[rgba(255,255,255,0.84)] uppercase text-center tracking-wide">D-STUDIO</span>
+      <a href="mailto:contact@dstudio.company" class="font-medium text-[18px] text-[rgba(255,255,255,0.84)] uppercase text-center underline hover:text-white transition-colors tracking-wide">CONTACT@DSTUDIO.COMPANY</a>
+      <span class="font-medium text-[18px] text-[rgba(255,255,255,0.84)] uppercase text-center tracking-wide">7 RUE LAURISTON, 75016 PARIS</span>
     </div>
 
     <!-- CTA Button -->
     <div class="fade-up" style="transition-delay:0.2s">
-      <a href="mailto:contact@dstudio.company" class="cta-button inline-block">
-        <span class="font-medium text-[18px] text-white">Discuter avec D-Studio</span>
+      <a href="mailto:contact@dstudio.company" class="cta-button gb-pill">
+        <span class="font-medium text-[18px] leading-[24px] text-[#e5e5e5] relative z-10">Discuter avec D-Studio</span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ========== SCRIPTS ========== -->
+<!-- ══════════ SCRIPTS ══════════ -->
 <script>
-// ============ PARTICLES ============
+// ── PARTICLES ──
 (function() {
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
@@ -710,7 +1004,7 @@ tailwind.config = {
   animate();
 })();
 
-// ============ SCROLL PROGRESS ============
+// ── SCROLL PROGRESS ──
 const progressBar = document.getElementById('progress-bar');
 document.body.addEventListener('scroll', function() {
   const scrollTop = document.body.scrollTop;
@@ -719,7 +1013,7 @@ document.body.addEventListener('scroll', function() {
   progressBar.style.width = progress + '%';
 });
 
-// ============ NAV DOTS ============
+// ── NAV DOTS ──
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.nav-dot');
 
@@ -730,14 +1024,7 @@ dots.forEach(dot => {
   });
 });
 
-// ============ INTERSECTION OBSERVER (fade-up + nav dots) ============
-const observerOptions = {
-  root: null,
-  rootMargin: '0px',
-  threshold: 0.3
-};
-
-// Fade-up observer
+// ── INTERSECTION OBSERVER ──
 const fadeObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -750,7 +1037,6 @@ document.querySelectorAll('.fade-up').forEach(el => {
   fadeObserver.observe(el);
 });
 
-// Slide observer for nav dots
 const slideObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
