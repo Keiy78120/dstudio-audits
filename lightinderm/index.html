@@ -431,7 +431,7 @@ body {
 }
 .prop-item::before {
   content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
-  background: linear-gradient(159deg, rgba(255,255,255,0.05) 1.69%, rgba(255,255,255,0.50) 37.46%, rgba(255,255,255,0.01) 88.2%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude; pointer-events: none;
@@ -520,17 +520,7 @@ body {
     0 0 32px 0 rgba(223,217,231,0.3);
 }
 
-/* ═══ HERO GRADIENT OVERLAY ═══ */
-.hero-gradient-overlay {
-  position: absolute;
-  bottom: -20px;
-  left: -10%;
-  right: -10%;
-  height: 150px;
-  background: radial-gradient(50% 50% at 50% 50%, #000 0%, rgba(0,0,0,0.8) 60%, transparent 100%);
-  filter: blur(27px);
-  pointer-events: none;
-}
+/* hero-gradient-overlay is now inline in the hero section (radial gradient + blur per Figma) */
 
 /* ═══ FADE-UP ANIMATION ═══ */
 .fade-up {
@@ -650,13 +640,11 @@ body {
       </div>
     </div>
 
-    <!-- Spacer -->
-    <div class="flex-1"></div>
-
-    <!-- Hero Image: x=84, w=1272 in 1440 frame -->
-    <div class="fade-up relative w-[88.3%] max-w-[1272px]" style="transition-delay:0.4s">
-      <img src="assets/hero-product.png" alt="Lightinderm product" class="w-full object-contain" />
-      <div class="hero-gradient-overlay"></div>
+    <!-- Hero Image Section: Figma hero-image-section (overflow hidden, image 175% height) -->
+    <div class="fade-up w-full flex-1 relative overflow-hidden" style="transition-delay:0.4s">
+      <img src="assets/hero-product.png" alt="Lightinderm product" style="position:absolute; height:175%; left:-3%; top:0; width:106%; max-width:none; object-fit:cover;" />
+      <!-- Fade overlay: linear gradient to black -->
+      <div style="position:absolute; bottom:0; left:0; right:0; height:40%; background:linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 50%, #000 100%); pointer-events:none; z-index:1;"></div>
     </div>
   </div>
 </section>
@@ -785,29 +773,29 @@ body {
 
 <!-- ══════════ SLIDE 5: BENCHMARK & GEO (78:236) ══════════ -->
 <section class="slide bg-black flex flex-col items-center justify-center" id="slide-4">
-  <div class="slide-content w-full max-w-[1187px] mx-auto flex flex-col items-center justify-center px-6 h-full">
-    <!-- Layout: image left (644px, overlapping), text right (618px) -->
+  <div class="slide-content w-full max-w-[1100px] mx-auto flex flex-col items-center justify-center px-6 h-full overflow-hidden">
+    <!-- Layout: image left, text+cards right -->
     <div class="fade-up flex flex-col md:flex-row items-center w-full" style="transition-delay:0.1s">
-      <!-- Image: square-ish like Figma -->
-      <div class="benchmark-image flex-shrink-0 relative" style="margin-right:-80px; z-index:1;">
-        <div class="relative w-[420px] h-[420px] rounded-[32px]" style="padding:11px; box-shadow: 0 0 0 2px rgba(255,255,255,0.25);">
-          <div style="position:absolute; inset:0; border-radius:32px; padding:11px; background:linear-gradient(180deg, rgba(207,207,207,0.59) 0%, rgba(105,105,105,0.30) 50%, rgba(105,105,105,0.41) 100%); -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite:exclude; pointer-events:none; z-index:1;"></div>
-          <img src="assets/product-usage.png" alt="Site actuel Lightinderm" class="w-full h-full object-cover rounded-[21px]" />
+      <!-- Image -->
+      <div class="benchmark-image flex-shrink-0 relative" style="margin-right:-60px; z-index:1;">
+        <div class="relative w-[520px] h-[380px] rounded-[28px]" style="padding:8px; box-shadow: 0 0 0 2px rgba(255,255,255,0.25);">
+          <div style="position:absolute; inset:0; border-radius:28px; padding:8px; background:linear-gradient(180deg, rgba(207,207,207,0.59) 0%, rgba(105,105,105,0.30) 50%, rgba(105,105,105,0.41) 100%); -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite:exclude; pointer-events:none; z-index:1;"></div>
+          <img src="assets/Frame 8181.png" alt="Site actuel Lightinderm" class="w-full h-full object-cover object-center rounded-[20px]" />
         </div>
       </div>
 
-      <!-- Text section: w=618 -->
-      <div class="benchmark-text flex flex-col gap-[49px] items-end w-[618px] max-w-full relative z-[2]">
+      <!-- Text section: badge + title + cards -->
+      <div class="benchmark-text flex flex-col gap-[30px] flex-1 min-w-0 relative z-[2]">
         <!-- Badge + Title -->
-        <div class="flex flex-col gap-[34px] items-start w-[475px]">
+        <div class="flex flex-col gap-[16px] items-start">
           <div class="badge">BENCHMARK &amp; GEO</div>
-          <h2 class="font-bold text-[36px] text-[#efefef] leading-normal">
+          <h2 class="font-bold text-[42px] text-[#efefef] leading-[1.1]">
             Où se positionner.
           </h2>
         </div>
 
-        <!-- Cards: w=576, gap=19px -->
-        <div class="flex flex-col gap-[19px] w-[576px] max-w-full">
+        <!-- Cards -->
+        <div class="flex flex-col gap-[19px] w-full">
           <div class="bench-card">
             <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">GEO — Generative Engine Optimization</h3>
             <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">ChatGPT, Perplexity, Gemini citent vos concurrents mais pas Lightinderm. Le SEO classique ne suffit plus — il faut être dans les réponses IA.</p>
