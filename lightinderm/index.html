@@ -587,8 +587,19 @@ body {
   .gap-card-green::before, .gap-card-red::before { border-radius: 20px; }
   /* Opp cards mobile */
   .opp-card { padding: 20px; border-radius: 20px; }
+  .opp-card::before { border-radius: 20px; }
+  .opp-card::after { border-radius: 20px; }
   .opp-card h3 { font-size: 17px !important; }
   .opp-card p { font-size: 14px !important; }
+  /* Bench cards mobile */
+  .bench-card::before { border-radius: 20px; }
+  .bench-card::after { border-radius: 20px; }
+  .bench-card { border-radius: 20px; }
+  /* Prop container mobile */
+  .prop-container { border-radius: 20px; }
+  .prop-container::before { border-radius: 20px; }
+  .prop-item { border-radius: 20px; }
+  .prop-item::before { border-radius: 20px; }
   /* Pricing mobile */
   .stat-card-outer.pricing .stat-card-inner { padding: 16px 20px; }
   /* Hero image: reduce on mobile */
@@ -668,7 +679,7 @@ body {
     <div class="flex flex-col items-center gap-[34px]">
       <div class="fade-up badge">CONTEXTE</div>
       <h2 class="fade-up font-bold text-[38px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">
-        Lightinderm en bref.
+        Lightinderm en chiffres
       </h2>
     </div>
 
@@ -712,7 +723,7 @@ body {
     <div class="flex flex-col items-center gap-[34px] mb-[50px]">
       <div class="fade-up badge">CONTEXTE</div>
       <h2 class="fade-up font-bold text-[38px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">
-        Lightinderm en bref.
+        Lightinderm en bref
       </h2>
     </div>
 
@@ -738,34 +749,45 @@ body {
     <div class="flex flex-col items-center gap-[34px] mb-[40px]">
       <div class="fade-up badge">PROBLÉMATIQUES</div>
       <h2 class="fade-up font-bold text-[36px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">
-        Un produit d'exception, une vitrine qui ne suit pas.
+        Un produit d'exception, une vitrine qui ne suit pas
       </h2>
       <p class="fade-up text-[17px] text-[#a3a3ae] text-center max-w-[800px] leading-[1.7]" style="transition-delay:0.15s">
         Notre analyse du site actuel, du positionnement digital et de l'écosystème revendeurs révèle plusieurs points de friction qui freinent le potentiel commercial de Lightinderm.
       </p>
     </div>
 
-    <!-- Problem cards -->
-    <div class="fade-up flex flex-col gap-[19px] w-full max-w-[900px]" style="transition-delay:0.2s">
-      <div class="opp-card">
-        <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">Design daté</h3>
-        <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">L'identité visuelle du site ne reflète pas le positionnement MedTech premium de la marque. L'écart entre la qualité du produit et sa présentation digitale nuit à la crédibilité.</p>
+    <!-- Two Columns: gap-cards green/red -->
+    <div class="fade-up flex flex-col md:flex-row gap-[36px] items-stretch justify-center w-full max-w-[1100px]" style="transition-delay:0.2s">
+      <!-- Left: LE PRODUIT -->
+      <div class="flex flex-col items-center flex-1 min-w-0">
+        <div class="gap-badge mb-[-16px] relative z-10">
+          <span class="text-[rgba(77,127,74,0.7)]">LE PRODUIT</span>
+        </div>
+        <div class="gap-card-green pt-[40px] pb-[20px] px-[24px] w-full flex-1">
+          <div class="flex flex-col gap-[12px] w-full">
+            <div class="gap-item gb-card"><span class="text-[#c7c7cc] text-[15px]"><strong class="font-bold">50 brevets</strong> et <strong class="font-bold">10 ans de recherche</strong> — technologie LED brevetée</span></div>
+            <div class="gap-item gb-card"><span class="text-[#c7c7cc] text-[15px]"><strong class="font-bold">52k abonnés Instagram</strong> — communauté engagée</span></div>
+            <div class="gap-item gb-card"><span class="text-[#c7c7cc] text-[15px]">Distribution premium — <strong class="font-bold">Sephora, Le Bon Marché, Galeries Lafayette</strong></span></div>
+            <div class="gap-item gb-card"><span class="text-[#c7c7cc] text-[15px]">Réseau <strong class="font-bold">pharmacies et cliniques</strong> dermatologiques</span></div>
+            <div class="gap-item gb-card"><span class="text-[#c7c7cc] text-[15px]">Positionnement <strong class="font-bold">MedTech</strong> — lumières régénérantes et sérums photo-actifs</span></div>
+          </div>
+        </div>
       </div>
-      <div class="opp-card">
-        <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">Aucun espace professionnel</h3>
-        <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">Pharmacies, cliniques, instituts et dermatologues n'ont aucun portail dédié pour commander, accéder aux formations ou télécharger des assets marketing.</p>
-      </div>
-      <div class="opp-card">
-        <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">SEO médical inexistant</h3>
-        <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">Lightinderm est invisible sur les requêtes clés (photothérapie LED, soins anti-âge, dermatologie). Aucun contenu structuré ne positionne la marque sur Google.</p>
-      </div>
-      <div class="opp-card">
-        <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">Absente des moteurs IA</h3>
-        <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">ChatGPT, Perplexity et Gemini citent vos concurrents (Foreo, CurrentBody) mais pas Lightinderm. Le GEO (Generative Engine Optimization) est un angle mort.</p>
-      </div>
-      <div class="opp-card">
-        <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">Expérience mobile sous-optimisée</h3>
-        <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">Navigation, temps de chargement et parcours d'achat ne sont pas à la hauteur des standards d'un device premium.</p>
+
+      <!-- Right: LE SITE ACTUEL -->
+      <div class="flex flex-col items-center flex-1 min-w-0">
+        <div class="gap-badge mb-[-16px] relative z-10">
+          <span class="text-[rgba(171,92,92,0.7)]">LE SITE ACTUEL</span>
+        </div>
+        <div class="gap-card-red pt-[40px] pb-[20px] px-[24px] w-full flex-1">
+          <div class="flex flex-col gap-[12px] w-full">
+            <div class="gap-item gb-card"><span class="text-[#7c7c80] text-[15px]"><strong class="font-bold">Design daté</strong> — l'identité visuelle ne reflète pas le positionnement MedTech premium</span></div>
+            <div class="gap-item gb-card"><span class="text-[#7c7c80] text-[15px]"><strong class="font-bold">Aucun espace professionnel</strong> — pharmacies, cliniques, instituts n'ont aucun portail dédié</span></div>
+            <div class="gap-item gb-card"><span class="text-[#7c7c80] text-[15px]"><strong class="font-bold">SEO médical inexistant</strong> — invisible sur les requêtes clés</span></div>
+            <div class="gap-item gb-card"><span class="text-[#7c7c80] text-[15px]"><strong class="font-bold">Absente des moteurs IA</strong> — ChatGPT, Perplexity citent les concurrents, pas Lightinderm</span></div>
+            <div class="gap-item gb-card"><span class="font-medium text-[15px] text-[#ab5c5c]">Expérience mobile sous-optimisée — navigation et parcours d'achat en dessous des standards</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -777,7 +799,7 @@ body {
     <div class="flex flex-col items-center gap-[34px] mb-[50px]">
       <div class="fade-up badge">RECOMMANDATION 01</div>
       <h2 class="fade-up font-bold text-[38px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">
-        Refonte design premium.
+        Refonte design premium
       </h2>
       <p class="fade-up text-[17px] text-[#a3a3ae] text-center max-w-[800px] leading-[1.7]" style="transition-delay:0.15s">
         Créer une identité digitale qui reflète enfin l'innovation et le positionnement MedTech de Lightinderm. L'objectif : un site qui inspire confiance dès la première seconde.
@@ -806,7 +828,7 @@ body {
     <div class="flex flex-col items-center gap-[34px] mb-[50px]">
       <div class="fade-up badge">RECOMMANDATION 02</div>
       <h2 class="fade-up font-bold text-[38px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">
-        Développement &amp; Espace Pro.
+        Développement &amp; Espace Pro
       </h2>
       <p class="fade-up text-[17px] text-[#a3a3ae] text-center max-w-[800px] leading-[1.7]" style="transition-delay:0.15s">
         Structurer l'écosystème digital pour servir à la fois le client final et le réseau de revendeurs professionnels.
@@ -835,7 +857,7 @@ body {
     <div class="flex flex-col items-center gap-[34px] mb-[50px]">
       <div class="fade-up badge">RECOMMANDATION 03</div>
       <h2 class="fade-up font-bold text-[38px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">
-        SEO &amp; GEO médical.
+        SEO &amp; GEO médical
       </h2>
       <p class="fade-up text-[17px] text-[#a3a3ae] text-center max-w-[800px] leading-[1.7]" style="transition-delay:0.15s">
         Rendre Lightinderm visible là où vos clients cherchent — sur Google aujourd'hui, dans les réponses IA demain.
@@ -868,7 +890,7 @@ body {
         <!-- Title inside container -->
         <div class="flex flex-col items-center mb-[40px]">
           <h2 class="font-bold text-[48px] text-[#e6e6f1] text-center leading-[1.1]">
-            3 chantiers. Impact immédiat.
+            3 chantiers, impact immédiat
           </h2>
         </div>
 
@@ -929,7 +951,7 @@ body {
     <div class="flex flex-col items-center gap-[34px]">
       <div class="fade-up badge">CONCLUSION</div>
       <h2 class="fade-up font-bold text-[38px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">
-        Synthèse &amp; prochaines étapes.
+        Synthèse &amp; prochaines étapes
       </h2>
       <p class="fade-up text-[17px] text-[#a3a3ae] text-center max-w-[800px] leading-[1.7]" style="transition-delay:0.2s">
         Cet audit identifie un décalage entre la qualité du produit et son interface web. Les recommandations portent sur trois axes : design, développement et référencement. Nous restons à disposition pour approfondir ces points.
