@@ -1,0 +1,86 @@
+/* D-Studio Audit Deck — Design Tokens
+   Extracted from Figma: EWxBllBr6mCb5q4cnZkua8 (2026-04-02)
+   Page: Design System (297:553) */
+
+:root {
+  /* ── Backgrounds ── */
+  --bg-primary: #000000;           /* Page background */
+  --bg-card: #141415;              /* Card surface */
+  --bg-card-glass: rgba(24,24,26,0.58);   /* Glass card, 58% */
+  --bg-card-muted: rgba(28,28,30,0.43);   /* Muted card, 43% */
+  --bg-elevated: #202020;          /* Elevated surface */
+
+  /* ── Text ── */
+  --text-primary: #FFFFFF;         /* Headings, stat values */
+  --text-heading: #EFEFEF;         /* Section headings */
+  --text-heading-alt: #E6E6F1;     /* Heading with blue tint */
+  --text-secondary: #C7C7CC;       /* Card titles, subheads */
+  --text-muted: #A3A3AE;           /* Body, descriptions */
+  --text-nav: #E5E5E5;             /* Nav labels */
+
+  /* ── Borders ── */
+  --border-primary: rgba(255,255,255,0.4);     /* 40% — badges, cards, CTA */
+  --border-subtle: rgba(54,54,54,0.8);         /* 80% — inner card borders */
+  --border-muted: rgba(54,52,59,0.2);          /* 20% — outer card frames */
+  --border-card-accent: rgba(255,255,255,0.24); /* 24% — proposition card */
+
+  /* ── Glow & Accent ── */
+  --glow-purple: rgba(32,16,98,0.35);     /* CTA purple glow */
+  --glow-lavender: rgba(203,186,227,0.1); /* CTA lavender halo */
+  --glow-frost: rgba(223,217,231,0.2);    /* Diffuse frost glow */
+  --glow-card: rgba(111,111,129,0.51);    /* Card inner shadow */
+  --glow-green: rgba(76,131,83,0.03);     /* Opportunity accent */
+
+  /* ── Typography ── */
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 55px/58px;   /* Display / Hero — Bold */
+  --font-h1: 48px;             /* Heading 1 — Bold */
+  --font-h2: 38px;             /* Heading 2 — Bold */
+  --font-stat: 45px;           /* Stat Value — Bold */
+  --font-counter: 27px;        /* Number / Counter — Bold */
+  --font-card-title: 21px;     /* Card Title — Bold */
+  --font-body: 19px;           /* Body / Subtitle — Regular */
+  --font-body-sm: 17px;        /* Body Small — Regular */
+  --font-badge: 18px;          /* Badge / Label — Medium */
+  --font-nav: 15px/24px;       /* Nav Tab — Medium */
+  --font-duration: 14px;       /* Duration Tag — Regular */
+
+  /* ── Spacing ── */
+  --section-padding-x: 115px;   /* Horizontal page margin */
+  --section-gap: 66px;          /* Vertical gap between header + content */
+  --card-gap-lg: 31px;          /* Gap between stat/pricing cards */
+  --card-gap-sm: 19px;          /* Gap between list/opportunity cards */
+  --text-gap-header: 34px;      /* Badge to heading */
+  --text-gap-body: 30px;        /* Heading to body */
+  --text-gap-inline: 10px;      /* Title to description within card */
+  --card-padding-lg: 28px;      /* Inner padding for opportunity cards */
+  --card-padding-sm: 23px;      /* Inner padding for proposition items */
+  --badge-padding: 17px 14px;   /* Horizontal / vertical badge padding */
+  --button-padding: 30px 21px;  /* CTA button */
+  --inner-card-padding: 25px 21px; /* Stat card inner */
+
+  /* ── Border Radii ── */
+  --radius-pill: 40px;   /* Pills, CTA buttons, nav tabs */
+  --radius-card: 33px;   /* Cards — stat, pricing, opportunity, proposition */
+  --radius-inner: 21px;  /* Card inner containers */
+  --radius-badge: 16px;  /* Badges, section labels */
+  --radius-tag: 14px;    /* Duration tags, small chips */
+
+  /* ── Shadows ── */
+  --shadow-card-glow: 0 0 20px rgba(45,41,53,0.25);
+  --shadow-card-inner-glow: inset 0 0 14px rgba(111,111,129,0.51);
+  --shadow-opportunity-glow: 0 0 44px rgba(76,131,83,0.03), 0 0 64px rgba(217,228,231,0.2);
+  --shadow-glass-inset: inset -1px -1px 14px rgba(255,255,255,0.07), inset 1px 1px 3px rgba(255,255,255,0.12);
+  --shadow-cta-glow: 0 0 15px rgba(32,16,98,0.35), 0 0 14px rgba(203,186,227,0.1), 0 0 24px rgba(223,217,231,0.2);
+  --shadow-cta-inner: inset -1px -1px 2px rgba(255,255,255,0.1), inset 1px 1px 2px rgba(255,255,255,0.38), inset 0 0 14px rgba(255,255,255,0.25);
+  --shadow-menu-back: 0 1px 6px rgba(0,0,0,0.25);
+
+  /* ── Gradients ── */
+  --gradient-card-inner: linear-gradient(to top, rgba(6,6,6,0.6) 0%, rgba(17,17,19,0.3) 83.56%, rgba(27,27,30,0.2) 110%);
+  --gradient-prop-item: linear-gradient(180deg, rgba(65,36,28,0.09) 11.28%, rgba(13,12,14,0.4) 128.43%);
+  --gradient-tab: linear-gradient(90deg, rgba(32,32,32,0.4) 0%, rgba(32,32,32,0.4) 100%), linear-gradient(90deg, rgba(11,7,17,0.69) 0%, rgba(11,7,17,0.69) 100%);
+  --gradient-prop-container: linear-gradient(180deg, #000000 0%, rgba(0,0,0,0.81) 53.39%, transparent 100%);
+
+  /* ── Backdrop ── */
+  --backdrop-blur: blur(4.5px);
+}
