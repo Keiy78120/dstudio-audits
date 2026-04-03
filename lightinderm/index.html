@@ -102,11 +102,11 @@ body {
   overflow: visible;
   padding: 8vh 0;
 }
-.slide:first-child {
-  padding-top: 0;
-  overflow: hidden;
+.slide-hero {
   height: 100vh;
   min-height: 100vh;
+  overflow: hidden;
+  padding: 0;
 }
 
 /* ═══ PROGRESS BAR ═══ */
@@ -605,8 +605,9 @@ body {
   .prop-item::before { border-radius: 20px; }
   /* Pricing mobile */
   .stat-card-outer.pricing .stat-card-inner { padding: 16px 20px; }
-  /* Hero image: reduce on mobile */
-  .hero-image-section { max-height: 30vh !important; flex: none !important; }
+  /* Hero: auto height on mobile, image reduced */
+  .slide-hero { height: auto !important; min-height: auto !important; overflow: hidden !important; }
+  .hero-image-section { max-height: 30vh; flex: none !important; }
   .hero-image-section img { height: 140% !important; }
   /* Product render: smaller on mobile */
   .product-render-section { margin-top: -60px !important; }
@@ -637,7 +638,7 @@ body {
 </nav>
 
 <!-- ══════════ SLIDE 1: HERO (76:57) ══════════ -->
-<section class="slide bg-black flex flex-col items-center" id="slide-0">
+<section class="slide slide-hero bg-black flex flex-col items-center" id="slide-0">
   <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center h-full relative">
     <!-- Header block: centered at x=349, w=742 → centered in 1440 -->
     <div class="flex flex-col items-center gap-[25px] pt-[56px] w-[742px] max-w-full px-4">
