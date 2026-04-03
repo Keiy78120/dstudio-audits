@@ -579,8 +579,11 @@ body {
   .prop-icon { align-self: center; }
   .duration-badge { position: static; align-self: center; margin-top: 8px; }
   /* Benchmark: hide image on mobile, stack text */
-  .benchmark-image { display: none !important; }
+  .benchmark-image { display: block !important; margin: 0 !important; width: 100% !important; margin-bottom: 24px !important; }
+  .benchmark-image .relative { width: 100% !important; height: auto !important; aspect-ratio: 16/11; }
+  .benchmark-image .relative img { border-radius: 14px !important; }
   .benchmark-text { width: 100% !important; }
+  .benchmark-text .flex.flex-col.gap-\\[16px\\] { padding-left: 0 !important; }
   .benchmark-text .flex.flex-col.gap-\[34px\] { width: 100% !important; }
   .benchmark-text .flex.flex-col.gap-\[19px\] { width: 100% !important; }
   .bench-card { height: auto !important; }
