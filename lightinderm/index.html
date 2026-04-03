@@ -97,9 +97,13 @@ body {
 .slide {
   scroll-snap-align: start;
   min-height: 100vh;
-  height: 100vh;
+  height: auto;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  padding: 8vh 0;
+}
+.slide:first-child {
+  padding-top: 0;
 }
 
 /* ═══ PROGRESS BAR ═══ */
@@ -552,10 +556,10 @@ body {
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 768px) {
   .slide {
-    min-height: 100vh;
+    min-height: auto;
     height: auto;
     scroll-snap-align: start;
-    padding: 40px 0;
+    padding: 6vh 0;
   }
   body { scroll-snap-type: none; }
   .nav-dots { display: none; }
@@ -728,7 +732,7 @@ body {
 </section>
 
 <!-- ══════════ SLIDE 3: PROBLÉMATIQUES ══════════ -->
-<section class="slide bg-black flex flex-col items-center justify-center" id="slide-2" style="height:auto; min-height:100vh; padding:80px 0;">
+<section class="slide bg-black flex flex-col items-center justify-center" id="slide-2">
   <div class="slide-content w-full max-w-[1209px] mx-auto flex flex-col items-center px-6 h-full justify-center">
     <!-- Header -->
     <div class="flex flex-col items-center gap-[34px] mb-[40px]">
