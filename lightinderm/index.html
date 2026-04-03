@@ -605,10 +605,8 @@ body {
   .prop-item::before { border-radius: 20px; }
   /* Pricing mobile */
   .stat-card-outer.pricing .stat-card-inner { padding: 16px 20px; }
-  /* Hero: auto height on mobile, image reduced */
-  .slide-hero { height: auto !important; min-height: auto !important; overflow: hidden !important; }
-  .hero-image-section { max-height: 30vh; flex: none !important; }
-  .hero-image-section img { height: 140% !important; }
+  /* Hero: keep height for flex-1 image, just shorter */
+  .slide-hero { height: 100vh !important; min-height: 100vh !important; overflow: hidden !important; }
   /* Product render: smaller on mobile */
   .product-render-section { margin-top: -60px !important; }
   .product-render-section .relative { max-width: 60% !important; }
