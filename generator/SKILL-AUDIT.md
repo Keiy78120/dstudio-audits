@@ -122,12 +122,39 @@ git push origin gh-pages
 | `cta` | Pricing (double-frame cards) — optionnel | `stat-card` variant pricing |
 | `custom` | HTML libre | Libre |
 
-## Ordre recommandé (8-10 slides)
+## Ordre recommandé (11 slides) — TOUS les composants utilisés
 
-hero → stats → contexte (intro + approche) → gap (problématiques) → reco 01 (cards col) → reco 02 (cards col) → reco 03 (cards col) → proposition → conclusion → closing
+| # | Slide | Composant | Badge |
+|---|-------|-----------|-------|
+| 1 | Hero | `.slide-hero` (100vh) — logo + tab-pills + titre + image 175% | — |
+| 2 | Chiffres | `stat-card-outer/inner` (double-frame, count-up) | EN CHIFFRES |
+| 3 | Contexte | Paragraphe intro + sous-section "Approche de l'audit" | CONTEXTE |
+| 4 | Problématiques | `gap-card-green/red` + `gap-item` pills (2 colonnes) | PROBLÉMATIQUES |
+| 5 | Reco 01 | `opp-card` × 3 (titre + sous-titre + description) | RECOMMANDATION 01 |
+| 6 | Reco 02 | `opp-card` × 3 | RECOMMANDATION 02 |
+| 7 | Reco 03 | `opp-card` × 2 | RECOMMANDATION 03 |
+| 8 | Benchmark | `bench-card` × 2 + image frame (screenshot site) | BENCHMARK & GEO |
+| 9 | Proposition | `prop-container` + `prop-item` numérotés + `duration-badge` | NOTRE PROPOSITION |
+| 10 | Conclusion | Paragraphe de synthèse | CONCLUSION |
+| 11 | Closing | Logo D-Studio + contact + `cta-button` (purple glow) | — |
 
-Le closing D-Studio est auto-ajouté. Le pricing (cta) est optionnel.
-Le product render est auto-inséré entre proposition et le slide suivant si `productRender` est défini.
+**Product render** auto-inséré entre proposition et conclusion si `productRender` est défini.
+**Pricing (cta)** optionnel — ajouter entre conclusion et closing si nécessaire.
+
+### Composants utilisés par deck (checklist)
+- [ ] `tab-pill` — hero nav tabs
+- [ ] `badge` — labels de section (radius 16px)
+- [ ] `stat-card-outer/inner` — chiffres clés (double-frame)
+- [ ] `gap-card-green` + `gap-card-red` — analyse comparative
+- [ ] `gap-badge` — labels colonnes gap
+- [ ] `gap-item` + `gb-card` — items pills dans gap-cards
+- [ ] `opp-card` — recommandations détaillées
+- [ ] `bench-card` — benchmark / comparaison
+- [ ] `prop-container` — container proposition (badge overlap)
+- [ ] `prop-item` — items numérotés
+- [ ] `prop-icon` + `number-gradient` — numéros proposition
+- [ ] `duration-badge` — durées proposition
+- [ ] `cta-button` + `gb-pill` — CTA closing
 
 ## Highlights HTML dans les textes
 - `<strong class='font-bold'>texte</strong>` — bold blanc
