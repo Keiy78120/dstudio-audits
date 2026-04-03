@@ -3,15 +3,17 @@
   "client": "Lightinderm",
   "date": "Mars 2026",
   "lang": "fr",
-  "clientLogo": "https://www.google.com/s2/favicons?domain=lightinderm.com&sz=128",
+  "clientLogo": "assets/lightinderm-logo.svg",
   "clientColor": "rgba(74,222,128,0.6)",
-  "heroImage": "../assets/heroes/lightinderm.jpg",
+  "heroImage": "assets/hero-product.png",
+  "productRender": "assets/product-render.png",
+  "benchmarkImage": "assets/Frame 8181.png",
   "slides": [
     {
       "type": "hero",
       "label": "Lightinderm",
-      "title": "La science mérite<br>un meilleur écrin.",
-      "body": "50 brevets. 52k followers Instagram.<br>Un site qui ne reflète pas l'innovation.<br>Il est temps de corriger ça.",
+      "title": "Audit digital.",
+      "body": "Analyse de l'interface, de l'expérience utilisateur<br>et du référencement de Lightinderm.",
       "tags": [
         "Refonte Site",
         "Espace Pro",
@@ -21,8 +23,8 @@
     },
     {
       "type": "stats",
-      "label": "Lightinderm en chiffres",
-      "title": "Le potentiel est là.",
+      "label": "Contexte",
+      "title": "Lightinderm en bref.",
       "grid": "grid-4",
       "stats": [
         {
@@ -30,12 +32,12 @@
           "label": "Brevets déposés"
         },
         {
-          "value": "52k",
+          "value": "52K",
           "label": "Followers Instagram"
         },
         {
-          "value": "495€+",
-          "label": "Panier moyen device"
+          "value": "10 ans",
+          "label": "De recherche"
         },
         {
           "value": "Sephora",
@@ -45,97 +47,88 @@
     },
     {
       "type": "gap",
-      "label": "Le gap",
-      "title": "Innovation produit vs présence digitale.",
+      "label": "Problématiques",
+      "title": "Un produit d'exception, une vitrine qui ne suit pas.",
       "columns": [
         {
           "title": "LE PRODUIT",
           "type": "good",
           "items": [
-            "<strong style='color:#fff;'>50 brevets</strong> déposés — technologie LED unique",
-            "<strong style='color:#fff;'>52k Instagram</strong> — communauté engagée",
-            "Distribution en <strong style='color:#fff;'>pharmacies et cliniques</strong>",
-            "Résultats cliniques <strong style='color:#fff;'>prouvés</strong>",
-            "Positionnement <strong style='color:#fff;'>MedTech premium</strong>"
+            "<strong class='font-bold'>50 brevets</strong> et <strong class='font-bold'>10 ans de recherche</strong> — technologie LED brevetée",
+            "<strong class='font-bold'>52k abonnés Instagram</strong> — communauté engagée",
+            "Distribution premium — <strong class='font-bold'>Sephora, Le Bon Marché, Galeries Lafayette</strong>",
+            "Réseau <strong class='font-bold'>pharmacies et cliniques</strong> dermatologiques",
+            "Positionnement <strong class='font-bold'>MedTech</strong> — lumières régénérantes et sérums photo-actifs"
           ]
         },
         {
           "title": "LE SITE ACTUEL",
           "type": "bad",
           "items": [
-            "Design daté — ne reflète <strong style='color:#fff;'>pas le positionnement premium</strong>",
-            "Pas d'espace Pro pour les <strong style='color:#fff;'>revendeurs/dermatologues</strong>",
-            "SEO médical <strong style='color:#fff;'>inexistant</strong> — invisible sur Google",
-            "Mobile : expérience <strong style='color:#fff;'>non optimisée</strong>",
-            "<em style='color:rgba(248,113,113,0.7);'>Un produit à 300€ mérite un site premium</em>"
+            "<strong class='font-bold'>Design daté</strong> — l'identité visuelle ne reflète pas le positionnement MedTech premium",
+            "<strong class='font-bold'>Aucun espace professionnel</strong> — pharmacies, cliniques, instituts n'ont aucun portail dédié",
+            "<strong class='font-bold'>SEO médical inexistant</strong> — invisible sur les requêtes clés",
+            "<strong class='font-bold'>Absente des moteurs IA</strong> — ChatGPT, Perplexity citent les concurrents, pas Lightinderm",
+            "<span class='font-medium text-[#ab5c5c]'>Expérience mobile sous-optimisée — navigation et parcours d'achat en dessous des standards</span>"
           ]
         }
       ]
     },
     {
       "type": "cards",
-      "label": "Opportunités",
+      "label": "Recommandations",
       "title": "3 axes de transformation.",
       "grid": "col",
       "cards": [
         {
-          "title": "Refonte Premium",
-          "body": "Nouveau design aligné avec le positionnement MedTech. Animations, storytelling scientifique, preuves cliniques mises en avant. Score PageSpeed 90+.",
-          "highlight": "green"
+          "title": "Refonte design premium",
+          "body": "Direction artistique MedTech inspirée des univers cliniques. Storytelling scientifique avec mise en avant des preuves cliniques et brevets. Conception mobile-first, Score PageSpeed 90+."
         },
         {
-          "title": "Espace Pro Revendeurs",
-          "body": "Portail dédié aux pharmacies et dermatologues. Commandes, formations, assets marketing. Gestion autonome via D-Studio.Office.",
-          "highlight": "green"
+          "title": "Développement & Espace Pro",
+          "body": "Portail B2B dédié aux pharmacies et dermatologues. E-commerce optimisé avec fiches produit enrichies et programme de fidélité repensé. Gestion autonome via D-Studio.Office."
         },
         {
-          "title": "SEO & GEO Médical",
-          "body": "Stratégie de contenu ciblée : dermatologie LED, anti-âge, soins visage. Optimisation pour Google ET pour les moteurs IA (ChatGPT, Perplexity)."
+          "title": "SEO & GEO médical",
+          "body": "Stratégie de contenu ciblée : photothérapie LED, anti-âge, dermatologie. Balisage schema.org médical. GEO pour être référencé dans les réponses IA (ChatGPT, Perplexity, Gemini)."
         }
       ]
     },
     {
-      "type": "cards",
+      "type": "benchmark",
       "label": "Benchmark & GEO",
       "title": "Où se positionner.",
-      "grid": "grid-2",
+      "image": "assets/Frame 8181.png",
       "cards": [
         {
           "title": "GEO — Generative Engine Optimization",
-          "body": "ChatGPT, Perplexity, Gemini citent vos concurrents mais pas Lightinderm. Le SEO classique ne suffit plus — il faut être dans les réponses IA.",
-          "highlight": "red"
+          "body": "Les moteurs IA sont devenus des canaux de découverte majeurs. Aujourd'hui, ils citent vos concurrents (Foreo, CurrentBody) mais pas Lightinderm. Nous structurons votre contenu pour être référencé dans ces réponses."
         },
         {
           "title": "Benchmark : Foreo",
-          "body": "Device beauté tech similaire. Site premium, storytelling scientifique, UX mobile-first, espace revendeurs intégré. Lightinderm doit viser ce standard.",
-          "highlight": "green"
+          "body": "Device beauté tech au positionnement similaire. Site premium, storytelling scientifique, UX mobile-first, espace revendeurs intégré. C'est le standard que Lightinderm doit viser — et dépasser."
         }
       ]
     },
     {
       "type": "proposition",
       "label": "Notre proposition",
-      "title": "4 chantiers. Impact immédiat.",
+      "title": "3 chantiers. Impact immédiat.",
       "items": [
         {
           "title": "Refonte site vitrine premium",
-          "body": "Design MedTech, animations, storytelling clinique, mobile-first",
+          "body": "Direction artistique MedTech, storytelling scientifique, mobile-first, Score PageSpeed 90+",
           "duration": "6-8 sem"
         },
         {
-          "title": "Espace Pro revendeurs",
-          "body": "Portail B2B, commandes, formations, assets marketing",
+          "title": "Espace Pro & E-commerce",
+          "body": "Portail B2B revendeurs, fiches produit enrichies, programme de fidélité, abonnement capsules",
           "duration": "4-6 sem"
         },
         {
           "title": "SEO & GEO médical",
-          "body": "Stratégie de contenu, schema.org, optimisation moteurs IA",
+          "body": "Stratégie de contenu, schema.org médical, optimisation moteurs IA",
           "duration": "Continu"
-        },
-        {
-          "title": "D-Studio.Office",
-          "body": "Tableau de bord gestion : analytics, contenus, Google Business",
-          "duration": "Inclus"
         }
       ]
     },
@@ -146,12 +139,12 @@
       "offers": [
         {
           "title": "Audit UX complet",
-          "price": "3-5k€",
+          "price": "3-5K€",
           "details": "2 semaines · Analyse concurrence · 15 recommandations prioritisées"
         },
         {
           "title": "Refonte complète",
-          "price": "15-25k€",
+          "price": "15-25K€",
           "details": "8-10 semaines · Site + Espace Pro + SEO · D-Studio.Office inclus"
         }
       ]
