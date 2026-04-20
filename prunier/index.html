@@ -614,6 +614,8 @@ body {
   <!-- Restaurant background image fade from bottom -->
   <div aria-hidden="true" style="position:absolute; bottom:0; left:0; right:0; height:65%; pointer-events:none; z-index:0;">
     <img src="assets/prunier-restaurant-bg.png" alt="" style="width:100%; height:100%; object-fit:cover; object-position:top center;" />
+    <!-- Fade top — emerge progressively from black -->
+    <div style="position:absolute; top:0; left:0; right:0; height:35%; background:linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%); pointer-events:none;"></div>
     <!-- Fade bottom — couvre la coupure bas, finit opaque noir -->
     <div style="position:absolute; bottom:0; left:0; right:0; height:50%; background:linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,1) 100%); pointer-events:none;"></div>
   </div>
@@ -708,7 +710,7 @@ body {
           <img src="assets/prunier-logo-actual.png" alt="Logo actuel Prunier" style="object-position:center;" />
         </div>
         <div class="screen-frame flex-1 screen-right" style="height:310px;">
-          <img src="assets/prunier-logo-premium.png" alt="Direction premium Prunier" style="object-position:center;" />
+          <img src="assets/prunier-after-dstudio.png" alt="Exemple de lisibilité D-Studio" style="object-position:center;" />
         </div>
       </div>
     </div>
