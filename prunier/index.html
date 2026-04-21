@@ -520,10 +520,12 @@ body {
   .before-after-layout .screen-right { width: 100% !important; height: 220px !important; }
   .before-after-layout .card-col { width: 100% !important; }
   /* Slide A grid mobile */
-  .slide-a-grid { grid-template-columns: 1fr !important; }
+  .slide-a-grid { flex-direction: column !important; }
+  .slide-a-grid > div { flex: 0 0 100% !important; width: 100% !important; }
   /* Slide B grid mobile */
-  .slide-b-grid { grid-template-columns: 1fr !important; }
-  .tablet-frame { height: 250px !important; }
+  .slide-b-grid { flex-direction: column !important; }
+  .slide-b-grid > div { flex: 0 0 100% !important; width: 100% !important; }
+  .tablet-frame { height: auto !important; }
 }
 </style>
 </head>
@@ -721,7 +723,9 @@ body {
 
 <!-- ═══════════════════════════════════════════════
      SLIDE 5 — RECOMMANDATION 01 — DESIGN (464:112)
-     Header centré + grid 40/60 asymétrique (opp-card + overlay Actual | After dominant)
+     Header centré + layout asymétrique 441px / 766px
+     Gauche : opp-card EN HAUT + petite frame Actual EN BAS + pill "Actual" SOUS la frame
+     Droite : pill "After" AU-DESSUS à droite + grande frame After
 ════════════════════════════════════════════════ -->
 <section class="slide bg-black flex flex-col items-center justify-center" id="slide-4">
   <div class="slide-content w-full max-w-[1300px] mx-auto flex flex-col items-center px-6">
@@ -729,41 +733,41 @@ body {
     <!-- Header centré -->
     <div class="flex flex-col items-center gap-[24px] mb-[48px]">
       <div class="fade-up badge">Recommandation 01</div>
-      <h2 class="fade-up font-bold text-[55px] leading-[58px] text-[#efefef] text-center" style="transition-delay:0.1s">Structuration de la marque</h2>
+      <h2 class="fade-up font-bold text-[48px] leading-[54px] text-[#efefef] text-center" style="transition-delay:0.1s">Refonte design</h2>
       <p class="fade-up text-[17px] text-[#a3a3ae] text-center max-w-[600px] leading-normal" style="transition-delay:0.15s">La marque n'est pas à refaire, elle porte un héritage fort. L'objectif est de la structurer en fournissant des guidelines claires pour l'ensemble des supports et des futures créations.</p>
     </div>
 
-    <!-- Grid 40/60 asymétrique -->
+    <!-- Layout asymétrique Figma : col gauche ~36.5% (441/1207px zone utile) / col droite ~63.5% (766px) -->
     <div class="fade-up w-full" style="transition-delay:0.2s">
-      <div style="display:grid; grid-template-columns: 2fr 3fr; gap: 24px; align-items:start;"
-           class="slide-a-grid">
+      <div class="slide-a-grid" style="display:flex; gap:24px; align-items:flex-start;">
 
-        <!-- Colonne gauche 40% : opp-card + Actual overlay -->
-        <div style="position:relative;">
+        <!-- COLONNE GAUCHE : opp-card EN HAUT + petite frame Actual EN BAS (441×253) + pill SOUS la frame -->
+        <div style="flex: 0 0 36.5%; display:flex; flex-direction:column; gap:24px;">
           <!-- opp-card description -->
           <div class="opp-card">
-            <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">Guidelines & Design system</h3>
+            <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">Direction artistique unifiée</h3>
             <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">Définir des règles d'utilisation claires pour chaque élément de la marque : quand utiliser le logo en or, quand le décliner en monochrome, quelle famille serif pour les titres vs le corps de texte, comment le turquoise et l'or coexistent selon le support. Un cadre qui préserve l'identité existante tout en garantissant que chaque déclinaison reflète le positionnement premium du produit.</p>
           </div>
-          <!-- Actual mockup — positioned below opp-card with gap -->
-          <div style="position:relative; margin-top:32px; width:85%; z-index:5;">
-            <!-- Pill Actual top-left overlapping -->
-            <div style="position:absolute; top:12px; left:12px; z-index:10;">
-              <div class="tab-pill"><span>Actuel</span></div>
-            </div>
-            <div class="tablet-frame" style="height:200px;">
+          <!-- Petite frame Actual (441×253, ratio ~16/9) -->
+          <div style="display:flex; flex-direction:column; align-items:flex-start; gap:0;">
+            <div class="tablet-frame" style="width:100%; aspect-ratio:441/253;">
               <img src="assets/prunier-actual-homepage.png" alt="Site actuel Prunier" />
+            </div>
+            <!-- Pill "Actual" EN DESSOUS de la frame -->
+            <div style="margin-top:12px;">
+              <div class="tab-pill"><span>Actuel</span></div>
             </div>
           </div>
         </div>
 
-        <!-- Colonne droite 60% : After D-Studio dominant -->
-        <div style="position:relative;">
-          <!-- Pill After top-right flottant hors du frame -->
-          <div style="position:absolute; top:-20px; right:20px; z-index:10;">
+        <!-- COLONNE DROITE : pill "Après D-Studio" AU-DESSUS à droite + grande frame After (766×472) -->
+        <div style="flex: 0 0 calc(63.5% - 24px); display:flex; flex-direction:column; align-items:flex-end; gap:0;">
+          <!-- Pill "Après D-Studio" AU-DESSUS et à DROITE -->
+          <div style="margin-bottom:12px;">
             <div class="tab-pill"><span>Après D-Studio</span></div>
           </div>
-          <div class="tablet-frame" style="height:460px;">
+          <!-- Grande frame After (766×472, ratio ~766/472 ≈ 1.62) -->
+          <div class="tablet-frame" style="width:100%; aspect-ratio:766/472;">
             <img src="assets/prunier-after-homepage.png" alt="Proposition D-Studio" />
           </div>
         </div>
@@ -777,41 +781,42 @@ body {
 
 <!-- ═══════════════════════════════════════════════
      SLIDE 6 — PRODUCT SHOP REDEFINE (526:1049)
-     Glass header centré + 50/50 symétrique avec pills flottants
+     Card titre PLEINE LARGEUR centrale (810px) EN HAUT
+     Puis 2 frames côte-à-côte, alignées par le TOP :
+       Gauche : pill "Actual" AU-DESSUS + petite frame (441×253)
+       Droite  : grande frame (766×472) + pill "Après D-Studio" EN DESSOUS à gauche
 ════════════════════════════════════════════════ -->
 <section class="slide bg-black flex flex-col items-center justify-center" id="slide-5">
   <div class="slide-content w-full max-w-[1300px] mx-auto flex flex-col items-center px-6">
 
-    <!-- Glass header container — FRAME-GRA 180deg + blur 4.5px -->
-    <div class="fade-up glass-header w-full max-w-[640px] mx-auto mb-[48px]">
-      <h2 class="font-bold text-[36px] text-[#e6e6f1] text-center leading-tight">Fiche produit redéfinie</h2>
-      <p class="text-[17px] text-[#a3a3ae] text-center leading-normal mt-[12px]">La fiche produit actuelle, dense, générique et peu engageante, est l'un des principaux points de friction du parcours d'achat. Une refonte sur-mesure la transforme en vitrine de la qualité Prunier.</p>
+    <!-- Card titre centrale pleine largeur (810px, centré) — FRAME-GRA 180deg + blur 4.5px -->
+    <div class="fade-up glass-header w-full max-w-[810px] mx-auto mb-[48px]">
+      <h2 class="font-bold text-[36px] text-[#e6e6f1] text-center leading-tight">Product shop redefine</h2>
+      <p class="text-[17px] text-[#a3a3ae] text-center leading-normal mt-[12px]">Add a text explanation here</p>
     </div>
 
-    <!-- Screenshots 50/50 symétrique -->
+    <!-- 2 frames côte-à-côte, alignées par le TOP, layout asymétrique 441 / 766 -->
     <div class="fade-up w-full" style="transition-delay:0.15s">
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;"
-           class="slide-b-grid">
+      <div class="slide-b-grid" style="display:flex; gap:24px; align-items:flex-start;">
 
-        <!-- Actual — pill top-left overlapping -->
-        <div style="position:relative; display:flex; flex-direction:column;">
-          <div style="position:relative; flex:1;">
-            <div style="position:absolute; top:12px; left:12px; z-index:10;">
-              <div class="tab-pill"><span>Actuel</span></div>
-            </div>
-            <div class="tablet-frame" style="height:auto; aspect-ratio:16/9; background:#f5f5f7;">
-              <img src="assets/prunier-actual-product.png" alt="Fiche produit actuelle" style="object-fit:contain; object-position:top center;" />
-            </div>
+        <!-- GAUCHE : pill "Actual" AU-DESSUS + petite frame Actual (441×253) -->
+        <div style="flex: 0 0 36.5%; display:flex; flex-direction:column; align-items:flex-start; gap:0;">
+          <!-- Pill "Actual" AU-DESSUS de la frame -->
+          <div style="margin-bottom:12px;">
+            <div class="tab-pill"><span>Actuel</span></div>
+          </div>
+          <div class="tablet-frame" style="width:100%; aspect-ratio:441/253;">
+            <img src="assets/prunier-actual-product.png" alt="Fiche produit actuelle" />
           </div>
         </div>
 
-        <!-- Après D-Studio — pill bottom centered sortant de l'image -->
-        <div style="position:relative; display:flex; flex-direction:column; align-items:center;">
-          <div class="tablet-frame" style="height:380px; width:100%;">
+        <!-- DROITE : grande frame After (766×472) + pill "Après D-Studio" EN DESSOUS à gauche -->
+        <div style="flex: 0 0 calc(63.5% - 24px); display:flex; flex-direction:column; align-items:flex-start; gap:0;">
+          <div class="tablet-frame" style="width:100%; aspect-ratio:766/472;">
             <img src="assets/prunier-after-product.png" alt="Fiche produit D-Studio" />
           </div>
-          <!-- Pill Après D-Studio bottom centered, sort de l'image vers le bas -->
-          <div style="margin-top:-20px; position:relative; z-index:10;">
+          <!-- Pill "Après D-Studio" EN DESSOUS à gauche de la frame -->
+          <div style="margin-top:12px;">
             <div class="tab-pill"><span>Après D-Studio</span></div>
           </div>
         </div>
