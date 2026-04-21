@@ -733,38 +733,38 @@ body {
       <p class="fade-up text-[17px] text-[#a3a3ae] text-center max-w-[600px] leading-normal" style="transition-delay:0.15s">La marque n'est pas à refaire, elle porte un héritage fort. L'objectif est de la structurer en fournissant des guidelines claires pour l'ensemble des supports et des futures créations.</p>
     </div>
 
-    <!-- Grid 50/50 symétrique -->
+    <!-- Grid 40/60 asymétrique -->
     <div class="fade-up w-full" style="transition-delay:0.2s">
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items:end;"
+      <div style="display:grid; grid-template-columns: 2fr 3fr; gap: 24px; align-items:start;"
            class="slide-a-grid">
 
-        <!-- Colonne gauche 50% : opp-card + Actual -->
-        <div style="display:flex; flex-direction:column; gap:24px;">
+        <!-- Colonne gauche 40% : opp-card + Actual overlay -->
+        <div style="position:relative;">
           <!-- opp-card description -->
           <div class="opp-card">
             <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">Guidelines & Design system</h3>
             <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">Définir des règles d'utilisation claires pour chaque élément de la marque : quand utiliser le logo en or, quand le décliner en monochrome, quelle famille serif pour les titres vs le corps de texte, comment le turquoise et l'or coexistent selon le support. Un cadre qui préserve l'identité existante tout en garantissant que chaque déclinaison reflète le positionnement premium du produit.</p>
           </div>
-          <!-- Actual mockup — full width of column -->
-          <div style="position:relative; width:100%; z-index:5;">
+          <!-- Actual mockup — positioned below opp-card with gap -->
+          <div style="position:relative; margin-top:32px; width:85%; z-index:5;">
             <!-- Pill Actual top-left overlapping -->
             <div style="position:absolute; top:12px; left:12px; z-index:10;">
               <div class="tab-pill"><span>Actuel</span></div>
             </div>
-            <div class="tablet-frame" style="aspect-ratio:16/10; height:auto;">
-              <img src="assets/prunier-actual-homepage.png" alt="Site actuel Prunier" style="object-fit:cover; object-position:top center;" />
+            <div class="tablet-frame" style="height:200px;">
+              <img src="assets/prunier-actual-homepage.png" alt="Site actuel Prunier" />
             </div>
           </div>
         </div>
 
-        <!-- Colonne droite 50% : After D-Studio -->
+        <!-- Colonne droite 60% : After D-Studio dominant -->
         <div style="position:relative;">
           <!-- Pill After top-right flottant hors du frame -->
           <div style="position:absolute; top:-20px; right:20px; z-index:10;">
             <div class="tab-pill"><span>Après D-Studio</span></div>
           </div>
-          <div class="tablet-frame" style="aspect-ratio:16/10; height:auto;">
-            <img src="assets/prunier-after-homepage.png" alt="Proposition D-Studio" style="object-fit:cover; object-position:top center;" />
+          <div class="tablet-frame" style="height:460px;">
+            <img src="assets/prunier-after-homepage.png" alt="Proposition D-Studio" />
           </div>
         </div>
 
@@ -799,7 +799,7 @@ body {
             <div style="position:absolute; top:12px; left:12px; z-index:10;">
               <div class="tab-pill"><span>Actuel</span></div>
             </div>
-            <div class="tablet-frame" style="aspect-ratio:16/11; height:auto; width:100%;">
+            <div class="tablet-frame" style="height:auto; aspect-ratio:16/9; background:#f5f5f7;">
               <img src="assets/prunier-actual-product.png" alt="Fiche produit actuelle" style="object-fit:contain; object-position:top center;" />
             </div>
           </div>
@@ -807,8 +807,8 @@ body {
 
         <!-- Après D-Studio — pill bottom centered sortant de l'image -->
         <div style="position:relative; display:flex; flex-direction:column; align-items:center;">
-          <div class="tablet-frame" style="aspect-ratio:16/11; height:auto; width:100%;">
-            <img src="assets/prunier-after-product.png" alt="Fiche produit D-Studio" style="object-fit:cover; object-position:top center;" />
+          <div class="tablet-frame" style="height:380px; width:100%;">
+            <img src="assets/prunier-after-product.png" alt="Fiche produit D-Studio" />
           </div>
           <!-- Pill Après D-Studio bottom centered, sort de l'image vers le bas -->
           <div style="margin-top:-20px; position:relative; z-index:10;">
