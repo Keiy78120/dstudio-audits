@@ -322,16 +322,8 @@ body {
 /* ═══ SCREENSHOT FRAME (benchmark before/after) ═══ */
 .screen-frame {
   border-radius: 20px; overflow: hidden; position: relative;
-  padding: 8px;
-}
-.screen-frame::before {
-  content: ''; position: absolute; inset: 0;
-  border-radius: 20px; padding: 1px;
-  background: linear-gradient(159deg, rgba(255,255,255,0.05) 1.69%, rgba(255,255,255,0.50) 37.46%, rgba(255,255,255,0.01) 88.2%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude; pointer-events: none;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.25);
+  border: 8px solid #cfcfcf;
 }
 .screen-frame img {
   display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 14px;
@@ -520,8 +512,7 @@ body {
   .bench-card { border-radius: 20px; }
   .bench-card::before { border-radius: 20px; }
   .bench-card::after { border-radius: 20px; }
-  .screen-frame { border-radius: 14px; padding: 5px; }
-  .screen-frame::before { border-radius: 14px; }
+  .screen-frame { border-radius: 14px; border-width: 5px; }
   .screen-frame img { border-radius: 10px; }
   /* Before/after layout — mobile: stack vertically */
   .before-after-layout { flex-direction: column !important; }
@@ -658,7 +649,7 @@ body {
   <div aria-hidden="true" class="fade-up w-full" style="position:relative; margin-top:56px; height:340px; overflow:hidden; flex-shrink:0;" data-delay="0.3">
     <img src="assets/prunier-restaurant-bg.png" alt="" style="width:100%; height:100%; object-fit:cover; object-position:top center; display:block;" />
     <!-- Fade top: black → transparent so image emerges from stats area -->
-    <div style="position:absolute; top:0; left:0; right:0; height:50%; background:linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%); pointer-events:none;"></div>
+    <div style="position:absolute; top:0; left:0; right:0; height:42%; background:linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%); pointer-events:none;"></div>
     <!-- Fade bottom: transparent → black for smooth transition to next section -->
     <div style="position:absolute; bottom:0; left:0; right:0; height:40%; background:linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%); pointer-events:none;"></div>
   </div>
@@ -716,8 +707,8 @@ body {
       </div>
       <!-- Screenshots côte-à-côte -->
       <div class="flex gap-[19px] w-full max-w-[1100px] mx-auto before-after-layout">
-        <div class="screen-frame flex-1 screen-left" style="height:310px; background:#0a0a0a;">
-          <img src="assets/prunier-logo-actual.png" alt="Logo actuel Prunier" style="object-fit:contain; object-position:center;" />
+        <div class="screen-frame flex-1 screen-left" style="height:310px;">
+          <img src="assets/prunier-logo-actual.png" alt="Logo actuel Prunier" style="object-position:center;" />
         </div>
         <div class="screen-frame flex-1 screen-right" style="height:310px;">
           <img src="assets/prunier-after-dstudio.png" alt="Exemple de lisibilité D-Studio" style="object-position:center;" />
@@ -808,8 +799,8 @@ body {
             <div style="position:absolute; top:12px; left:12px; z-index:10;">
               <div class="tab-pill"><span>Actuel</span></div>
             </div>
-            <div class="tablet-frame" style="height:380px;">
-              <img src="assets/prunier-actual-product.png" alt="Fiche produit actuelle" />
+            <div class="tablet-frame" style="height:auto; aspect-ratio:16/9; background:#f5f5f7;">
+              <img src="assets/prunier-actual-product.png" alt="Fiche produit actuelle" style="object-fit:contain; object-position:top center;" />
             </div>
           </div>
         </div>
