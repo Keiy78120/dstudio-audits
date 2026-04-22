@@ -427,13 +427,20 @@ body {
 .arch-option-block { margin: 0 auto; max-width: 700px; text-align: center; }
 @media (max-width: 768px) {
   .prop-container { margin-bottom: 0; }
-  .arch-flow { gap: 12px; margin: 0 auto; flex-wrap: wrap; }
-  .arch-circle.big   { width: 100px; height: 100px; }
-  .arch-circle.small { width: 72px; height: 72px; }
-  .arch-label { font-size: 10px; padding: 6px 12px; margin-top: 12px; }
-  .arch-arrow { margin-bottom: 20px; }
+  /* Architecture flow: vertical stack on mobile */
+  .arch-flow { flex-direction: column; gap: 0; margin: 0 auto; align-items: center; }
+  .arch-circle.big   { width: 120px; height: 120px; }
+  .arch-circle.small { width: 88px; height: 88px; }
+  /* Scale icons inside circles proportionally: big 120px → icon ~56px, small 88px → icon ~40px */
+  .arch-circle.big   img { width: 56px !important; height: 56px !important; }
+  .arch-circle.small img { width: 40px !important; height: 40px !important; }
+  .arch-label { font-size: 10px; padding: 6px 12px; margin-top: 16px; }
+  /* Rotate arrows 90° for vertical flow, reduce size */
+  .arch-arrow { margin-bottom: 0; transform: rotate(90deg); margin: 8px 0; }
   .arch-arrow svg { width: 32px; height: 18px; }
+  .arch-node { margin: 8px 0; }
   .arch-option-block { margin: 0 auto; max-width: 100%; }
+  #slide-7 { gap: 40px !important; }
 }
 
 /* ═══ TABLET FRAME (before/after mockup screens) ═══ */
@@ -514,8 +521,9 @@ body {
   .bench-card::after { border-radius: 20px; }
   .screen-frame { border-radius: 14px; border-width: 5px; }
   .screen-frame img { border-radius: 10px; }
-  /* Before/after layout — mobile: stack vertically */
+  /* Before/after layout — mobile: stack vertically, each col with its pill */
   .before-after-layout { flex-direction: column !important; }
+  .before-after-layout .before-after-col { width: 100% !important; flex: none !important; }
   .before-after-layout .screen-left,
   .before-after-layout .screen-right { width: 100% !important; height: 220px !important; }
   .before-after-layout .card-col { width: 100% !important; }
@@ -700,18 +708,23 @@ body {
     </div>
 
     <div class="fade-up w-full" style="transition-delay:0.2s">
-      <!-- Labels -->
-      <div class="flex justify-between items-center w-full max-w-[1100px] mx-auto mb-[14px] px-2">
-        <div class="tab-pill"><span>Actuel</span></div>
-        <div class="tab-pill"><span>Exemple de lisibilité</span></div>
-      </div>
-      <!-- Screenshots côte-à-côte -->
+      <!-- Screenshots côte-à-côte — pill collée à sa frame -->
       <div class="flex gap-[19px] w-full max-w-[1100px] mx-auto before-after-layout">
-        <div class="screen-frame flex-1 screen-left" style="height:310px;">
-          <img src="assets/prunier-logo-actual.png" alt="Logo actuel Prunier" style="object-position:center;" />
+        <div class="flex-1 flex flex-col gap-0 before-after-col">
+          <div class="mb-[14px] px-2">
+            <div class="tab-pill"><span>Actuel</span></div>
+          </div>
+          <div class="screen-frame screen-left" style="height:310px;">
+            <img src="assets/prunier-logo-actual.png" alt="Logo actuel Prunier" style="object-position:center;" />
+          </div>
         </div>
-        <div class="screen-frame flex-1 screen-right" style="height:310px;">
-          <img src="assets/prunier-after-dstudio.png" alt="Exemple de lisibilité D-Studio" style="object-position:center;" />
+        <div class="flex-1 flex flex-col gap-0 before-after-col">
+          <div class="mb-[14px] px-2">
+            <div class="tab-pill"><span>Exemple de lisibilité</span></div>
+          </div>
+          <div class="screen-frame screen-right" style="height:310px;">
+            <img src="assets/prunier-after-dstudio.png" alt="Exemple de lisibilité D-Studio" style="object-position:center;" />
+          </div>
         </div>
       </div>
     </div>
