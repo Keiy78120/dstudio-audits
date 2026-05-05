@@ -1,7 +1,7 @@
 {
   "slug": "ohlala",
   "client": "Ohlala Sellerie",
-  "date": "Mars 2026",
+  "date": "Mai 2026",
   "lang": "fr",
   "clientLogo": "https://www.google.com/s2/favicons?domain=ohlala-sellerie.com&sz=128",
   "clientColor": "rgba(251,191,36,0.6)",
@@ -9,143 +9,125 @@
     {
       "type": "hero",
       "label": "Ohlala Sellerie",
-      "title": "45 000 références.<br>Un site à dompter.",
-      "body": "Leader e-commerce équitation en France.<br>175k Instagram. Mais Shopify ne suffit plus.",
+      "title": "Le coût caché<br>de votre stack.",
+      "body": "Leader e-commerce équitation FR. 175k Instagram. 45k références.<br>Mais votre app coûte 1 000€/mois pour un template que 4 000 autres marques utilisent.",
       "tags": [
-        "Migration Shopify",
-        "Configurateur",
-        "SEO E-commerce",
-        "Performance"
+        "App Native",
+        "SAV IA",
+        "Automation",
+        "SEO / GEO"
       ]
     },
     {
       "type": "stats",
-      "label": "Ohlala en chiffres",
-      "title": "Le leader qui doit évoluer.",
+      "label": "Ce que ça coûte vraiment",
+      "title": "Les chiffres que Shopney ne publie pas.",
       "grid": "grid-4",
       "stats": [
         {
-          "value": "45k",
-          "label": "Références produit"
+          "value": "$1k",
+          "label": "Abonnement Shopney / mois (lock-in)"
+        },
+        {
+          "value": "0",
+          "label": "Avis produit dans l'app — 0 social proof"
+        },
+        {
+          "value": "60%",
+          "label": "Du SAV résolu par IA — coût divisé par 3"
         },
         {
           "value": "175k",
-          "label": "Followers Instagram"
-        },
-        {
-          "value": "Shopify",
-          "label": "Plateforme actuelle"
-        },
-        {
-          "value": "#1",
-          "label": "E-commerce équitation FR"
+          "label": "Followers Instagram non monétisés en app"
         }
       ]
     },
     {
       "type": "gap",
-      "label": "Le gap",
-      "title": "Leader marché, plateforme limitée.",
+      "label": "Diagnostic",
+      "title": "Là où Ohlala excelle. Là où l'argent fuit.",
       "columns": [
         {
-          "title": "LA MARQUE",
+          "title": "VOS ATOUTS",
           "type": "good",
           "items": [
-            "<strong style='color:#fff;'>175k Instagram</strong> — communauté massive",
-            "<strong style='color:#fff;'>45 000 références</strong> produit",
-            "Leader <strong style='color:#fff;'>e-commerce équitation</strong> France",
-            "Forte <strong style='color:#fff;'>identité de marque</strong>",
-            "Clientèle <strong style='color:#fff;'>passionnée et fidèle</strong>"
+            "<strong style='color:#fff;'>175k Instagram</strong> — communauté de cavalières passionnées",
+            "<strong style='color:#fff;'>45 000 références</strong> — catalogue le plus large du marché FR",
+            "Trustpilot positif — <strong style='color:#fff;'>confiance client établie</strong>",
+            "Influenceurs actifs — <strong style='color:#fff;'>TikTok, ambassadrices</strong> équitation",
+            "Seule app <strong style='color:#fff;'>e-commerce équestre pure</strong> en France"
           ]
         },
         {
-          "title": "SHOPIFY AUJOURD'HUI",
+          "title": "OÙ L'ARGENT FUIT",
           "type": "bad",
           "items": [
-            "Shopify <strong style='color:#fff;'>ne scale plus</strong> à 45k références",
-            "Pas de <strong style='color:#fff;'>configurateur personnalisation</strong>",
-            "Performance <strong style='color:#fff;'>dégradée</strong> — temps de chargement lent",
-            "SEO e-commerce <strong style='color:#fff;'>sous-optimisé</strong>",
-            "<em style='color:rgba(248,113,113,0.7);'>Un catalogue de cette taille mérite du sur-mesure</em>"
+            "App Shopney <strong style='color:#fff;'>$300-1 000/mois</strong> — template identique à 4 000 autres marques",
+            "SKU brut <strong style='color:#fff;'>\"3701101367111\"</strong> affiché en titre produit — anti-conversion",
+            "Push Firebase <strong style='color:#fff;'>non exploité</strong> — 0 campagne segmentée",
+            "<strong style='color:#fff;'>0 programme fidélité</strong> — la communauté existe, aucune rétention",
+            "<em style='color:rgba(248,113,113,0.7);'>3 niveaux de navigation avant un produit — abandon au 2e clic</em>"
           ]
         }
       ]
     },
     {
       "type": "cards",
-      "label": "Opportunités",
-      "title": "Ce que Next.js débloque.",
-      "grid": "grid-2",
+      "label": "6 axes de croissance",
+      "title": "D-Studio gère tout, vous encaissez.",
+      "grid": "col",
       "cards": [
         {
-          "title": "Performance x10",
-          "body": "ISR + Edge caching. Chaque page produit pré-rendue. Temps de chargement < 1s même avec 45k pages.",
+          "title": "SAV automatisé par IA",
+          "body": "Un agent IA spécialisé équitation (tailles, entretien sellerie, compatibilité) répond 24/7. Escalade vers humain uniquement si besoin. Résultat estimé : -60 à -80% de coût support.",
           "highlight": "green"
         },
         {
-          "title": "Configurateur 3D",
-          "body": "Personnalisation selles, bridons, accessoires. Visualisation en temps réel. Commande custom directe.",
+          "title": "App native D-Studio — sortir de Shopney",
+          "body": "Design exclusif, push segmenté par discipline (CSO, dressage, endurance), avis produit natifs, programme fidélité et parrainage. Zéro vendor lock-in. Économie immédiate : $1 000/mois libérés.",
           "highlight": "green"
         },
         {
-          "title": "SEO E-commerce",
-          "body": "45 000 pages produit = 45 000 opportunités Google. Schema.org, catégories optimisées, URLs propres."
+          "title": "Auto-promotion intelligente",
+          "body": "Détection automatique du stock dormant + analyse tendances saisonnières → campagnes email, push et social générées et envoyées sans intervention. Vos produits se vendent quand vous dormez."
         },
         {
-          "title": "Search & Filtrage",
-          "body": "Recherche instantanée full-text, filtres multicritères (sport, taille, marque, prix), suggestions IA."
-        }
-      ]
-    },
-    {
-      "type": "cards",
-      "label": "Axes de croissance",
-      "title": "Ce que Shopify ne peut pas faire.",
-      "grid": "grid-2",
-      "cards": [
-        {
-          "title": "Configurateur selles",
-          "body": "Les cavaliers veulent personnaliser : couleur, cuir, taille, gravure. Un configurateur 3D interactif = panier moyen x3 sur le custom.",
-          "highlight": "green"
+          "title": "SEO + GEO automatisés",
+          "body": "Contenu fiche produit généré et optimisé en continu (45k fiches = 45k opportunités Google). GEO — Generative Engine Optimization : être cité par ChatGPT, Perplexity, Gemini quand un cavalier cherche de l'équipement."
         },
         {
-          "title": "B2B Clubs & Centres",
-          "body": "Les clubs équestres et centres de formation commandent en volume. Portail B2B avec tarifs dégressifs, commandes récurrentes, facturation pro."
+          "title": "Fidélité et parrainage natifs",
+          "body": "Programme points par achat, paliers VIP, parrainage avec reward. Vos 175k abonnés Instagram deviennent un moteur d'acquisition gratuit. LTV client estimée : +40%."
         },
         {
-          "title": "App iOS compagnon",
-          "body": "Suivi de commande, scanner produit en boutique, wishlist partagée, notifications promos. Fidélisation mobile de la communauté 175k.",
-          "highlight": "green"
-        },
-        {
-          "title": "SEO : 45k pages à exploiter",
-          "body": "Chaque fiche produit est une landing page potentielle. Schema.org, meta optimisées, vitesse de chargement = trafic organique massif."
+          "title": "Restock prédictif",
+          "body": "Analyse ventes + tendances (printemps concours, rentrée septembre) → alertes restock automatiques avant rupture. Zéro vente manquée sur les références clés."
         }
       ]
     },
     {
       "type": "proposition",
       "label": "Notre proposition",
-      "title": "4 chantiers. Migration progressive.",
+      "title": "Un appel. Un partenaire. Tout géré.",
       "items": [
         {
-          "title": "Migration Next.js headless",
-          "body": "Shopify comme CMS produit, Next.js en frontend. Migration progressive sans interruption.",
+          "title": "App native iOS & Android",
+          "body": "Design exclusif D-Studio, catalogue 45k refs optimisé, push segmenté par discipline, programme fidélité et parrainage natifs. Migration depuis Shopney incluse.",
           "duration": "10-14 sem"
         },
         {
-          "title": "Configurateur personnalisation",
-          "body": "Selles, bridons, accessoires : couleurs, gravures, matières. Visualisation temps réel.",
-          "duration": "6-8 sem"
+          "title": "SAV IA + Automation commandes",
+          "body": "Agent IA équitation déployé sur app + site. Workflows commande / stock / SAV automatisés. Escalade humain sur cas complexes uniquement.",
+          "duration": "4-6 sem"
         },
         {
-          "title": "SEO & performance",
-          "body": "45k pages optimisées, ISR, schema.org, sitemap dynamique, Core Web Vitals vert.",
+          "title": "SEO & GEO — 45k fiches",
+          "body": "Génération et optimisation continue des fiches produit. Structuration schema.org e-commerce. Contenu GEO pour visibilité moteurs IA (ChatGPT, Perplexity).",
           "duration": "Continu"
         },
         {
-          "title": "D-Studio.Office",
-          "body": "Dashboard : analytics ventes, SEO, commandes custom, Google Business.",
+          "title": "Auto-promotion & Analytics",
+          "body": "Détection stock dormant + campagnes automatiques. Dashboard D-Studio.Office : ventes, SAV, SEO, performance app — tout en un écran.",
           "duration": "Inclus"
         }
       ]
@@ -153,17 +135,17 @@
     {
       "type": "cta",
       "label": "Pour démarrer",
-      "title": "45 000 produits.<br>Un site taillé<br>pour la course.",
+      "title": "Vous appelez.<br>On automatise.<br>Votre CA monte.",
       "offers": [
         {
-          "title": "Audit technique e-commerce",
+          "title": "Audit technique & stratégique",
           "price": "4-6k€",
-          "details": "2 semaines · Benchmark Shopify vs headless · Performance · SEO gaps"
+          "details": "2 semaines · Audit app Shopney · Stack automation · Roadmap ROI chiffrée"
         },
         {
-          "title": "Migration + configurateur",
-          "price": "35-55k€",
-          "details": "14-18 semaines · Headless Next.js + Configurateur + SEO · D-Studio.Office inclus"
+          "title": "Partenariat complet",
+          "price": "40-65k€",
+          "details": "16-20 semaines · App native + SAV IA + SEO/GEO + Auto-promo · D-Studio.Office inclus"
         }
       ]
     }
