@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>D-Studio — Prunier</title>
+<title>D-Studio — Audit Prunier</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900&display=swap" rel="stylesheet" />
@@ -46,6 +46,7 @@ tailwind.config = {
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 /* ═══ GRADIENT BORDER UTILITIES ═══ */
+/* gb-pill (157deg) — Pills, badges, tabs, gap-badges, CTA */
 .gb-pill { position: relative; border: none; }
 .gb-pill::before {
   content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
@@ -54,6 +55,7 @@ tailwind.config = {
   -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude; pointer-events: none;
 }
+/* gb-card (159deg) — Cards inner: opp-card, bench-card */
 .gb-card { position: relative; border: none; }
 .gb-card::before {
   content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
@@ -62,6 +64,7 @@ tailwind.config = {
   -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude; pointer-events: none;
 }
+/* gb-accent (152deg) — Icon frames */
 .gb-accent { position: relative; border: none; }
 .gb-accent::before {
   content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
@@ -80,13 +83,23 @@ html {
 }
 body {
   overflow-x: hidden;
-  scroll-snap-type: y proximity;
+  scroll-snap-type: y mandatory;
   height: 100vh;
   overflow-y: auto;
 }
+/* .slide = auto-height, min 100vh */
 .slide {
   scroll-snap-align: start;
+  scroll-snap-stop: always;
   min-height: 100vh;
+  height: auto;
+  padding: 18vh 0;
+  position: relative;
+}
+/* .slide-hero = fixed 100vh, image absolute */
+.slide-hero {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   height: 100vh;
   position: relative;
   overflow: hidden;
@@ -127,9 +140,10 @@ body {
   mask-composite: exclude; pointer-events: none;
 }
 
-/* ═══ TAB PILL ═══ */
+/* ═══ TAB PILL (nav tabs hero + labels before/after) ═══ */
 .tab-pill {
-  background: #141415; border: none; border-radius: 40px;
+  background: linear-gradient(90deg, rgba(32,32,32,0.4) 0%, rgba(32,32,32,0.4) 100%), linear-gradient(90deg, rgba(11,7,17,0.69) 0%, rgba(11,7,17,0.69) 100%);
+  border: none; border-radius: 40px;
   padding: 9px 18px; display: inline-flex; align-items: center;
   justify-content: center; position: relative;
 }
@@ -140,39 +154,41 @@ body {
   -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude; pointer-events: none;
 }
-.tab-pill span { font-weight: 500; font-size: 15px; line-height: 20px; color: #e5e5e5; white-space: nowrap; }
+.tab-pill span { font-weight: 500; font-size: 15px; line-height: 20px; color: #e5e5e5; white-space: nowrap; position: relative; z-index: 1; }
 
-/* ═══ STAT CARD (double-frame) ═══ */
+/* ═══ STAT CARD (double-frame) — blur 14.5px per Figma ═══ */
 .stat-card-outer {
   border: none; border-radius: var(--radius-card); padding: 12px;
   position: relative; overflow: hidden;
-  background: var(--bg-card-glass); backdrop-filter: blur(4.5px); -webkit-backdrop-filter: blur(4.5px);
+  background: var(--bg-card-glass);
+  backdrop-filter: blur(14.5px); -webkit-backdrop-filter: blur(14.5px);
+  box-shadow: 0 0 20px 0 rgba(45,41,53,0.25);
 }
+/* FRAME-GRA (180deg) — token stat-card-outer per design rules */
 .stat-card-outer::before {
   content: ''; position: absolute; inset: 0; border-radius: var(--radius-card); padding: 1px;
-  background: linear-gradient(157deg, rgba(255,255,255,0.20) 2.12%, rgba(255,255,255,0) 39%, rgba(255,255,255,0) 54.33%, rgba(255,255,255,0.08) 93.02%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude; pointer-events: none;
+  mask-composite: exclude; pointer-events: none; z-index: 1;
 }
 .stat-card-outer::after {
-  content: ''; position: absolute; inset: 0; border-radius: var(--radius-card);
-  box-shadow: inset 0 0 14px 0 rgba(111,111,129,0.25); pointer-events: none;
+  content: ''; position: absolute; inset: -7px; border-radius: var(--radius-card);
+  box-shadow: inset 0 0 14px 0 rgba(111,111,129,0.51); pointer-events: none;
 }
 .stat-card-inner {
   position: relative;
   background: linear-gradient(to top, rgba(6,6,6,0.6) 0%, rgba(17,17,19,0.3) 83.56%, rgba(27,27,30,0.2) 110%);
-  border: none; border-radius: var(--radius-inner); padding: 21px 25px;
+  border: 0.45px solid rgba(54,54,54,0.8); border-radius: var(--radius-inner); padding: 21px 25px;
   text-align: center; text-transform: uppercase;
   display: flex; flex-direction: column; gap: 17px; align-items: center;
   height: 100%; justify-content: center;
 }
-.stat-card-outer.pricing .stat-card-inner { padding: 21px 65px; }
 
-/* ═══ OPPORTUNITY CARD ═══ */
+/* ═══ OPPORTUNITY CARD (recommandations, problématiques, conclusion) ═══ */
 .opp-card {
   border-radius: var(--radius-card); padding: 28px; position: relative;
-  display: flex; flex-direction: column; gap: 10px; align-items: center;
+  display: flex; flex-direction: column; gap: 10px;
   box-shadow: 0 0 44px 0 rgba(76,131,83,0.03), 0 0 64px 0 rgba(217,228,231,0.2);
 }
 .opp-card::before {
@@ -186,7 +202,7 @@ body {
 }
 .opp-card > * { position: relative; }
 
-/* ═══ BENCH CARD ═══ */
+/* ═══ BENCH CARD (benchmark screens uniquement) ═══ */
 .bench-card {
   border-radius: var(--radius-card); padding: 28px; position: relative;
   display: flex; flex-direction: column; gap: 10px; min-height: 140px; justify-content: center;
@@ -248,8 +264,15 @@ body {
 
 /* ═══ PROPOSITION ═══ */
 .prop-container {
-  background: linear-gradient(180deg, #000000 0%, rgba(0,0,0,0.81) 53.39%, transparent 100%);
-  border-radius: var(--radius-card); border: none; overflow: hidden; position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 20, 22, 0) 0%,
+    rgba(20, 20, 22, 0.45) 20%,
+    rgba(20, 20, 22, 0.45) 80%,
+    rgba(20, 20, 22, 0) 100%
+  );
+  backdrop-filter: blur(4.5px); -webkit-backdrop-filter: blur(4.5px);
+  border-radius: var(--radius-card); border: none; position: relative;
 }
 .prop-container::before {
   content: ''; position: absolute; inset: 0; border-radius: var(--radius-card); padding: 1px;
@@ -275,12 +298,12 @@ body {
   display: flex; align-items: center; justify-content: center;
   border-radius: 12px; background: rgba(86,79,77,0.24);
   box-shadow: inset 1px 2px 2px rgba(255,255,255,0.67), inset 0 -3px 2px rgba(0,0,0,0.23), inset -2px -2px 2px rgba(229,229,229,0.25);
-  overflow: hidden;
+  overflow: hidden; position: relative;
 }
 .number-gradient {
   background-image: linear-gradient(155.68deg, rgba(255,255,255,0.65) 32.68%, rgba(255,255,255,0) 98.12%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  font-size: 27px; font-weight: 700; line-height: normal;
+  font-size: 27px; font-weight: 700; line-height: normal; position: relative; z-index: 1;
 }
 .duration-badge {
   position: absolute; top: 13px; right: 14px;
@@ -296,14 +319,32 @@ body {
   mask-composite: exclude; pointer-events: none;
 }
 
+/* ═══ SCREENSHOT FRAME (benchmark before/after) ═══ */
+.screen-frame {
+  border-radius: 20px; overflow: hidden; position: relative;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.25);
+  border: 8px solid #cfcfcf;
+}
+.screen-frame img {
+  display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 14px;
+}
+
 /* ═══ CTA BUTTON ═══ */
 .cta-button {
   border-radius: var(--radius-pill); padding: 21px 30px; border: none;
-  background: #141415; cursor: pointer;
+  background: linear-gradient(90deg, rgba(32,32,32,0.2) 0%, rgba(32,32,32,0.2) 100%), linear-gradient(90deg, rgba(11,7,17,0.69) 0%, rgba(11,7,17,0.69) 100%);
+  cursor: pointer;
   box-shadow: 0 0 15px 0 rgba(32,16,98,0.35), 0 0 14px 0 rgba(203,186,227,0.1), 0 0 24px 0 rgba(223,217,231,0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative; display: inline-flex; align-items: center; justify-content: center;
   text-decoration: none;
+}
+.cta-button::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: linear-gradient(157deg, rgba(255,255,255,0.40) 2.12%, rgba(255,255,255,0) 39%, rgba(255,255,255,0) 54.33%, rgba(255,255,255,0.10) 93.02%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none;
 }
 .cta-button::after {
   content: ''; position: absolute; inset: 0; border-radius: inherit;
@@ -313,6 +354,134 @@ body {
 .cta-button:hover {
   transform: scale(1.03);
   box-shadow: 0 0 20px 0 rgba(32,16,98,0.45), 0 0 18px 0 rgba(203,186,227,0.15), 0 0 32px 0 rgba(223,217,231,0.3);
+}
+
+/* ═══ ARCHITECTURE FLOW DIAGRAM (slide-6 Section B) ═══ */
+.arch-flow {
+  display: flex; flex-direction: row; align-items: center; justify-content: center;
+  gap: 40px; flex-wrap: nowrap; margin: 80px 0 120px;
+}
+.arch-node {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+}
+/* Base circle — overridden by .big / .small modifiers */
+.arch-circle {
+  position: relative; border-radius: 50%;
+  background:
+    radial-gradient(
+      ellipse 120% 100% at 30% 25%,
+      rgba(120,120,130,0.25) 0%,
+      rgba(60,60,70,0.15) 25%,
+      rgba(30,30,35,0.1) 55%,
+      rgba(10,10,12,0) 100%
+    ),
+    rgba(15,15,18,0.4);
+  backdrop-filter: blur(4.5px); -webkit-backdrop-filter: blur(4.5px);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 24px 4px rgba(255,255,255,0.04), inset 1px 2px 2px rgba(255,255,255,0.12), inset 0 -3px 2px rgba(0,0,0,0.23);
+}
+.arch-circle.big   { width: 240px; height: 240px; }
+.arch-circle.small { width: 160px; height: 160px; }
+.arch-circle.glow-white { box-shadow: 0 0 60px rgba(200,200,220,0.15), 0 0 24px 4px rgba(255,255,255,0.04), inset 1px 2px 2px rgba(255,255,255,0.12), inset 0 -3px 2px rgba(0,0,0,0.23); }
+.arch-circle.glow-gold  {
+  background:
+    radial-gradient(
+      ellipse 120% 100% at 30% 25%,
+      rgba(240,200,120,0.25) 0%,
+      rgba(180,140,60,0.15) 25%,
+      rgba(80,60,30,0.08) 60%,
+      rgba(10,10,12,0) 100%
+    ),
+    rgba(18,14,10,0.3);
+  box-shadow: 0 0 80px rgba(220,180,80,0.30), 0 0 120px rgba(220,180,80,0.15), inset 1px 2px 2px rgba(255,255,255,0.12), inset 0 -3px 2px rgba(0,0,0,0.23);
+}
+.arch-circle::before {
+  content: ''; position: absolute; inset: 0; border-radius: 50%; padding: 1px;
+  background: linear-gradient(152deg, rgba(255,255,255,0.65) 32.68%, rgba(255,255,255,0) 98.12%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none;
+}
+.arch-label {
+  position: relative; border: none; border-radius: 40px;
+  padding: 8px 18px; background: rgba(28,28,30,0.5);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: #C7C7CC; margin-top: 24px;
+}
+.arch-label::before {
+  content: ''; position: absolute; inset: 0; border-radius: 40px; padding: 1px;
+  background: linear-gradient(157deg, rgba(255,255,255,0.40) 2.12%, rgba(255,255,255,0) 39%, rgba(255,255,255,0) 54.33%, rgba(255,255,255,0.10) 93.02%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none;
+}
+.arch-arrow {
+  display: flex; align-items: center; flex-shrink: 0;
+  margin-bottom: 48px; /* visually centers arrow between the two large circles, above the label */
+}
+/* Zones A/B/C sont désormais dans des slides séparées — margins inter-zones supprimés */
+.prop-container { margin-bottom: 0; }
+/* arch-flow centré dans son propre slide viewport */
+.arch-flow { margin: 0 auto; }
+/* Option block centré dans son slide */
+.arch-option-block { margin: 0 auto; max-width: 700px; text-align: center; }
+@media (max-width: 768px) {
+  .prop-container { margin-bottom: 0; }
+  /* Architecture flow: vertical stack on mobile */
+  .arch-flow { flex-direction: column; gap: 0; margin: 0 auto; align-items: center; }
+  .arch-circle.big   { width: 120px; height: 120px; }
+  .arch-circle.small { width: 88px; height: 88px; }
+  /* Scale icons inside circles proportionally: big 120px → icon ~56px, small 88px → icon ~40px */
+  .arch-circle.big   img { width: 56px !important; height: 56px !important; }
+  .arch-circle.small img { width: 40px !important; height: 40px !important; }
+  .arch-label { font-size: 10px; padding: 6px 12px; margin-top: 16px; }
+  /* Rotate arrows 90° for vertical flow, reduce size */
+  .arch-arrow { margin-bottom: 0; transform: rotate(90deg); margin: 8px 0; }
+  .arch-arrow svg { width: 32px; height: 18px; }
+  .arch-node { margin: 8px 0; }
+  .arch-option-block { margin: 0 auto; max-width: 100%; }
+  #slide-7 { gap: 40px !important; }
+}
+
+/* ═══ TABLET FRAME (before/after mockup screens) ═══ */
+.tablet-frame {
+  position: relative; border: none; border-radius: 28px; padding: 8px;
+  background: rgba(20,20,21,0.6);
+}
+.tablet-frame::before {
+  content: ''; position: absolute; inset: 0; border-radius: 28px; padding: 1px;
+  background: linear-gradient(159deg, rgba(255,255,255,0.05) 1.69%, rgba(255,255,255,0.50) 37.46%, rgba(255,255,255,0.01) 88.2%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none;
+}
+.tablet-frame img {
+  display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 22px;
+}
+/* tablet-frame mobile */
+@media (max-width: 768px) {
+  .tablet-frame { border-radius: 20px; padding: 6px; }
+  .tablet-frame::before { border-radius: 20px; }
+  .tablet-frame img { border-radius: 15px; }
+}
+
+/* ═══ GLASS HEADER (product slide container) ═══ */
+.glass-header {
+  position: relative; border-radius: 33px; padding: 28px 64px; text-align: center;
+  background: rgba(24,24,26,0.58); backdrop-filter: blur(4.5px); -webkit-backdrop-filter: blur(4.5px);
+  box-shadow: 0 0 44px 0 rgba(76,131,83,0.03), 0 0 64px 0 rgba(217,228,231,0.2);
+}
+.glass-header::before {
+  content: ''; position: absolute; inset: 0; border-radius: 33px; padding: 1px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none;
+}
+.glass-header > * { position: relative; }
+@media (max-width: 768px) {
+  .glass-header { padding: 20px 28px; border-radius: 20px; }
+  .glass-header::before { border-radius: 20px; }
 }
 
 /* ═══ FADE-UP ANIMATION ═══ */
@@ -330,33 +499,42 @@ body {
 
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 768px) {
-  .slide { min-height: 100vh; height: auto; scroll-snap-align: start; padding: 40px 0; }
+  .slide { padding: min(14vh, 80px) 0; }
   body { scroll-snap-type: none; }
   .nav-dots { display: none; }
   .badge, .tab-pill, .gap-badge { font-size: 13px; padding: 7px 14px; }
   .gap-item { padding: 10px 12px; font-size: 13px; }
   .stat-card-outer { border-radius: 24px; padding: 8px; }
-  .stat-card-outer::before, .stat-card-outer::after { border-radius: 24px; }
+  .stat-card-outer::before { border-radius: 24px; }
+  .stat-card-outer::after { border-radius: 24px; }
   .stat-card-inner { padding: 16px 12px; gap: 10px; border-radius: 18px; }
-  .stat-card-inner .text-\[38px\] { font-size: 26px !important; }
-  .stat-card-inner .text-\[16px\] { font-size: 11px !important; }
   .prop-item { flex-direction: column; gap: 16px; text-align: center; }
   .prop-icon { align-self: center; }
   .duration-badge { position: static; align-self: center; margin-top: 8px; }
-  .benchmark-image { display: none !important; }
-  .benchmark-text { width: 100% !important; }
-  .benchmark-text .flex.flex-col { width: 100% !important; }
-  .bench-card { height: auto !important; }
-  .bench-card h3 { font-size: 18px !important; }
-  .bench-card p { font-size: 14px !important; }
   .gap-card-green, .gap-card-red { border-radius: 20px; }
   .gap-card-green::before, .gap-card-red::before { border-radius: 20px; }
   .opp-card { padding: 20px; border-radius: 20px; }
-  .opp-card h3 { font-size: 17px !important; }
-  .opp-card p { font-size: 14px !important; }
-  .stat-card-outer.pricing .stat-card-inner { padding: 16px 20px; }
+  .opp-card::before { border-radius: 20px; }
+  .opp-card::after { border-radius: 20px; }
+  .bench-card { border-radius: 20px; }
+  .bench-card::before { border-radius: 20px; }
+  .bench-card::after { border-radius: 20px; }
+  .screen-frame { border-radius: 14px; border-width: 5px; }
+  .screen-frame img { border-radius: 10px; }
+  /* Before/after layout — mobile: stack vertically, each col with its pill */
+  .before-after-layout { flex-direction: column !important; }
+  .before-after-layout .before-after-col { width: 100% !important; flex: none !important; }
+  .before-after-layout .screen-left,
+  .before-after-layout .screen-right { width: 100% !important; height: 220px !important; }
+  .before-after-layout .card-col { width: 100% !important; }
+  /* Slide A grid mobile */
+  .slide-a-grid { flex-direction: column !important; }
+  .slide-a-grid > div { flex: 0 0 100% !important; width: 100% !important; }
+  /* Slide B grid mobile */
+  .slide-b-grid { flex-direction: column !important; }
+  .slide-b-grid > div { flex: 0 0 100% !important; width: 100% !important; }
+  .tablet-frame { height: auto !important; }
 }
-
 </style>
 </head>
 <body>
@@ -376,166 +554,323 @@ body {
   <div class="nav-dot" data-slide="4"></div>
   <div class="nav-dot" data-slide="5"></div>
   <div class="nav-dot" data-slide="6"></div>
+  <div class="nav-dot" data-slide="7"></div>
+  <div class="nav-dot" data-slide="8"></div>
+  <div class="nav-dot" data-slide="9"></div>
 </nav>
 
 
-<!-- Slide 1: hero -->
-<section class="slide bg-black flex flex-col items-center" id="slide-0">
+<!-- ═══════════════════════════════════════════════
+     SLIDE 1 — HERO (464:189)
+     hero-header : logo composé + tabs + texte + caviar product
+════════════════════════════════════════════════ -->
+<section class="slide-hero bg-black flex flex-col items-center" id="slide-0">
   <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center h-full relative">
-    <div class="flex flex-col items-center gap-[25px] pt-[56px] w-[742px] max-w-full px-4">
-      <div class="fade-up"><img src="https://www.google.com/s2/favicons?domain=prunier.com&sz=128" alt="Prunier" class="h-[60px] object-contain" onerror="this.style.display='none'" /></div>
+
+    <!-- Header block — compact to leave room for the full caviar product image -->
+    <div class="flex flex-col items-center gap-[18px] pt-[36px] w-[742px] max-w-full px-4">
+
+      <!-- Logo Prunier — image complète (stag + wordmark + PARIS) -->
+      <!-- Logo Prunier — 3 SVG stackés : stag + PRUNIER + PARIS -->
+      <div class="hero-logo-wrap fade-up flex flex-col items-center gap-3">
+        <img
+          src="assets/prunier-icon-gold.svg"
+          alt=""
+          style="height:100px; width:auto; object-fit:contain; flex-shrink:0; display:block;"
+        />
+        <img
+          src="assets/prunier-wordmark-paris.svg"
+          alt="PRUNIER"
+          style="height:30px; width:auto; object-fit:contain; flex-shrink:0; display:block;"
+        />
+        <img
+          src="assets/prunier-paris-sub.svg"
+          alt="PARIS"
+          style="height:12px; width:auto; object-fit:contain; flex-shrink:0; display:block; margin-top:-4px;"
+        />
+      </div>
+
+      <!-- Nav tabs -->
       <div class="fade-up flex flex-wrap justify-center gap-[8px]" style="transition-delay:0.1s">
-        <div class="tab-pill"><span>Unification Marques</span></div>
-          <div class="tab-pill"><span>Plateforme B2B</span></div>
-          <div class="tab-pill"><span>E-commerce Luxe</span></div>
-          <div class="tab-pill"><span>Brand Identity</span></div>
+        <div class="tab-pill"><span>Interface</span></div>
+        <div class="tab-pill"><span>Design System</span></div>
+        <div class="tab-pill"><span>Architecture technique</span></div>
       </div>
-      <div class="fade-up flex flex-col items-center gap-[30px] w-full" style="transition-delay:0.2s">
-        <h1 class="font-bold text-[36px] leading-[46px] text-white text-center w-full">Le luxe se vit<br>aussi en ligne.</h1>
-        <p class="text-[17px] text-[#a3a3ae] text-center w-full leading-normal">Maison fondée en 1872. Fusion avec Caviar de Neuvic.<br>Deux marques, une seule plateforme à créer.</p>
+
+      <!-- Heading + subtitle -->
+      <div class="fade-up flex flex-col items-center gap-[18px] w-full" style="transition-delay:0.2s">
+        <h1 class="font-bold text-[48px] leading-[52px] text-white text-center w-full">Audit digital</h1>
+        <p class="text-[16px] text-[#a3a3ae] text-center w-full leading-normal">Analyse de l'interface, de l'expérience utilisateur et de l'architecture technique de la Maison Prunier.</p>
       </div>
     </div>
-    
-    <!-- Hero Image: 175% height, fade overlay -->
-    <div class="fade-up w-full flex-1 relative overflow-hidden" style="transition-delay:0.4s">
-      <img src="../assets/heroes/prunier.jpg" alt="Prunier" style="position:absolute; height:175%; left:-3%; top:0; width:106%; max-width:none; object-fit:cover;" />
-      <div style="position:absolute; bottom:0; left:0; right:0; height:40%; background:linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 50%, #000 100%); pointer-events:none; z-index:1;"></div>
+
+    <!-- Hero Product Image — caviar boîte entièrement visible, object-fit contain -->
+    <div class="fade-up w-full flex-1 relative" style="transition-delay:0.4s; min-height:320px;">
+      <img src="assets/prunier-caviar-hero.png" alt="Prunier Caviar" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center 60%;" />
+      <div style="position:absolute; bottom:0; left:0; right:0; height:30%; background:linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0) 100%); pointer-events:none; z-index:1;"></div>
+      <div style="position:absolute; top:0; left:0; right:0; height:20%; background:linear-gradient(to top, transparent 0%, rgba(0,0,0,0.3) 100%); pointer-events:none; z-index:1;"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 2 — CONTEXTE (464:166)
+     Stats + intro text + restaurant bg fade
+════════════════════════════════════════════════ -->
+<section class="slide bg-black flex flex-col items-center justify-center relative overflow-hidden" id="slide-1">
+
+  <!-- Restaurant background image — full section, absolute, behind all content -->
+  <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none; z-index:0;">
+    <img src="assets/prunier-restaurant-bg.png" alt="" style="width:100%; height:100%; object-fit:cover; object-position:top center;" />
+    <!-- Overlay : noir plein sur badge+titre+paragraphe, fade vers image visible derrière les stats -->
+    <div style="position:absolute; inset:0; background:linear-gradient(to bottom, #000 0%, #000 55%, transparent 70%, transparent 88%, #000 100%); pointer-events:none;"></div>
+  </div>
+
+  <div class="slide-content w-full max-w-[1209px] mx-auto flex flex-col items-center px-6" style="position:relative; z-index:1;">
+    <div class="flex flex-col items-center gap-[48px]">
+      <div class="fade-up badge">Contexte</div>
+      <h2 class="fade-up font-bold text-[48px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">Prunier en bref</h2>
+    </div>
+    <div class="fade-up w-full max-w-[1209px] mt-[56px]" style="transition-delay:0.15s">
+      <p class="text-[17px] text-[#a3a3ae] text-center leading-normal">La Maison Prunier est une institution française de la gastronomie de luxe fondée en <strong class="text-white">1872</strong>. Pionnière du caviar français depuis <strong class="text-white">1921</strong>, elle produit en Aquitaine un caviar d'exception reconnu mondialement. La marque rayonne à travers <strong class="text-white">40 points de vente premium</strong> dans le monde, des boutiques historiques de Paris à Tokyo, et exploite un restaurant Art Déco classé aux monuments historiques avenue Victor Hugo. Votre cible attend une expérience digitale cohérente avec le positionnement de la Maison : clarté, fluidité, codes visuels maîtrisés. Cet audit évalue l'interface et l'architecture technique de Prunier sous cet angle.</p>
+    </div>
+    <div class="fade-up grid grid-cols-1 md:grid-cols-3 gap-[20px] md:gap-[31px] mt-[72px] md:mt-[60px] w-full max-w-[1209px]" style="transition-delay:0.25s">
+
+      <div class="stat-card-outer">
+        <div class="stat-card-inner">
+          <div class="font-bold text-[45px] text-white leading-normal w-full counter-value">1872</div>
+          <div class="font-medium text-[19px] text-[rgba(255,255,255,0.84)] w-full uppercase">Année de fondation</div>
+        </div>
+      </div>
+
+      <div class="stat-card-outer">
+        <div class="stat-card-inner">
+          <div class="font-bold text-[45px] text-white leading-normal w-full counter-value">1921</div>
+          <div class="font-medium text-[19px] text-[rgba(255,255,255,0.84)] w-full uppercase">Premier caviar français</div>
+        </div>
+      </div>
+
+      <div class="stat-card-outer">
+        <div class="stat-card-inner">
+          <div class="font-bold text-[45px] text-white leading-normal w-full counter-value">40</div>
+          <div class="font-medium text-[19px] text-[rgba(255,255,255,0.84)] w-full uppercase">Points de vente monde</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 3 — PROBLÉMATIQUES (464:128)
+     2 opp-cards (pas bench-card)
+════════════════════════════════════════════════ -->
+<section class="slide bg-black flex flex-col items-center justify-center" id="slide-2">
+  <div class="slide-content w-full max-w-[1209px] mx-auto flex flex-col items-center px-6 justify-center">
+    <div class="flex flex-col items-center gap-[48px] mb-[72px]">
+      <div class="fade-up badge">Problématiques identifiées</div>
+      <h2 class="fade-up font-bold text-[48px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">Deux points de friction structurels</h2>
+    </div>
+    <div class="fade-up w-full max-w-[777px] mb-[56px]" style="transition-delay:0.15s">
+      <p class="text-[17px] text-[#a3a3ae] text-center leading-normal">L'analyse de l'interface et de l'architecture technique du site actuel fait ressortir deux axes principaux sur lesquels concentrer la réflexion.</p>
+    </div>
+    <div class="fade-up flex flex-col gap-[19px] w-full max-w-[977px]" style="transition-delay:0.2s">
+
+      <div class="opp-card">
+        <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full text-center">Identité visuelle à structurer</h3>
+        <p class="text-[17px] text-[#a3a3ae] w-full leading-normal text-center">La marque dispose d'éléments forts : le turquoise hérité de la façade classée, l'or du logo, des polices serif élégantes. Cependant, la coexistence de ces éléments n'est pas encadrée par des guidelines claires. Trois familles serif chargées simultanément (Cormorant Garamond, Cormorant, Prata), plusieurs déclinaisons d'or non harmonisées. Sans cadre d'utilisation structuré, le résultat ne reflète pas toujours le niveau du produit.</p>
+      </div>
+
+      <div class="opp-card">
+        <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full text-center">Plateforme e-commerce en fin de vie</h3>
+        <p class="text-[17px] text-[#a3a3ae] w-full leading-normal text-center">La partie boutique en ligne du site tourne sur PrestaShop 1.7.8.11, une version qui n'est plus maintenue de manière prioritaire. Thème générique habillé via un builder Elementor, pipeline de build absent, nombreux scripts tiers non différés. L'ensemble pèse sur la performance et la maintenabilité.</p>
+      </div>
+
     </div>
   </div>
 </section>
-<!-- Slide 2: stats -->
-<section class="slide bg-black flex flex-col items-center justify-center">
-  <div class="slide-content w-full max-w-[1209px] mx-auto flex flex-col items-center justify-center px-6 h-full">
-    <div class="flex flex-col items-center gap-[34px]">
-      <div class="fade-up badge">Prunier en chiffres</div>
-      <h2 class="fade-up font-bold text-[38px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">Un héritage centenaire.</h2>
-    </div>
-    <div class="fade-up grid grid-cols-2 md:grid-cols-4 gap-[20px] md:gap-[31px] mt-[50px] md:mt-[66px] w-full" style="transition-delay:0.2s">
-      
-      <div class="stat-card-outer">
-        <div class="stat-card-inner">
-          <div class="font-bold text-[38px] text-white leading-normal w-full counter-value">1872</div>
-          <div class="font-medium text-[16px] text-[rgba(255,255,255,0.84)] w-full uppercase">Année de fondation</div>
-        </div>
-      </div>
 
-      <div class="stat-card-outer">
-        <div class="stat-card-inner">
-          <div class="font-bold text-[38px] text-white leading-normal w-full counter-value">40</div>
-          <div class="font-medium text-[16px] text-[rgba(255,255,255,0.84)] w-full uppercase">Points de vente premium</div>
-        </div>
-      </div>
 
-      <div class="stat-card-outer">
-        <div class="stat-card-inner">
-          <div class="font-bold text-[38px] text-white leading-normal w-full counter-value">11k</div>
-          <div class="font-medium text-[16px] text-[rgba(255,255,255,0.84)] w-full uppercase">Followers Instagram</div>
-        </div>
-      </div>
+<!-- ═══════════════════════════════════════════════
+     SLIDE 4 — BRAND PROBLEMS (526:1013)
+     2 screenshots côte-à-côte : logo actuel vs premium
+════════════════════════════════════════════════ -->
+<section class="slide bg-black flex flex-col items-center justify-center" id="slide-3">
+  <div class="slide-content w-full max-w-[1209px] mx-auto flex flex-col items-center px-6">
+    <div class="flex flex-col items-center gap-[48px] mb-[72px]">
+      <div class="fade-up badge">Problèmes de marque</div>
+      <h2 class="fade-up font-bold text-[48px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">Lisibilité &amp; structure visuelle</h2>
+      <p class="fade-up text-[17px] text-[#a3a3ae] text-center max-w-[777px] leading-normal" style="transition-delay:0.15s">La marque porte des éléments visuels forts mais leur utilisation varie d'une page à l'autre. L'absence de guidelines structurées ne permet pas de garantir une lecture cohérente du positionnement premium.</p>
+    </div>
 
-      <div class="stat-card-outer">
-        <div class="stat-card-inner">
-          <div class="font-bold text-[38px] text-white leading-normal w-full counter-value">200€+</div>
-          <div class="font-medium text-[16px] text-[rgba(255,255,255,0.84)] w-full uppercase">Panier moyen caviar</div>
+    <div class="fade-up w-full" style="transition-delay:0.2s">
+      <!-- Screenshots côte-à-côte — pill collée à sa frame -->
+      <div class="flex gap-[19px] w-full max-w-[1100px] mx-auto before-after-layout">
+        <div class="flex-1 flex flex-col gap-0 before-after-col">
+          <div class="mb-[14px] px-2">
+            <div class="tab-pill"><span>Actuel</span></div>
+          </div>
+          <div class="screen-frame screen-left" style="height:310px;">
+            <img src="assets/prunier-logo-actual.png" alt="Logo actuel Prunier" style="object-position:center;" />
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Slide 3: gap -->
-<section class="slide bg-black flex flex-col items-center justify-center">
-  <div class="slide-content w-full max-w-[1209px] mx-auto flex flex-col items-center px-6 h-full justify-center">
-    <div class="flex flex-col items-center gap-[34px] mb-[66px]">
-      <div class="fade-up badge">Le gap</div>
-      <h2 class="fade-up font-bold text-[36px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">Patrimoine exceptionnel, digital fragmenté.</h2>
-    </div>
-    <div class="fade-up flex flex-col md:flex-row gap-[36px] items-stretch justify-center w-full max-w-[1100px]" style="transition-delay:0.2s">
-      
-      <div class="flex flex-col items-center flex-1 min-w-0">
-        <div class="gap-badge mb-[-16px] relative z-10">
-          <span class="text-[rgba(77,127,74,0.7)]">L'HÉRITAGE</span>
-        </div>
-        <div class="gap-card-green pt-[40px] pb-[20px] px-[24px] w-full flex-1">
-          <div class="flex flex-col gap-[12px] w-full">
-            <div class="gap-item gb-card"><span class="text-[#c7c7cc] text-[15px]">Maison centenaire — <strong style='color:#fff;'>depuis 1872</strong></span></div>
-            <div class="gap-item gb-card"><span class="text-[#c7c7cc] text-[15px]">Fusion Caviar de Neuvic — <strong style='color:#fff;'>production française</strong></span></div>
-            <div class="gap-item gb-card"><span class="text-[#c7c7cc] text-[15px]"><strong style='color:#fff;'>40 points de vente</strong> premium</span></div>
-            <div class="gap-item gb-card"><span class="text-[#c7c7cc] text-[15px]">Restaurant étoilé <strong style='color:#fff;'>Paris</strong></span></div>
-            <div class="gap-item gb-card"><span class="text-[#c7c7cc] text-[15px]">Positionnement ultra-premium <strong style='color:#fff;'>gastronomie</strong></span></div>
+        <div class="flex-1 flex flex-col gap-0 before-after-col">
+          <div class="mb-[14px] px-2">
+            <div class="tab-pill"><span>Exemple de lisibilité</span></div>
+          </div>
+          <div class="screen-frame screen-right" style="height:310px;">
+            <img src="assets/prunier-after-dstudio.png" alt="Exemple de lisibilité D-Studio" style="object-position:center;" />
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="flex flex-col items-center flex-1 min-w-0">
-        <div class="gap-badge mb-[-16px] relative z-10">
-          <span class="text-[rgba(171,92,92,0.7)]">LE DIGITAL ACTUEL</span>
-        </div>
-        <div class="gap-card-red pt-[40px] pb-[20px] px-[24px] w-full flex-1">
-          <div class="flex flex-col gap-[12px] w-full">
-            <div class="gap-item gb-card"><span class="text-[#7c7c80] text-[15px]"><strong style='color:#fff;'>2 sites séparés</strong> — confusion de marque</span></div>
-            <div class="gap-item gb-card"><span class="text-[#7c7c80] text-[15px]">E-commerce basique — <strong style='color:#fff;'>pas à la hauteur du luxe</strong></span></div>
-            <div class="gap-item gb-card"><span class="text-[#7c7c80] text-[15px]">Aucun portail B2B pour les <strong style='color:#fff;'>40 points de vente</strong></span></div>
-            <div class="gap-item gb-card"><span class="text-[#7c7c80] text-[15px]">Pas de storytelling — <strong style='color:#fff;'>100 ans d'histoire invisibles</strong></span></div>
-            <div class="gap-item gb-card"><span class="text-[#7c7c80] text-[15px]"><em style='color:rgba(248,113,113,0.7);'>Un caviar à 200€ mérite mieux qu'un Shopify template</em></span></div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 5 — RECOMMANDATION 01 — DESIGN (464:112)
+     Header centré + layout asymétrique 441px / 766px
+     Gauche : opp-card EN HAUT + petite frame Actual EN BAS + pill "Actual" SOUS la frame
+     Droite : pill "After" AU-DESSUS à droite + grande frame After
+════════════════════════════════════════════════ -->
+<section class="slide bg-black flex flex-col items-center justify-center" id="slide-4">
+  <div class="slide-content w-full max-w-[1300px] mx-auto flex flex-col items-center px-6">
+
+    <!-- Header centré -->
+    <div class="flex flex-col items-center gap-[24px] mb-[48px]">
+      <div class="fade-up badge">Recommandation 01</div>
+      <h2 class="fade-up font-bold text-[48px] leading-[54px] text-[#efefef] text-center" style="transition-delay:0.1s">Refonte design</h2>
+      <p class="fade-up text-[17px] text-[#a3a3ae] text-center max-w-[600px] leading-normal" style="transition-delay:0.15s">La marque n'est pas à refaire, elle porte un héritage fort. L'objectif est de la structurer en fournissant des guidelines claires pour l'ensemble des supports et des futures créations.</p>
+    </div>
+
+    <!-- Layout asymétrique Figma : col gauche ~36.5% (441/1207px zone utile) / col droite ~63.5% (766px) -->
+    <div class="fade-up w-full" style="transition-delay:0.2s">
+      <div class="slide-a-grid" style="display:flex; gap:24px; align-items:flex-start;">
+
+        <!-- COLONNE GAUCHE : opp-card EN HAUT + petite frame Actual EN BAS (441×253) + pill SOUS la frame -->
+        <div style="flex: 0 0 36.5%; display:flex; flex-direction:column; gap:24px;">
+          <!-- opp-card description -->
+          <div class="opp-card">
+            <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">Direction artistique unifiée</h3>
+            <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">Définir des règles d'utilisation claires pour chaque élément de la marque : quand utiliser le logo en or, quand le décliner en monochrome, quelle famille serif pour les titres vs le corps de texte, comment le turquoise et l'or coexistent selon le support. Un cadre qui préserve l'identité existante tout en garantissant que chaque déclinaison reflète le positionnement premium du produit.</p>
+          </div>
+          <!-- Petite frame Actual (441×253, ratio ~16/9) -->
+          <div style="display:flex; flex-direction:column; align-items:flex-start; gap:0;">
+            <div class="tablet-frame" style="width:100%; aspect-ratio:441/253;">
+              <img src="assets/prunier-actual-homepage.png" alt="Site actuel Prunier" />
+            </div>
+            <!-- Pill "Actual" EN DESSOUS de la frame -->
+            <div style="margin-top:12px;">
+              <div class="tab-pill"><span>Actuel</span></div>
+            </div>
           </div>
         </div>
+
+        <!-- COLONNE DROITE : pill "Après D-Studio" AU-DESSUS à droite + grande frame After (766×472) -->
+        <div style="flex: 0 0 calc(63.5% - 24px); display:flex; flex-direction:column; align-items:flex-end; gap:0;">
+          <!-- Pill "Après D-Studio" AU-DESSUS et à DROITE -->
+          <div style="margin-bottom:12px;">
+            <div class="tab-pill"><span>Après D-Studio</span></div>
+          </div>
+          <!-- Grande frame After (766×472, ratio ~766/472 ≈ 1.62) -->
+          <div class="tablet-frame" style="width:100%; aspect-ratio:766/472;">
+            <img src="assets/prunier-after-homepage.png" alt="Proposition D-Studio" />
+          </div>
+        </div>
+
       </div>
     </div>
+
   </div>
 </section>
-<!-- Slide 4: cards -->
-<section class="slide bg-black flex flex-col items-center justify-center">
-  <div class="slide-content w-full max-w-[1209px] mx-auto flex flex-col items-center justify-center px-6 h-full">
-    <div class="flex flex-col items-center gap-[34px] mb-[66px]">
-      <div class="fade-up badge">Analyse technique</div>
-      <h2 class="fade-up font-bold text-[36px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">PrestaShop vs positionnement luxe.</h2>
+
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 6 — PRODUCT SHOP REDEFINE (526:1049)
+     Card titre PLEINE LARGEUR centrale (810px) EN HAUT
+     Puis 2 frames côte-à-côte, alignées par le TOP :
+       Gauche : pill "Actual" AU-DESSUS + petite frame (441×253)
+       Droite  : grande frame (766×472) + pill "Après D-Studio" EN DESSOUS à gauche
+════════════════════════════════════════════════ -->
+<section class="slide bg-black flex flex-col items-center justify-center" id="slide-5">
+  <div class="slide-content w-full max-w-[1300px] mx-auto flex flex-col items-center px-6">
+
+    <!-- Card titre centrale pleine largeur (810px, centré) — FRAME-GRA 180deg + blur 4.5px -->
+    <div class="fade-up glass-header w-full max-w-[810px] mx-auto mb-[48px]">
+      <h2 class="font-bold text-[36px] text-[#e6e6f1] text-center leading-tight">Fiche produit redéfinie</h2>
+      <p class="text-[17px] text-[#a3a3ae] text-center leading-normal mt-[12px]">La fiche produit actuelle — dense, générique et peu engageante — est l'un des principaux points de friction du parcours d'achat. Une refonte sur-mesure la transforme en vitrine de la qualité Prunier.</p>
     </div>
-    <div class="fade-up grid grid-2 gap-[19px] w-full" style="transition-delay:0.2s">
-      
-      <div class="bench-card">
-        <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">PrestaShop — Pas adapté au luxe</h3>
-        <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">Template générique, performance médiocre, pas de storytelling intégré. Un caviar à 200€ ne se vend pas sur une plateforme discount.</p>
-      </div>
 
-      <div class="bench-card">
-        <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">Benchmark : Petrossian</h3>
-        <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">Leader caviar online. Site immersif, storytelling terroir, e-commerce premium, expérience unboxing digitale. Le standard à atteindre.</p>
-      </div>
+    <!-- 2 frames côte-à-côte, alignées par le TOP, layout asymétrique 441 / 766 -->
+    <div class="fade-up w-full" style="transition-delay:0.15s">
+      <div class="slide-b-grid" style="display:flex; gap:24px; align-items:flex-start;">
 
-      <div class="bench-card">
-        <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">Fusion Caviar de Neuvic</h3>
-        <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">Deux marques, deux histoires, un seul site à construire. L'identité Prunier (1872) enrichie par le savoir-faire Neuvic (production française).</p>
-      </div>
+        <!-- GAUCHE : pill "Actual" AU-DESSUS + petite frame Actual (441×253) -->
+        <div style="flex: 0 0 36.5%; display:flex; flex-direction:column; align-items:flex-start; gap:0;">
+          <!-- Pill "Actual" AU-DESSUS de la frame -->
+          <div style="margin-bottom:12px;">
+            <div class="tab-pill"><span>Actuel</span></div>
+          </div>
+          <div class="tablet-frame" style="width:100%; aspect-ratio:441/253;">
+            <img src="assets/prunier-actual-product.png" alt="Fiche produit actuelle" />
+          </div>
+        </div>
 
-      <div class="bench-card">
-        <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">B2B : 40 points de vente</h3>
-        <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">Les revendeurs passent commande par email/téléphone. Un portail B2B dédié = moins de friction, plus de volume, meilleure traçabilité.</p>
+        <!-- DROITE : grande frame After (766×472) + pill "Après D-Studio" EN DESSOUS à gauche -->
+        <div style="flex: 0 0 calc(63.5% - 24px); display:flex; flex-direction:column; align-items:flex-start; gap:0;">
+          <div class="tablet-frame" style="width:100%; aspect-ratio:766/472;">
+            <img src="assets/prunier-after-product.png" alt="Fiche produit D-Studio" />
+          </div>
+          <!-- Pill "Après D-Studio" EN DESSOUS à gauche de la frame -->
+          <div style="margin-top:12px;">
+            <div class="tab-pill"><span>Après D-Studio</span></div>
+          </div>
+        </div>
+
       </div>
     </div>
+
   </div>
 </section>
-<!-- Slide 5: proposition -->
-<section class="slide bg-black flex flex-col items-center justify-center">
-  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center px-6 h-full">
+
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 7 — RECOMMANDATION 02 — HEADLESS (464:94)
+     Badge overlap + prop-container + 3 prop-items
+════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════
+     SLIDE 7 — RECOMMANDATION 02 — HEADLESS CARD
+     prop-container + 3 prop-items seulement
+════════════════════════════════════════════════ -->
+<section class="slide bg-black flex flex-col items-center justify-center" id="slide-6">
+  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center px-6">
     <div class="fade-up w-full max-w-[1104px]">
+      <!-- Badge overlap -->
       <div class="flex justify-center" style="position:relative; z-index:2; margin-bottom:-20px;">
-        <div class="badge">Notre proposition</div>
+        <div class="badge">Recommandation 02</div>
       </div>
-      <div class="prop-container" style="padding: 60px 40px 20px;">
-        <div class="flex flex-col items-center mb-[40px]">
-          <h2 class="font-bold text-[48px] text-[#e6e6f1] text-center leading-[1.1]">4 chantiers. Unification totale.</h2>
+      <div class="prop-container" style="padding: 56px 48px 72px;">
+        <div class="flex flex-col items-center mb-[40px] gap-[32px]">
+          <h2 class="font-bold text-[48px] text-[#e6e6f1] text-center leading-[1.1]">Architecture headless premium</h2>
+          <div class="w-full max-w-[838px] mx-auto">
+            <p class="text-[16px] text-[#a3a3ae] text-center leading-normal">Abandonner PrestaShop 1.7 au profit d'une architecture <strong class="text-white">headless</strong> : <strong class="text-white">Shopify Plus ou Shopware 6</strong> gère le commerce (produits, stock, panier, paiements), <strong class="text-white">Next.js</strong> développe une vitrine entièrement sur-mesure qui communique avec le back via API.</p>
+          </div>
         </div>
-        <div class="flex flex-col gap-[19px] max-w-[838px] mx-auto">
-          
+        <div class="flex flex-col gap-[20px] max-w-[838px] mx-auto">
+
           <div class="prop-item">
             <div class="prop-icon">
               <span class="number-gradient">01</span>
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="font-bold text-[21px] text-[#c7c7cc] leading-normal">Plateforme e-commerce unifiée</h3>
-              <p class="text-[17px] text-[#a3a3ae] leading-normal mt-[10px]">Prunier + Caviar de Neuvic sous une identité premium cohérente. Next.js, animations luxe.</p>
+              <h3 class="font-bold text-[21px] text-[#c7c7cc] leading-normal">Design &amp; performance sans contrainte</h3>
+              <p class="text-[17px] text-[#a3a3ae] leading-[1.6] mt-[6px]">Design libre sans contrainte de thème. Animations, transitions, expérience sur-mesure, PageSpeed 95+, HTML divisé par trois vs plateforme actuelle.</p>
             </div>
-            <span class="duration-badge">8-12 sem</span>
           </div>
 
           <div class="prop-item">
@@ -543,10 +878,9 @@ body {
               <span class="number-gradient">02</span>
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="font-bold text-[21px] text-[#c7c7cc] leading-normal">Portail B2B revendeurs</h3>
-              <p class="text-[17px] text-[#a3a3ae] leading-normal mt-[10px]">Interface commande pour les 40 points de vente. Catalogues, prix, stock temps réel.</p>
+              <h3 class="font-bold text-[21px] text-[#c7c7cc] leading-normal">Maintenance saine, évolution continue</h3>
+              <p class="text-[17px] text-[#a3a3ae] leading-[1.6] mt-[6px]">Fin de la dépendance à une version PrestaShop en fin de vie. Stack moderne maintenue, sécurité à jour, écosystème d'agences mature.</p>
             </div>
-            <span class="duration-badge">4-6 sem</span>
           </div>
 
           <div class="prop-item">
@@ -554,72 +888,132 @@ body {
               <span class="number-gradient">03</span>
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="font-bold text-[21px] text-[#c7c7cc] leading-normal">Storytelling centenaire</h3>
-              <p class="text-[17px] text-[#a3a3ae] leading-normal mt-[10px]">Page histoire immersive, timeline 1920-2026, savoir-faire, terroir.</p>
+              <h3 class="font-bold text-[21px] text-[#c7c7cc] leading-normal">Une base évolutive pour demain</h3>
+              <p class="text-[17px] text-[#a3a3ae] leading-[1.6] mt-[6px]">L'architecture headless prépare les évolutions futures sans refonte lourde : nouvelles langues, nouveaux marchés, intégrations tierces.</p>
             </div>
-            <span class="duration-badge">2-3 sem</span>
           </div>
 
-          <div class="prop-item">
-            <div class="prop-icon">
-              <span class="number-gradient">04</span>
-            </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="font-bold text-[21px] text-[#c7c7cc] leading-normal">D-Studio.Office</h3>
-              <p class="text-[17px] text-[#a3a3ae] leading-normal mt-[10px]">Gestion autonome : produits, commandes B2B, analytics, Google Business.</p>
-            </div>
-            <span class="duration-badge">Inclus</span>
-          </div>
         </div>
       </div>
+      <!-- /.prop-container -->
     </div>
   </div>
 </section>
-<!-- Slide 6: cta -->
-<section class="slide bg-black flex flex-col items-center justify-center">
-  <div class="slide-content w-full max-w-[1135px] mx-auto flex flex-col items-center justify-center px-6 h-full">
-    <div class="flex flex-col items-center gap-[30px]">
-      <div class="fade-up badge">Pour démarrer</div>
-      <h2 class="fade-up font-bold text-[36px] leading-[46px] text-white text-center" style="transition-delay:0.1s">Un siècle de<br>savoir-faire.<br>Un site à la hauteur.</h2>
-    </div>
-    <div class="fade-up flex flex-col md:flex-row gap-[31px] w-full mt-[60px]" style="transition-delay:0.2s">
-      
-      <div class="stat-card-outer pricing flex-1" style="padding:12px">
-        <div class="stat-card-inner">
-          <div class="font-medium text-[16px] text-[rgba(255,255,255,0.84)] uppercase w-full">Audit e-commerce luxe</div>
-          <div class="font-bold text-[38px] text-white uppercase leading-normal w-full">4-6k€</div>
-          <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">2 semaines · Benchmark luxe · Stratégie unification · Recommandations UX</p>
+
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 8 — ARCHITECTURE FLOW + OPTION B2B
+     arch-flow (3 cercles) + option-block — viewport propre
+════════════════════════════════════════════════ -->
+<section class="slide bg-black flex flex-col items-center justify-center" id="slide-7" style="gap: 80px;">
+
+  <!-- ── Zone B — Architecture flow diagram ── -->
+  <div class="fade-up" style="transition-delay:0.1s">
+    <div class="arch-flow">
+
+      <!-- Node 1 — Back-office (grand) -->
+      <div class="arch-node">
+        <div class="arch-circle big gb-accent glow-white">
+          <img src="assets/icon-folder-gear-gradient.svg" alt="Back-office" style="width:100px; height:100px; object-fit:contain;" />
         </div>
+        <div class="arch-label">Back-office</div>
       </div>
 
-      <div class="stat-card-outer pricing flex-1" style="padding:12px">
-        <div class="stat-card-inner">
-          <div class="font-medium text-[16px] text-[rgba(255,255,255,0.84)] uppercase w-full">Plateforme complète</div>
-          <div class="font-bold text-[38px] text-white uppercase leading-normal w-full">25-40k€</div>
-          <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">12-16 semaines · E-commerce + B2B + Brand · D-Studio.Office inclus</p>
-        </div>
+      <!-- Arrow ↔ -->
+      <div class="arch-arrow">
+        <svg width="56" height="24" viewBox="0 0 56 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 8H52M52 8L44 2M52 8L44 14" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M52 16H4M4 16L12 10M4 16L12 22" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+        </svg>
       </div>
+
+      <!-- Node 2 — API (petit) -->
+      <div class="arch-node">
+        <div class="arch-circle small gb-accent">
+          <img src="assets/icon-gear-sync-gradient.svg" alt="API" style="width:68px; height:68px; object-fit:contain;" />
+        </div>
+        <div class="arch-label">API</div>
+      </div>
+
+      <!-- Arrow ↔ -->
+      <div class="arch-arrow">
+        <svg width="56" height="24" viewBox="0 0 56 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 8H52M52 8L44 2M52 8L44 14" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M52 16H4M4 16L12 10M4 16L12 22" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+        </svg>
+      </div>
+
+      <!-- Node 3 — Next.js front (grand, glow doré) -->
+      <div class="arch-node">
+        <div class="arch-circle big gb-accent glow-gold">
+          <img src="assets/prunier-icon-gold.svg" alt="Next.js front" style="width:100px; height:100px; object-fit:contain;" />
+        </div>
+        <div class="arch-label">Next.js front</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Zone C — Option B2B ── -->
+  <div class="arch-option-block fade-up flex flex-col items-center gap-[20px]" style="transition-delay:0.25s">
+    <p class="font-semibold text-[12px] text-[#c7c7cc] uppercase tracking-[0.22em]">Option</p>
+    <p class="text-[16px] text-[#a3a3ae] leading-[1.7] text-center max-w-[700px] mx-auto"><strong class="text-white">Repenser l'Espace Entreprise</strong>, non pas comme un portail de commande, mais comme une <strong class="text-white">vitrine B2B premium</strong> : valoriser l'offre pro, mettre en scène les partenariats (hôtellerie, restaurants étoilés, événementiel), faciliter la prise de contact qualifiée. Une option à arbitrer selon la stratégie commerciale de la Maison.</p>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 9 — CONCLUSION (464:32)
+     opp-card texte (pas bench-card)
+════════════════════════════════════════════════ -->
+<section class="slide bg-black flex flex-col items-center justify-center" id="slide-8">
+  <div class="slide-content w-full max-w-[1135px] mx-auto flex flex-col items-center px-6">
+    <div class="flex flex-col items-center gap-[48px]">
+      <div class="fade-up badge">Conclusion</div>
+      <h2 class="fade-up font-bold text-[55px] leading-[58px] text-white text-center" style="transition-delay:0.1s">Synthèse &amp;<br>prochaines étapes.</h2>
+    </div>
+    <div class="fade-up w-full max-w-[900px] mt-[72px]" style="transition-delay:0.2s">
+      <div class="opp-card" style="align-items:center; text-align:center;">
+        <p class="text-[17px] text-[#a3a3ae] w-full leading-[1.7]">Cet audit identifie deux axes principaux d'évolution pour le site de la Maison Prunier : la structuration de l'identité visuelle via des guidelines claires et la modernisation de l'architecture technique. Nous restons à disposition pour approfondir ces points.</p>
+      </div>
+    </div>
+    <div class="fade-up mt-[48px]" style="transition-delay:0.3s">
+      <p class="text-[15px] text-[rgba(255,255,255,0.6)] text-center">contact@dstudio.company · D-Studio, 7 rue Lauriston, 75016 Paris</p>
     </div>
   </div>
 </section>
-<!-- Closing -->
-<section class="slide bg-black flex flex-col items-center justify-center">
-  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center px-6 h-full gap-[40px]">
+
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 10 — CLOSING (464:24)
+     Monogramme D centré + infos + CTA
+════════════════════════════════════════════════ -->
+<section class="slide bg-black flex flex-col items-center justify-center" id="slide-9">
+  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center justify-center px-6 gap-[40px]">
+
+    <!-- Monogramme D-Studio grand centré — viewBox 232x282, ratio 0.823, width 165px → height 200px -->
     <div class="fade-up">
-      <img src="assets/dstudio-logo.svg" alt="D-Studio" class="w-[232px] h-[282px] object-contain" onerror="this.innerHTML='<svg width="232" height="282" viewBox="0 0 103 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M37.399 19.3917C37.8443 19.7141 38.3853 19.8752 38.9335 19.8439C39.3716 19.8656 39.8073 19.7598 40.1903 19.5433C40.4991 19.358 40.681 19.0213 40.6666 18.6605C40.6762 18.4344 40.5781 18.2155 40.4009 18.076C40.1544 17.9004 39.8743 17.7777 39.5798 17.7103C39.204 17.6117 38.6008 17.4698 37.7533 17.2942C37.0519 17.1547 36.3649 16.943 35.7066 16.664C35.1752 16.4306 34.7203 16.0482 34.3996 15.5623C34.0429 14.973 33.8705 14.2898 33.904 13.6019C33.8968 12.8899 34.1171 12.1923 34.5312 11.615C34.9741 11.004 35.5701 10.5229 36.262 10.2198C37.0376 9.87586 37.8778 9.70267 38.7252 9.7147C39.5894 9.70267 40.4464 9.87827 41.2364 10.2319C41.9402 10.5398 42.5506 11.0329 43.0006 11.6583C43.4244 12.25 43.6518 12.962 43.647 13.6885H40.4847C40.4656 13.2819 40.2788 12.8995 39.9748 12.6349C39.6205 12.351 39.1729 12.2091 38.7181 12.2356C38.3255 12.2187 37.9353 12.3174 37.5977 12.5218C37.3153 12.6998 37.1477 13.0198 37.1645 13.3565C37.1525 13.5778 37.2458 13.7919 37.4158 13.9338C37.6576 14.1022 37.9305 14.2225 38.2201 14.2898C38.5864 14.3884 39.1801 14.5255 40.0036 14.6891C40.7169 14.819 41.4135 15.0211 42.0862 15.2929C42.6224 15.5142 43.0844 15.8846 43.4196 16.3585C43.7786 16.9214 43.9558 17.5828 43.9223 18.2516C43.9295 18.9996 43.6996 19.7333 43.2688 20.3443C42.8091 20.9913 42.1843 21.5013 41.459 21.8164C40.6451 22.182 39.7642 22.3624 38.8737 22.3504C37.9496 22.3648 37.0352 22.1772 36.1902 21.7996C35.4409 21.47 34.7921 20.948 34.3062 20.2865C33.8538 19.6659 33.612 18.913 33.6168 18.1409L36.779 18.2107C36.803 18.6749 37.028 19.1079 37.3967 19.3917" fill="white"/><path d="M54.005 9.82068V12.5893H50.668V22.2423H47.4195V12.5893H44.0825V9.82068H54.005Z" fill="white"/><path d="M58.4937 17.0225C58.4458 17.6984 58.6134 18.3743 58.9701 18.9492C59.8271 19.8104 61.2179 19.8128 62.0749 18.9492C62.4316 18.3743 62.5992 17.6984 62.5513 17.0225V9.81824H65.795V16.8469C65.8955 18.3334 65.4095 19.7983 64.4448 20.9265C62.1635 22.8196 58.8672 22.8196 56.5882 20.9265C55.6235 19.7959 55.1376 18.331 55.2381 16.8469V9.81824H58.4865L58.4913 17.0225H58.4937Z" fill="white"/><path d="M72.311 9.81832C73.4505 9.79427 74.5756 10.0709 75.5762 10.6169C76.505 11.1293 77.2687 11.8966 77.7833 12.8251C78.8318 14.8312 78.8318 17.2246 77.7833 19.2283C77.2687 20.1592 76.505 20.9242 75.5762 21.4365C74.5756 21.9826 73.4505 22.2592 72.311 22.2351H67.6646V9.81592H72.311V9.81832ZM74.475 18.6005C75.4996 17.0394 75.4996 15.0164 74.475 13.4553C73.9532 12.7986 73.1465 12.4354 72.311 12.4787H70.9154V19.5771H72.311C73.1465 19.6204 73.9508 19.2572 74.475 18.6005Z" fill="white"/><path d="M83.2485 9.81824H80V22.2399H83.2485V9.81824Z" fill="white"/><path d="M94.1907 21.5229C92.1559 22.6222 89.7094 22.6222 87.6747 21.5229C86.7435 20.9889 85.9798 20.2072 85.4675 19.2618C84.419 17.2365 84.419 14.8262 85.4675 12.8009C85.9798 11.8555 86.7435 11.0714 87.6747 10.5398C89.7094 9.43808 92.1583 9.43808 94.1907 10.5398C95.1219 11.0714 95.8855 11.8555 96.3978 12.8009C97.4463 14.8262 97.4463 17.2365 96.3978 19.2618C95.8855 20.2072 95.1219 20.9913 94.1907 21.5229ZM90.9327 19.6515C91.7633 19.6756 92.5557 19.2955 93.0608 18.6316C94.1309 17.0657 94.1309 14.9994 93.0608 13.4311C92.1081 12.25 90.3845 12.0672 89.2091 13.0246C89.0607 13.1448 88.9242 13.2819 88.8046 13.4311C87.7321 14.997 87.7321 17.0657 88.8046 18.6316C89.3097 19.2979 90.102 19.678 90.9327 19.6515Z" fill="white"/><path d="M101.011 18.4297C101.54 18.4128 102.054 18.6149 102.433 18.9877C103.189 19.7671 103.189 21.0083 102.433 21.7877C101.631 22.5357 100.391 22.5357 99.5864 21.7877C98.8299 21.0083 98.8299 19.7671 99.5864 18.9877C99.9646 18.6149 100.479 18.4128 101.008 18.4297" fill="white"/><path d="M24.525 22.2638C25.2838 21.5229 25.8966 20.6449 26.3275 19.6731C26.0953 21.3642 25.6213 23.0143 24.9247 24.5706C23.9169 26.875 22.2364 28.8162 20.1011 30.1343C17.7958 31.4693 15.1674 32.1332 12.5078 32.0539H7.63397C7.92842 31.2865 8.07683 30.4687 8.06726 29.646C8.11035 27.9743 7.45683 26.3626 6.26469 25.196C5.06059 24.0101 3.42799 23.3703 1.74511 23.4184C1.15623 23.4136 0.569735 23.4833 0 23.6228V0.00638118H12.5054C15.1483 -0.0705924 17.7671 0.550007 20.0963 1.80323C22.2149 3.02278 23.9025 4.87977 24.9199 7.11201C25.7171 8.84872 26.2222 10.7057 26.4185 12.606C25.9852 11.5452 25.3389 10.5878 24.5226 9.78925C22.8349 8.1271 20.5488 7.22987 18.186 7.30204C15.8233 7.22987 13.5348 8.1295 11.8495 9.79165C10.1786 11.4273 9.26418 13.6884 9.32403 16.0313C9.26179 18.3742 10.1786 20.6353 11.8495 22.2686C13.5348 23.9331 15.8233 24.8328 18.186 24.763C20.5488 24.8328 22.8349 23.9331 24.5226 22.2686" fill="white"/></svg>'" />
+      <img src="assets/dstudio-logo.svg" alt="D-Studio" style="width:165px; height:200px; object-fit:contain; display:block;" onerror="this.style.display='none'" />
     </div>
+
+    <!-- Infos contact -->
     <div class="fade-up flex flex-col items-center gap-[16px] w-[292px]" style="transition-delay:0.1s">
       <span class="font-medium text-[18px] text-[rgba(255,255,255,0.84)] uppercase text-center tracking-wide">D-STUDIO</span>
       <a href="mailto:contact@dstudio.company" class="font-medium text-[18px] text-[rgba(255,255,255,0.84)] uppercase text-center underline hover:text-white transition-colors tracking-wide">CONTACT@DSTUDIO.COMPANY</a>
       <span class="font-medium text-[18px] text-[rgba(255,255,255,0.84)] uppercase text-center tracking-wide">7 RUE LAURISTON, 75016 PARIS</span>
     </div>
+
+    <!-- CTA -->
     <div class="fade-up" style="transition-delay:0.2s">
-      <a href="mailto:contact@dstudio.company" class="cta-button gb-pill">
+      <a href="mailto:contact@dstudio.company" class="cta-button">
         <span class="font-medium text-[18px] leading-[24px] text-[#e5e5e5] relative z-10">Discuter avec D-Studio</span>
       </a>
     </div>
+
   </div>
 </section>
+
 
 <script>
 // Particles
@@ -658,7 +1052,7 @@ document.body.addEventListener('scroll', function() {
 }, {passive:true});
 
 // Nav dots
-const slides = document.querySelectorAll('.slide');
+const slides = document.querySelectorAll('.slide, .slide-hero');
 const dots = document.querySelectorAll('.nav-dot');
 dots.forEach(d => d.addEventListener('click', () => {
   slides[parseInt(d.dataset.slide)].scrollIntoView({behavior:'smooth'});
@@ -667,7 +1061,7 @@ dots.forEach(d => d.addEventListener('click', () => {
 // Fade-up observer
 const fadeObs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, {root:null, threshold:0.15});
+}, {root:null, threshold:0.12});
 document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
 
 // Slide observer (nav dots)
@@ -703,7 +1097,6 @@ const counterObs = new IntersectionObserver((entries) => {
   });
 }, {threshold:0.5});
 document.querySelectorAll('.counter-value').forEach(el => counterObs.observe(el));
-
 </script>
 </body>
 </html>
