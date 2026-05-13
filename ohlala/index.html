@@ -80,16 +80,34 @@ html {
 }
 body {
   overflow-x: hidden;
-  scroll-snap-type: y proximity;
+  scroll-snap-type: y mandatory;
   height: 100vh;
   overflow-y: auto;
 }
+/* .slide = auto-height, min 100vh (per prunier ref DS) */
 .slide {
   scroll-snap-align: start;
+  scroll-snap-stop: always;
   min-height: 100vh;
-  height: 100vh;
+  height: auto;
+  padding: 18vh 0;
+  position: relative;
+}
+/* .slide-hero = min 100vh, scroll-snap, mais content peut déborder (hero-signature) */
+.slide-hero {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  height: auto;
+  padding: 6vh 0 8vh;
   position: relative;
   overflow: hidden;
+}
+/* TÂCHE 5 — Hero pure black (Unsplash background dénoté retiré, on garde particles + composition 3D) */
+.slide-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center top, rgba(255,107,53,0.04) 0%, transparent 60%);
+  z-index: 1;
 }
 .slide-content { position: relative; z-index: 10; }
 
@@ -100,7 +118,7 @@ body {
   z-index: 100; transition: width 0.3s ease;
 }
 
-/* ═══ NAV DOTS ═══ */
+/* ═══ NAV DOTS — TÂCHE 7: tooltip ═══ */
 .nav-dots {
   position: fixed; right: 24px; top: 50%; transform: translateY(-50%);
   display: flex; flex-direction: column; gap: 12px; z-index: 90;
@@ -108,8 +126,17 @@ body {
 .nav-dot {
   width: 8px; height: 8px; border-radius: 50%;
   background: rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s ease;
+  position: relative;
 }
 .nav-dot.active { background: rgba(255,255,255,0.8); transform: scale(1.4); }
+.nav-dot::after {
+  content: attr(data-slide-name);
+  position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+  white-space: nowrap; background: rgba(20,20,22,0.95); color: #e5e5e5;
+  padding: 4px 10px; border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+}
+.nav-dot:hover::after { opacity: 1; }
 
 /* ═══ BADGE ═══ */
 .badge {
@@ -127,9 +154,10 @@ body {
   mask-composite: exclude; pointer-events: none;
 }
 
-/* ═══ TAB PILL ═══ */
+/* ═══ TAB PILL (per Figma DS — gradient bg from prunier ref) ═══ */
 .tab-pill {
-  background: #141415; border: none; border-radius: 40px;
+  background: linear-gradient(90deg, rgba(32,32,32,0.4) 0%, rgba(32,32,32,0.4) 100%), linear-gradient(90deg, rgba(11,7,17,0.69) 0%, rgba(11,7,17,0.69) 100%);
+  border: none; border-radius: 40px;
   padding: 9px 18px; display: inline-flex; align-items: center;
   justify-content: center; position: relative;
 }
@@ -142,27 +170,30 @@ body {
 }
 .tab-pill span { font-weight: 500; font-size: 15px; line-height: 20px; color: #e5e5e5; white-space: nowrap; }
 
-/* ═══ STAT CARD (double-frame) ═══ */
+/* ═══ STAT CARD (double-frame) — DS Figma: FRAME-GRA 180deg + blur 14.5px ═══ */
 .stat-card-outer {
   border: none; border-radius: var(--radius-card); padding: 12px;
   position: relative; overflow: hidden;
-  background: var(--bg-card-glass); backdrop-filter: blur(4.5px); -webkit-backdrop-filter: blur(4.5px);
+  background: var(--bg-card-glass);
+  backdrop-filter: blur(14.5px); -webkit-backdrop-filter: blur(14.5px);
+  box-shadow: 0 0 20px 0 rgba(45,41,53,0.25);
 }
+/* FRAME-GRA 180deg — corrigé selon DS Figma (anciennement 157deg pill par erreur) */
 .stat-card-outer::before {
   content: ''; position: absolute; inset: 0; border-radius: var(--radius-card); padding: 1px;
-  background: linear-gradient(157deg, rgba(255,255,255,0.20) 2.12%, rgba(255,255,255,0) 39%, rgba(255,255,255,0) 54.33%, rgba(255,255,255,0.08) 93.02%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude; pointer-events: none;
+  mask-composite: exclude; pointer-events: none; z-index: 1;
 }
 .stat-card-outer::after {
-  content: ''; position: absolute; inset: 0; border-radius: var(--radius-card);
-  box-shadow: inset 0 0 14px 0 rgba(111,111,129,0.25); pointer-events: none;
+  content: ''; position: absolute; inset: -7px; border-radius: var(--radius-card);
+  box-shadow: inset 0 0 14px 0 rgba(111,111,129,0.51); pointer-events: none;
 }
 .stat-card-inner {
   position: relative;
   background: linear-gradient(to top, rgba(6,6,6,0.6) 0%, rgba(17,17,19,0.3) 83.56%, rgba(27,27,30,0.2) 110%);
-  border: none; border-radius: var(--radius-inner); padding: 21px 25px;
+  border: 0.45px solid rgba(54,54,54,0.8); border-radius: var(--radius-inner); padding: 21px 25px;
   text-align: center; text-transform: uppercase;
   display: flex; flex-direction: column; gap: 17px; align-items: center;
   height: 100%; justify-content: center;
@@ -296,14 +327,21 @@ body {
   mask-composite: exclude; pointer-events: none;
 }
 
-/* ═══ CTA BUTTON ═══ */
+/* ═══ CTA BUTTON — DS Figma (gradient border ::before + glow ::after) ═══ */
 .cta-button {
   border-radius: var(--radius-pill); padding: 21px 30px; border: none;
   background: #141415; cursor: pointer;
   box-shadow: 0 0 15px 0 rgba(32,16,98,0.35), 0 0 14px 0 rgba(203,186,227,0.1), 0 0 24px 0 rgba(223,217,231,0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative; display: inline-flex; align-items: center; justify-content: center;
-  text-decoration: none;
+  text-decoration: none; overflow: hidden;
+}
+.cta-button::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: linear-gradient(157deg, rgba(255,255,255,0.40) 2.12%, rgba(255,255,255,0) 39%, rgba(255,255,255,0) 54.33%, rgba(255,255,255,0.10) 93.02%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none;
 }
 .cta-button::after {
   content: ''; position: absolute; inset: 0; border-radius: inherit;
@@ -326,6 +364,215 @@ body {
 #particles {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none; z-index: 1; opacity: 0.3;
+}
+
+/* ═══ TÂCHE 1 — Logo 3D flottant (frames 3D disponibles + float CSS) ═══ */
+.ohlala-3d-logo {
+  width: 280px;
+  filter: drop-shadow(0 20px 50px rgba(255,107,53,0.18)) drop-shadow(0 0 80px rgba(255,255,255,0.08));
+  animation: heartFloat 5s ease-in-out infinite;
+  position: relative;
+}
+.ohlala-3d-logo img {
+  width: 100%;
+  display: block;
+  transition: opacity 0.25s ease;
+}
+@keyframes heartFloat {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  70% { transform: translateY(-6px); }
+}
+
+/* ═══ Problem grid 2x2 (Slide Problématiques) — illustrations IA + texte préservé ═══ */
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+.problem-card {
+  border-radius: var(--radius-card); padding: 32px 28px;
+  position: relative;
+  background: rgba(20,20,22,0.5);
+  display: flex; flex-direction: column; gap: 16px;
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+.problem-card::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none;
+}
+.problem-card:hover { transform: translateY(-4px); }
+.problem-illust {
+  width: 100px; height: 100px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1;
+}
+.problem-illust img {
+  max-width: 100%; max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.4));
+}
+.problem-illust-icon img {
+  width: 56px; height: 56px;
+  filter: brightness(0) invert(1) opacity(0.55);
+}
+.problem-card h3, .problem-card p {
+  position: relative; z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .problem-grid { grid-template-columns: 1fr; gap: 16px; }
+  .problem-card { padding: 24px 20px; }
+  .problem-illust { width: 80px; height: 80px; }
+}
+
+/* ═══ Mini stat cards (Plan IA) — DS Figma compact, gradient border ═══ */
+.ia-stat-card {
+  border: none; border-radius: var(--radius-inner); padding: 18px 14px;
+  position: relative; overflow: hidden;
+  background: rgba(20,20,22,0.6);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  text-align: center;
+}
+.ia-stat-card::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none;
+}
+.ia-stat-icon {
+  width: 28px; height: 28px;
+  display: inline-flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1;
+}
+.ia-stat-icon img {
+  width: 22px; height: 22px;
+  filter: brightness(0) invert(1); opacity: 0.6;
+}
+.ia-stat-value {
+  font-size: 30px; font-weight: 700; color: #efefef; line-height: 1;
+  position: relative; z-index: 1;
+}
+.ia-stat-unit { font-size: 18px; color: #a3a3ae; font-weight: 500; margin-left: 2px; }
+.ia-stat-label {
+  font-size: 11px; color: #a3a3ae; text-transform: uppercase; letter-spacing: 0.08em;
+  position: relative; z-index: 1;
+}
+
+/* ═══ TÂCHE 9 — Icônes stat-cards ═══ */
+.stat-icon {
+  width: 40px; height: 40px;
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-bottom: 4px;
+}
+.stat-icon img {
+  width: 28px; height: 28px;
+  filter: brightness(0) invert(1);
+  opacity: 0.75;
+}
+
+/* ═══ TÂCHE 4 — Product strip ═══ */
+.product-strip {
+  display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+  width: 100%; max-width: 900px;
+}
+.product-card {
+  flex: 1; min-width: 220px; max-width: 280px;
+  border-radius: var(--radius-card); padding: 24px;
+  background: rgba(255,255,255,0.02);
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  position: relative;
+}
+.product-card::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: linear-gradient(159deg, rgba(255,255,255,0.05) 1.69%, rgba(255,255,255,0.50) 37.46%, rgba(255,255,255,0.01) 88.2%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none;
+}
+.product-card img {
+  width: 100%; max-height: 160px; object-fit: contain;
+  position: relative; z-index: 1;
+}
+.product-card span {
+  font-size: 11px; color: #a3a3ae; text-transform: uppercase; letter-spacing: 0.1em;
+  text-align: center; position: relative; z-index: 1;
+}
+
+/* ═══ TÂCHE 2 — IA showcase grid ═══ */
+.ia-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 960px;
+  margin-top: 40px;
+}
+.ia-card {
+  border-radius: var(--radius-card); overflow: hidden;
+  position: relative; display: flex; flex-direction: column;
+  background: rgba(255,255,255,0.02);
+}
+.ia-card::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: linear-gradient(159deg, rgba(255,255,255,0.05) 1.69%, rgba(255,255,255,0.50) 37.46%, rgba(255,255,255,0.01) 88.2%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none; z-index: 2;
+}
+.ia-card img {
+  width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block;
+}
+.ia-card p {
+  font-size: 11px; color: #a3a3ae; text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 10px 14px 12px; position: relative; z-index: 1;
+  border-top: none;
+}
+
+/* ═══ TÂCHE 3 — Benchmark frame ═══ */
+.benchmark-frame {
+  width: 100%; max-width: 1100px; aspect-ratio: 16/9; overflow: hidden;
+  border-radius: var(--radius-card); position: relative;
+}
+.benchmark-frame::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: linear-gradient(159deg, rgba(255,255,255,0.05) 1.69%, rgba(255,255,255,0.50) 37.46%, rgba(255,255,255,0.01) 88.2%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; pointer-events: none; z-index: 2;
+}
+.benchmark-frame img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+
+/* ═══ TÂCHE 1 — Hero signature composition ═══ */
+.hero-signature {
+  width: 100%; max-width: 920px; margin: 60px auto 0;
+  filter: drop-shadow(0 30px 60px rgba(255,107,53,0.08));
+}
+.hero-signature img {
+  width: 100%; height: auto; display: block;
+}
+
+/* ═══ TÂCHE 8 — Brand pairing ═══ */
+.brand-pairing {
+  display: flex; flex-direction: row; align-items: center; gap: 30px; justify-content: center;
+}
+.brand-logo {
+  height: 60px; width: auto; object-contain: contain;
+}
+.brand-ohlala {
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+.brand-x {
+  font-size: 32px; color: #a3a3ae; font-weight: 300; line-height: 1;
+  font-family: 'Inter', sans-serif;
 }
 
 /* ═══ RESPONSIVE ═══ */
@@ -355,6 +602,14 @@ body {
   .opp-card h3 { font-size: 17px !important; }
   .opp-card p { font-size: 14px !important; }
   .stat-card-outer.pricing .stat-card-inner { padding: 16px 20px; }
+  .ohlala-3d-logo { width: 160px; }
+  .ia-showcase-grid { grid-template-columns: repeat(2, 1fr); }
+  .product-strip { flex-direction: column; align-items: center; }
+  .product-card { max-width: 100%; }
+  .brand-pairing { gap: 20px; }
+  .brand-logo { height: 44px; }
+  .brand-x { font-size: 24px; }
+  .benchmark-frame { aspect-ratio: 4/3; }
 }
 
 </style>
@@ -367,8 +622,9 @@ body {
 <!-- Particle Canvas -->
 <canvas id="particles"></canvas>
 
-<!-- Nav Dots -->
+<!-- Nav Dots — TÂCHE 7: data-slide-name tooltips -->
 <nav class="nav-dots" id="nav-dots">
+<<<<<<< Updated upstream
   <div class="nav-dot active" data-slide="0"></div>
   <div class="nav-dot" data-slide="1"></div>
   <div class="nav-dot" data-slide="2"></div>
@@ -380,14 +636,33 @@ body {
   <div class="nav-dot" data-slide="8"></div>
   <div class="nav-dot" data-slide="9"></div>
   <div class="nav-dot" data-slide="10"></div>
+=======
+  <div class="nav-dot active" data-slide="0" data-slide-name="Hero"></div>
+  <div class="nav-dot" data-slide="1" data-slide-name="Contexte"></div>
+  <div class="nav-dot" data-slide="2" data-slide-name="Problématiques"></div>
+  <div class="nav-dot" data-slide="3" data-slide-name="Refonte design"></div>
+  <div class="nav-dot" data-slide="4" data-slide-name="Architecture headless"></div>
+  <div class="nav-dot" data-slide="5" data-slide-name="SEO"></div>
+  <div class="nav-dot" data-slide="6" data-slide-name="Mobile"></div>
+  <div class="nav-dot" data-slide="7" data-slide-name="Trois chemins"></div>
+  <div class="nav-dot" data-slide="8" data-slide-name="Plan IA"></div>
+  <div class="nav-dot" data-slide="9" data-slide-name="Conclusion"></div>
+  <div class="nav-dot" data-slide="10" data-slide-name="Contact"></div>
+>>>>>>> Stashed changes
 </nav>
 
 
 <!-- Slide 1: hero -->
-<section class="slide bg-black flex flex-col items-center" id="slide-0">
+<!-- TÂCHE 1+5 — Hero magistral avec logo officiel 3D flottant + lifestyle background -->
+<section class="slide-hero bg-black flex flex-col items-center" id="slide-0">
   <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center h-full relative">
-    <div class="flex flex-col items-center gap-[25px] pt-[56px] w-[742px] max-w-full px-4">
-      <div class="fade-up"><img src="https://www.google.com/s2/favicons?domain=ohlala-sellerie.com&sz=128" alt="Ohlala Sellerie" class="h-[60px] object-contain" onerror="this.style.display='none'" /></div>
+    <div class="flex flex-col items-center gap-[28px] pt-[52px] w-[742px] max-w-full px-4">
+
+      <!-- DENNY-TOUCH: Logo 3D flottant — frame-swap JS entre heart-3d-*.png -->
+      <div class="fade-up ohlala-3d-logo">
+        <img id="heart-3d-img" src="assets/3d/heart-3d-front-cutout-v2.png" alt="Ohlala Sellerie" />
+      </div>
+
       <div class="fade-up flex flex-wrap justify-center gap-[8px]" style="transition-delay:0.1s">
         <div class="tab-pill"><span>Interfaces</span></div>
           <div class="tab-pill"><span>Performance</span></div>
@@ -400,10 +675,9 @@ body {
       </div>
     </div>
 
-    <!-- Hero Image: 175% height, fade overlay -->
-    <div class="fade-up w-full flex-1 relative overflow-hidden" style="transition-delay:0.4s">
-      <img src="../assets/heroes/ohlala.jpg" alt="Ohlala Sellerie" style="position:absolute; height:175%; left:-3%; top:0; width:106%; max-width:none; object-fit:cover;" />
-      <div style="position:absolute; bottom:0; left:0; right:0; height:40%; background:linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 50%, #000 100%); pointer-events:none; z-index:1;"></div>
+    <!-- DENNY-TOUCH: Hero composition signature — cœur 3D + produits équestres en fade-up -->
+    <div class="fade-up hero-signature" style="transition-delay:0.6s; padding: 0 16px;">
+      <img src="assets/3d/hero-composition-cutout-v2.png" alt="L'univers Ohlala Sellerie" />
     </div>
   </div>
 </section>
@@ -424,6 +698,8 @@ body {
 
       <div class="stat-card-outer">
         <div class="stat-card-inner">
+          <!-- DENNY-TOUCH: icône stat -->
+          <div class="stat-icon"><img src="assets/icons/arrow-trending-up.svg" alt="" /></div>
           <div class="font-bold text-[38px] text-white leading-normal w-full counter-value">175k</div>
           <div class="font-medium text-[16px] text-[rgba(255,255,255,0.84)] w-full uppercase">Followers Instagram</div>
         </div>
@@ -431,6 +707,8 @@ body {
 
       <div class="stat-card-outer">
         <div class="stat-card-inner">
+          <!-- DENNY-TOUCH: icône stat -->
+          <div class="stat-icon"><img src="assets/icons/chart-bar-square.svg" alt="" /></div>
           <div class="font-bold text-[38px] text-white leading-normal w-full counter-value">45k+</div>
           <div class="font-medium text-[16px] text-[rgba(255,255,255,0.84)] w-full uppercase">Références produit</div>
         </div>
@@ -438,9 +716,27 @@ body {
 
       <div class="stat-card-outer">
         <div class="stat-card-inner">
+          <!-- DENNY-TOUCH: icône stat -->
+          <div class="stat-icon"><img src="assets/icons/cube-transparent.svg" alt="" /></div>
           <div class="font-bold text-[38px] text-white leading-normal w-full counter-value">Shopify</div>
           <div class="font-medium text-[16px] text-[rgba(255,255,255,0.84)] w-full uppercase">Plateforme actuelle</div>
         </div>
+      </div>
+    </div>
+
+    <!-- DENNY-TOUCH: Product strip — produits réels Ohlala (marques citées dans l'audit) -->
+    <div class="product-strip fade-up" style="margin-top: 50px; transition-delay:0.3s;">
+      <div class="product-card">
+        <img src="assets/products/harcour-veste-kanji.png" alt="Harcour Kanji" />
+        <span>Harcour · Veste airbag</span>
+      </div>
+      <div class="product-card">
+        <img src="assets/products/animo-bonnet-ciak.png" alt="Animo Italia Ciak" />
+        <span>Animo Italia · Bonnet Ciak</span>
+      </div>
+      <div class="product-card">
+        <img src="assets/products/bridon-riding-world.png" alt="Bridon équitation" />
+        <span>Équipement · Catalogue premium</span>
       </div>
     </div>
   </div>
@@ -455,26 +751,39 @@ body {
     <div class="fade-up w-full max-w-[777px] mb-[40px]" style="transition-delay:0.15s">
       <p class="text-[17px] text-[#a3a3ae] text-center leading-normal">L'analyse de l'interface web, de l'architecture technique et du référencement fait ressortir plusieurs axes sur lesquels concentrer la réflexion. Les problématiques propres à l'application mobile sont traitées dans une section dédiée plus loin.</p>
     </div>
-    <div class="fade-up flex flex-col gap-[19px] w-full max-w-[977px]" style="transition-delay:0.2s">
+    <!-- DENNY-TOUCH: Problématiques en grid 2x2 avec illustrations IA — texte original préservé -->
+    <div class="fade-up problem-grid w-full max-w-[1100px]" style="transition-delay:0.2s">
 
-      <div class="opp-card">
-        <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full text-center">Thème template vs marques premium</h3>
-        <p class="text-[17px] text-[#a3a3ae] w-full leading-normal text-center">Le site utilise un thème Shopify marketplace (Stretch v1.9.0) personnalisé. Le rendu reste celui d'un template standard qui pourrait être davantage travaillé pour mieux traduire l'identité et l'univers d'Ohlala Sellerie.</p>
+      <div class="problem-card">
+        <div class="problem-illust">
+          <img src="assets/illustrations/illust-template-lockin-cutout.png" alt="" />
+        </div>
+        <h3 class="font-bold text-[20px] text-[#efefef] w-full">Thème template vs marques premium</h3>
+        <p class="text-[14px] text-[#a3a3ae] w-full leading-[1.6]">Le site utilise un thème Shopify marketplace (Stretch v1.9.0) personnalisé. Le rendu reste celui d'un template standard qui pourrait être davantage travaillé pour mieux traduire l'identité et l'univers d'Ohlala Sellerie.</p>
       </div>
 
-      <div class="opp-card">
-        <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full text-center">Surcharge d'applications tierces</h3>
-        <p class="text-[17px] text-[#a3a3ae] w-full leading-normal text-center">Plus de 10 scripts tiers chargés simultanément (Judge.me, Gorgias, Nosto, Kiwi Sizing, Shipup, Wisepops, Axeptio, Klaviyo, hCaptcha). Chaque intégration ajoute du poids JavaScript. Impact probable sur les Core Web Vitals (LCP, INP, CLS) et le temps de chargement perçu par l'utilisateur.</p>
+      <div class="problem-card">
+        <div class="problem-illust">
+          <img src="assets/illustrations/illust-scripts-overload-cutout.png" alt="" />
+        </div>
+        <h3 class="font-bold text-[20px] text-[#efefef] w-full">Surcharge d'applications tierces</h3>
+        <p class="text-[14px] text-[#a3a3ae] w-full leading-[1.6]">Plus de 10 scripts tiers chargés simultanément (Judge.me, Gorgias, Nosto, Kiwi Sizing, Shipup, Wisepops, Axeptio, Klaviyo, hCaptcha). Chaque intégration ajoute du poids JavaScript. Impact probable sur les Core Web Vitals (LCP, INP, CLS) et le temps de chargement perçu par l'utilisateur.</p>
       </div>
 
-      <div class="opp-card">
-        <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full text-center">SEO perfectible</h3>
-        <p class="text-[17px] text-[#a3a3ae] w-full leading-normal text-center">Le référencement est globalement en place mais certains axes restent à optimiser : title homepage peu exploité sur les mots-clés du marché, meta descriptions à affiner sur le catalogue.</p>
+      <div class="problem-card">
+        <div class="problem-illust problem-illust-icon">
+          <img src="assets/icons/chart-pie.svg" alt="" />
+        </div>
+        <h3 class="font-bold text-[20px] text-[#efefef] w-full">SEO perfectible</h3>
+        <p class="text-[14px] text-[#a3a3ae] w-full leading-[1.6]">Le référencement est globalement en place mais certains axes restent à optimiser : title homepage peu exploité sur les mots-clés du marché, meta descriptions à affiner sur le catalogue.</p>
       </div>
 
-      <div class="opp-card">
-        <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full text-center">Incohérences techniques</h3>
-        <p class="text-[17px] text-[#a3a3ae] w-full leading-normal text-center">Localisation détectée comme "Bermuda" (cookie localization=BM, content-language: fr-BM) au lieu de la France. Confusion de domaines entre ohlala-equestrian.com et ohlala-sellerie.com sans stratégie de redirection claire. Absence de page "À propos" malgré un positionnement axé sur la proximité et la confiance.</p>
+      <div class="problem-card">
+        <div class="problem-illust">
+          <img src="assets/illustrations/illust-localization-fail-cutout.png" alt="" />
+        </div>
+        <h3 class="font-bold text-[20px] text-[#efefef] w-full">Incohérences techniques</h3>
+        <p class="text-[14px] text-[#a3a3ae] w-full leading-[1.6]">Localisation détectée comme "Bermuda" (cookie localization=BM, content-language: fr-BM) au lieu de la France. Confusion de domaines entre ohlala-equestrian.com et ohlala-sellerie.com sans stratégie de redirection claire. Absence de page "À propos" malgré un positionnement axé sur la proximité et la confiance.</p>
       </div>
     </div>
   </div>
@@ -500,6 +809,11 @@ body {
         <h3 class="font-bold text-[21px] text-[#c7c7cc] w-full">Identité de marque renforcée</h3>
         <p class="text-[17px] text-[#a3a3ae] w-full leading-normal">Page "À propos" et storytelling de la marque. Mise en valeur de la relation client (avis, communauté, petites attentions). Consolidation des domaines sous une identité unique et cohérente.</p>
       </div>
+    </div>
+
+    <!-- DENNY-TOUCH: Visuel before/after pour matérialiser la refonte -->
+    <div class="fade-up benchmark-frame" style="margin-top:50px; transition-delay:0.3s;">
+      <img src="assets/automations/before-after-ux-shopify-vs-nextjs.png" alt="Avant / Après UX — Template Shopify vs Next.js premium" />
     </div>
   </div>
 </section>
@@ -587,6 +901,35 @@ body {
     <div class="fade-up w-full max-w-[777px] mb-[40px]" style="transition-delay:0.15s">
       <p class="text-[17px] text-[#a3a3ae] text-center leading-normal">L'application mobile bénéficie d'une excellente note communautaire (4,9/5) mais repose sur une infrastructure qui plafonne sa capacité à différencier la marque et à activer ses leviers de croissance.</p>
     </div>
+<<<<<<< Updated upstream
+=======
+
+    <!-- DENNY-TOUCH: Stats App mobile — visualiser le paradoxe note/lock-in -->
+    <div class="fade-up grid grid-cols-1 md:grid-cols-3 gap-[20px] md:gap-[31px] mb-[50px] w-full max-w-[900px]" style="transition-delay:0.18s">
+      <div class="stat-card-outer">
+        <div class="stat-card-inner">
+          <div class="stat-icon"><img src="assets/icons/sparkles.svg" alt="" /></div>
+          <div class="font-bold text-[38px] text-white leading-normal w-full">4,9<span class="text-[22px] text-[#a3a3ae]">/5</span></div>
+          <div class="font-medium text-[14px] text-[rgba(255,255,255,0.84)] w-full uppercase">Note App Store</div>
+        </div>
+      </div>
+      <div class="stat-card-outer">
+        <div class="stat-card-inner">
+          <div class="stat-icon"><img src="assets/icons/cog-6-tooth.svg" alt="" /></div>
+          <div class="font-bold text-[38px] text-white leading-normal w-full">Shopney</div>
+          <div class="font-medium text-[14px] text-[rgba(255,255,255,0.84)] w-full uppercase">Template no-code</div>
+        </div>
+      </div>
+      <div class="stat-card-outer">
+        <div class="stat-card-inner">
+          <div class="stat-icon"><img src="assets/icons/bolt.svg" alt="" /></div>
+          <div class="font-bold text-[38px] text-white leading-normal w-full">1k+</div>
+          <div class="font-medium text-[14px] text-[rgba(255,255,255,0.84)] w-full uppercase">Marques sur Shopney</div>
+        </div>
+      </div>
+    </div>
+
+>>>>>>> Stashed changes
     <div class="fade-up flex flex-col gap-[19px] w-full max-w-[977px]" style="transition-delay:0.2s">
 
       <div class="opp-card">
@@ -644,6 +987,34 @@ body {
         <div class="w-full max-w-[838px] mx-auto mb-[22px]">
           <p class="text-[16px] text-[#a3a3ae] text-center leading-normal">Au-delà des refontes d'interfaces et de l'évolution architecturale, un plan transversal d'automatisation par IA permet de renforcer les marges opérationnelles et d'accélérer la croissance commerciale.</p>
         </div>
+<<<<<<< Updated upstream
+=======
+
+        <!-- DENNY-TOUCH: Stats clés Plan IA — extraites des "ordres de grandeur observés" du contenu -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-[12px] max-w-[838px] mx-auto mb-[22px]">
+          <div class="ia-stat-card">
+            <div class="ia-stat-icon"><img src="assets/icons/clock.svg" alt="" /></div>
+            <div class="ia-stat-value">60-80<span class="ia-stat-unit">%</span></div>
+            <div class="ia-stat-label">Coût SAV réduit</div>
+          </div>
+          <div class="ia-stat-card">
+            <div class="ia-stat-icon"><img src="assets/icons/arrow-trending-up.svg" alt="" /></div>
+            <div class="ia-stat-value">15-30<span class="ia-stat-unit">%</span></div>
+            <div class="ia-stat-label">Croissance CA segmentée</div>
+          </div>
+          <div class="ia-stat-card">
+            <div class="ia-stat-icon"><img src="assets/icons/cog-6-tooth.svg" alt="" /></div>
+            <div class="ia-stat-value">24/7</div>
+            <div class="ia-stat-label">Support multi-canal</div>
+          </div>
+          <div class="ia-stat-card">
+            <div class="ia-stat-icon"><img src="assets/icons/chart-pie.svg" alt="" /></div>
+            <div class="ia-stat-value">4<span class="ia-stat-unit">×</span></div>
+            <div class="ia-stat-label">Leviers automatisés</div>
+          </div>
+        </div>
+
+>>>>>>> Stashed changes
         <div class="flex flex-col gap-[12px] max-w-[838px] mx-auto">
 
           <div class="prop-item" style="padding:18px;">
@@ -688,6 +1059,37 @@ body {
         </div>
       </div>
     </div>
+<<<<<<< Updated upstream
+=======
+
+    <!-- DENNY-TOUCH: Showcase 6 visuels IA — chaque caption pointe vers une reco existante -->
+    <div class="ia-showcase-grid fade-up" style="transition-delay:0.3s;">
+      <div class="ia-card">
+        <img src="assets/automations/ad-social-01-cavalleria.png" alt="Ad Instagram généré IA" />
+        <p>Promotions prédictives · Plan IA 02</p>
+      </div>
+      <div class="ia-card">
+        <img src="assets/automations/mockup-product-01-veste-horse-pilot.png" alt="Mockup fiche produit Next.js" />
+        <p>Fiche produit Next.js · Reco 02 headless</p>
+      </div>
+      <div class="ia-card">
+        <img src="assets/automations/lifestyle-01-ecurie-matin.png" alt="Scène lifestyle brand storytelling" />
+        <p>Storytelling · Reco 01 refonte</p>
+      </div>
+      <div class="ia-card">
+        <img src="assets/automations/hero-brand-01-selle-golden-hour.png" alt="Hero produit SEO golden hour" />
+        <p>Visuel SEO produit · Reco 03 SEO</p>
+      </div>
+      <div class="ia-card">
+        <img src="assets/automations/before-after-ux-shopify-vs-nextjs.png" alt="Comparison UX before after" />
+        <p>Avant / Après interface · Reco 01</p>
+      </div>
+      <div class="ia-card">
+        <img src="assets/automations/social-carrousel-01.png" alt="Carrousel social Instagram" />
+        <p>Blog contenu automatisé · Reco 03 SEO</p>
+      </div>
+    </div>
+>>>>>>> Stashed changes
   </div>
 </section>
 <!-- Slide 10: Conclusion -->
@@ -723,22 +1125,52 @@ body {
         <span class="font-medium text-[18px] leading-[24px] text-[#e5e5e5] relative z-10">Discuter avec D-Studio</span>
       </a>
     </div>
+
+    <!-- DENNY-TOUCH: Brand pairing footer -->
+    <div class="brand-pairing fade-up" style="margin-top:60px; transition-delay:0.35s;">
+      <img src="assets/logos/ohlala-logo-official.png" alt="Ohlala Sellerie" class="brand-logo brand-ohlala" />
+      <span class="brand-x">×</span>
+      <img src="assets/dstudio-logo.svg" alt="D-Studio" class="brand-logo brand-dstudio" />
+    </div>
   </div>
 </section>
 
 <script>
-// Particles
+// TÂCHE 1 — 3D heart frame-swap (float CSS + JS cross-fade entre 4 PNGs)
+(function() {
+  const img = document.getElementById('heart-3d-img');
+  if (!img) return;
+  const frames = [
+    'assets/3d/heart-3d-front-cutout-v2.png',
+    'assets/3d/heart-3d-3q-right-cutout-v2.png',
+    'assets/3d/heart-3d-side-cutout-v2.png',
+    'assets/3d/heart-3d-3q-right-cutout-v2.png'
+  ];
+  let idx = 0;
+  // Preload all frames
+  frames.forEach(src => { const i = new Image(); i.src = src; });
+  setInterval(() => {
+    idx = (idx + 1) % frames.length;
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.src = frames[idx];
+      img.style.opacity = '1';
+    }, 220);
+  }, 1800);
+})();
+
+// TÂCHE 6 — Particles raffinés : 40 points, opacity 0.18, slow-motion (speed × 0.5)
 (function() {
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
   let particles = [];
-  const COUNT = 60;
+  const COUNT = 40;
   function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
   resize(); window.addEventListener('resize', resize);
   function create() {
     return { x: Math.random()*canvas.width, y: Math.random()*canvas.height,
-      size: Math.random()*1.5+0.5, speedX: (Math.random()-0.5)*0.3,
-      speedY: (Math.random()-0.5)*0.15-0.1, opacity: Math.random()*0.4+0.1 };
+      size: Math.random()*1.5+0.5, speedX: (Math.random()-0.5)*0.15,
+      speedY: (Math.random()-0.5)*0.075-0.05, opacity: Math.random()*0.14+0.04 };
   }
   for (let i=0;i<COUNT;i++) particles.push(create());
   function animate() {
@@ -763,10 +1195,11 @@ document.body.addEventListener('scroll', function() {
 }, {passive:true});
 
 // Nav dots
-const slides = document.querySelectorAll('.slide');
+const slides = document.querySelectorAll('.slide, .slide-hero');
 const dots = document.querySelectorAll('.nav-dot');
 dots.forEach(d => d.addEventListener('click', () => {
-  slides[parseInt(d.dataset.slide)].scrollIntoView({behavior:'smooth'});
+  const idx = parseInt(d.dataset.slide);
+  if(slides[idx]) slides[idx].scrollIntoView({behavior:'smooth'});
 }));
 
 // Fade-up observer
