@@ -415,6 +415,31 @@ body {
 
 /* hero HD framing */
 #slide-0 .flex-1 > img { height:100% !important; width:100% !important; left:0 !important; top:0 !important; object-fit:cover !important; object-position:center 58% !important; }
+/* ── Animations premium subtiles (scopé ohlala) ── */
+/* Hover lift doux sur cards / items / devices */
+.ohl-note, .ohl-stat, .ohl-statc, .ohl-item, .ohl-iphone, .ohl-fade, .ohl-frame { transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
+.ohl-note:hover, .ohl-stat:hover, .ohl-statc:hover, .ohl-item:hover { transform: translateY(-6px); }
+.ohl-iphone:hover, .ohl-fade:hover, .ohl-frame:hover { transform: translateY(-8px) scale(1.012); }
+/* Stagger : les enfants .fade-up d'un même groupe apparaissent en cascade */
+.ohl-statrow .ohl-stat, .ohl-stat4 .ohl-statc, .ohl-items .ohl-item { opacity:0; transform:translateY(24px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+.visible .ohl-statrow .ohl-stat, .visible .ohl-stat4 .ohl-statc, .visible .ohl-items .ohl-item,
+.ohl-statrow.visible .ohl-stat, .ohl-stat4.visible .ohl-statc, .ohl-items.visible .ohl-item { opacity:1; transform:translateY(0); }
+.ohl-statrow .ohl-stat:nth-child(1), .ohl-stat4 .ohl-statc:nth-child(1), .ohl-items .ohl-item:nth-child(1){ transition-delay:0.05s; }
+.ohl-statrow .ohl-stat:nth-child(2), .ohl-stat4 .ohl-statc:nth-child(2), .ohl-items .ohl-item:nth-child(2){ transition-delay:0.15s; }
+.ohl-statrow .ohl-stat:nth-child(3), .ohl-stat4 .ohl-statc:nth-child(3), .ohl-items .ohl-item:nth-child(3){ transition-delay:0.25s; }
+.ohl-stat4 .ohl-statc:nth-child(4), .ohl-items .ohl-item:nth-child(4){ transition-delay:0.35s; }
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce){ .ohl-note,.ohl-stat,.ohl-statc,.ohl-item,.ohl-iphone,.ohl-fade,.ohl-frame{ transition:none !important; transform:none !important; } }
+
+/* ── Parallax hero uniquement (image cover, marge sûre) — pas sur les images entières ── */
+@supports (animation-timeline: view()) {
+  @keyframes ohl-hero-rise { from { transform: scale(1.08) translateY(-2%); } to { transform: scale(1.08) translateY(2%); } }
+  #slide-0 .flex-1 > img { animation: ohl-hero-rise linear; animation-timeline: view(); animation-range: entry 0% exit 100%; will-change: transform; }
+}
+@media (prefers-reduced-motion: reduce){
+  @supports (animation-timeline: view()){ #slide-0 .flex-1 > img { animation: none !important; } }
+}
+
 </style>
 </head>
 <body>
