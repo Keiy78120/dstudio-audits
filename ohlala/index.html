@@ -418,8 +418,6 @@ body {
 .ohl-cutout:hover { transform: translateY(-6px); }
 @media (prefers-reduced-motion: reduce){ .ohl-cutout { transition:none !important; transform:none !important; } }
 
-/* hero HD framing */
-#slide-0 .flex-1 > img { height:100% !important; width:100% !important; left:0 !important; top:0 !important; object-fit:cover !important; object-position:center 58% !important; }
 /* ── Animations premium subtiles (scopé ohlala) ── */
 /* Hover lift doux sur cards / items / devices */
 .ohl-note, .ohl-stat, .ohl-statc, .ohl-item, .ohl-iphone, .ohl-fade, .ohl-frame { transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
@@ -439,10 +437,10 @@ body {
 /* ── Parallax hero uniquement (image cover, marge sûre) — pas sur les images entières ── */
 @supports (animation-timeline: view()) {
   @keyframes ohl-hero-rise { from { transform: scale(1.08) translateY(-2%); } to { transform: scale(1.08) translateY(2%); } }
-  #slide-0 .flex-1 > img { animation: ohl-hero-rise linear; animation-timeline: view(); animation-range: entry 0% exit 100%; will-change: transform; }
+  #slide-0 .fade-up > img { animation: ohl-hero-rise linear; animation-timeline: view(); animation-range: entry 0% exit 100%; will-change: transform; }
 }
 @media (prefers-reduced-motion: reduce){
-  @supports (animation-timeline: view()){ #slide-0 .flex-1 > img { animation: none !important; } }
+  @supports (animation-timeline: view()){ #slide-0 .fade-up > img { animation: none !important; } }
 }
 
 </style>
@@ -476,7 +474,7 @@ body {
 
 <!-- Slide 1: hero -->
 <section class="slide bg-black flex flex-col items-center" id="slide-0">
-  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center h-full relative">
+  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center relative">
     <div class="flex flex-col items-center gap-[25px] pt-[56px] w-[742px] max-w-full px-4">
       <div class="fade-up"><img src="assets/logos/hero-logo.png" alt="Ohlala Sellerie" class="h-[60px] object-contain" onerror="this.style.display='none'" /></div>
       <div class="fade-up flex flex-wrap justify-center gap-[8px]" style="transition-delay:0.1s">
@@ -490,13 +488,13 @@ body {
         <p class="text-[17px] text-[#a3a3ae] text-center w-full leading-normal">Analyse des interfaces (web et application mobile), de l'architecture technique et du référencement d'Ohlala Sellerie.</p>
       </div>
     </div>
-    
-    <!-- Hero Image: 175% height, fade overlay -->
-    <div class="fade-up w-full flex-1 relative overflow-hidden" style="transition-delay:0.4s">
+  </div>
+  
+    <!-- Hero Image: full-width, no container constraint -->
+    <div class="fade-up w-full relative overflow-hidden" style="height:520px; transition-delay:0.4s">
       <img src="assets/figma-hd/hero-cheval.png" alt="Ohlala Sellerie" style="position:absolute; height:175%; left:-3%; top:0; width:106%; max-width:none; object-fit:cover;" />
       <div style="position:absolute; bottom:0; left:0; right:0; height:40%; background:linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 50%, #000 100%); pointer-events:none; z-index:1;"></div>
     </div>
-  </div>
 </section>
 <!-- Slide 2: custom -->
 <section class="slide bg-black flex flex-col items-center justify-center">

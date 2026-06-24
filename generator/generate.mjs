@@ -52,8 +52,8 @@ function slideHero(s) {
   const heroImg = config.heroImage || s.image;
   const heroSection = heroImg
     ? `
-    <!-- Hero Image: 175% height, fade overlay -->
-    <div class="fade-up w-full flex-1 relative overflow-hidden" style="transition-delay:0.4s">
+    <!-- Hero Image: full-width, no container constraint -->
+    <div class="fade-up w-full relative overflow-hidden" style="height:520px; transition-delay:0.4s">
       <img src="${heroImg}" alt="${esc(config.client)}" style="position:absolute; height:175%; left:-3%; top:0; width:106%; max-width:none; object-fit:cover;" />
       <div style="position:absolute; bottom:0; left:0; right:0; height:40%; background:linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 50%, #000 100%); pointer-events:none; z-index:1;"></div>
     </div>`
@@ -61,7 +61,7 @@ function slideHero(s) {
 
   return `
 <section class="slide bg-black flex flex-col items-center" id="slide-0">
-  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center h-full relative">
+  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center relative">
     <div class="flex flex-col items-center gap-[25px] pt-[56px] w-[742px] max-w-full px-4">
       ${clientLogo}
       <div class="fade-up flex flex-wrap justify-center gap-[8px]" style="transition-delay:0.1s">
@@ -72,8 +72,8 @@ function slideHero(s) {
         <p class="text-[17px] text-[#a3a3ae] text-center w-full leading-normal">${raw(s.body || "")}</p>
       </div>
     </div>
-    ${heroSection}
   </div>
+  ${heroSection}
 </section>`;
 }
 
