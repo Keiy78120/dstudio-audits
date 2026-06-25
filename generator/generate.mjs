@@ -52,8 +52,8 @@ function slideHero(s) {
   const heroImg = config.heroImage || s.image;
   const heroSection = heroImg
     ? `
-    <!-- Hero Image: 175% height, fade overlay -->
-    <div class="fade-up w-full flex-1 relative overflow-hidden" style="transition-delay:0.4s">
+    <!-- Hero Image: full-width, no container constraint -->
+    <div class="fade-up w-full relative overflow-hidden" style="height:520px; transition-delay:0.4s">
       <img src="${heroImg}" alt="${esc(config.client)}" style="position:absolute; height:175%; left:-3%; top:0; width:106%; max-width:none; object-fit:cover;" />
       <div style="position:absolute; bottom:0; left:0; right:0; height:40%; background:linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 50%, #000 100%); pointer-events:none; z-index:1;"></div>
     </div>`
@@ -61,7 +61,7 @@ function slideHero(s) {
 
   return `
 <section class="slide bg-black flex flex-col items-center" id="slide-0">
-  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center h-full relative">
+  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center relative">
     <div class="flex flex-col items-center gap-[25px] pt-[56px] w-[742px] max-w-full px-4">
       ${clientLogo}
       <div class="fade-up flex flex-wrap justify-center gap-[8px]" style="transition-delay:0.1s">
@@ -72,8 +72,8 @@ function slideHero(s) {
         <p class="text-[17px] text-[#a3a3ae] text-center w-full leading-normal">${raw(s.body || "")}</p>
       </div>
     </div>
-    ${heroSection}
   </div>
+  ${heroSection}
 </section>`;
 }
 
@@ -170,12 +170,19 @@ function slideCards(s) {
     ? "flex flex-col gap-[19px] w-full max-w-[819px]"
     : `grid ${grid} gap-[19px] w-full`;
 
+  // When an intro is present, tighten header gap and add the intro paragraph.
+  // Without intro, keep the original spacing so existing decks stay byte-identical.
+  const headerGap = s.intro ? "gap-[20px] mb-[50px]" : "gap-[34px] mb-[66px]";
+  const intro = s.intro
+    ? `\n      <p class="fade-up text-[17px] text-[#a3a3ae] text-center leading-normal max-w-[800px] mx-auto" style="transition-delay:0.15s">${raw(s.intro)}</p>`
+    : "";
+
   return `
 <section class="slide bg-black flex flex-col items-center justify-center">
   <div class="slide-content w-full max-w-[1209px] mx-auto flex flex-col items-center justify-center px-6 h-full">
-    <div class="flex flex-col items-center gap-[34px] mb-[66px]">
+    <div class="flex flex-col items-center ${headerGap}">
       <div class="fade-up badge">${raw(s.label || "")}</div>
-      <h2 class="fade-up font-bold text-[36px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">${raw(s.title)}</h2>
+      <h2 class="fade-up font-bold text-[36px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">${raw(s.title)}</h2>${intro}
     </div>
     <div class="fade-up ${containerClass}" style="transition-delay:0.2s">
       ${cards}
@@ -249,8 +256,8 @@ function slideProposition(s) {
         <div class="badge">${raw(s.label || "NOTRE PROPOSITION")}</div>
       </div>
       <div class="prop-container" style="padding: 60px 40px 20px;">
-        <div class="flex flex-col items-center mb-[40px]">
-          <h2 class="font-bold text-[48px] text-[#e6e6f1] text-center leading-[1.1]">${raw(s.title)}</h2>
+        <div class="flex flex-col items-center ${s.intro ? "gap-[20px] " : ""}mb-[40px]">
+          <h2 class="font-bold text-[${s.intro ? "42" : "48"}px] text-[#e6e6f1] text-center leading-[1.1]">${raw(s.title)}</h2>${s.intro ? `\n          <p class="text-[16px] text-[#a3a3ae] text-center leading-normal max-w-[760px]">${raw(s.intro)}</p>` : ""}
         </div>
         <div class="flex flex-col gap-[19px] max-w-[838px] mx-auto">
           ${items}
@@ -288,14 +295,30 @@ function slideCTA(s) {
 }
 
 function slideCustom(s) {
-  return `
-<section class="slide bg-black flex flex-col items-center justify-center">
-  <div class="slide-content w-full max-w-[1209px] mx-auto flex flex-col items-center justify-center px-6 h-full">
+  // Backward-compatible default: emit EXACTLY the original markup unless the new
+  // opt-in fields (slideClass / maxWidth / hideHeader) are used. This keeps
+  // existing custom-slide decks (stellantis, rexos…) byte-identical.
+  const sectionClass = s.slideClass ? `slide ${s.slideClass}` : "slide";
+  const maxW = s.maxWidth
+    ? ` style="max-width:${s.maxWidth}"`
+    : "";
+  const maxWClass = s.maxWidth ? "" : "max-w-[1209px] ";
+  // Header is rendered unless both label & title are omitted (new "no header" path).
+  const hasHeader = s.label !== undefined || s.title !== undefined;
+  const header = hasHeader
+    ? `
     <div class="flex flex-col items-center gap-[34px] mb-[40px]">
       <div class="fade-up badge">${raw(s.label || "")}</div>
       <h2 class="fade-up font-bold text-[36px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">${raw(s.title || "")}</h2>
-    </div>
-    <div class="fade-up" style="transition-delay:0.2s">${raw(s.html || "")}</div>
+    </div>`
+    : "";
+  // Content wrapper: original was a bare `fade-up`. New custom slides opt into a
+  // full-width centered wrapper via `wrapContent` to host grid/flex layouts.
+  const wrapClass = s.wrapContent ? "fade-up w-full flex flex-col items-center" : "fade-up";
+  return `
+<section class="${sectionClass} bg-black flex flex-col items-center justify-center">
+  <div class="slide-content w-full ${maxWClass}mx-auto flex flex-col items-center justify-center px-6 h-full"${maxW}>${header}
+    <div class="${wrapClass}" style="transition-delay:0.2s">${raw(s.html || "")}</div>
   </div>
 </section>`;
 }
@@ -819,7 +842,7 @@ tailwind.config = {
   }
 }
 </script>
-<style>${CSS}
+<style>${CSS}${config.customCSS ? "\n" + config.customCSS : ""}
 </style>
 </head>
 <body>

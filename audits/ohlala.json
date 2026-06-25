@@ -3,152 +3,167 @@
   "client": "Ohlala Sellerie",
   "date": "Mai 2026",
   "lang": "fr",
-  "clientLogo": "https://www.google.com/s2/favicons?domain=ohlala-sellerie.com&sz=128",
-  "clientColor": "rgba(251,191,36,0.6)",
+  "clientLogo": "assets/logos/hero-logo.png",
+  "clientColor": "rgba(255,117,62,0.6)",
+  "heroImage": "assets/figma-hd/hero-cheval.png",
+  "customCSS": "/* Ohlala custom slides */\n.slide.tall { height: auto; min-height: 100vh; padding: 80px 0; }\n.ohl-statrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; width: 100%; }\n.ohl-stat { position: relative; border-radius: var(--radius-card); padding: 12px; background: var(--bg-card-glass); backdrop-filter: blur(4.5px); -webkit-backdrop-filter: blur(4.5px); overflow: hidden; }\n.ohl-stat::before { content:''; position:absolute; inset:0; border-radius: var(--radius-card); padding:1px; background: linear-gradient(157deg, rgba(255,255,255,0.20) 2.12%, rgba(255,255,255,0) 39%, rgba(255,255,255,0) 54.33%, rgba(255,255,255,0.08) 93.02%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude; pointer-events:none; }\n.ohl-stat::after { content:''; position:absolute; inset:0; border-radius: var(--radius-card); box-shadow: inset 0 0 14px 0 rgba(111,111,129,0.25); pointer-events:none; }\n.ohl-stat-inner { position: relative; display: flex; align-items: center; gap: 20px; background: linear-gradient(to top, rgba(6,6,6,0.6) 0%, rgba(17,17,19,0.3) 83.56%, rgba(27,27,30,0.2) 110%); border-radius: var(--radius-inner); padding: 24px 26px; }\n.ohl-stat-ico { flex-shrink:0; width: 52px; height: 52px; border-radius: 50%; display:flex; align-items:center; justify-content:center; background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.16), rgba(255,255,255,0.02)); box-shadow: inset 0 1px 1px rgba(255,255,255,0.25), inset 0 -2px 3px rgba(0,0,0,0.4); }\n.ohl-stat-ico img { width: 26px; height: 26px; filter: brightness(0) invert(1) opacity(0.82); }\n.ohl-stat-txt { display:flex; flex-direction:column; gap:4px; min-width:0; }\n.ohl-stat-val { font-size: 34px; font-weight: 700; color:#fff; line-height:1; }\n.ohl-stat-lbl { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.84); text-transform: uppercase; letter-spacing: 0.04em; }\n.ohl-stat4 { display:grid; grid-template-columns: repeat(4,1fr); gap: 14px; width:100%; }\n.ohl-statc { position:relative; border-radius: var(--radius-inner); padding: 24px 18px; background: rgba(20,20,22,0.6); display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center; overflow:hidden; }\n.ohl-statc::before { content:''; position:absolute; inset:0; border-radius: var(--radius-inner); padding:1px; background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude; pointer-events:none; }\n.ohl-statc .ico { width: 46px; height: 46px; border-radius: 50%; display:flex; align-items:center; justify-content:center; background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.14), rgba(255,255,255,0.02)); box-shadow: inset 0 1px 1px rgba(255,255,255,0.22), inset 0 -2px 3px rgba(0,0,0,0.4); }\n.ohl-statc .ico img { width: 24px; height:24px; filter: brightness(0) invert(1) opacity(0.8); }\n.ohl-statc .val { font-size: 36px; font-weight:700; color:#efefef; line-height:1; }\n.ohl-statc .val sup { font-size: 20px; font-weight:600; }\n.ohl-statc .lbl { font-size: 11px; font-weight:500; color:#a3a3ae; text-transform:uppercase; letter-spacing:0.07em; line-height:1.3; }\n.ohl-items { display:flex; flex-direction:column; gap:16px; width:100%; }\n.ohl-item { position:relative; border-radius: var(--radius-card); padding: 22px 24px; display:flex; gap:24px; align-items:flex-start; background: linear-gradient(180deg, rgba(65,36,28,0.09) 11.28%, rgba(13,12,14,0.4) 128.43%); }\n.ohl-item::before { content:''; position:absolute; inset:0; border-radius:inherit; padding:1px; background: linear-gradient(180deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude; pointer-events:none; }\n.ohl-item .num { flex-shrink:0; width:56px; height:56px; display:flex; align-items:center; justify-content:center; border-radius:12px; background: rgba(86,79,77,0.24); box-shadow: inset 1px 2px 2px rgba(255,255,255,0.67), inset 0 -3px 2px rgba(0,0,0,0.23), inset -2px -2px 2px rgba(229,229,229,0.25); }\n.ohl-item .num span { background-image: linear-gradient(155.68deg, rgba(255,255,255,0.65) 32.68%, rgba(255,255,255,0) 98.12%); -webkit-background-clip:text; background-clip:text; color:transparent; font-size:27px; font-weight:700; }\n.ohl-item h3 { font-size: 21px; font-weight:700; color:#c7c7cc; line-height:normal; }\n.ohl-item p { font-size: 15px; color:#a3a3ae; line-height:1.5; margin-top:8px; }\n.ohl-frame { position:relative; border-radius: 24px; padding: 8px; overflow:hidden; box-shadow: 0 0 64px 0 rgba(217,228,231,0.12); }\n.ohl-frame::before { content:''; position:absolute; inset:0; border-radius:24px; padding:1px; background: linear-gradient(180deg, rgba(207,207,207,0.55) 0%, rgba(105,105,105,0.28) 50%, rgba(105,105,105,0.40) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude; pointer-events:none; z-index:1; }\n.ohl-frame img { display:block; width:100%; height:100%; object-fit:cover; border-radius:inherit; }\n/* device mockups: image IS already a device (bezel + dark bg baked-in) -> no silver frame, no clip, just soft shadow */\n.ohl-device { position:relative; padding:0; border-radius:0; overflow:visible; filter: drop-shadow(0 24px 60px rgba(0,0,0,0.55)) drop-shadow(0 0 60px rgba(217,228,231,0.10)); }\n.ohl-device img { display:block; width:100%; height:auto; object-fit:contain; border-radius:0; }\n.ohl-tab { display:inline-flex; align-items:center; justify-content:center; background:#141415; border-radius:40px; padding:8px 18px; font-size:13px; font-weight:500; color:#e5e5e5; position:relative; white-space:nowrap; }\n.ohl-tab::before { content:''; position:absolute; inset:0; border-radius:40px; padding:1px; background: linear-gradient(157deg, rgba(255,255,255,0.40) 2.12%, rgba(255,255,255,0) 39%, rgba(255,255,255,0) 54.33%, rgba(255,255,255,0.10) 93.02%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude; pointer-events:none; }\n.ohl-note { position:relative; border-radius: var(--radius-card); padding: 28px; background: rgba(28,28,30,0.43); box-shadow: 0 0 44px 0 rgba(76,131,83,0.03), 0 0 64px 0 rgba(217,228,231,0.16); }\n.ohl-note::after { content:''; position:absolute; inset:0; border-radius:inherit; box-shadow: inset -1px -1px 14px 0 rgba(255,255,255,0.07), inset 1px 1px 3px 0 rgba(255,255,255,0.12); pointer-events:none; }\n.ohl-note h3 { position:relative; font-size:21px; font-weight:700; color:#efefef; margin-bottom:14px; }\n.ohl-note p { position:relative; font-size:16px; color:#a3a3ae; line-height:1.55; }\n@media (max-width: 860px) {\n  .ohl-statrow, .ohl-stat4 { grid-template-columns: 1fr 1fr; }\n  .ohl-2col { grid-template-columns: 1fr !important; }\n}\n@media (max-width: 560px) {\n  .ohl-statrow, .ohl-stat4 { grid-template-columns: 1fr; }\n  .ohl-stat-val { font-size: 28px; }\n  .ohl-statc .val { font-size: 30px; }\n}\n.ohl-iphone { position:relative; background:#0a0a0a; border-radius:46px; padding:11px; box-shadow:0 24px 60px rgba(0,0,0,0.55), 0 0 60px rgba(217,228,231,0.10); }\n.ohl-iphone::after { content:''; position:absolute; top:11px; left:50%; transform:translateX(-50%); width:38%; height:26px; background:#0a0a0a; border-radius:0 0 18px 18px; z-index:2; pointer-events:none; }\n.ohl-iphone .ohl-screen { position:relative; border-radius:36px; overflow:hidden; width:100%; height:100%; }\n.ohl-iphone .ohl-screen img { display:block; width:100%; height:100%; object-fit:cover; object-position:top center; }\n\n.ohl-fade { position:relative; width:100%; }\n.ohl-fade img { display:block; width:100%; height:auto; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 5%, #000 95%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 5%, #000 95%, transparent 100%); }\n/* cutout détouré (fond transparent) : sujet ENTIER sur fond noir, AUCUN masque ni crop */\n.ohl-cutout { position:relative; width:100%; display:flex; justify-content:center; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1); }\n.ohl-cutout img { display:block; width:100%; height:auto; object-fit:contain; filter: drop-shadow(0 28px 56px rgba(0,0,0,0.45)); }\n.ohl-cutout:hover { transform: translateY(-6px); }\n@media (prefers-reduced-motion: reduce){ .ohl-cutout { transition:none !important; transform:none !important; } }\n\n/* ── Animations premium subtiles (scopé ohlala) ── */\n/* Hover lift doux sur cards / items / devices */\n.ohl-note, .ohl-stat, .ohl-statc, .ohl-item, .ohl-iphone, .ohl-fade, .ohl-frame { transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }\n.ohl-note:hover, .ohl-stat:hover, .ohl-statc:hover, .ohl-item:hover { transform: translateY(-6px); }\n.ohl-iphone:hover, .ohl-fade:hover, .ohl-frame:hover { transform: translateY(-8px) scale(1.012); }\n/* Stagger : les enfants .fade-up d'un même groupe apparaissent en cascade */\n.ohl-statrow .ohl-stat, .ohl-stat4 .ohl-statc, .ohl-items .ohl-item { opacity:0; transform:translateY(24px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }\n.visible .ohl-statrow .ohl-stat, .visible .ohl-stat4 .ohl-statc, .visible .ohl-items .ohl-item,\n.ohl-statrow.visible .ohl-stat, .ohl-stat4.visible .ohl-statc, .ohl-items.visible .ohl-item { opacity:1; transform:translateY(0); }\n.ohl-statrow .ohl-stat:nth-child(1), .ohl-stat4 .ohl-statc:nth-child(1), .ohl-items .ohl-item:nth-child(1){ transition-delay:0.05s; }\n.ohl-statrow .ohl-stat:nth-child(2), .ohl-stat4 .ohl-statc:nth-child(2), .ohl-items .ohl-item:nth-child(2){ transition-delay:0.15s; }\n.ohl-statrow .ohl-stat:nth-child(3), .ohl-stat4 .ohl-statc:nth-child(3), .ohl-items .ohl-item:nth-child(3){ transition-delay:0.25s; }\n.ohl-stat4 .ohl-statc:nth-child(4), .ohl-items .ohl-item:nth-child(4){ transition-delay:0.35s; }\n/* Respect prefers-reduced-motion */\n@media (prefers-reduced-motion: reduce){ .ohl-note,.ohl-stat,.ohl-statc,.ohl-item,.ohl-iphone,.ohl-fade,.ohl-frame{ transition:none !important; transform:none !important; } }\n\n/* ── Parallax hero uniquement (image cover, marge sûre) — pas sur les images entières ── */\n@supports (animation-timeline: view()) {\n  @keyframes ohl-hero-rise { from { transform: scale(1.08) translateY(-2%); } to { transform: scale(1.08) translateY(2%); } }\n  #slide-0 .fade-up > img { animation: ohl-hero-rise linear; animation-timeline: view(); animation-range: entry 0% exit 100%; will-change: transform; }\n}\n@media (prefers-reduced-motion: reduce){\n  @supports (animation-timeline: view()){ #slide-0 .fade-up > img { animation: none !important; } }\n}\n",
   "slides": [
     {
       "type": "hero",
-      "label": "Ohlala Sellerie",
-      "title": "Le coût caché<br>de votre stack.",
-      "body": "Leader e-commerce équitation FR. 175k Instagram. 45k références.<br>Mais votre app coûte 1 000€/mois pour un template que 4 000 autres marques utilisent.",
+      "title": "Audit digital",
+      "body": "Analyse des interfaces (web et application mobile), de l'architecture technique et du référencement d'Ohlala Sellerie.",
       "tags": [
-        "App Native",
-        "SAV IA",
-        "Automation",
-        "SEO / GEO"
+        "Interfaces",
+        "Performance",
+        "Architecture technique",
+        "SEO"
       ]
     },
     {
-      "type": "stats",
-      "label": "Ce que ça coûte vraiment",
-      "title": "Les chiffres que Shopney ne publie pas.",
-      "grid": "grid-4",
-      "stats": [
+      "type": "custom",
+      "label": "CONTEXTE",
+      "title": "Ohlala Sellerie en bref",
+      "maxWidth": "1209px",
+      "html": "<p class='text-[17px] text-[#a3a3ae] text-center leading-normal max-w-[800px] mx-auto mb-[40px]'>Ohlala Sellerie est une sellerie en ligne et distributeur de marques premium d'équipement équestre : Cavalleria Toscana, Flex On, Horse Pilot, Harcour, Anna Scarpati, entre autres. Très présente et active sur les réseaux sociaux avec une communauté de 175k abonnés Instagram, un catalogue de plusieurs milliers de références et une clientèle fidèle, la marque s'est imposée comme un acteur majeur du e-commerce équestre en France.</p><div class='ohl-statrow'><div class='ohl-stat'><div class='ohl-stat-inner'><div class='ohl-stat-ico'><img src='assets/icons/sparkles.svg' alt=''></div><div class='ohl-stat-txt'><span class='ohl-stat-val counter-value'>175K</span><span class='ohl-stat-lbl'>Followers Instagram</span></div></div></div><div class='ohl-stat'><div class='ohl-stat-inner'><div class='ohl-stat-ico'><img src='assets/icons/cube-transparent.svg' alt=''></div><div class='ohl-stat-txt'><span class='ohl-stat-val'>45K+</span><span class='ohl-stat-lbl'>Références produit</span></div></div></div><div class='ohl-stat'><div class='ohl-stat-inner'><div class='ohl-stat-ico'><img src='assets/icons/cog-6-tooth.svg' alt=''></div><div class='ohl-stat-txt'><span class='ohl-stat-val'>SHOPIFY</span><span class='ohl-stat-lbl'>Plateforme actuelle</span></div></div></div></div><div class='ohl-cutout' style='margin-top:30px; width:100%; max-width:560px;'><img src='assets/figma-hd/cavaliere.png' alt='Cavalleria Toscana — Tapis de selle Embroidery Quilted light grey'></div>",
+      "wrapContent": true
+    },
+    {
+      "type": "cards",
+      "label": "PROBLÉMATIQUES IDENTIFIÉES — PARTIE WEB",
+      "title": "Points de friction structurels — interface web",
+      "intro": "L'analyse de l'interface web, de l'architecture technique et du référencement fait ressortir plusieurs axes sur lesquels concentrer la réflexion. Les problématiques propres à l'application mobile sont traitées dans une section dédiée plus loin.",
+      "grid": "grid-cols-1 md:grid-cols-2",
+      "cards": [
         {
-          "value": "$1k",
-          "label": "Abonnement Shopney / mois (lock-in)"
+          "title": "Thème template vs marques premium",
+          "body": "Le site utilise un thème Shopify marketplace (Stretch v1.9.0) personnalisé. Le rendu reste celui d'un template standard qui pourrait être davantage travaillé pour mieux traduire l'identité et l'univers d'Ohlala Sellerie."
         },
         {
-          "value": "0",
-          "label": "Avis produit dans l'app — 0 social proof"
+          "title": "Surcharge d'applications tierces",
+          "body": "Plus de 10 scripts tiers chargés simultanément (Judge.me, Gorgias, Nosto, Kiwi Sizing, Shipup, Wisepops, Axeptio, Klaviyo, hCaptcha). Chaque intégration ajoute du poids JavaScript. Impact probable sur les Core Web Vitals (LCP, INP, CLS) et le temps de chargement perçu par l'utilisateur."
         },
         {
-          "value": "60%",
-          "label": "Du SAV résolu par IA — coût divisé par 3"
+          "title": "SEO perfectible",
+          "body": "Le référencement est globalement en place mais certains axes restent à optimiser : title homepage peu exploité sur les mots-clés du marché, meta descriptions à affiner sur le catalogue."
         },
         {
-          "value": "175k",
-          "label": "Followers Instagram non monétisés en app"
+          "title": "Incohérences techniques",
+          "body": "Localisation détectée comme « Bermuda » (cookie localization=BM, content-language: fr-BM) au lieu de la France. Confusion de domaines entre ohlala-equestrian.com et ohlala-sellerie.com sans stratégie de redirection claire. Absence de page « À propos » malgré un positionnement axé sur la proximité et la confiance."
         }
       ]
     },
     {
-      "type": "gap",
-      "label": "Diagnostic",
-      "title": "Là où Ohlala excelle. Là où l'argent fuit.",
-      "columns": [
+      "type": "custom",
+      "label": "RECOMMANDATION 01",
+      "title": "Refonte de l'interface web",
+      "maxWidth": "1280px",
+      "html": "<p class='text-[17px] text-[#a3a3ae] text-center leading-normal max-w-[760px] mx-auto mb-[44px]'>Proposer une interface web qui traduit l'univers familial et passionné d'Ohlala Sellerie, en cohérence avec la proximité que la marque entretient avec sa communauté de cavaliers.</p><div class='ohl-2col' style='display:grid; grid-template-columns: 360px 1fr; gap:28px; align-items:center; width:100%;'><div style='display:flex; flex-direction:column; gap:24px;'><div class='ohl-note'><h3>Design sur-mesure</h3><p>Remplacer le thème template par une interface web entièrement designée pour Ohlala. Fiches produit premium, navigation pensée pour un catalogue de plusieurs milliers de références, expérience mobile-first.</p></div><div style='position:relative;'><span class='ohl-tab' style='position:absolute; left:0; top:-12px; z-index:2;'>Actuel</span><div class='ohl-fade' style='margin-top:14px;'><img src='assets/figma-hd/web-actuel.png' alt='Interface web actuelle'></div></div></div><div style='position:relative;'><span class='ohl-tab' style='position:absolute; right:0; top:-12px; z-index:2;'>Après D-STUDIO</span><div class='ohl-fade' style='margin-top:14px;'><img src='assets/figma-hd/web-apres.png' alt='Interface web refondue par D-Studio'></div></div></div>",
+      "wrapContent": true
+    },
+    {
+      "type": "proposition",
+      "label": "RECOMMANDATION 02",
+      "title": "Architecture headless premium",
+      "intro": "Séparer le front-office du back-office pour libérer l'interface web de toute contrainte de thème. Shopify continue de gérer le catalogue, les commandes et les paiements. Next.js développe une vitrine entièrement sur-mesure qui communique avec Shopify via API.",
+      "items": [
         {
-          "title": "VOS ATOUTS",
-          "type": "good",
-          "items": [
-            "<strong style='color:#fff;'>175k Instagram</strong> — communauté de cavalières passionnées",
-            "<strong style='color:#fff;'>45 000 références</strong> — catalogue le plus large du marché FR",
-            "Trustpilot positif — <strong style='color:#fff;'>confiance client établie</strong>",
-            "Influenceurs actifs — <strong style='color:#fff;'>TikTok, ambassadrices</strong> équitation",
-            "Seule app <strong style='color:#fff;'>e-commerce équestre pure</strong> en France"
-          ]
+          "title": "Performance et scalabilité",
+          "body": "Pages produit pré-rendues via ISR + edge caching. Temps de chargement réduit sur l'ensemble du catalogue. Les 10+ scripts tiers actuels sont remplacés par des intégrations côté serveur, allégeant le poids côté client."
         },
         {
-          "title": "OÙ L'ARGENT FUIT",
-          "type": "bad",
-          "items": [
-            "App Shopney <strong style='color:#fff;'>$300-1 000/mois</strong> — template identique à 4 000 autres marques",
-            "SKU brut <strong style='color:#fff;'>\"3701101367111\"</strong> affiché en titre produit — anti-conversion",
-            "Push Firebase <strong style='color:#fff;'>non exploité</strong> — 0 campagne segmentée",
-            "<strong style='color:#fff;'>0 programme fidélité</strong> — la communauté existe, aucune rétention",
-            "<em style='color:rgba(248,113,113,0.7);'>3 niveaux de navigation avant un produit — abandon au 2e clic</em>"
-          ]
+          "title": "SEO e-commerce structuré",
+          "body": "Chaque fiche produit devient une landing page optimisée. Métadonnées dynamiques, balisage schema.org (Product, BreadcrumbList), sitemap automatique. L'ensemble du catalogue bénéficie d'un référencement structuré dès la mise en ligne."
+        },
+        {
+          "title": "Maintenance et évolution",
+          "body": "Fin de la dépendance au thème template et à l'empilement d'applications. Le front évolue indépendamment du back. Nouvelles fonctionnalités, nouveaux marchés, nouveaux formats de contenu, sans contrainte architecturale."
         }
       ]
     },
     {
       "type": "cards",
-      "label": "6 axes de croissance",
-      "title": "D-Studio gère tout, vous encaissez.",
+      "label": "RECOMMANDATION 03",
+      "title": "Optimisation SEO",
+      "intro": "Le référencement est globalement en place. Plusieurs axes permettent d'en renforcer la portée via une stratégie de contenu structurée et automatisée.",
       "grid": "col",
       "cards": [
         {
-          "title": "SAV automatisé par IA",
-          "body": "Un agent IA spécialisé équitation (tailles, entretien sellerie, compatibilité) répond 24/7. Escalade vers humain uniquement si besoin. Résultat estimé : -60 à -80% de coût support.",
-          "highlight": "green"
+          "title": "Optimisation technique SEO",
+          "body": "Optimisation des title et meta descriptions sur l'ensemble du catalogue, correction de la localisation détectée, consolidation des domaines sous une URL canonique unique. Balisage schema.org (Product, BreadcrumbList, FAQ) pour structurer chaque fiche produit."
         },
         {
-          "title": "App native D-Studio — sortir de Shopney",
-          "body": "Design exclusif, push segmenté par discipline (CSO, dressage, endurance), avis produit natifs, programme fidélité et parrainage. Zéro vendor lock-in. Économie immédiate : $1 000/mois libérés.",
-          "highlight": "green"
-        },
-        {
-          "title": "Auto-promotion intelligente",
-          "body": "Détection automatique du stock dormant + analyse tendances saisonnières → campagnes email, push et social générées et envoyées sans intervention. Vos produits se vendent quand vous dormez."
-        },
-        {
-          "title": "SEO + GEO automatisés",
-          "body": "Contenu fiche produit généré et optimisé en continu (45k fiches = 45k opportunités Google). GEO — Generative Engine Optimization : être cité par ChatGPT, Perplexity, Gemini quand un cavalier cherche de l'équipement."
-        },
-        {
-          "title": "Fidélité et parrainage natifs",
-          "body": "Programme points par achat, paliers VIP, parrainage avec reward. Vos 175k abonnés Instagram deviennent un moteur d'acquisition gratuit. LTV client estimée : +40%."
-        },
-        {
-          "title": "Restock prédictif",
-          "body": "Analyse ventes + tendances (printemps concours, rentrée septembre) → alertes restock automatiques avant rupture. Zéro vente manquée sur les références clés."
+          "title": "Blog system automatisé",
+          "body": "Pipeline de production de contenu semi-automatisé : génération assistée par IA d'articles experts (guides d'équipement, conseils entretien, fiches matière), validation éditoriale Ohlala, publication programmée. Chaque article devient un point d'entrée SEO supplémentaire pour le catalogue."
         }
       ]
     },
     {
-      "type": "proposition",
-      "label": "Notre proposition",
-      "title": "Un appel. Un partenaire. Tout géré.",
-      "items": [
+      "type": "custom",
+      "label": "PROBLÉMATIQUES IDENTIFIÉES — PARTIE MOBILE",
+      "title": "Diagnostic de l'app actuelle",
+      "slideClass": "tall",
+      "maxWidth": "1135px",
+      "html": "<p class='text-[17px] text-[#a3a3ae] text-center leading-normal max-w-[780px] mx-auto mb-[40px]'>L'application mobile bénéficie d'une excellente note communautaire (4,9/5) mais repose sur une infrastructure qui plafonne sa capacité à différencier la marque et à activer ses leviers de croissance.</p><div class='ohl-statrow' style='margin-bottom:34px;'><div class='ohl-stat'><div class='ohl-stat-inner'><div class='ohl-stat-ico'><img src='assets/icons/sparkles.svg' alt=''></div><div class='ohl-stat-txt'><span class='ohl-stat-val'>4,9/5</span><span class='ohl-stat-lbl'>Note App Store</span></div></div></div><div class='ohl-stat'><div class='ohl-stat-inner'><div class='ohl-stat-ico'><img src='assets/icons/cog-6-tooth.svg' alt=''></div><div class='ohl-stat-txt'><span class='ohl-stat-val'>SHOPNEY</span><span class='ohl-stat-lbl'>Template no-code</span></div></div></div><div class='ohl-stat'><div class='ohl-stat-inner'><div class='ohl-stat-ico'><img src='assets/icons/cube-transparent.svg' alt=''></div><div class='ohl-stat-txt'><span class='ohl-stat-val'>1K+</span><span class='ohl-stat-lbl'>Marques sur Shopney</span></div></div></div></div><div style='display:flex; flex-direction:column; gap:19px; width:100%; max-width:1100px;'><div class='opp-card'><h3 class='font-bold text-[21px] text-[#c7c7cc] text-center w-full'>Template Shopney : lock-in et différenciation impossible</h3><p class='text-[16px] text-[#a3a3ae] text-center w-full leading-normal'>L'application repose sur Shopney, plateforme no-code utilisée par plus d'un millier de marques Shopify. Le rendu visuel est par essence interchangeable d'une app à l'autre, sans réelle marge de différenciation au-delà du logo et de la palette. La technologie sous-jacente reste ancienne (interface iPhone non optimisée pour iPad ou macOS) et l'évolutivité est plafonnée par les limites du template.</p></div><div class='opp-card'><h3 class='font-bold text-[21px] text-[#c7c7cc] text-center w-full'>Position concurrentielle à optimiser</h3><p class='text-[16px] text-[#a3a3ae] text-center w-full leading-normal'>Sur le marché français équestre, Ohlala fait partie des rares selleries en ligne — distributeurs de marques équestres — à proposer une application native dédiée. Padd, Equestra et Cheval-Shop n'en proposent aucune ; Decathlon dispose d'une app généraliste mais sans expérience équestre dédiée. La principale concurrence vient des acteurs allemands — Kramer et Horze — déjà présents en France via leurs apps multi-pays. L'enjeu n'est plus seulement de maintenir l'app existante mais d'en faire une véritable expérience différenciante, capable de positionner Ohlala comme la référence digitale du marché équestre français.</p></div></div>",
+      "wrapContent": true
+    },
+    {
+      "type": "cards",
+      "label": "RECOMMANDATION 04",
+      "title": "Application mobile — trois chemins possibles",
+      "intro": "Selon l'ambition et le rythme souhaités, trois trajectoires permettent d'adresser les problématiques identifiées. Chacune répond à un niveau d'engagement et de transformation différent.",
+      "grid": "col",
+      "cards": [
         {
-          "title": "App native iOS & Android",
-          "body": "Design exclusif D-Studio, catalogue 45k refs optimisé, push segmenté par discipline, programme fidélité et parrainage natifs. Migration depuis Shopney incluse.",
-          "duration": "10-14 sem"
+          "title": "Chemin 1 — Optimisation continue",
+          "body": "Conserver l'infrastructure Shopney et exploiter au maximum les personnalisations autorisées par le template : mise à niveau de l'identité visuelle, refonte de la taxonomie de navigation."
         },
         {
-          "title": "SAV IA + Automation commandes",
-          "body": "Agent IA équitation déployé sur app + site. Workflows commande / stock / SAV automatisés. Escalade humain sur cas complexes uniquement.",
-          "duration": "4-6 sem"
+          "title": "Chemin 2 — Hybride PWA + coque native",
+          "body": "Construction d'une Progressive Web App basée sur Hydrogen (framework headless officiel de Shopify), encapsulée dans une coque native iOS et Android. Le catalogue reste 100 % géré côté Shopify, les mises à jour ne nécessitent plus de validation App Store, et le code est partagé entre web et application. Approche intermédiaire qui sort du lock-in Shopney sans engager une refonte native complète, et qui mutualise les efforts avec la refonte web headless (Reco 02)."
         },
         {
-          "title": "SEO & GEO — 45k fiches",
-          "body": "Génération et optimisation continue des fiches produit. Structuration schema.org e-commerce. Contenu GEO pour visibilité moteurs IA (ChatGPT, Perplexity).",
-          "duration": "Continu"
-        },
-        {
-          "title": "Auto-promotion & Analytics",
-          "body": "Détection stock dormant + campagnes automatiques. Dashboard D-Studio.Office : ventes, SAV, SEO, performance app — tout en un écran.",
-          "duration": "Inclus"
+          "title": "Chemin 3 — Refonte native sur-mesure",
+          "body": "Application iOS et Android entièrement repensée, connectée à l'API Shopify Storefront. Design piloté par D-Studio en cohérence avec le site refondu, fiches produit premium avec vidéos et avis intégrés, notifications push segmentées (restock favoris, drops nouveautés), programme de fidélité et parrainage natifs, recommandations par discipline (CSO, dressage, complet), feed communauté ambassadrices. Approche la plus structurante, qui aligne l'app sur le positionnement premium de la marque et exploite pleinement la fenêtre concurrentielle."
         }
       ]
     },
     {
-      "type": "cta",
-      "label": "Pour démarrer",
-      "title": "Vous appelez.<br>On automatise.<br>Votre CA monte.",
-      "offers": [
-        {
-          "title": "Audit technique & stratégique",
-          "price": "4-6k€",
-          "details": "2 semaines · Audit app Shopney · Stack automation · Roadmap ROI chiffrée"
-        },
-        {
-          "title": "Partenariat complet",
-          "price": "40-65k€",
-          "details": "16-20 semaines · App native + SAV IA + SEO/GEO + Auto-promo · D-Studio.Office inclus"
-        }
-      ]
+      "type": "custom",
+      "label": "COHÉRENCE DE MARQUE",
+      "title": "Logo",
+      "maxWidth": "1209px",
+      "html": "<p class='text-[17px] text-[#a3a3ae] text-center leading-normal max-w-[720px] mx-auto mb-[50px]'>La marque dispose de lignes directrices de marque, mais celles-ci ne semblent pas toujours appliquées de manière homogène, ce qui crée une légère hétérogénéité d'un support à l'autre.</p><div class='ohl-2col' style='display:grid; grid-template-columns: 1fr 1.2fr; gap:48px; align-items:center; width:100%; max-width:1080px;'><div style='display:flex; flex-direction:column; align-items:center; gap:28px;'><span class='ohl-tab'>Actuel</span><img src='assets/logos/logo-actuel.png' alt='Logo actuel Ohlala' style='width:276px; height:275px; object-fit:contain;'></div><div style='display:flex; flex-direction:column; align-items:center; gap:28px;'><span class='ohl-tab'>Propositions</span><div style='display:flex; flex-direction:column; gap:30px; align-items:center;'><div style='display:flex; gap:44px; align-items:center; justify-content:center; flex-wrap:wrap;'><img src='assets/logos/logo-prop-serif.png' alt='Proposition logo Ohlala serif' style='width:223px; height:67px; object-fit:contain;'><img src='assets/logos/logo-prop-ohlala.png' alt='Proposition logo OH LALA' style='width:184px; height:142px; object-fit:contain;'></div><img src='assets/logos/logo-prop-horse.png' alt='Proposition logo Ohlala cheval' style='width:305px; height:103px; object-fit:contain;'></div></div></div>",
+      "wrapContent": true
+    },
+    {
+      "type": "custom",
+      "title": "Identité de marque renforcée",
+      "maxWidth": "1209px",
+      "html": "<p class='text-[16px] text-[#a3a3ae] text-center leading-normal max-w-[760px] mx-auto mb-[40px]'>Page « À propos » et storytelling de la marque. Mise en valeur de la relation client (avis, communauté, petites attentions). Consolidation des domaines sous une identité unique et cohérente.</p><div class='ohl-2col' style='display:grid; grid-template-columns: 420px 1fr; gap:28px; align-items:center; width:100%; max-width:1135px;'><div style='position:relative;'><span class='ohl-tab' style='position:absolute; left:0; top:-12px; z-index:2;'>Actuel</span><div class='ohl-device' style='aspect-ratio:441/253; margin-top:14px;'><img src='assets/mockups/tablet-actual.png' alt='Fiche produit actuelle'></div></div><div style='position:relative;'><span class='ohl-tab' style='position:absolute; left:0; bottom:-12px; z-index:2;'>Après D-STUDIO</span><div class='ohl-device' style='aspect-ratio:766/472;'><img src='assets/mockups/tablet-after.png' alt='Fiche produit refondue par D-Studio'></div></div></div>",
+      "wrapContent": true
+    },
+    {
+      "type": "custom",
+      "label": "PLAN COMPLÉMENTAIRE",
+      "title": "Plan IA — Réduction des coûts opérationnels et accélération du chiffre d'affaires",
+      "slideClass": "tall",
+      "maxWidth": "1104px",
+      "html": "<p class='text-[16px] text-[#a3a3ae] text-center leading-normal max-w-[800px] mx-auto mb-[36px]'>Au-delà des refontes d'interfaces et de l'évolution architecturale, un plan transversal d'automatisation par IA permet de renforcer les marges opérationnelles et d'accélérer la croissance commerciale.</p><div class='ohl-stat4' style='margin-bottom:30px;'><div class='ohl-statc'><div class='ico'><img src='assets/icons/clock.svg' alt=''></div><div class='val'>60-80<sup>%</sup></div><div class='lbl'>Coût SAV réduit</div></div><div class='ohl-statc'><div class='ico'><img src='assets/icons/arrow-trending-up.svg' alt=''></div><div class='val'>15-30<sup>%</sup></div><div class='lbl'>Croissance CA segmentée</div></div><div class='ohl-statc'><div class='ico'><img src='assets/icons/sparkles.svg' alt=''></div><div class='val'>24/7</div><div class='lbl'>Support multi-canal</div></div><div class='ohl-statc'><div class='ico'><img src='assets/icons/bolt.svg' alt=''></div><div class='val'>4<sup>×</sup></div><div class='lbl'>Leviers automatisés</div></div></div><div class='ohl-items'><div class='ohl-item'><div class='num'><span>01</span></div><div><h3>SAV automatisé par agent IA</h3><p>Agent intelligent connecté au catalogue, à la FAQ et à l'historique des retours produits. Réponse instantanée 24/7 sur les questions de tailles, livraison, retours et disponibilité. Escalade vers l'humain uniquement sur les cas complexes. Couverture multi-canal : chat site, WhatsApp, messagerie Instagram, email. Ordre de grandeur observé sur ce type d'automatisation : réduction de 60 à 80 % du coût support de premier niveau.</p></div></div><div class='ohl-item'><div class='num'><span>02</span></div><div><h3>Promotions prédictives automatisées</h3><p>Détection automatique des stocks dormants et des tendances saisonnières (CSO au printemps, dressage en hiver). Déclenchement automatique de campagnes de déstockage (email, notifications push, social ads) avec génération assistée des visuels promotionnels. Ordre de grandeur observé : croissance de 15 à 30 % du chiffre d'affaires sur les segments couverts.</p></div></div><div class='ohl-item'><div class='num'><span>03</span></div><div><h3>Automatisation des workflows internes</h3><p>Orchestration du flux commande → préparation → expédition → suivi sans intervention manuelle. Consolidation des marketplaces, reporting hebdomadaire généré sans intervention humaine. Effet attendu : libération de temps équipe et fiabilisation des opérations.</p></div></div><div class='ohl-item'><div class='num'><span>04</span></div><div><h3>Détection de tendances et anticipation des ruptures</h3><p>Modèles prédictifs entraînés sur les données Shopify d'Ohlala pour anticiper les ruptures de stock. Veille automatisée sur la concurrence (Kramer, Horze, Padd, Equestra) — prix et nouveautés. Suggestions de catalogue à intégrer avant les autres acteurs du marché. Effet attendu : avantage de premier entrant sur les nouvelles tendances.</p></div></div></div>",
+      "wrapContent": true
+    },
+    {
+      "type": "custom",
+      "maxWidth": "1209px",
+      "html": "<div style='display:flex; gap:44px; justify-content:center; align-items:flex-end; width:100%;'><div style='display:flex; flex-direction:column; align-items:center; gap:18px;'><span class='ohl-tab'>Actuelle</span><div class='ohl-iphone' style='width:300px; aspect-ratio:312/668;'><div class='ohl-screen'><img src='assets/figma-hd/iphone-actuelle.png' alt='Application mobile actuelle'></div></div></div><div style='display:flex; flex-direction:column; align-items:center; gap:18px;'><span class='ohl-tab'>Après D-STUDIO</span><div class='ohl-iphone' style='width:300px; aspect-ratio:312/668;'><div class='ohl-screen'><img src='assets/figma-hd/iphone-apres.png' alt='Application mobile refondue par D-Studio'></div></div></div></div>",
+      "wrapContent": true
+    },
+    {
+      "type": "custom",
+      "label": "CONCLUSION",
+      "title": "Synthèse et prochaines étapes",
+      "maxWidth": "1100px",
+      "html": "<div class='opp-card' style='max-width:1000px;'><p class='text-[16px] text-[#a3a3ae] text-center w-full leading-[1.6]'>Cet audit identifie quatre axes principaux d'évolution pour Ohlala Sellerie : la refonte de l'interface web pour mieux traduire l'univers de la marque, la modernisation de l'architecture technique via une approche headless, l'optimisation SEO portée par un blog system automatisé, et la transformation de l'interface et de l'architecture technique de l'application mobile selon trois chemins possibles — de l'optimisation continue à la refonte native sur-mesure. Un plan IA transversal peut compléter ces orientations pour renforcer la marge et accélérer la croissance commerciale. Nous restons à disposition pour approfondir chacune de ces orientations.</p></div>",
+      "wrapContent": true
     }
-  ],
-  "heroImage": "../assets/heroes/ohlala.jpg"
+  ]
 }
