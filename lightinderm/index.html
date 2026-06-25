@@ -381,28 +381,26 @@ body {
 
 
 <!-- Slide 1: hero -->
-<section class="slide bg-black flex flex-col items-center" id="slide-0">
-  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center relative">
-    <div class="flex flex-col items-center gap-[25px] pt-[56px] w-[742px] max-w-full px-4">
+<section class="slide bg-black flex flex-col items-center justify-start relative overflow-hidden" id="slide-0">
+  
+    <!-- Hero Image: full-bleed background, full height -->
+    <img src="assets/hero-product.png" alt="Lightinderm" style="position:absolute; inset:0; height:100%; width:100%; object-fit:cover; object-position:center 58%; z-index:0;" />
+    <div style="position:absolute; inset:0; background:linear-gradient(to bottom, #000 0%, #000 calc(32% - 10px), rgba(0,0,0,0.85) calc(44% - 10px), rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.4) 88%, #000 100%); pointer-events:none; z-index:1;"></div>
+  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center relative z-[2]">
+    <div class="flex flex-col items-center gap-[25px] pt-[72px] w-[742px] max-w-full px-4">
       <div class="fade-up"><img src="assets/lightinderm-logo.svg" alt="Lightinderm" class="h-[60px] object-contain" onerror="this.style.display='none'" /></div>
+      <div class="fade-up flex flex-col items-center gap-[24px] w-full" style="transition-delay:0.2s">
+        <h1 class="font-bold text-[36px] leading-[46px] text-white text-center w-full">Audit digital.</h1>
+        <p class="text-[17px] text-[#c7c7cc] text-center w-full leading-normal max-w-[620px]">Analyse de l'interface, de l'expérience utilisateur<br>et du référencement de Lightinderm.</p>
+      </div>
       <div class="fade-up flex flex-wrap justify-center gap-[8px]" style="transition-delay:0.1s">
         <div class="tab-pill"><span>Refonte Site</span></div>
           <div class="tab-pill"><span>Espace Pro</span></div>
           <div class="tab-pill"><span>SEO Médical</span></div>
           <div class="tab-pill"><span>E-commerce</span></div>
       </div>
-      <div class="fade-up flex flex-col items-center gap-[30px] w-full" style="transition-delay:0.2s">
-        <h1 class="font-bold text-[36px] leading-[46px] text-white text-center w-full">Audit digital.</h1>
-        <p class="text-[17px] text-[#a3a3ae] text-center w-full leading-normal">Analyse de l'interface, de l'expérience utilisateur<br>et du référencement de Lightinderm.</p>
-      </div>
     </div>
   </div>
-  
-    <!-- Hero Image: full-width, no container constraint -->
-    <div class="fade-up w-full relative overflow-hidden" style="height:520px; transition-delay:0.4s">
-      <img src="assets/hero-product.png" alt="Lightinderm" style="position:absolute; height:175%; left:-3%; top:0; width:106%; max-width:none; object-fit:cover;" />
-      <div style="position:absolute; bottom:0; left:0; right:0; height:40%; background:linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 50%, #000 100%); pointer-events:none; z-index:1;"></div>
-    </div>
 </section>
 <!-- Slide 2: stats -->
 <section class="slide bg-black flex flex-col items-center justify-center">
