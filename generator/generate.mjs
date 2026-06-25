@@ -50,30 +50,28 @@ function slideHero(s) {
     .join("\n          ");
 
   const heroImg = config.heroImage || s.image;
-  const heroSection = heroImg
+  const heroBg = heroImg
     ? `
-    <!-- Hero Image: full-width, no container constraint -->
-    <div class="fade-up w-full relative overflow-hidden" style="height:520px; transition-delay:0.4s">
-      <img src="${heroImg}" alt="${esc(config.client)}" style="position:absolute; height:175%; left:-3%; top:0; width:106%; max-width:none; object-fit:cover;" />
-      <div style="position:absolute; bottom:0; left:0; right:0; height:40%; background:linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 50%, #000 100%); pointer-events:none; z-index:1;"></div>
-    </div>`
+    <!-- Hero Image: full-bleed background, full height -->
+    <img src="${heroImg}" alt="${esc(config.client)}" style="position:absolute; inset:0; height:100%; width:100%; object-fit:cover; object-position:center 58%; z-index:0;" />
+    <div style="position:absolute; inset:0; background:linear-gradient(to bottom, #000 0%, #000 calc(32% - 10px), rgba(0,0,0,0.85) calc(44% - 10px), rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.4) 88%, #000 100%); pointer-events:none; z-index:1;"></div>`
     : "";
 
   return `
-<section class="slide bg-black flex flex-col items-center" id="slide-0">
-  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center relative">
-    <div class="flex flex-col items-center gap-[25px] pt-[56px] w-[742px] max-w-full px-4">
+<section class="slide bg-black flex flex-col items-center justify-start relative overflow-hidden" id="slide-0">
+  ${heroBg}
+  <div class="slide-content w-full max-w-[1440px] mx-auto flex flex-col items-center relative z-[2]">
+    <div class="flex flex-col items-center gap-[25px] pt-[72px] w-[742px] max-w-full px-4">
       ${clientLogo}
+      <div class="fade-up flex flex-col items-center gap-[24px] w-full" style="transition-delay:0.2s">
+        <h1 class="font-bold text-[36px] leading-[46px] text-white text-center w-full">${raw(s.title)}</h1>
+        <p class="text-[17px] text-[#c7c7cc] text-center w-full leading-normal max-w-[620px]">${raw(s.body || "")}</p>
+      </div>
       <div class="fade-up flex flex-wrap justify-center gap-[8px]" style="transition-delay:0.1s">
         ${tabs}
       </div>
-      <div class="fade-up flex flex-col items-center gap-[30px] w-full" style="transition-delay:0.2s">
-        <h1 class="font-bold text-[36px] leading-[46px] text-white text-center w-full">${raw(s.title)}</h1>
-        <p class="text-[17px] text-[#a3a3ae] text-center w-full leading-normal">${raw(s.body || "")}</p>
-      </div>
     </div>
   </div>
-  ${heroSection}
 </section>`;
 }
 
@@ -308,7 +306,7 @@ function slideCustom(s) {
   const header = hasHeader
     ? `
     <div class="flex flex-col items-center gap-[34px] mb-[40px]">
-      <div class="fade-up badge">${raw(s.label || "")}</div>
+      ${s.label ? `<div class="fade-up badge">${raw(s.label)}</div>` : ""}
       <h2 class="fade-up font-bold text-[36px] text-[#efefef] text-center leading-normal" style="transition-delay:0.1s">${raw(s.title || "")}</h2>
     </div>`
     : "";
