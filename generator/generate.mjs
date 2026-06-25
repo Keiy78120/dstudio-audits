@@ -86,8 +86,9 @@ function slideStats(s) {
       </div>`)
     .join("\n");
 
+  const sectionClass = s.slideClass ? `slide ${s.slideClass}` : "slide";
   return `
-<section class="slide bg-black flex flex-col items-center justify-center">
+<section class="${sectionClass} bg-black flex flex-col items-center justify-center">
   <div class="slide-content w-full max-w-[1209px] mx-auto flex flex-col items-center justify-center px-6 h-full">
     <div class="flex flex-col items-center gap-[34px]">
       <div class="fade-up badge">${raw(s.label || "EN CHIFFRES")}</div>
@@ -175,8 +176,9 @@ function slideCards(s) {
     ? `\n      <p class="fade-up text-[17px] text-[#a3a3ae] text-center leading-normal max-w-[800px] mx-auto" style="transition-delay:0.15s">${raw(s.intro)}</p>`
     : "";
 
+  const sectionClass = s.slideClass ? `slide ${s.slideClass}` : "slide";
   return `
-<section class="slide bg-black flex flex-col items-center justify-center">
+<section class="${sectionClass} bg-black flex flex-col items-center justify-center">
   <div class="slide-content w-full max-w-[1209px] mx-auto flex flex-col items-center justify-center px-6 h-full">
     <div class="flex flex-col items-center ${headerGap}">
       <div class="fade-up badge">${raw(s.label || "")}</div>
