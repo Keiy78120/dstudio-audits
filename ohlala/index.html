@@ -452,6 +452,31 @@ body {
 @media (prefers-reduced-motion: reduce){ .ohl-tablet { transition:none !important; transform:none !important; } }
 /* icônes Figma natives (relief + couleur) : pas de filtre monochrome */
 .ohl-stat-ico.ohl-ico-native img { filter:none !important; width:30px; height:30px; }
+
+/* ===== RESPONSIVE mobile + tablette (ajouté 2026-06-25) ===== */
+/* garde anti-scroll-horizontal global */
+.slide { overflow-x: hidden; }
+@media (max-width: 1024px) {
+  /* toutes les grilles 2 colonnes du deck passent en 1 colonne */
+  .ohl-2col { grid-template-columns: 1fr !important; max-width: 560px !important; }
+}
+@media (max-width: 768px) {
+  /* iPhones côte à côte -> empilés et rétrécis pour tenir dans le viewport */
+  .ohl-phones { flex-direction: column !important; gap: 36px !important; align-items: center !important; }
+  .ohl-phones .ohl-iphone { width: min(260px, 78vw) !important; }
+  /* tablettes / devices: jamais plus large que l'écran */
+  .ohl-tablet, .ohl-device, .ohl-frame, .ohl-fade, .ohl-cutout { max-width: 100% !important; }
+  /* notes & textes resserrés */
+  .ohl-note { padding: 22px !important; }
+  .ohl-note-hero { padding: 24px 22px !important; }
+  .ohl-note-hero h2 { font-size: 25px !important; }
+  .ohl-item { flex-direction: column !important; gap: 14px !important; padding: 18px 18px !important; }
+}
+@media (max-width: 560px) {
+  .ohl-phones .ohl-iphone { width: min(240px, 82vw) !important; }
+  .ohl-tab { font-size: 12px !important; padding: 6px 12px !important; }
+}
+
 </style>
 </head>
 <body>
@@ -694,7 +719,7 @@ body {
 <!-- Slide 12: custom -->
 <section class="slide bg-black flex flex-col items-center justify-center">
   <div class="slide-content w-full mx-auto flex flex-col items-center justify-center px-6 h-full" style="max-width:1209px">
-    <div class="fade-up w-full flex flex-col items-center" style="transition-delay:0.2s"><div style='display:flex; gap:44px; justify-content:center; align-items:flex-end; width:100%;'><div style='display:flex; flex-direction:column; align-items:center; gap:18px;'><span class='ohl-tab'>Actuelle</span><div class='ohl-iphone' style='width:300px; aspect-ratio:312/668;'><div class='ohl-screen'><img src='assets/figma-hd/iphone-actuelle.png' alt='Application mobile actuelle'></div></div></div><div style='display:flex; flex-direction:column; align-items:center; gap:18px;'><span class='ohl-tab'>Après D-STUDIO</span><div class='ohl-iphone' style='width:300px; aspect-ratio:312/668;'><div class='ohl-screen'><img src='assets/figma-hd/iphone-apres.png' alt='Application mobile refondue par D-Studio'></div></div></div></div></div>
+    <div class="fade-up w-full flex flex-col items-center" style="transition-delay:0.2s"><div class='ohl-phones' style='display:flex; gap:44px; justify-content:center; align-items:flex-end; width:100%;'><div style='display:flex; flex-direction:column; align-items:center; gap:18px;'><span class='ohl-tab'>Actuelle</span><div class='ohl-iphone' style='width:300px; aspect-ratio:312/668;'><div class='ohl-screen'><img src='assets/figma-hd/iphone-actuelle.png' alt='Application mobile actuelle'></div></div></div><div style='display:flex; flex-direction:column; align-items:center; gap:18px;'><span class='ohl-tab'>Après D-STUDIO</span><div class='ohl-iphone' style='width:300px; aspect-ratio:312/668;'><div class='ohl-screen'><img src='assets/figma-hd/iphone-apres.png' alt='Application mobile refondue par D-Studio'></div></div></div></div></div>
   </div>
 </section>
 <!-- Slide 13: custom -->
