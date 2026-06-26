@@ -459,7 +459,13 @@ body {
   .ohl-2col { grid-template-columns: 1fr !important; max-width: 560px !important; }
 }
 @media (max-width: 768px) {
-  .ohl-phones { flex-direction: column !important; gap: 36px !important; align-items: center !important; }
+  .slide { padding: 56px 20px !important; }
+  .slide.tall { padding: 64px 20px !important; }
+  .slide-content { gap: 32px !important; }
+  .ohl-2col { gap: 36px !important; row-gap: 36px !important; }
+  .ohl-items { gap: 22px !important; }
+  .ohl-statrow { gap: 18px !important; }
+  .ohl-phones { flex-direction: column !important; gap: 44px !important; align-items: center !important; }
   .ohl-phones .ohl-iphone { width: min(260px, 78vw) !important; }
   .ohl-tablet, .ohl-device, .ohl-frame, .ohl-fade, .ohl-cutout { max-width: 100% !important; }
   .ohl-note { padding: 22px !important; }
